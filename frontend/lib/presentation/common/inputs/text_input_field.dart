@@ -56,7 +56,7 @@ class TextInputField extends StatelessWidget {
       obscureText: obscureText,
       autofillHints: autofillHints,
       textCapitalization: capitalization,
-      onFieldSubmitted: (s) => FocusScope.of(context).nextFocus(),
+      onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         suffixIcon: suffixIcon,
