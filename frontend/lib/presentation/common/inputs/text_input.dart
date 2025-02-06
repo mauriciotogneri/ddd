@@ -3,51 +3,41 @@ import 'package:flutter/services.dart';
 
 class TextInput extends StatelessWidget {
   final String hint;
-  final bool enabled;
   final TextEditingController controller;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
   final TextCapitalization capitalization;
+  final bool enabled;
   final bool autofocus;
   final bool readOnly;
   final bool filled;
-  final bool showMaxLength;
   final bool obscureText;
-  final EdgeInsetsGeometry? contentPadding;
   final Iterable<String>? autofillHints;
-  final BorderRadius? borderRadius;
-  final Color? fillColor;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final int? maxLength;
   final int? maxLines;
   final FocusNode? focusNode;
   final Function(String)? onChanged;
-  final String? error;
 
   const TextInput({
     required this.hint,
     required this.controller,
-    this.enabled = true,
     this.keyboardType = TextInputType.none,
     this.textInputAction = TextInputAction.done,
     this.capitalization = TextCapitalization.none,
+    this.enabled = true,
     this.autofocus = false,
     this.readOnly = false,
     this.filled = false,
-    this.showMaxLength = false,
     this.obscureText = false,
-    this.contentPadding,
     this.autofillHints,
-    this.borderRadius,
-    this.fillColor,
     this.prefixIcon,
     this.suffixIcon,
     this.maxLength,
     this.maxLines,
     this.focusNode,
     this.onChanged,
-    this.error,
   });
 
   @override
@@ -75,7 +65,6 @@ class TextInput extends StatelessWidget {
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
         filled: filled,
-        contentPadding: contentPadding ?? const EdgeInsets.all(18),
         hintText: hint,
       ),
     );
