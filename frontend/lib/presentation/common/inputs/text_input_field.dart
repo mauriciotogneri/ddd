@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TextInput extends StatelessWidget {
+class TextInputField extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
   final TextInputType keyboardType;
@@ -20,7 +20,7 @@ class TextInput extends StatelessWidget {
   final FocusNode? focusNode;
   final Function(String)? onChanged;
 
-  const TextInput({
+  const TextInputField({
     required this.hint,
     required this.controller,
     this.keyboardType = TextInputType.none,
