@@ -1,4 +1,4 @@
-import 'package:testflow/presentation/common/inputs/text_input_field.dart';
+import 'package:testflow/presentation/common/input/text_input_field.dart';
 
 class PasswordInputField extends TextInputField {
   const PasswordInputField({

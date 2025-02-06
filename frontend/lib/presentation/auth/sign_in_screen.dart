@@ -1,9 +1,9 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/state/auth/sign_in_state.dart';
-import 'package:testflow/presentation/common/buttons/primary_button.dart';
-import 'package:testflow/presentation/common/inputs/password_input_field.dart';
-import 'package:testflow/presentation/common/inputs/text_input_field.dart';
+import 'package:testflow/presentation/common/button/primary_button.dart';
+import 'package:testflow/presentation/common/input/password_input_field.dart';
+import 'package:testflow/presentation/common/input/text_input_field.dart';
 
 class SignInScreen extends StatelessWidget {
   final SignInState state;
@@ -16,21 +16,8 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return StateProvider<SignInState>(
       state: state,
-      builder: (context, state) => Body(state),
-    );
-  }
-}
-
-class Body extends StatelessWidget {
-  final SignInState state;
-
-  const Body(this.state);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Content(state),
+      builder: (context, state) => Scaffold(
+        body: Content(state),
       ),
     );
   }
@@ -43,15 +30,17 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 300,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          FormInputs(state),
-          const VBox(16),
-          SignInButton(state),
-        ],
+    return Center(
+      child: SizedBox(
+        width: 300,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FormInputs(state),
+            const VBox(16),
+            SignInButton(state),
+          ],
+        ),
       ),
     );
   }
