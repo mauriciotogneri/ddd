@@ -1,0 +1,12 @@
+{
+    "name": "testflow",
+    "short_name": "testflow",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#0175C2",
+    "description": "Testing tool",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": []
+}
