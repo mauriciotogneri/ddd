@@ -14,6 +14,15 @@ class SignInState extends BaseState {
   void onLoad() {
     emailController.text = 'demo@email.com';
     passwordController.text = '123456';
+    notify();
+  }
+
+  void onEmailChanged(String value) {
+    notify();
+  }
+
+  void onPasswordChanged(String value) {
+    notify();
   }
 
   void onSignIn() {

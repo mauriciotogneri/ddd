@@ -41,13 +41,16 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        FormInputs(state),
-        const VBox(16),
-        SignInButton(state),
-      ],
+    return SizedBox(
+      width: 300,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FormInputs(state),
+          const VBox(16),
+          SignInButton(state),
+        ],
+      ),
     );
   }
 }
@@ -70,6 +73,7 @@ class FormInputs extends StatelessWidget {
               border: OutlineInputBorder(),
               hintText: 'Email',
             ),
+            onChanged: state.onEmailChanged,
           ),
           const VBox(16),
           TextField(
@@ -79,6 +83,7 @@ class FormInputs extends StatelessWidget {
               border: OutlineInputBorder(),
               hintText: 'Password',
             ),
+            onChanged: state.onPasswordChanged,
           ),
         ],
       ),
