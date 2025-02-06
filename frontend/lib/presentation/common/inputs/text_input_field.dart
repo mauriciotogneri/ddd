@@ -44,9 +44,6 @@ class TextInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       autofocus: autofocus,
-      inputFormatters: [
-        if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
-      ],
       maxLines: maxLines,
       readOnly: readOnly,
       enableInteractiveSelection: !readOnly,
@@ -67,6 +64,9 @@ class TextInputField extends StatelessWidget {
         filled: filled,
         hintText: hint,
       ),
+      inputFormatters: [
+        if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
+      ],
     );
   }
 }
