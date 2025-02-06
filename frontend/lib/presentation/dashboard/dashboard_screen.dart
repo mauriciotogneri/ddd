@@ -2,6 +2,7 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/state/dashboard/dashboard_state.dart';
 import 'package:testflow/presentation/common/text/label_large.dart';
+import 'package:testflow/utils/palette.dart';
 
 class DashboardScreen extends StatelessWidget {
   final DashboardState state;
@@ -52,29 +53,58 @@ class NavigationMenu extends StatelessWidget {
         width: 250,
         child: Column(
           children: [
-            ListTile(
-              title: const LabelLarge(text: 'Requirements'),
-              leading: const Icon(Icons.map_outlined),
-              onTap: () => state.onActiveViewChange(0),
+            NavigationMenuRow(
+              state: state,
+              text: 'Requirements',
+              icon: Icons.map_outlined,
+              index: DashboardState.VIEW_REQUIREMENTS,
             ),
-            ListTile(
-              title: const LabelLarge(text: 'Suites'),
-              leading: const Icon(Icons.home_outlined),
-              onTap: () => state.onActiveViewChange(1),
+            NavigationMenuRow(
+              state: state,
+              text: 'Suites',
+              icon: Icons.home_outlined,
+              index: DashboardState.VIEW_SUITES,
             ),
-            ListTile(
-              title: const LabelLarge(text: 'Sessions'),
-              leading: const Icon(Icons.text_snippet_outlined),
-              onTap: () => state.onActiveViewChange(2),
+            NavigationMenuRow(
+              state: state,
+              text: 'Sessions',
+              icon: Icons.text_snippet_outlined,
+              index: DashboardState.VIEW_SESSIONS,
             ),
-            ListTile(
-              title: const LabelLarge(text: 'Settings'),
-              leading: const Icon(Icons.settings_outlined),
-              onTap: () => state.onActiveViewChange(3),
+            NavigationMenuRow(
+              state: state,
+              text: 'Settings',
+              icon: Icons.settings_outlined,
+              index: DashboardState.VIEW_SETTINGS,
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class NavigationMenuRow extends StatelessWidget {
+  final DashboardState state;
+  final String text;
+  final IconData icon;
+  final int index;
+
+  const NavigationMenuRow({
+    required this.state,
+    required this.text,
+    required this.icon,
+    required this.index,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: LabelLarge(text: text),
+      leading: Icon(icon),
+      onTap: () => state.onActiveViewChange(index),
+      selected: state.activeView == index,
+      selectedTileColor: Palette.rowSelected,
     );
   }
 }
@@ -89,17 +119,11 @@ class ActiveView extends StatelessWidget {
     if (state.activeView == 0) {
       return const RequirementsView();
     } else if (state.activeView == 1) {
-      return const Center(
-        child: Text('Suites'),
-      );
+      return const SuitesView();
     } else if (state.activeView == 2) {
-      return const Center(
-        child: Text('Sessions'),
-      );
+      return const SessionsView();
     } else {
-      return const Center(
-        child: Text('Settings'),
-      );
+      return const SettingsView();
     }
   }
 }
@@ -111,6 +135,39 @@ class RequirementsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text('Requirements'),
+    );
+  }
+}
+
+class SuitesView extends StatelessWidget {
+  const SuitesView();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text('Suites'),
+    );
+  }
+}
+
+class SessionsView extends StatelessWidget {
+  const SessionsView();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text('Sessions'),
+    );
+  }
+}
+
+class SettingsView extends StatelessWidget {
+  const SettingsView();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text('Settings'),
     );
   }
 }
