@@ -1,7 +1,6 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/state/dashboard/dashboard_state.dart';
-import 'package:testflow/presentation/common/text/label_large.dart';
 import 'package:testflow/utils/palette.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -99,12 +98,22 @@ class NavigationMenuRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isSelected = state.activeView == index;
+
     return ListTile(
-      title: LabelLarge(text: text),
+      title: Text(
+        text,
+        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+              color: isSelected ? Palette.textEnabled : Palette.textDisabled,
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            ),
+      ),
       leading: Icon(icon),
       onTap: () => state.onActiveViewChange(index),
-      selected: state.activeView == index,
+      selected: isSelected,
       selectedTileColor: Palette.rowSelected,
+      selectedColor: Palette.iconEnabled,
+      iconColor: Palette.iconDisabled,
     );
   }
 }

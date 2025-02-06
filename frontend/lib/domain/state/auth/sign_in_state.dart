@@ -1,5 +1,4 @@
 import 'package:dafluta/dafluta.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/utils/navigation.dart';
 
@@ -13,13 +12,9 @@ class SignInState extends BaseState {
 
   @override
   void onLoad() {
-    if (kDebugMode) {
-      Navigation.dashboardScreen();
-    } else {
-      emailController.text = 'demo@email.com';
-      passwordController.text = '123456';
-      notify();
-    }
+    emailController.text = 'demo@email.com';
+    passwordController.text = '123456';
+    notify();
   }
 
   void onEmailChanged(String value) {
