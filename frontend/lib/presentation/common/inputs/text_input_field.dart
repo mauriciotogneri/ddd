@@ -62,7 +62,7 @@ class TextInputField extends StatelessWidget {
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
         filled: filled,
-        hintText: hint,
+        labelText: hint,
       ),
       inputFormatters: [
         if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
