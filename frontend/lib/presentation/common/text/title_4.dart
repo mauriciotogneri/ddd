@@ -12,9 +12,12 @@ class Title4 extends StatelessWidget {
   Widget build(BuildContext context) {
     final ShadThemeData theme = ShadTheme.of(context);
 
-    return Text(
-      text,
-      style: theme.textTheme.h4,
+    return Padding(
+      padding: const EdgeInsets.only(left: 4),
+      child: Text(
+        text,
+        style: theme.textTheme.h4,
+      ),
     );
   }
 }

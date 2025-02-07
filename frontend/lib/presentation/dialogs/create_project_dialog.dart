@@ -23,7 +23,10 @@ class CreateProjectDialog extends StatelessWidget {
     return StateProvider<CreateProjectDialogState>(
       state: state,
       builder: (context, state) => ShadDialog(
-        title: const Text('New project'),
+        title: const Padding(
+          padding: EdgeInsets.only(left: 4),
+          child: Text('New project'),
+        ),
         actions: [
           const SecondaryButton(
             text: 'Cancel',
