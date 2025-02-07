@@ -1,5 +1,6 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:testflow/domain/state/auth/sign_in_state.dart';
 import 'package:testflow/presentation/common/button/primary_button.dart';
 import 'package:testflow/presentation/common/input/password_input_field.dart';
@@ -30,17 +31,14 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ShadThemeData theme = ShadTheme.of(context);
+
     return Center(
-      child: SizedBox(
-        width: 300,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FormInputs(state),
-            const VBox(16),
-            SignInButton(state),
-          ],
-        ),
+      child: ShadCard(
+        width: 350,
+        title: Text('Sign in', style: theme.textTheme.h4),
+        footer: SignInButton(state),
+        child: FormInputs(state),
       ),
     );
   }
@@ -62,13 +60,16 @@ class FormInputs extends StatelessWidget {
             hint: 'Email',
             controller: state.emailController,
             onChanged: state.onEmailChanged,
+            prefixIcon: const Icon(Icons.email_outlined),
           ),
           const VBox(16),
           PasswordInputField(
             hint: 'Password',
             controller: state.passwordController,
             onChanged: state.onPasswordChanged,
+            prefixIcon: const Icon(Icons.lock_outlined),
           ),
+          const VBox(16),
         ],
       ),
     );

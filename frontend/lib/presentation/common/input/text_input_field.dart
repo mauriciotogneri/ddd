@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 class TextInputField extends StatelessWidget {
   final String hint;
@@ -42,7 +43,7 @@ class TextInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    /*return TextFormField(
       autofocus: autofocus,
       maxLines: maxLines,
       readOnly: readOnly,
@@ -64,6 +65,28 @@ class TextInputField extends StatelessWidget {
         filled: filled,
         labelText: hint,
       ),
+      inputFormatters: [
+        if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
+      ],
+    );*/
+    return ShadInput(
+      placeholder: Text(hint),
+      autofocus: autofocus,
+      maxLines: maxLines,
+      readOnly: readOnly,
+      enableInteractiveSelection: !readOnly,
+      enabled: enabled,
+      keyboardType: keyboardType,
+      focusNode: focusNode,
+      textInputAction: textInputAction,
+      controller: controller,
+      onChanged: onChanged,
+      obscureText: obscureText,
+      autofillHints: autofillHints,
+      textCapitalization: capitalization,
+      onSubmitted: (_) => FocusScope.of(context).nextFocus(),
+      prefix: prefixIcon,
+      suffix: suffixIcon,
       inputFormatters: [
         if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
       ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Palette {
+  static const Color primary = Colors.blue;
+
   static const Color rowSelected = Color(0xffeeeeee);
 
   static const Color iconEnabled = Color(0xff444444);
