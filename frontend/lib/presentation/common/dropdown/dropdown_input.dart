@@ -11,6 +11,7 @@ class DropdownInput<T> extends StatelessWidget {
   final FocusNode? focusNode;
   final Widget? footer;
   final double? width;
+  final bool allowDeselection;
   final Function(T project)? onChange;
 
   const DropdownInput({
@@ -22,6 +23,7 @@ class DropdownInput<T> extends StatelessWidget {
     this.footer,
     this.width,
     this.onChange,
+    this.allowDeselection = false,
   });
 
   @override
@@ -32,6 +34,7 @@ class DropdownInput<T> extends StatelessWidget {
         controller: controller,
         initialValue: initialValue,
         selectedOptionBuilder: (context, value) => Text(value.toString()),
+        allowDeselection: allowDeselection,
         onChanged: (project) {
           focusNode?.unfocus();
           onChange?.call(project!);

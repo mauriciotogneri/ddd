@@ -63,6 +63,7 @@ class TableFilters extends StatelessWidget {
           values: Data.currentProject.components,
           controller: state.componentController,
           focusNode: state.componentFocusNode,
+          allowDeselection: true,
           hint: 'Component',
         ),
         DropdownInput<String>(
@@ -70,6 +71,7 @@ class TableFilters extends StatelessWidget {
           values: Data.currentProject.platforms,
           controller: state.platformController,
           focusNode: state.platformFocusNode,
+          allowDeselection: true,
           hint: 'Platform',
         ),
       ],
