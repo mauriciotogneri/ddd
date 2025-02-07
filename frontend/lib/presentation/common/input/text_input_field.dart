@@ -43,32 +43,6 @@ class TextInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*return TextFormField(
-      autofocus: autofocus,
-      maxLines: maxLines,
-      readOnly: readOnly,
-      enableInteractiveSelection: !readOnly,
-      enabled: enabled,
-      keyboardType: keyboardType,
-      focusNode: focusNode,
-      textInputAction: textInputAction,
-      controller: controller,
-      onChanged: onChanged,
-      obscureText: obscureText,
-      autofillHints: autofillHints,
-      textCapitalization: capitalization,
-      onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
-      decoration: InputDecoration(
-        border: const OutlineInputBorder(),
-        suffixIcon: suffixIcon,
-        prefixIcon: prefixIcon,
-        filled: filled,
-        labelText: hint,
-      ),
-      inputFormatters: [
-        if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
-      ],
-    );*/
     return ShadInput(
       placeholder: Text(hint),
       autofocus: autofocus,
