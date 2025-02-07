@@ -121,7 +121,7 @@ class ProjectSelector extends StatelessWidget {
             ),
           ),
           options: [
-            for (final project in Data.projects)
+            for (final project in Data.projects())
               ShadOption(value: project, child: Text(project.name)),
             const VBox(4),
             const HorizontalDivider(

@@ -1,24 +1,38 @@
 import 'package:testflow/domain/model/project.dart';
 
 class Data {
-  static Project currentProject = projects.first;
+  static Project currentProject = _projects.first;
 
   static void onChangeProject(Project project) {
     currentProject = project;
   }
 
-  static List<Project> projects = [
+  static void onCreateProject(Project project) {
+    _projects.add(project);
+    onChangeProject(project);
+  }
+
+  static List<Project> projects() {
+    _projects.sort((a, b) => a.name.compareTo(b.name));
+
+    return _projects;
+  }
+
+  static final List<Project> _projects = [
     Project(
       id: '1',
       name: 'Project 1',
+      description: 'Description 1',
     ),
     Project(
       id: '2',
       name: 'Project 2',
+      description: 'Description 2',
     ),
     Project(
       id: '3',
       name: 'Project 3',
+      description: 'Description 3',
     ),
   ];
 }

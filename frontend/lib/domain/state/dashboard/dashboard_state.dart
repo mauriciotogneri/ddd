@@ -40,6 +40,11 @@ class DashboardState extends BaseState {
     required String name,
     required String description,
   }) {
-    print('Create project: $name, $description');
+    Data.onCreateProject(Project(
+      id: '',
+      name: name,
+      description: description,
+    ));
+    notify();
   }
 }
