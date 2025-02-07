@@ -48,26 +48,28 @@ class NavigationMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 5,
+      color: Palette.background2,
       child: SizedBox(
         width: 250,
         child: Column(
           children: [
+            const VBox(4),
             NavigationMenuRow(
               state: state,
               text: 'Requirements',
-              icon: Icons.map_outlined,
+              icon: Icons.checklist,
               index: DashboardState.VIEW_REQUIREMENTS,
             ),
             NavigationMenuRow(
               state: state,
               text: 'Suites',
-              icon: Icons.home_outlined,
+              icon: Icons.quiz_outlined,
               index: DashboardState.VIEW_SUITES,
             ),
             NavigationMenuRow(
               state: state,
               text: 'Sessions',
-              icon: Icons.text_snippet_outlined,
+              icon: Icons.find_in_page_outlined,
               index: DashboardState.VIEW_SESSIONS,
             ),
             NavigationMenuRow(
@@ -100,20 +102,43 @@ class NavigationMenuRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isSelected = state.activeView == index;
 
-    return ListTile(
-      title: Text(
-        text,
-        style: Theme.of(context).textTheme.labelLarge!.copyWith(
-              color: isSelected ? Palette.textEnabled : Palette.textDisabled,
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-            ),
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 4,
+        left: 8,
+        right: 8,
       ),
-      leading: Icon(icon),
-      onTap: () => state.onActiveViewChange(index),
-      selected: isSelected,
-      selectedTileColor: Palette.rowSelected,
-      selectedColor: Palette.iconEnabled,
-      iconColor: Palette.iconDisabled,
+      child: ListTile(
+        title: Text(
+          text,
+          style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                color: Palette.textEnabled,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+        ),
+        leading: Icon(
+          icon,
+          size: 20,
+        ),
+        minLeadingWidth: 0,
+        dense: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+        visualDensity: VisualDensity.compact,
+        contentPadding: const EdgeInsets.only(
+          top: 0,
+          bottom: 0,
+          left: 8,
+          right: 8,
+        ),
+        onTap: () => state.onActiveViewChange(index),
+        selected: isSelected,
+        selectedTileColor: Palette.rowSelected,
+        selectedColor: Palette.iconEnabled,
+        hoverColor: Palette.rowSelected,
+        iconColor: Palette.iconDisabled,
+      ),
     );
   }
 }
