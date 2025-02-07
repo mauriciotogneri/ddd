@@ -23,16 +23,58 @@ class Data {
       id: '1',
       name: 'Project 1',
       description: 'Description 1',
+      components: [
+        'Authentication',
+        'Payments',
+        'Chat',
+        'Notifications',
+        'Analytics',
+        'Profile',
+        'Security',
+      ],
+      platforms: [
+        'Web',
+        'Android',
+        'iOS',
+      ],
     ),
     Project(
       id: '2',
       name: 'Project 2',
       description: 'Description 2',
+      components: [
+        'Authentication',
+        'Payments',
+        'Chat',
+        'Notifications',
+        'Analytics',
+        'Profile',
+        'Security',
+      ],
+      platforms: [
+        'Web',
+        'Android',
+        'iOS',
+      ],
     ),
     Project(
       id: '3',
       name: 'Project 3',
       description: 'Description 3',
+      components: [
+        'Authentication',
+        'Payments',
+        'Chat',
+        'Notifications',
+        'Analytics',
+        'Profile',
+        'Security',
+      ],
+      platforms: [
+        'Web',
+        'Android',
+        'iOS',
+      ],
     ),
   ];
 }

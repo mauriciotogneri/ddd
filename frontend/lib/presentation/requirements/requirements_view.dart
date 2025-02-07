@@ -1,0 +1,87 @@
+import 'package:dafluta/dafluta.dart';
+import 'package:flutter/material.dart';
+import 'package:testflow/debug/data.dart';
+import 'package:testflow/domain/state/requirements/requirements_state.dart';
+import 'package:testflow/presentation/common/dropdown/dropdown_input.dart';
+import 'package:testflow/presentation/common/input/text_input_field.dart';
+import 'package:testflow/presentation/common/text/title_4.dart';
+
+class RequirementsView extends StatelessWidget {
+  final RequirementsState state;
+
+  const RequirementsView._(this.state);
+
+  factory RequirementsView.instance() =>
+      RequirementsView._(RequirementsState());
+
+  @override
+  Widget build(BuildContext context) {
+    return StateProvider<RequirementsState>(
+      state: state,
+      builder: (state, context) => Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Header(),
+            const VBox(16),
+            TableFilters(this.state),
+            const VBox(16),
+            const Table(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Header extends StatelessWidget {
+  const Header();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Title4(text: 'Requirements');
+  }
+}
+
+class TableFilters extends StatelessWidget {
+  final RequirementsState state;
+
+  const TableFilters(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        TextInputField(
+          width: 250,
+          hint: 'Filter',
+          controller: state.filterController,
+        ),
+        DropdownInput<String>(
+          width: 200,
+          values: Data.currentProject.components,
+          controller: state.componentController,
+          focusNode: state.componentFocusNode,
+          hint: 'Component',
+        ),
+        DropdownInput<String>(
+          width: 200,
+          values: Data.currentProject.platforms,
+          controller: state.platformController,
+          focusNode: state.platformFocusNode,
+          hint: 'Platform',
+        ),
+      ],
+    );
+  }
+}
+
+class Table extends StatelessWidget {
+  const Table();
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox();
+  }
+}

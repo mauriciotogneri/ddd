@@ -4,6 +4,8 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/project.dart';
 import 'package:testflow/domain/state/dashboard/dashboard_state.dart';
+import 'package:testflow/presentation/common/dropdown/dropdown_input.dart';
+import 'package:testflow/presentation/requirements/requirements_view.dart';
 import 'package:testflow/utils/palette.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -104,11 +106,10 @@ class ProjectSelector extends StatelessWidget {
           left: 4,
           right: 4,
         ),
-        child: ShadSelect<Project>(
-          controller: state.projectsController,
+        child: DropdownInput<Project>(
+          values: Data.projects(),
           initialValue: Data.currentProject,
-          selectedOptionBuilder: (context, value) => Text(value.name),
-          onChanged: (project) => state.onChangeProject(project!),
+          controller: state.projectsController,
           focusNode: state.projectsFocus,
           footer: Padding(
             padding: const EdgeInsets.only(bottom: 4),
@@ -120,15 +121,7 @@ class ProjectSelector extends StatelessWidget {
               onPressed: () => state.onCreateProject(context),
             ),
           ),
-          options: [
-            for (final project in Data.projects())
-              ShadOption(value: project, child: Text(project.name)),
-            const VBox(4),
-            const HorizontalDivider(
-              height: 0.2,
-              color: Palette.divider,
-            ),
-          ],
+          onChange: state.onChangeProject,
         ),
       ),
     );
@@ -201,7 +194,7 @@ class ActiveView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (state.activeView == 0) {
-      return const RequirementsView();
+      return RequirementsView.instance();
     } else if (state.activeView == 1) {
       return const SuitesView();
     } else if (state.activeView == 2) {
@@ -209,17 +202,6 @@ class ActiveView extends StatelessWidget {
     } else {
       return const SettingsView();
     }
-  }
-}
-
-class RequirementsView extends StatelessWidget {
-  const RequirementsView();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Requirements'),
-    );
   }
 }
 

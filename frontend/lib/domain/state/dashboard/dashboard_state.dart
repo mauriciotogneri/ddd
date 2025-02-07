@@ -21,7 +21,6 @@ class DashboardState extends BaseState {
   }
 
   void onChangeProject(Project project) {
-    projectsFocus.unfocus();
     Data.onChangeProject(project);
   }
 
@@ -44,6 +43,8 @@ class DashboardState extends BaseState {
       id: '',
       name: name,
       description: description,
+      components: [],
+      platforms: [],
     ));
     notify();
   }

@@ -18,6 +18,7 @@ class TextInputField extends StatelessWidget {
   final IconData? suffixIcon;
   final int? maxLength;
   final int? maxLines;
+  final double? width;
   final FocusNode? focusNode;
   final Function(String)? onChanged;
 
@@ -37,33 +38,37 @@ class TextInputField extends StatelessWidget {
     this.suffixIcon,
     this.maxLength,
     this.maxLines,
+    this.width,
     this.focusNode,
     this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ShadInput(
-      placeholder: Text(hint),
-      autofocus: autofocus,
-      maxLines: maxLines,
-      readOnly: readOnly,
-      enableInteractiveSelection: !readOnly,
-      enabled: enabled,
-      keyboardType: keyboardType,
-      focusNode: focusNode,
-      textInputAction: textInputAction,
-      controller: controller,
-      onChanged: onChanged,
-      obscureText: obscureText,
-      autofillHints: autofillHints,
-      textCapitalization: capitalization,
-      onSubmitted: (_) => FocusScope.of(context).nextFocus(),
-      prefix: (prefixIcon != null) ? TextInputIcon(prefixIcon!) : null,
-      suffix: (suffixIcon != null) ? TextInputIcon(suffixIcon!) : null,
-      inputFormatters: [
-        if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
-      ],
+    return SizedBox(
+      width: width,
+      child: ShadInput(
+        placeholder: Text(hint),
+        autofocus: autofocus,
+        maxLines: maxLines,
+        readOnly: readOnly,
+        enableInteractiveSelection: !readOnly,
+        enabled: enabled,
+        keyboardType: keyboardType,
+        focusNode: focusNode,
+        textInputAction: textInputAction,
+        controller: controller,
+        onChanged: onChanged,
+        obscureText: obscureText,
+        autofillHints: autofillHints,
+        textCapitalization: capitalization,
+        onSubmitted: (_) => FocusScope.of(context).nextFocus(),
+        prefix: (prefixIcon != null) ? TextInputIcon(prefixIcon!) : null,
+        suffix: (suffixIcon != null) ? TextInputIcon(suffixIcon!) : null,
+        inputFormatters: [
+          if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
+        ],
+      ),
     );
   }
 }
