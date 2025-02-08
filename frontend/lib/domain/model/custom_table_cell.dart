@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 abstract class CustomTableCell {
-  String cell(int column);
+  Widget cell(int column);
 }

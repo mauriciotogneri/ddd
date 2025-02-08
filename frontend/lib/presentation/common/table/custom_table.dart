@@ -35,7 +35,7 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
             )
           : null,
       builder: (context, index) => ShadTableCell(
-        child: Text(rows[index.row].cell(index.column)),
+        child: rows[index.row].cell(index.column),
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'package:dafluta/dafluta.dart';
+import 'package:flutter/widgets.dart';
 import 'package:testflow/domain/model/custom_table_cell.dart';
 import 'package:testflow/domain/types/importance.dart';
 
@@ -19,20 +21,20 @@ class Requirement implements CustomTableCell {
   });
 
   @override
-  String cell(int column) {
+  Widget cell(int column) {
     switch (column) {
       case 0:
-        return name;
+        return Text(name);
       case 1:
-        return component;
+        return Text(component);
       case 2:
-        return platforms.join(', ');
+        return Text(platforms.join(', '));
       case 3:
-        return importance.toString().split('.').last;
+        return Text(importance.toString().split('.').last);
       case 4:
-        return tags.join(', ');
+        return Text(tags.join(', '));
       default:
-        return '';
+        return const Empty();
     }
   }
 

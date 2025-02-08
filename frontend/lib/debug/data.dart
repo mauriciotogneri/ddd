@@ -44,17 +44,18 @@ class Data {
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         component: _random(_components),
-        platforms: [_random(_platforms)],
+        platforms: {
+          for (int i = 0; i < Random().nextInt(_platforms.length) + 1; i++)
+            _random(_platforms)
+        }.toList(),
         importance: _random(Importance.values),
-        tags: ['Tag 1', 'Tag 2'],
+        tags: [
+          for (int i = 0; i < Random().nextInt(3) + 1; i++) 'Tag ${i + 1}'
+        ],
       ),
   ];
 
-  static List<Requirement> requirements() {
-    _requirements.sort((a, b) => a.name.compareTo(b.name));
-
-    return _requirements;
-  }
+  static List<Requirement> requirements() => _requirements;
 
   static T _random<T>(List<T> list) {
     return list[Random().nextInt(list.length)];
