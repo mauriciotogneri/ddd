@@ -13,6 +13,7 @@ class DropdownInput<T> extends StatelessWidget {
   final Widget? footer;
   final double? width;
   final bool allowDeselection;
+  final VoidCallback? onClear;
   final Function(T?)? onChangeSingle;
   final Function(List<T>)? onChangeMultiple;
 
@@ -27,6 +28,7 @@ class DropdownInput<T> extends StatelessWidget {
     this.width,
     this.onChangeSingle,
     this.onChangeMultiple,
+    this.onClear,
     this.allowDeselection = false,
   });
 
@@ -75,9 +77,23 @@ class DropdownInput<T> extends StatelessWidget {
           onChangeMultiple?.call(element);
         },
         focusNode: focusNode,
-        footer: footer,
+        footer: footer ?? ((onClear != null) ? clearFooter : null),
         placeholder: (hint != null) ? Text(hint!) : null,
         options: options,
+      );
+
+  Widget get clearFooter => Padding(
+        padding: const EdgeInsets.only(bottom: 4),
+        child: ShadButton.ghost(
+          height: 32,
+          padding: const EdgeInsets.only(
+            left: 8,
+          ),
+          icon: const Icon(Icons.clear_rounded),
+          mainAxisAlignment: MainAxisAlignment.start,
+          onPressed: onClear,
+          child: const Text('Clear'),
+        ),
       );
 
   @override

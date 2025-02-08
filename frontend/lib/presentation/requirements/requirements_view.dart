@@ -74,6 +74,7 @@ class TableFilters extends StatelessWidget {
           onChangeMultiple: state.onTypeFilterChanged,
           allowDeselection: true,
           hint: 'Importance',
+          onClear: () {},
         ),
         DropdownInput<String>(
           width: 300,
