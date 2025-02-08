@@ -36,7 +36,7 @@ class CustomChip extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontSize: size,
+            fontSize: chipSize,
             color: chipForegroundColor,
           ),
         ),
