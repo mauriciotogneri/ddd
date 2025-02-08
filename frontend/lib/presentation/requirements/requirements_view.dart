@@ -32,7 +32,7 @@ class RequirementsView extends StatelessWidget {
             const VBox(16),
             TableFilters(this.state),
             const VBox(16),
-            const Table(),
+            Table(this.state),
           ],
         ),
       ),
@@ -85,7 +85,9 @@ class TableFilters extends StatelessWidget {
 }
 
 class Table extends StatelessWidget {
-  const Table();
+  final RequirementsState state;
+
+  const Table(this.state);
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +101,7 @@ class Table extends StatelessWidget {
           'Tags',
         ],
         rows: Data.requirements(),
+        onRowSelected: state.onRequirementSelected,
       ),
     );
   }

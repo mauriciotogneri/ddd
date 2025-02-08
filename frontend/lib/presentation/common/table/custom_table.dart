@@ -6,10 +6,12 @@ import 'package:testflow/utils/palette.dart';
 class CustomTable<T extends CustomTableCell> extends StatelessWidget {
   final List<String> columns;
   final List<T> rows;
+  final Function(T) onRowSelected;
 
   const CustomTable({
     required this.columns,
     required this.rows,
+    required this.onRowSelected,
   });
 
   @override
@@ -26,24 +28,15 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
         ),
       ),
       columnSpanExtent: (index) => FractionalSpanExtent(1 / columns.length),
-      onRowTap: (index) => print(rows[index]),
+      onRowTap: (index) => onRowSelected(rows[index]),
       rowSpanBackgroundDecoration: (row) => row == 0
           ? const SpanDecoration(
               color: Palette.backgroundTableHeader,
             )
           : null,
-      builder: (context, index) {
-        final T element = rows[index.row];
-        return ShadTableCell(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            element.cell(index.column),
-            style: index.column == 0
-                ? const TextStyle(fontWeight: FontWeight.w500)
-                : null,
-          ),
-        );
-      },
+      builder: (context, index) => ShadTableCell(
+        child: Text(rows[index.row].cell(index.column)),
+      ),
     );
   }
 }
