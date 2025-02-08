@@ -12,6 +12,7 @@ class Requirement implements CustomTableCell {
   final List<String> platforms;
   final Importance importance;
   final List<String> tags;
+  final int numberOfTestCases;
 
   const Requirement({
     required this.name,
@@ -20,6 +21,7 @@ class Requirement implements CustomTableCell {
     required this.platforms,
     required this.importance,
     required this.tags,
+    required this.numberOfTestCases,
   });
 
   bool matches({
@@ -76,6 +78,8 @@ class Requirement implements CustomTableCell {
         );
       case 4:
         return ChipRow(chips: tags);
+      case 5:
+        return Text(numberOfTestCases.toString());
       default:
         return const Empty();
     }

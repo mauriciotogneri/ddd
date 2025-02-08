@@ -52,6 +52,7 @@ class Data {
         tags: [
           for (int i = 0; i < Random().nextInt(3) + 1; i++) 'Tag ${i + 1}'
         ],
+        numberOfTestCases: Random().nextInt(20),
       ),
   ];
 
