@@ -60,13 +60,13 @@ class TableFilters extends StatelessWidget {
     return Row(
       children: [
         TextInputField(
-          width: 328,
+          width: 300,
           hint: 'Filter',
           controller: state.queryFilterController,
           onChanged: state.onQueryFilterChanged,
         ),
         DropdownInput<String>(
-          width: 328,
+          width: 300,
           values: Data.currentProject.components,
           focusNode: state.componentFilterFocusNode,
           initialValues: state.componentFilter,
@@ -75,7 +75,7 @@ class TableFilters extends StatelessWidget {
           hint: 'Component',
         ),
         DropdownInput<String>(
-          width: 328,
+          width: 300,
           values: Data.currentProject.platforms,
           focusNode: state.platformFilterFocusNode,
           initialValues: state.platformFilter,
@@ -84,7 +84,7 @@ class TableFilters extends StatelessWidget {
           hint: 'Platform',
         ),
         DropdownInput<Importance>(
-          width: 328,
+          width: 250,
           values: Importance.values,
           focusNode: state.platformFilterFocusNode,
           initialValues: state.importanceFilter,
@@ -110,8 +110,8 @@ class Table extends StatelessWidget {
           CustomTableColumn(name: 'Name', ratio: 0.3),
           CustomTableColumn(name: 'Component', ratio: 0.15),
           CustomTableColumn(name: 'Platforms', ratio: 0.15),
-          CustomTableColumn(name: 'Importance', ratio: 0.1),
-          CustomTableColumn(name: 'Tags', ratio: 0.3),
+          CustomTableColumn(name: 'Importance', ratio: 0.15),
+          CustomTableColumn(name: 'Tags', ratio: 0.25),
         ],
         rows: state.requirements,
         onRowSelected: state.onRequirementSelected,
