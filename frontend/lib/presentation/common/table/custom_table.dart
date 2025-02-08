@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:testflow/domain/model/custom_table_cell.dart';
@@ -16,26 +17,55 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShadTable(
-      columnCount: columns.length,
-      rowCount: rows.length,
-      header: (context, index) => ShadTableCell.header(
-        child: Text(
-          columns[index].name,
-          style: const TextStyle(
-            color: Palette.textEnabled,
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(6),
+          topRight: Radius.circular(6),
+        ),
+        border: Border(
+          top: BorderSide(
+            color: Palette.borderTable,
+            width: 0.5,
+          ),
+          left: BorderSide(
+            color: Palette.borderTable,
+            width: 0.5,
+          ),
+          right: BorderSide(
+            color: Palette.borderTable,
+            width: 0.5,
           ),
         ),
       ),
-      columnSpanExtent: (index) => FractionalSpanExtent(columns[index].ratio),
-      onRowTap: (index) => onRowSelected(rows[index]),
-      rowSpanBackgroundDecoration: (row) => row == 0
-          ? const SpanDecoration(
-              color: Palette.backgroundTableHeader,
-            )
-          : null,
-      builder: (context, index) => ShadTableCell(
-        child: rows[index.row].cell(index.column),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(6),
+          topRight: Radius.circular(6),
+        ),
+        child: ShadTable(
+          columnCount: columns.length,
+          rowCount: rows.length,
+          header: (context, index) => ShadTableCell.header(
+            child: Text(
+              columns[index].name,
+              style: const TextStyle(
+                color: Palette.textEnabled,
+              ),
+            ),
+          ),
+          columnSpanExtent: (index) =>
+              FractionalSpanExtent(columns[index].ratio),
+          onRowTap: (index) => onRowSelected(rows[index]),
+          rowSpanBackgroundDecoration: (row) => row == 0
+              ? const SpanDecoration(
+                  color: Palette.backgroundTableHeader,
+                )
+              : null,
+          builder: (context, index) => ShadTableCell(
+            child: rows[index.row].cell(index.column),
+          ),
+        ),
       ),
     );
   }

@@ -7,6 +7,8 @@ class Palette {
 
   static const Color divider = Color(0xff888888);
 
+  static const Color borderTable = Color(0xffdddddd);
+
   static const Color background1 = Color(0xffffffff);
   static const Color background2 = Color(0xffF9FAFC);
   static const Color backgroundTableHeader = Color(0xFFF1F4F9);
