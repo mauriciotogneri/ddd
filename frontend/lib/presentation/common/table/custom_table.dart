@@ -18,12 +18,14 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
       columnCount: columns.length,
       rowCount: rows.length,
       header: (context, index) => ShadTableCell.header(
-        child: Text(columns[index],
-            style: const TextStyle(
-              color: Palette.textEnabled,
-            )),
+        child: Text(
+          columns[index],
+          style: const TextStyle(
+            color: Palette.textEnabled,
+          ),
+        ),
       ),
-      columnSpanExtent: (index) => const FractionalSpanExtent(0.25),
+      columnSpanExtent: (index) => FractionalSpanExtent(1 / columns.length),
       onRowTap: (index) => print(rows[index]),
       rowSpanBackgroundDecoration: (row) => row == 0
           ? const SpanDecoration(

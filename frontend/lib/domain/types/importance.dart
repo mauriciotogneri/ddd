@@ -7,13 +7,16 @@ enum Importance {
   String get localized {
     switch (this) {
       case Importance.low:
-        return 'low';
+        return 'Low';
       case Importance.medium:
-        return 'medium';
+        return 'Medium';
       case Importance.high:
-        return 'high';
+        return 'High';
       case Importance.critical:
-        return 'critical';
+        return 'Critical';
     }
   }
+
+  @override
+  String toString() => localized;
 }
