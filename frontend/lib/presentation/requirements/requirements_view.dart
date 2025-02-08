@@ -61,12 +61,12 @@ class TableFilters extends StatelessWidget {
         TextInputField(
           width: 250,
           hint: 'Filter',
-          controller: state.filterController,
+          controller: state.queryFilterController,
         ),
         DropdownInput<String>(
           width: 200,
           values: Data.currentProject.components,
-          focusNode: state.componentFocusNode,
+          focusNode: state.componentFilterFocusNode,
           onChange: state.onComponentFilterChanged,
           allowDeselection: true,
           hint: 'Component',
@@ -74,7 +74,7 @@ class TableFilters extends StatelessWidget {
         DropdownInput<String>(
           width: 200,
           values: Data.currentProject.platforms,
-          focusNode: state.platformFocusNode,
+          focusNode: state.platformFilterFocusNode,
           onChange: state.onPlatformFilterChanged,
           allowDeselection: true,
           hint: 'Platform',
