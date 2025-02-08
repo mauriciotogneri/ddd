@@ -1,9 +1,9 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
-import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:testflow/presentation/common/button/primary_button.dart';
 import 'package:testflow/presentation/common/button/secondary_button.dart';
 import 'package:testflow/presentation/common/input/text_input_field.dart';
+import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
@@ -23,16 +23,9 @@ class CreateProjectDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return StateProvider<CreateProjectDialogState>(
       state: state,
-      builder: (context, state) => ShadDialog(
-        title: const Padding(
-          padding: EdgeInsets.only(left: 4),
-          child: Text('New project'),
-        ),
-        padding: const EdgeInsets.all(16),
-        closeIconPosition: const ShadPosition(
-          top: 16,
-          right: 16,
-        ),
+      builder: (context, state) => BaseDialog(
+        title: 'New project',
+        width: 350,
         actions: [
           const SecondaryButton(
             text: 'Cancel',
@@ -47,50 +40,47 @@ class CreateProjectDialog extends StatelessWidget {
             },
           ),
         ],
-        child: SizedBox(
-          width: 350,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const VBox(16),
-              const Padding(
-                padding: EdgeInsets.only(left: 6),
-                child: Text(
-                  'Name',
-                  style: TextStyle(
-                    color: Palette.textEnabled,
-                    fontWeight: FontWeight.bold,
-                  ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const VBox(16),
+            const Padding(
+              padding: EdgeInsets.only(left: 6),
+              child: Text(
+                'Name',
+                style: TextStyle(
+                  color: Palette.textEnabled,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              const VBox(4),
-              TextInputField(
-                hint: 'Name',
-                controller: state.nameController,
-                onChanged: (_) => state.notify(),
-              ),
-              const VBox(16),
-              const Padding(
-                padding: EdgeInsets.only(left: 6),
-                child: Text(
-                  'Description',
-                  style: TextStyle(
-                    color: Palette.textEnabled,
-                    fontWeight: FontWeight.bold,
-                  ),
+            ),
+            const VBox(4),
+            TextInputField(
+              hint: 'Name',
+              controller: state.nameController,
+              onChanged: (_) => state.notify(),
+            ),
+            const VBox(16),
+            const Padding(
+              padding: EdgeInsets.only(left: 6),
+              child: Text(
+                'Description',
+                style: TextStyle(
+                  color: Palette.textEnabled,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              const VBox(4),
-              TextInputField(
-                hint: 'Description',
-                controller: state.descriptionController,
-                onChanged: (_) => state.notify(),
-                maxLines: 5,
-              ),
-              const VBox(16),
-            ],
-          ),
+            ),
+            const VBox(4),
+            TextInputField(
+              hint: 'Description',
+              controller: state.descriptionController,
+              onChanged: (_) => state.notify(),
+              maxLines: 5,
+            ),
+            const VBox(16),
+          ],
         ),
       ),
     );

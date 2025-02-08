@@ -1,10 +1,13 @@
 import 'package:dafluta/dafluta.dart';
+import 'package:flutter/material.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/types/importance.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/dropdown/dropdown_input.dart';
 import 'package:testflow/presentation/common/input/text_input_field.dart';
+import 'package:testflow/presentation/dialogs/create_requirement_dialog.dart';
 
 class RequirementsState extends BaseState {
   final TextInputController queryFilterController = TextInputController();
@@ -56,7 +59,15 @@ class RequirementsState extends BaseState {
     print(requirement);
   }
 
-  void onAddRequirement() {
-    
-  }
+  void onCreateRequirement(BuildContext context) => showShadDialog(
+        context: context,
+        builder: (context) => CreateRequirementDialog.instance(
+          onCreateRequirement: createRequirement,
+        ),
+      );
+
+  void createRequirement({
+    required String name,
+    required String description,
+  }) {}
 }

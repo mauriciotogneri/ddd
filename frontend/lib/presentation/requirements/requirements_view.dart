@@ -104,7 +104,7 @@ class TableFilters extends StatelessWidget {
         PrimaryButton(
           icon: Icons.add,
           text: 'Add',
-          onPressed: state.onAddRequirement,
+          onPressed: () => state.onCreateRequirement(context),
         ),
       ],
     );
