@@ -55,4 +55,8 @@ class RequirementsState extends BaseState {
   void onRequirementSelected(Requirement requirement) {
     print(requirement);
   }
+
+  void onAddRequirement() {
+    
+  }
 }

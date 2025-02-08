@@ -4,6 +4,7 @@ import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/state/requirements/requirements_state.dart';
 import 'package:testflow/domain/types/importance.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
+import 'package:testflow/presentation/common/button/primary_button.dart';
 import 'package:testflow/presentation/common/dropdown/dropdown_input.dart';
 import 'package:testflow/presentation/common/input/text_input_field.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
@@ -98,6 +99,12 @@ class TableFilters extends StatelessWidget {
           onChangeMultiple: state.onImportanceFilterChanged,
           allowDeselection: true,
           hint: 'Importance',
+        ),
+        const Spacer(),
+        PrimaryButton(
+          icon: Icons.add,
+          text: 'Add',
+          onPressed: state.onAddRequirement,
         ),
       ],
     );

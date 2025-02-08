@@ -4,12 +4,14 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
+  final IconData? icon;
   final bool enabled;
   final bool expanded;
 
   const PrimaryButton({
     required this.text,
     this.onPressed,
+    this.icon,
     this.enabled = true,
     this.expanded = false,
   });
@@ -21,6 +23,7 @@ class PrimaryButton extends StatelessWidget {
       child: ShadButton(
         onPressed: onPressed,
         enabled: enabled,
+        icon: (icon != null) ? Icon(icon) : null,
         child: Text(text),
       ),
     );
