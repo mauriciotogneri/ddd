@@ -5,7 +5,7 @@ class Project {
   final List<String> components;
   final List<String> platforms;
 
-  Project({
+  const Project({
     required this.id,
     required this.name,
     required this.description,

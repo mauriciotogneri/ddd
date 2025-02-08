@@ -1,4 +1,7 @@
+import 'dart:math';
 import 'package:testflow/domain/model/project.dart';
+import 'package:testflow/domain/model/requirement.dart';
+import 'package:testflow/domain/types/importance.dart';
 
 class Data {
   static Project currentProject = _projects.first;
@@ -18,63 +21,66 @@ class Data {
     return _projects;
   }
 
+  static const List<String> _components = [
+    'Authentication',
+    'Payments',
+    'Chat',
+    'Notifications',
+    'Analytics',
+    'Profile',
+    'Security',
+  ];
+
+  static const List<String> _platforms = [
+    'Web',
+    'Android',
+    'iOS',
+  ];
+
+  static final List<Requirement> _requirements = [
+    for (int i = 0; i < 20; i++)
+      Requirement(
+        name: 'Requirement ${i + 1}',
+        description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        component: _random(_components),
+        platforms: [_random(_platforms)],
+        importance: _random(Importance.values),
+        tags: ['Tag 1', 'Tag 2'],
+      ),
+  ];
+
+  static List<Requirement> requirements() {
+    _requirements.sort((a, b) => a.name.compareTo(b.name));
+
+    return _requirements;
+  }
+
+  static T _random<T>(List<T> list) {
+    return list[Random().nextInt(list.length)];
+  }
+
   static final List<Project> _projects = [
-    Project(
+    const Project(
       id: '1',
       name: 'Project 1',
       description: 'Description 1',
-      components: [
-        'Authentication',
-        'Payments',
-        'Chat',
-        'Notifications',
-        'Analytics',
-        'Profile',
-        'Security',
-      ],
-      platforms: [
-        'Web',
-        'Android',
-        'iOS',
-      ],
+      components: _components,
+      platforms: _platforms,
     ),
-    Project(
+    const Project(
       id: '2',
       name: 'Project 2',
       description: 'Description 2',
-      components: [
-        'Authentication',
-        'Payments',
-        'Chat',
-        'Notifications',
-        'Analytics',
-        'Profile',
-        'Security',
-      ],
-      platforms: [
-        'Web',
-        'Android',
-        'iOS',
-      ],
+      components: _components,
+      platforms: _platforms,
     ),
-    Project(
+    const Project(
       id: '3',
       name: 'Project 3',
       description: 'Description 3',
-      components: [
-        'Authentication',
-        'Payments',
-        'Chat',
-        'Notifications',
-        'Analytics',
-        'Profile',
-        'Security',
-      ],
-      platforms: [
-        'Web',
-        'Android',
-        'iOS',
-      ],
+      components: _components,
+      platforms: _platforms,
     ),
   ];
 }

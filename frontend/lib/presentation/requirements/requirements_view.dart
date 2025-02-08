@@ -267,7 +267,10 @@ class Table extends StatelessWidget {
         columnCount: invoices[0].length,
         rowCount: invoices.length,
         header: (context, column) => ShadTableCell.header(
-          child: Text(headings[column]),
+          child: Text(headings[column],
+              style: const TextStyle(
+                color: Palette.textEnabled,
+              )),
         ),
         columnSpanExtent: (index) => const FractionalSpanExtent(0.25),
         onRowTap: (index) => print(invoices[index]),
