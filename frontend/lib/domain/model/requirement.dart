@@ -1,7 +1,8 @@
 import 'package:dafluta/dafluta.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:testflow/domain/model/custom_table_cell.dart';
 import 'package:testflow/domain/types/importance.dart';
+import 'package:testflow/presentation/common/chip/custom_chip.dart';
 
 class Requirement implements CustomTableCell {
   final String name;
@@ -30,7 +31,12 @@ class Requirement implements CustomTableCell {
       case 2:
         return Text(platforms.join(', '));
       case 3:
-        return Text(importance.toString().split('.').last);
+        return CustomChip(
+          text: importance.localized,
+          size: 12,
+          foregroundColor: importance.foregroundColor,
+          backgroundColor: importance.backgroundColor,
+        );
       case 4:
         return Text(tags.join(', '));
       default:
