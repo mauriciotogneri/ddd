@@ -7,21 +7,16 @@ class SignInState extends BaseState {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  bool get formFilled =>
-      emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+  String get email => emailController.text.trim();
+
+  String get password => passwordController.text.trim();
+
+  bool get formFilled => email.isNotEmpty && password.isNotEmpty;
 
   @override
   void onLoad() {
     emailController.text = 'demo@email.com';
     passwordController.text = '123456';
-    notify();
-  }
-
-  void onEmailChanged(String value) {
-    notify();
-  }
-
-  void onPasswordChanged(String value) {
     notify();
   }
 

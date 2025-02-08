@@ -58,14 +58,14 @@ class FormInputs extends StatelessWidget {
           TextInputField(
             hint: 'Email',
             controller: state.emailController,
-            onChanged: state.onEmailChanged,
+            onChanged: (_) => state.notify(),
             prefixIcon: Icons.email_outlined,
           ),
           const VBox(16),
           PasswordInputField(
             hint: 'Password',
             controller: state.passwordController,
-            onChanged: state.onPasswordChanged,
+            onChanged: (_) => state.notify(),
             prefixIcon: Icons.lock_outlined,
           ),
           const VBox(16),
@@ -84,7 +84,8 @@ class SignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return PrimaryButton(
       text: 'Sign in',
-      onPressed: state.formFilled ? state.onSignIn : null,
+      onPressed: state.onSignIn,
+      enabled: state.formFilled,
       expanded: true,
     );
   }

@@ -34,7 +34,7 @@ class CreateProjectDialog extends StatelessWidget {
           ),
           PrimaryButton(
             text: 'Create',
-            enabled: state.canCreate,
+            enabled: state.formFilled,
             onPressed: () {
               Navigation.pop();
               state.onCreate();
@@ -50,12 +50,12 @@ class CreateProjectDialog extends StatelessWidget {
               TextInputField(
                 hint: 'Name',
                 controller: state.nameController,
-                onChanged: (_) => state.onInputChanged(),
+                onChanged: (_) => state.notify(),
               ),
               TextInputField(
                 hint: 'Description',
                 controller: state.descriptionController,
-                onChanged: (_) => state.onInputChanged(),
+                onChanged: (_) => state.notify(),
                 maxLines: 5,
               ),
               const VBox(16),
@@ -71,7 +71,6 @@ class CreateProjectDialogState extends BaseState {
   final CreateProjectCallback onCreateProject;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  bool canCreate = false;
 
   CreateProjectDialogState({required this.onCreateProject});
 
@@ -79,10 +78,7 @@ class CreateProjectDialogState extends BaseState {
 
   String get description => descriptionController.text.trim();
 
-  void onInputChanged() {
-    canCreate = name.isNotEmpty && description.isNotEmpty;
-    notify();
-  }
+  bool get formFilled => name.isNotEmpty && description.isNotEmpty;
 
   void onCreate() => onCreateProject(
         name: name,
