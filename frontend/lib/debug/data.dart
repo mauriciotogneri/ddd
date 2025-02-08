@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:testflow/domain/model/project.dart';
 import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/types/importance.dart';
+import 'package:testflow/domain/types/requirement_type.dart';
 
 class Data {
   static Project currentProject = _projects.first;
@@ -40,6 +41,8 @@ class Data {
   static final List<Requirement> _requirements = [
     for (int i = 0; i < 20; i++)
       Requirement(
+        id: '${i + 1}',
+        type: _random(RequirementType.values),
         name: 'Requirement ${i + 1}',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',

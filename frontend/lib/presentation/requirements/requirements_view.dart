@@ -108,10 +108,10 @@ class Table extends StatelessWidget {
       child: CustomTable(
         columns: const [
           CustomTableColumn(name: 'Name', ratio: 0.25),
+          CustomTableColumn(name: 'Type', ratio: 0.15),
           CustomTableColumn(name: 'Component', ratio: 0.15),
-          CustomTableColumn(name: 'Platforms', ratio: 0.15),
+          CustomTableColumn(name: 'Platforms', ratio: 0.20),
           CustomTableColumn(name: 'Importance', ratio: 0.15),
-          CustomTableColumn(name: 'Tags', ratio: 0.20),
           CustomTableColumn(name: 'Test cases', ratio: 0.10),
         ],
         rows: state.requirements,

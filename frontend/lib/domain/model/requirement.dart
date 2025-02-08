@@ -2,10 +2,13 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/model/custom_table_cell.dart';
 import 'package:testflow/domain/types/importance.dart';
+import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/extensions/string_extension.dart';
 import 'package:testflow/presentation/common/chip/custom_chip.dart';
 
 class Requirement implements CustomTableCell {
+  final String id;
+  final RequirementType type;
   final String name;
   final String description;
   final String component;
@@ -15,6 +18,8 @@ class Requirement implements CustomTableCell {
   final int numberOfTestCases;
 
   const Requirement({
+    required this.id,
+    required this.type,
     required this.name,
     required this.description,
     required this.component,
@@ -67,17 +72,21 @@ class Requirement implements CustomTableCell {
           ),
         );
       case 1:
-        return CustomChip(text: component);
+        return CustomChip(
+          text: type.localized,
+          foregroundColor: type.foregroundColor,
+          backgroundColor: type.backgroundColor,
+        );
       case 2:
-        return ChipRow(chips: platforms);
+        return CustomChip(text: component);
       case 3:
+        return ChipRow(chips: platforms);
+      case 4:
         return CustomChip(
           text: importance.localized,
           foregroundColor: importance.foregroundColor,
           backgroundColor: importance.backgroundColor,
         );
-      case 4:
-        return ChipRow(chips: tags);
       case 5:
         return Text(numberOfTestCases.toString());
       default:
