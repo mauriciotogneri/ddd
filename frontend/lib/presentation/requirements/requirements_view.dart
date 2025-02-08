@@ -1,12 +1,11 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
-import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/state/requirements/requirements_state.dart';
 import 'package:testflow/presentation/common/dropdown/dropdown_input.dart';
 import 'package:testflow/presentation/common/input/text_input_field.dart';
+import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/title_4.dart';
-import 'package:testflow/utils/palette.dart';
 
 class RequirementsView extends StatelessWidget {
   final RequirementsState state;
@@ -90,7 +89,7 @@ class Table extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const invoices = [
+    /*const invoices = [
       [
         'INV001',
         'Paid',
@@ -260,9 +259,9 @@ class Table extends StatelessWidget {
       'Status',
       'Method',
       'Amount',
-    ];
+    ];*/
 
-    return Expanded(
+    /*return Expanded(
       child: ShadTable(
         columnCount: invoices[0].length,
         rowCount: invoices.length,
@@ -291,6 +290,21 @@ class Table extends StatelessWidget {
             ),
           );
         },
+      ),
+    );*/
+
+    final List<String> columns = [
+      'Name',
+      'Component',
+      'Platforms',
+      'Importance',
+      'Tags',
+    ];
+
+    return Expanded(
+      child: CustomTable(
+        columns: columns,
+        rows: Data.requirements(),
       ),
     );
   }
