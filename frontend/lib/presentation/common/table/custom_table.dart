@@ -4,7 +4,7 @@ import 'package:testflow/domain/model/custom_table_cell.dart';
 import 'package:testflow/utils/palette.dart';
 
 class CustomTable<T extends CustomTableCell> extends StatelessWidget {
-  final List<String> columns;
+  final List<CustomTableColumn> columns;
   final List<T> rows;
   final Function(T) onRowSelected;
 
@@ -21,13 +21,13 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
       rowCount: rows.length,
       header: (context, index) => ShadTableCell.header(
         child: Text(
-          columns[index],
+          columns[index].name,
           style: const TextStyle(
             color: Palette.textEnabled,
           ),
         ),
       ),
-      columnSpanExtent: (index) => FractionalSpanExtent(1 / columns.length),
+      columnSpanExtent: (index) => FractionalSpanExtent(columns[index].ratio),
       onRowTap: (index) => onRowSelected(rows[index]),
       rowSpanBackgroundDecoration: (row) => row == 0
           ? const SpanDecoration(
@@ -39,4 +39,14 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
       ),
     );
   }
+}
+
+class CustomTableColumn {
+  final String name;
+  final double ratio;
+
+  const CustomTableColumn({
+    required this.name,
+    required this.ratio,
+  });
 }
