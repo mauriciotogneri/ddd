@@ -1,3 +1,1 @@
 # Frontend
-
-* Select table columns
