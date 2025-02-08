@@ -59,6 +59,12 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
           onRowTap: (index) => onRowSelected(rows[index]),
           rowSpanBackgroundDecoration: (row) => row == 0
               ? const SpanDecoration(
+                  border: SpanBorder(
+                    trailing: BorderSide(
+                      width: 0.5,
+                      color: Palette.borderTable,
+                    ),
+                  ),
                   color: Palette.backgroundTableHeader,
                 )
               : null,
