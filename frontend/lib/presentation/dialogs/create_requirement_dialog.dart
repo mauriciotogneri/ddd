@@ -1,6 +1,7 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
+import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
@@ -57,19 +58,6 @@ class FormFields extends StatelessWidget {
 
   const FormFields(this.state);
 
-  /*
-    final String id;
-    final String name;
-    final String description;
-    final RequirementType type;
-    final RequirementStatus status;
-    final RequirementImportance importance;
-  final String component;
-  final List<String> platforms;
-  final List<String> tags;
-  final int numberOfTestCases;
-  */
-
   @override
   Widget build(BuildContext context) {
     return ShadForm(
@@ -78,6 +66,23 @@ class FormFields extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const DialogLabel('Name'),
+          TextInputField(
+            hint: 'Name',
+            isForm: true,
+            controller: state.nameController,
+            validator: (value) => Validator.isNotEmpty(
+              value: value,
+              error: 'Name is required',
+            ),
+          ),
+          const DialogLabel('Description'),
+          TextInputField(
+            hint: 'Description',
+            isForm: true,
+            maxLines: 5,
+            controller: state.descriptionController,
+          ),
           Row(
             children: [
               Expanded(
@@ -120,23 +125,6 @@ class FormFields extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-          const DialogLabel('Name'),
-          TextInputField(
-            hint: 'Name',
-            isForm: true,
-            controller: state.nameController,
-            validator: (value) => Validator.isNotEmpty(
-              value: value,
-              error: 'Name is required',
-            ),
-          ),
-          const DialogLabel('Description'),
-          TextInputField(
-            hint: 'Description',
-            isForm: true,
-            maxLines: 5,
-            controller: state.descriptionController,
           ),
           Row(
             children: [
@@ -184,6 +172,52 @@ class FormFields extends StatelessWidget {
               ),
             ],
           ),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const DialogLabel('Component'),
+                    DropdownInput<String>(
+                      width: 240,
+                      values: Data.currentProject.components,
+                      controller: state.componentController,
+                      allowDeselection: true,
+                      isForm: true,
+                      hint: 'Component',
+                      validatorSingle: (value) => Validator.isNotNull(
+                        value: value,
+                        error: 'Component is required',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const DialogLabel('Platforms'),
+                    DropdownInput<String>(
+                      width: 240,
+                      values: Data.currentProject.platforms,
+                      controller: state.platformsController,
+                      allowDeselection: true,
+                      isForm: true,
+                      hint: 'Platforms',
+                      validatorSingle: (value) => Validator.isNotNull(
+                        value: value,
+                        error: 'Platforms is required',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
           const VBox(16),
         ],
       ),
@@ -202,6 +236,10 @@ class CreateRequirementDialogState extends BaseState {
   final DropdownInputController<RequirementStatus> statusController =
       DropdownInputController();
   final DropdownInputController<RequirementImportance> importanceController =
+      DropdownInputController();
+  final DropdownInputController<String> componentController =
+      DropdownInputController();
+  final DropdownInputController<String> platformsController =
       DropdownInputController();
 
   CreateRequirementDialogState({required this.onCreateRequirement});
