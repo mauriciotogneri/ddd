@@ -11,7 +11,7 @@ import 'package:testflow/presentation/common/dropdown/dropdown_input_single.dart
 import 'package:testflow/presentation/dashboard/dashboard_screen.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/create_project_dialog.dart';
-import 'package:testflow/presentation/requirements/requirements_view.dart';
+import 'package:testflow/presentation/requirements/requirements_list_view.dart';
 
 class DashboardState extends BaseState {
   int activeView = 0;
@@ -48,7 +48,7 @@ class DashboardState extends BaseState {
     viewsStack.clear();
 
     if (index == VIEW_REQUIREMENTS) {
-      _addView(RequirementsView.instance());
+      _addView(RequirementsListView.instance());
     } else if (index == VIEW_SUITES) {
       _addView(const SuitesView());
     } else if (index == VIEW_SESSIONS) {

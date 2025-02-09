@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
+import 'package:testflow/domain/events/events.dart';
 import 'package:testflow/utils/navigation.dart';
 
 final GetIt locator = GetIt.instance;
@@ -27,5 +28,6 @@ class Locator {
 
     //locator.registerSingleton<Environment>(environment);
     locator.registerSingleton<Navigation>(Navigation());
+    locator.registerSingleton<Events>(Events());
   }
 }

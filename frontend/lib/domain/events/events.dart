@@ -8,7 +8,7 @@ class Events {
 
   static Events get _get => locator<Events>();
 
-  static void emit(dynamic event) {
+  static void dispatch(dynamic event) {
     Log.trace('Event', '${event.runtimeType}.post');
     _get._eventBus.fire(event);
   }
@@ -20,5 +20,5 @@ class Events {
 class Event {
   const Event();
 
-  void post() => Events.emit(this);
+  void post() => Events.dispatch(this);
 }

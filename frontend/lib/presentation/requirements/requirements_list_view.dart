@@ -1,7 +1,7 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
-import 'package:testflow/domain/state/requirements/requirements_state.dart';
+import 'package:testflow/domain/state/requirements/requirements_list_state.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
@@ -10,34 +10,37 @@ import 'package:testflow/presentation/common/dropdown/dropdown_input_multiple.da
 import 'package:testflow/presentation/common/input/text_input_field.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/title_4.dart';
+import 'package:testflow/presentation/common/view/base_view.dart';
 
-class RequirementsView extends StatelessWidget {
-  final RequirementsState state;
+class RequirementsListView extends StatelessWidget {
+  final RequirementsListState state;
 
-  const RequirementsView._(this.state);
+  const RequirementsListView._(this.state);
 
-  factory RequirementsView.instance() =>
-      RequirementsView._(RequirementsState());
+  factory RequirementsListView.instance() =>
+      RequirementsListView._(RequirementsListState());
 
   @override
   Widget build(BuildContext context) {
-    return StateProvider<RequirementsState>(
+    return StateProvider<RequirementsListState>(
       state: state,
-      builder: (state, context) => Padding(
-        padding: const EdgeInsets.only(
-          top: 16,
-          left: 16,
-          right: 16,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Header(),
-            const VBox(16),
-            TableFilters(this.state),
-            const VBox(16),
-            Table(this.state),
-          ],
+      builder: (context, state) => BaseView(
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 16,
+            left: 16,
+            right: 16,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Header(),
+              const VBox(16),
+              TableFilters(state),
+              const VBox(16),
+              Table(state),
+            ],
+          ),
         ),
       ),
     );
@@ -54,7 +57,7 @@ class Header extends StatelessWidget {
 }
 
 class TableFilters extends StatelessWidget {
-  final RequirementsState state;
+  final RequirementsListState state;
 
   const TableFilters(this.state);
 
@@ -121,7 +124,7 @@ class TableFilters extends StatelessWidget {
 }
 
 class Table extends StatelessWidget {
-  final RequirementsState state;
+  final RequirementsListState state;
 
   const Table(this.state);
 
