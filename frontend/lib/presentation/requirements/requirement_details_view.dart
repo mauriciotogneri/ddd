@@ -30,7 +30,7 @@ class RequirementDetailView extends StatelessWidget {
     return StateProvider<RequirementDetailsState>(
       state: state,
       builder: (context, state) => BaseView.withBack(
-        header: Title4(text: 'Requirement: ${state.requirement.name}'),
+        header: const Title4(text: 'Requirement details'),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -66,7 +66,6 @@ class FormFields extends StatelessWidget {
                     TextInputField(
                       hint: 'Name',
                       isForm: true,
-                      autofocus: true,
                       controller: state.nameController,
                       errorMessage: 'Name is required',
                     ),
