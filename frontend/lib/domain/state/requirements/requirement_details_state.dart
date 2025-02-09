@@ -28,5 +28,14 @@ class RequirementDetailsState extends BaseState {
 
   bool get formValid => formKey.currentState!.validate();
 
-  RequirementDetailsState({required this.requirement});
+  RequirementDetailsState({required this.requirement}) {
+    idController.text = requirement.id;
+    typeController.select(requirement.type);
+    nameController.text = requirement.name;
+    descriptionController.text = requirement.description;
+    statusController.select(requirement.status);
+    importanceController.select(requirement.importance);
+    componentController.select(requirement.component);
+    platformsController.select(requirement.platforms);
+  }
 }

@@ -74,7 +74,7 @@ class DropdownInputSingle<T> extends StatelessWidget {
     controller?._focusNode.unfocus();
 
     if (element != null) {
-      controller?.onChange(element);
+      controller?.select(element);
       onChange?.call(element);
     }
   }
@@ -101,7 +101,7 @@ class DropdownInputSingleController<T> {
 
   void close() => _controller.hide();
 
-  void onChange(T value) {
+  void select(T value) {
     _selected = value;
   }
 }

@@ -28,7 +28,7 @@ class DashboardState extends BaseState {
 
   @override
   void onLoad() {
-    projectsController.onChange(Data.currentProject);
+    projectsController.select(Data.currentProject);
     onRootViewChange(VIEW_REQUIREMENTS);
     notify();
 

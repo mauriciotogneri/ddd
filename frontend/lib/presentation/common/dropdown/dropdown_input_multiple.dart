@@ -85,7 +85,7 @@ class DropdownInputMultiple<T> extends StatelessWidget {
     controller?._focusNode.unfocus();
 
     if (elements != null) {
-      controller?.onChange(elements);
+      controller?.select(elements);
       onChange?.call(elements);
     }
   }
@@ -112,7 +112,7 @@ class DropdownInputMultipleController<T> {
 
   void close() => _controller.hide();
 
-  void onChange(List<T> value) {
+  void select(List<T> value) {
     _selected.clear();
     _selected.addAll(value);
   }
