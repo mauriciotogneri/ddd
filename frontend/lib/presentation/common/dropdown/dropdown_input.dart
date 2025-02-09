@@ -1,6 +1,7 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
+import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/utils/palette.dart';
 
 class DropdownInput<T> extends StatelessWidget {
@@ -14,6 +15,8 @@ class DropdownInput<T> extends StatelessWidget {
   final VoidCallback? onClear;
   final Function(T?)? onChangeSingle;
   final Function(List<T>)? onChangeMultiple;
+  final String? Function(T?)? validatorSingle;
+  final String? Function(List<T>?)? validatorMultiple;
 
   const DropdownInput({
     required this.values,
@@ -21,9 +24,11 @@ class DropdownInput<T> extends StatelessWidget {
     this.controller,
     this.footer,
     this.width,
+    this.onClear,
     this.onChangeSingle,
     this.onChangeMultiple,
-    this.onClear,
+    this.validatorSingle,
+    this.validatorMultiple,
     this.allowDeselection = false,
     this.isForm = false,
   });
@@ -95,6 +100,8 @@ class DropdownInput<T> extends StatelessWidget {
           onChangeSingle?.call(element);
         },
         focusNode: controller?._focusNode,
+        validator: validatorSingle,
+        error: DialogError.new,
         footer: footer,
         placeholder: Text(hint),
         options: _options,
@@ -121,6 +128,8 @@ class DropdownInput<T> extends StatelessWidget {
           }
         },
         focusNode: controller?._focusNode,
+        validator: validatorMultiple,
+        error: DialogError.new,
         footer: footer ?? ((onClear != null) ? _clearFooter : null),
         placeholder: Text(hint),
         options: _options,

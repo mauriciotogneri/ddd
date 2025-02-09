@@ -1,6 +1,8 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
+import 'package:testflow/domain/types/requirement_importance.dart';
+import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/button/primary_button.dart';
 import 'package:testflow/presentation/common/button/secondary_button.dart';
@@ -59,9 +61,9 @@ class FormFields extends StatelessWidget {
     final String id;
     final String name;
     final String description;
-  final RequirementType type;
-  final RequirementStatus status;
-  final RequirementImportance importance;
+    final RequirementType type;
+    final RequirementStatus status;
+    final RequirementImportance importance;
   final String component;
   final List<String> platforms;
   final List<String> tags;
@@ -105,10 +107,14 @@ class FormFields extends StatelessWidget {
                     DropdownInput<RequirementType>(
                       width: 240,
                       values: RequirementType.values,
-                      controller: state.typeFilterController,
+                      controller: state.typeController,
                       allowDeselection: true,
                       isForm: true,
                       hint: 'Type',
+                      validatorSingle: (value) => Validator.isNotNull(
+                        value: value,
+                        error: 'Type is required',
+                      ),
                     ),
                   ],
                 ),
@@ -132,6 +138,52 @@ class FormFields extends StatelessWidget {
             maxLines: 5,
             controller: state.descriptionController,
           ),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const DialogLabel('Status'),
+                    DropdownInput<RequirementStatus>(
+                      width: 240,
+                      values: RequirementStatus.values,
+                      controller: state.statusController,
+                      allowDeselection: true,
+                      isForm: true,
+                      hint: 'Status',
+                      validatorSingle: (value) => Validator.isNotNull(
+                        value: value,
+                        error: 'Status is required',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const DialogLabel('Importance'),
+                    DropdownInput<RequirementImportance>(
+                      width: 240,
+                      values: RequirementImportance.values,
+                      controller: state.importanceController,
+                      allowDeselection: true,
+                      isForm: true,
+                      hint: 'Importance',
+                      validatorSingle: (value) => Validator.isNotNull(
+                        value: value,
+                        error: 'Importance is required',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
           const VBox(16),
         ],
       ),
@@ -143,10 +195,14 @@ class CreateRequirementDialogState extends BaseState {
   final GlobalKey<ShadFormState> formKey = GlobalKey();
   final OnCreateRequirement onCreateRequirement;
   final TextInputController idController = TextInputController();
-  final DropdownInputController<RequirementType> typeFilterController =
+  final DropdownInputController<RequirementType> typeController =
       DropdownInputController();
   final TextInputController nameController = TextInputController();
   final TextInputController descriptionController = TextInputController();
+  final DropdownInputController<RequirementStatus> statusController =
+      DropdownInputController();
+  final DropdownInputController<RequirementImportance> importanceController =
+      DropdownInputController();
 
   CreateRequirementDialogState({required this.onCreateRequirement});
 
