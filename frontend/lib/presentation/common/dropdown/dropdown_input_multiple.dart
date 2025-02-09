@@ -78,7 +78,8 @@ class DropdownInputMultiple<T> extends StatelessWidget {
         allowDeselection: allowDeselection,
         onChanged: _onChanged,
         focusNode: controller?._focusNode,
-        validator: (value) => (value == null) ? errorMessage : null,
+        validator: (value) =>
+            ((value == null) || (value.isEmpty)) ? errorMessage : null,
         error: InputError.new,
         footer: footer,
         decoration: _decoration,
