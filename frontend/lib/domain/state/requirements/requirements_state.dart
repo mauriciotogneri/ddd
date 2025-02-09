@@ -1,6 +1,5 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
-import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
@@ -8,6 +7,7 @@ import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/dropdown/dropdown_input_multiple.dart';
 import 'package:testflow/presentation/common/input/text_input_field.dart';
+import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/create_requirement_dialog.dart';
 
 class RequirementsState extends BaseState {
@@ -39,14 +39,14 @@ class RequirementsState extends BaseState {
     print(requirement);
   }
 
-  void onCreateRequirement(BuildContext context) => showShadDialog(
+  void onCreateRequirement(BuildContext context) => BaseDialog.show(
         context: context,
-        builder: (context) => CreateRequirementDialog.instance(
-          onCreateRequirement: createRequirement,
+        dialog: CreateRequirementDialog.instance(
+          onCreateRequirement: _createRequirement,
         ),
       );
 
-  void createRequirement({
+  void _createRequirement({
     required String name,
     required String description,
     required String id,

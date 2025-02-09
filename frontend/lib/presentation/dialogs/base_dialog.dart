@@ -15,6 +15,16 @@ class BaseDialog extends StatelessWidget {
     required this.actions,
   });
 
+  static void show({
+    required BuildContext context,
+    required Widget dialog,
+  }) =>
+      showShadDialog(
+        barrierColor: const Color(0xeedddddd),
+        context: context,
+        builder: (context) => dialog,
+      );
+
   @override
   Widget build(BuildContext context) {
     return ShadDialog(
