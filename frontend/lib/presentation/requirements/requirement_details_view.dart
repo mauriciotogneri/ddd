@@ -55,150 +55,125 @@ class FormFields extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              SizedBox(
-                width: 1000,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const InputLabel('Name'),
-                    TextInputField(
-                      isForm: true,
-                      controller: state.nameController,
-                      errorMessage: 'Name is required',
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
+          InputEntry(
             width: 1000,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const InputLabel('Description'),
-                TextInputField(
-                  isForm: true,
-                  maxLines: 5,
-                  controller: state.descriptionController,
-                ),
-              ],
+            label: 'Name',
+            input: TextInputField(
+              isForm: true,
+              controller: state.nameController,
+              errorMessage: 'Name is required',
+            ),
+          ),
+          InputEntry(
+            width: 1000,
+            label: 'Description',
+            input: TextInputField(
+              isForm: true,
+              maxLines: 5,
+              controller: state.descriptionController,
             ),
           ),
           Row(
             children: [
-              SizedBox(
+              InputEntry(
                 width: 333,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const InputLabel('ID'),
-                    TextInputField(
-                      isForm: true,
-                      controller: state.idController,
-                      errorMessage: 'ID is required',
-                    ),
-                  ],
+                label: 'ID',
+                input: TextInputField(
+                  isForm: true,
+                  controller: state.idController,
+                  errorMessage: 'ID is required',
                 ),
               ),
-              SizedBox(
+              InputEntry(
                 width: 333,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const InputLabel('Type'),
-                    DropdownInputSingle<RequirementType>(
-                      width: 333,
-                      values: RequirementType.values,
-                      controller: state.typeController,
-                      isForm: true,
-                      errorMessage: 'Type is required',
-                    ),
-                  ],
+                label: 'Type',
+                input: DropdownInputSingle<RequirementType>(
+                  width: 333,
+                  values: RequirementType.values,
+                  controller: state.typeController,
+                  isForm: true,
+                  errorMessage: 'Type is required',
                 ),
               ),
-              SizedBox(
+              InputEntry(
                 width: 333,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const InputLabel('Status'),
-                    DropdownInputSingle<RequirementStatus>(
-                      width: 333,
-                      values: RequirementStatus.values,
-                      controller: state.statusController,
-                      isForm: true,
-                      errorMessage: 'Status is required',
-                    ),
-                  ],
+                label: 'Status',
+                input: DropdownInputSingle<RequirementStatus>(
+                  width: 333,
+                  values: RequirementStatus.values,
+                  controller: state.statusController,
+                  isForm: true,
+                  errorMessage: 'Status is required',
                 ),
               ),
             ],
           ),
           Row(
             children: [
-              SizedBox(
+              InputEntry(
                 width: 333,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const InputLabel('Importance'),
-                    DropdownInputSingle<RequirementImportance>(
-                      width: 333,
-                      values: RequirementImportance.values,
-                      controller: state.importanceController,
-                      isForm: true,
-                      errorMessage: 'Importance is required',
-                    ),
-                  ],
+                label: 'Importance',
+                input: DropdownInputSingle<RequirementImportance>(
+                  width: 333,
+                  values: RequirementImportance.values,
+                  controller: state.importanceController,
+                  isForm: true,
+                  errorMessage: 'Importance is required',
                 ),
               ),
-              SizedBox(
+              InputEntry(
                 width: 333,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const InputLabel('Component'),
-                    DropdownInputSingle<String>(
-                      width: 333,
-                      values: Data.currentProject.components,
-                      controller: state.componentController,
-                      isForm: true,
-                      errorMessage: 'Component is required',
-                    ),
-                  ],
+                label: 'Component',
+                input: DropdownInputSingle<String>(
+                  width: 333,
+                  values: Data.currentProject.components,
+                  controller: state.componentController,
+                  isForm: true,
+                  errorMessage: 'Component is required',
                 ),
               ),
-              SizedBox(
+              InputEntry(
                 width: 333,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const InputLabel('Platforms'),
-                    DropdownInputMultiple<String>(
-                      width: 333,
-                      values: Data.currentProject.platforms,
-                      controller: state.platformsController,
-                      allowDeselection: true,
-                      isForm: true,
-                      errorMessage: 'Platforms is required',
-                    ),
-                  ],
+                label: 'Platforms',
+                input: DropdownInputMultiple<String>(
+                  width: 333,
+                  values: Data.currentProject.platforms,
+                  controller: state.platformsController,
+                  allowDeselection: true,
+                  isForm: true,
+                  errorMessage: 'Platforms is required',
                 ),
               ),
             ],
           ),
           const VBox(16),
+        ],
+      ),
+    );
+  }
+}
+
+class InputEntry extends StatelessWidget {
+  final double width;
+  final String label;
+  final Widget input;
+
+  const InputEntry({
+    required this.width,
+    required this.label,
+    required this.input,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          InputLabel(label),
+          input,
         ],
       ),
     );
