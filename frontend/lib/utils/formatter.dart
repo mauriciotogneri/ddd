@@ -8,7 +8,7 @@ class Formatter {
   }
 
   static String dayLongMonthMonthYear(DateTime dateTime) =>
-      DateFormat.yMMMd().format(dateTime.toLocal());
+      DateFormat.yMMMEd().format(dateTime.toLocal());
 
   static String hoursMinutes(DateTime dateTime) =>
       DateFormat.Hm().format(dateTime.toLocal());
