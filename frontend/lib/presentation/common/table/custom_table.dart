@@ -77,6 +77,7 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
                 )
               : null,
           builder: (context, index) => ShadTableCell(
+            alignment: columns[index.column].alignment,
             child: rows[index.row].cell(index.column),
           ),
         ),
@@ -88,9 +89,11 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
 class CustomTableColumn {
   final String name;
   final double ratio;
+  final Alignment? alignment;
 
   const CustomTableColumn({
     required this.name,
     required this.ratio,
+    this.alignment,
   });
 }

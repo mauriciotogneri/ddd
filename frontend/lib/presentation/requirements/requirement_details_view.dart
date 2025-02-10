@@ -196,7 +196,11 @@ class Table extends StatelessWidget {
         columns: const [
           CustomTableColumn(name: 'Name', ratio: 0.6),
           CustomTableColumn(name: 'Is automated', ratio: 0.2),
-          CustomTableColumn(name: 'Last run', ratio: 0.2),
+          CustomTableColumn(
+            name: 'Last run',
+            ratio: 0.2,
+            alignment: Alignment.centerRight,
+          ),
         ],
         rows: state.testCases,
         onRowSelected: state.onTestCaseSelected,
