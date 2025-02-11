@@ -10,8 +10,6 @@ import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/dropdown/dropdown_input_multiple.dart';
 import 'package:testflow/presentation/common/dropdown/dropdown_input_single.dart';
 import 'package:testflow/presentation/common/input/text_input_field.dart';
-import 'package:testflow/presentation/test_cases/test_case_details_view.dart';
-import 'package:testflow/utils/navigation.dart';
 
 class RequirementDetailsState extends BaseState {
   final Requirement requirement;
@@ -30,6 +28,7 @@ class RequirementDetailsState extends BaseState {
       DropdownInputSingleController();
   final DropdownInputMultipleController<String> platformsController =
       DropdownInputMultipleController();
+  TestCase? selectedTestCase;
 
   bool get formValid => formKey.currentState!.validate();
 
@@ -46,9 +45,8 @@ class RequirementDetailsState extends BaseState {
     testCases.addAll(Data.testCases(requirement));
   }
 
-  void onTestCaseSelected(TestCase testCase) =>
-      Navigation.stack(TestCaseDetailsView.instance(
-        requirement: requirement,
-        testCase: testCase,
-      ));
+  void onTestCaseSelected(TestCase testCase) {
+    selectedTestCase = testCase;
+    notify();
+  }
 }

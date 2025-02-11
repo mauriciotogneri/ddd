@@ -235,7 +235,9 @@ class TestCasesBlock extends StatelessWidget {
                   child: Table(state),
                 ),
                 Flexible(
-                  child: Table(state),
+                  child: (state.selectedTestCase != null)
+                      ? TestCaseDetails(state.selectedTestCase!)
+                      : const Empty(),
                 ),
               ],
             ),
@@ -267,6 +269,102 @@ class Table extends StatelessWidget {
         ],
         rows: state.testCases,
         onRowSelected: state.onTestCaseSelected,
+      ),
+    );
+  }
+}
+
+class TestCaseDetails extends StatelessWidget {
+  final TestCase testCase;
+
+  const TestCaseDetails(this.testCase);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 16,
+        right: 16,
+        bottom: 16,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              InputEntry(
+                flex: 4,
+                label: 'Name',
+                input: TextInputField(
+                  isForm: true,
+                  controller: TextInputController()
+                    ..controller.text = testCase.name,
+                  errorMessage: 'Name is required',
+                ),
+              ),
+              const HBox(16),
+              InputEntry(
+                flex: 1,
+                label: 'Automated',
+                input: Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 8,
+                  ),
+                  child: ShadSwitch(
+                    value: testCase.isAutomated,
+                    padding: const EdgeInsets.only(
+                      top: 0,
+                      bottom: 0,
+                      left: 8,
+                      right: 0,
+                    ),
+                    label: const Text(
+                      'Automated',
+                      style: TextStyle(
+                        color: Palette.textEnabled,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    enabled: false,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          InputEntry(
+            flex: 1,
+            label: 'Preconditions',
+            input: TextInputField(
+              isForm: true,
+              maxLines: 4,
+              controller: TextInputController()
+                ..controller.text = testCase.preconditions,
+            ),
+          ),
+          InputEntry(
+            flex: 1,
+            label: 'Steps',
+            input: TextInputField(
+              isForm: true,
+              maxLines: 4,
+              controller: TextInputController()
+                ..controller.text = testCase.steps,
+            ),
+          ),
+          InputEntry(
+            flex: 1,
+            label: 'Expected result',
+            input: TextInputField(
+              isForm: true,
+              maxLines: 4,
+              controller: TextInputController()
+                ..controller.text = testCase.expected,
+            ),
+          ),
+        ],
       ),
     );
   }
