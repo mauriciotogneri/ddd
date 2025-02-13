@@ -32,8 +32,9 @@ class DashboardState extends BaseState {
     notify();
 
     _subscriptionStackViewEvent = Events.listen<StackViewEvent>(_onViewStacked);
-    _subscriptionUnstackViewEvent =
-        Events.listen<UnstackViewEvent>(_onViewUnstacked);
+    _subscriptionUnstackViewEvent = Events.listen<UnstackViewEvent>(
+      _onViewUnstacked,
+    );
   }
 
   @override
@@ -81,23 +82,20 @@ class DashboardState extends BaseState {
 
     BaseDialog.show(
       context: context,
-      dialog: CreateProjectDialog.instance(
-        onCreateProject: _createProject,
-      ),
+      dialog: CreateProjectDialog.instance(onCreateProject: _createProject),
     );
   }
 
-  void _createProject({
-    required String name,
-    required String description,
-  }) {
-    Data.onCreateProject(Project(
-      id: '',
-      name: name,
-      description: description,
-      components: [],
-      platforms: [],
-    ));
+  void _createProject({required String name, required String description}) {
+    Data.onCreateProject(
+      Project(
+        id: '',
+        name: name,
+        description: description,
+        components: [],
+        platforms: [],
+      ),
+    );
     notify();
   }
 }

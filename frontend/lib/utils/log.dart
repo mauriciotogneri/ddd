@@ -12,24 +12,14 @@ class Log {
   }
 
   static void debug(dynamic message, [dynamic error, StackTrace? stackTrace]) =>
-      logger.d(
-        message,
-        error: error,
-        stackTrace: stackTrace,
-      );
+      logger.d(message, error: error, stackTrace: stackTrace);
 
-  static void warning(dynamic message,
-          [dynamic error, StackTrace? stackTrace]) =>
-      logger.w(
-        message,
-        error: error,
-        stackTrace: stackTrace,
-      );
+  static void warning(
+    dynamic message, [
+    dynamic error,
+    StackTrace? stackTrace,
+  ]) => logger.w(message, error: error, stackTrace: stackTrace);
 
   static void error(dynamic message, [dynamic error, StackTrace? stackTrace]) =>
-      logger.e(
-        message,
-        error: error,
-        stackTrace: stackTrace,
-      );
+      logger.e(message, error: error, stackTrace: stackTrace);
 }

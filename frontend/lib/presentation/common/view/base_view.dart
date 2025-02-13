@@ -24,51 +24,33 @@ class BaseView extends StatelessWidget {
     );
   }
 
-  factory BaseView.normal({
-    required Widget header,
-    required Widget content,
-  }) =>
+  factory BaseView.normal({required Widget header, required Widget content}) =>
       BaseView(
-        padding: const EdgeInsets.only(
-          top: 16,
-          left: 16,
-          right: 16,
-        ),
+        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            header,
-            Flexible(child: content),
-          ],
+          children: [header, Flexible(child: content)],
         ),
       );
 
   factory BaseView.withBack({
     required Widget header,
     required Widget content,
-  }) =>
-      BaseView(
-        padding: const EdgeInsets.only(
-          top: 10,
-          left: 10,
-          right: 10,
+  }) => BaseView(
+    padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        HeaderWithBack(header),
+        Flexible(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 6, right: 6),
+            child: content,
+          ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HeaderWithBack(header),
-            Flexible(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 6,
-                  right: 6,
-                ),
-                child: content,
-              ),
-            ),
-          ],
-        ),
-      );
+      ],
+    ),
+  );
 }
 
 class HeaderWithBack extends StatelessWidget {
@@ -85,7 +67,7 @@ class HeaderWithBack extends StatelessWidget {
           icon: Icon(Icons.keyboard_arrow_left_rounded),
         ),
         const HBox(4),
-        child
+        child,
       ],
     );
   }

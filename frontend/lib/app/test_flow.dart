@@ -16,14 +16,13 @@ class TestFlow extends StatelessWidget {
       title: 'TestFlow',
       navigatorKey: Navigation.getRoutes.key,
       navigatorObservers: [Navigation.getRoutes.routeObserver],
-      materialThemeBuilder: (context, theme) => theme.copyWith(
-        colorScheme: ColorScheme.fromSeed(seedColor: Palette.primary),
-      ),
+      materialThemeBuilder:
+          (context, theme) => theme.copyWith(
+            colorScheme: ColorScheme.fromSeed(seedColor: Palette.primary),
+          ),
       theme: ShadThemeData(
         brightness: Brightness.light,
-        colorScheme: const ShadSlateColorScheme.light(
-          primary: Palette.primary,
-        ),
+        colorScheme: const ShadSlateColorScheme.light(primary: Palette.primary),
         decoration: ShadDecoration(
           focusedBorder: ShadBorder.all(
             width: 1,

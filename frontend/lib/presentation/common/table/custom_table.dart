@@ -28,18 +28,9 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
           topRight: Radius.circular(6),
         ),
         border: Border(
-          top: BorderSide(
-            color: Palette.borderTable,
-            width: 0.5,
-          ),
-          left: BorderSide(
-            color: Palette.borderTable,
-            width: 0.5,
-          ),
-          right: BorderSide(
-            color: Palette.borderTable,
-            width: 0.5,
-          ),
+          top: BorderSide(color: Palette.borderTable, width: 0.5),
+          left: BorderSide(color: Palette.borderTable, width: 0.5),
+          right: BorderSide(color: Palette.borderTable, width: 0.5),
         ),
       ),
       child: ClipRRect(
@@ -50,36 +41,38 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
         child: ShadTable(
           columnCount: columns.length,
           rowCount: rows.length,
-          header: (context, index) => ShadTableCell.header(
-            child: Text(
-              columns[index].name,
-              style: const TextStyle(
-                color: Palette.textDisabled,
+          header:
+              (context, index) => ShadTableCell.header(
+                child: Text(
+                  columns[index].name,
+                  style: const TextStyle(color: Palette.textDisabled),
+                ),
               ),
-            ),
-          ),
-          columnSpanExtent: (index) =>
-              FractionalSpanExtent(columns[index].ratio),
+          columnSpanExtent:
+              (index) => FractionalSpanExtent(columns[index].ratio),
           onRowTap: (index) {
             if (index > 0) {
               onRowSelected(rows[index - 1]);
             }
           },
-          rowSpanBackgroundDecoration: (row) => row == 0
-              ? const SpanDecoration(
-                  border: SpanBorder(
-                    trailing: BorderSide(
-                      width: 0.5,
-                      color: Palette.borderTable,
-                    ),
-                  ),
-                  color: Palette.backgroundTableHeader,
-                )
-              : null,
-          builder: (context, index) => ShadTableCell(
-            alignment: columns[index.column].alignment,
-            child: rows[index.row].cell(index.column),
-          ),
+          rowSpanBackgroundDecoration:
+              (row) =>
+                  row == 0
+                      ? const SpanDecoration(
+                        border: SpanBorder(
+                          trailing: BorderSide(
+                            width: 0.5,
+                            color: Palette.borderTable,
+                          ),
+                        ),
+                        color: Palette.backgroundTableHeader,
+                      )
+                      : null,
+          builder:
+              (context, index) => ShadTableCell(
+                alignment: columns[index.column].alignment,
+                child: rows[index.row].cell(index.column),
+              ),
         ),
       ),
     );

@@ -18,9 +18,7 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return StateProvider<SignInState>(
       state: state,
-      builder: (context, state) => Scaffold(
-        body: Content(state),
-      ),
+      builder: (context, state) => Scaffold(body: Content(state)),
     );
   }
 }

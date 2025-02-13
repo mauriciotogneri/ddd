@@ -49,7 +49,8 @@ class Requirement implements CustomTableCell {
         importanceFilter.isEmpty) {
       return true;
     } else {
-      final bool matchesQuery = queryFilter.isEmpty ||
+      final bool matchesQuery =
+          queryFilter.isEmpty ||
           name.matches(queryFilter) ||
           description.matches(queryFilter) ||
           tags.any((tag) => tag.matches(queryFilter));
@@ -78,16 +79,12 @@ class Requirement implements CustomTableCell {
       case 0:
         return Text(
           id,
-          style: const TextStyle(
-            overflow: TextOverflow.ellipsis,
-          ),
+          style: const TextStyle(overflow: TextOverflow.ellipsis),
         );
       case 1:
         return Text(
           name,
-          style: const TextStyle(
-            overflow: TextOverflow.ellipsis,
-          ),
+          style: const TextStyle(overflow: TextOverflow.ellipsis),
         );
       case 2:
         return CustomChip(text: component);

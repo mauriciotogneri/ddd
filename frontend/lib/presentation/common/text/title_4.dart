@@ -4,9 +4,7 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 class Title4 extends StatelessWidget {
   final String text;
 
-  const Title4({
-    required this.text,
-  });
+  const Title4({required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +12,7 @@ class Title4 extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(left: 4),
-      child: Text(
-        text,
-        style: theme.textTheme.h4,
-      ),
+      child: Text(text, style: theme.textTheme.h4),
     );
   }
 }

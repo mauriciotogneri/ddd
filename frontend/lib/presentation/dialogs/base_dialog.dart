@@ -14,10 +14,7 @@ class BaseDialog extends StatelessWidget {
     required this.actions,
   });
 
-  static void show({
-    required BuildContext context,
-    required Widget dialog,
-  }) =>
+  static void show({required BuildContext context, required Widget dialog}) =>
       showShadDialog(
         barrierColor: const Color(0xeedddddd),
         context: context,
@@ -32,15 +29,9 @@ class BaseDialog extends StatelessWidget {
         child: Text(title),
       ),
       padding: const EdgeInsets.all(16),
-      closeIconPosition: const ShadPosition(
-        top: 16,
-        right: 16,
-      ),
+      closeIconPosition: const ShadPosition(top: 16, right: 16),
       actions: actions,
-      child: SizedBox(
-        width: width,
-        child: content,
-      ),
+      child: SizedBox(width: width, child: content),
     );
   }
 }

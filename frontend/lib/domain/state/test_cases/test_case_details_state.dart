@@ -16,10 +16,7 @@ class TestCaseDetailsState extends BaseState {
 
   bool get formValid => formKey.currentState!.validate();
 
-  TestCaseDetailsState({
-    required this.requirement,
-    required this.testCase,
-  }) {
+  TestCaseDetailsState({required this.requirement, required this.testCase}) {
     nameController.text = testCase.name;
     preconditionsController.text = testCase.preconditions;
     stepsController.text = testCase.steps;

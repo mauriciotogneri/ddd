@@ -123,27 +123,26 @@ class _TextInputFieldState extends State<TextInputField> {
     }
   }
 
-  Widget? get _suffix => (showClear && widget.canClear)
-      ? ShadButton.ghost(
-          width: 20,
-          height: 20,
-          padding: EdgeInsets.zero,
-          decoration: const ShadDecoration(
-            secondaryBorder: ShadBorder.none,
-            secondaryFocusedBorder: ShadBorder.none,
-          ),
-          icon: const Icon(
-            Icons.close,
-            color: Palette.iconEnabled,
-          ),
-          onPressed: () {
-            widget.controller.clear();
-            widget.onChange?.call('');
-            setState(() {
-              showClear = false;
-            });
-          })
-      : null;
+  Widget? get _suffix =>
+      (showClear && widget.canClear)
+          ? ShadButton.ghost(
+            width: 20,
+            height: 20,
+            padding: EdgeInsets.zero,
+            decoration: const ShadDecoration(
+              secondaryBorder: ShadBorder.none,
+              secondaryFocusedBorder: ShadBorder.none,
+            ),
+            icon: const Icon(Icons.close, color: Palette.iconEnabled),
+            onPressed: () {
+              widget.controller.clear();
+              widget.onChange?.call('');
+              setState(() {
+                showClear = false;
+              });
+            },
+          )
+          : null;
 
   void _onChanged(String text) {
     widget.onChange?.call(text);
@@ -162,10 +161,7 @@ class TextInputIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final ShadThemeData theme = ShadTheme.of(context);
 
-    return Icon(
-      icon,
-      color: theme.colorScheme.mutedForeground,
-    );
+    return Icon(icon, color: theme.colorScheme.mutedForeground);
   }
 }
 

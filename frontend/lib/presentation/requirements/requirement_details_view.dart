@@ -22,26 +22,23 @@ class RequirementDetailsView extends StatelessWidget {
 
   const RequirementDetailsView._(this.state);
 
-  factory RequirementDetailsView.instance({
-    required Requirement requirement,
-  }) =>
+  factory RequirementDetailsView.instance({required Requirement requirement}) =>
       RequirementDetailsView._(
-          RequirementDetailsState(requirement: requirement));
+        RequirementDetailsState(requirement: requirement),
+      );
 
   @override
   Widget build(BuildContext context) {
     return StateProvider<RequirementDetailsState>(
       state: state,
-      builder: (context, state) => BaseView.withBack(
-        header: const Title4(text: 'Requirement details'),
-        content: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FormFields(state),
-            TestCasesBlock(state),
-          ],
-        ),
-      ),
+      builder:
+          (context, state) => BaseView.withBack(
+            header: const Title4(text: 'Requirement details'),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [FormFields(state), TestCasesBlock(state)],
+            ),
+          ),
     );
   }
 }
@@ -194,10 +191,7 @@ class InputEntry extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
-        children: [
-          InputLabel(label),
-          input,
-        ],
+        children: [InputLabel(label), input],
       ),
     );
   }
@@ -215,29 +209,22 @@ class TestCasesBlock extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const HorizontalDivider(
-            color: Palette.borderTable,
-            height: 0.5,
-          ),
+          const HorizontalDivider(color: Palette.borderTable, height: 0.5),
           const VBox(16),
           const Text(
             'Test cases',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const VBox(16),
           Expanded(
             child: Row(
               children: [
+                Flexible(child: Table(state)),
                 Flexible(
-                  child: Table(state),
-                ),
-                Flexible(
-                  child: (state.selectedTestCase != null)
-                      ? TestCaseDetails(state.selectedTestCase!)
-                      : const Empty(),
+                  child:
+                      (state.selectedTestCase != null)
+                          ? TestCaseDetails(state.selectedTestCase!)
+                          : const Empty(),
                 ),
               ],
             ),
@@ -282,11 +269,7 @@ class TestCaseDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 16,
-        right: 16,
-        bottom: 16,
-      ),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -300,8 +283,8 @@ class TestCaseDetails extends StatelessWidget {
                 label: 'Name',
                 input: TextInputField(
                   isForm: true,
-                  controller: TextInputController()
-                    ..controller.text = testCase.name,
+                  controller:
+                      TextInputController()..controller.text = testCase.name,
                   errorMessage: 'Name is required',
                 ),
               ),
@@ -310,9 +293,7 @@ class TestCaseDetails extends StatelessWidget {
                 flex: 1,
                 label: 'Automated',
                 input: Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 8,
-                  ),
+                  padding: const EdgeInsets.only(bottom: 8),
                   child: ShadSwitch(
                     value: testCase.isAutomated,
                     padding: const EdgeInsets.only(
@@ -340,8 +321,9 @@ class TestCaseDetails extends StatelessWidget {
             input: TextInputField(
               isForm: true,
               maxLines: 4,
-              controller: TextInputController()
-                ..controller.text = testCase.preconditions,
+              controller:
+                  TextInputController()
+                    ..controller.text = testCase.preconditions,
             ),
           ),
           InputEntry(
@@ -350,8 +332,8 @@ class TestCaseDetails extends StatelessWidget {
             input: TextInputField(
               isForm: true,
               maxLines: 4,
-              controller: TextInputController()
-                ..controller.text = testCase.steps,
+              controller:
+                  TextInputController()..controller.text = testCase.steps,
             ),
           ),
           InputEntry(
@@ -360,8 +342,8 @@ class TestCaseDetails extends StatelessWidget {
             input: TextInputField(
               isForm: true,
               maxLines: 4,
-              controller: TextInputController()
-                ..controller.text = testCase.expected,
+              controller:
+                  TextInputController()..controller.text = testCase.expected,
             ),
           ),
         ],

@@ -73,7 +73,7 @@ class ChipRow<T> extends StatelessWidget {
               foregroundColor: foregroundColor,
               backgroundColor: backgroundColor,
             ),
-          )
+          ),
       ],
     );
   }

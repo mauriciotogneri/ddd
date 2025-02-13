@@ -15,8 +15,5 @@ class PasswordInputField extends TextInputField {
     super.prefixIcon,
     super.maxLength,
     super.onChange,
-  }) : super(
-          obscureText: true,
-          maxLines: 1,
-        );
+  }) : super(obscureText: true, maxLines: 1);
 }

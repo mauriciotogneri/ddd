@@ -18,9 +18,7 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return StateProvider<DashboardState>(
       state: state,
-      builder: (context, state) => Scaffold(
-        body: Content(state),
-      ),
+      builder: (context, state) => Scaffold(body: Content(state)),
     );
   }
 }
@@ -33,12 +31,7 @@ class Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
-        NavigationMenu(state),
-        Expanded(
-          child: ActiveView(state),
-        ),
-      ],
+      children: [NavigationMenu(state), Expanded(child: ActiveView(state))],
     );
   }
 }
@@ -101,10 +94,7 @@ class ProjectSelector extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.only(
-          left: 4,
-          right: 4,
-        ),
+        padding: const EdgeInsets.only(left: 4, right: 4),
         child: DropdownInputSingle<Project>(
           values: Data.projects(),
           controller: state.projectsController,
@@ -143,28 +133,19 @@ class NavigationMenuRow extends StatelessWidget {
     final bool isSelected = state.activeView == index;
 
     return Container(
-      margin: const EdgeInsets.only(
-        top: 4,
-        left: 8,
-        right: 8,
-      ),
+      margin: const EdgeInsets.only(top: 4, left: 8, right: 8),
       child: ListTile(
         title: Text(
           text,
           style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                color: Palette.textEnabled,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-              ),
+            color: Palette.textEnabled,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+          ),
         ),
-        leading: Icon(
-          icon,
-          size: 20,
-        ),
+        leading: Icon(icon, size: 20),
         minLeadingWidth: 0,
         dense: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         visualDensity: VisualDensity.compact,
         contentPadding: const EdgeInsets.only(
           top: 0,
@@ -190,9 +171,7 @@ class ActiveView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: state.viewsStack,
-    );
+    return Stack(children: state.viewsStack);
   }
 }
 
@@ -201,9 +180,7 @@ class SuitesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Suites'),
-    );
+    return const Center(child: Text('Suites'));
   }
 }
 
@@ -212,9 +189,7 @@ class SessionsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Sessions'),
-    );
+    return const Center(child: Text('Sessions'));
   }
 }
 
@@ -223,8 +198,6 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Settings'),
-    );
+    return const Center(child: Text('Settings'));
   }
 }

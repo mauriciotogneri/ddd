@@ -70,30 +70,22 @@ class Navigation {
   static void unstack() => const UnstackViewEvent().dispatch();
 
   static void dialog(String name, Widget widget) => push(
-        PageRouteBuilder(
-          opaque: false,
-          pageBuilder: (context, _, __) => widget,
-          transitionDuration: Duration.zero,
-          reverseTransitionDuration: Duration.zero,
-          settings: RouteSettings(name: name),
-        ),
-      );
+    PageRouteBuilder(
+      opaque: false,
+      pageBuilder: (context, _, __) => widget,
+      transitionDuration: Duration.zero,
+      reverseTransitionDuration: Duration.zero,
+      settings: RouteSettings(name: name),
+    ),
+  );
 
   // ================================ AUTH ================================== \\
 
-  static void signInScreen() => pushAlone(
-        FadeRoute(
-          SignInScreen.instance(),
-          name: 'sign_in',
-        ),
-      );
+  static void signInScreen() =>
+      pushAlone(FadeRoute(SignInScreen.instance(), name: 'sign_in'));
 
   // ============================= DASHBOARD ================================ \\
 
-  static void dashboardScreen() => pushAlone(
-        BasicRoute(
-          DashboardScreen.instance(),
-          name: 'dashboard  ',
-        ),
-      );
+  static void dashboardScreen() =>
+      pushAlone(BasicRoute(DashboardScreen.instance(), name: 'dashboard  '));
 }

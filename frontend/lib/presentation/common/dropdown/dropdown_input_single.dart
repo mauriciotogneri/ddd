@@ -31,55 +31,49 @@ class DropdownInputSingle<T> extends StatelessWidget {
       const ShadDecoration(color: Palette.background1);
 
   List<Widget> get _options => [
-        for (final T element in values)
-          ShadOption(
-            value: element,
-            child: Text(element.toString()),
-          ),
-        if (footer != null) ...[
-          const VBox(4),
-          const HorizontalDivider(
-            height: 0.2,
-            color: Palette.divider,
-          ),
-        ],
-      ];
+    for (final T element in values)
+      ShadOption(value: element, child: Text(element.toString())),
+    if (footer != null) ...[
+      const VBox(4),
+      const HorizontalDivider(height: 0.2, color: Palette.divider),
+    ],
+  ];
 
   ShadSelect<T> get _selectSingle => ShadSelect<T>(
-        minWidth: width,
-        controller: controller?._controller,
-        initialValue: controller?.selected,
-        selectedOptionBuilder: (context, value) => Text(value.toString()),
-        allowDeselection: allowDeselection,
-        onChanged: _onChanged,
-        focusNode: controller?._focusNode,
-        footer: footer,
-        decoration: _decoration,
-        placeholder: Text(hint),
-        options: _options,
-      );
+    minWidth: width,
+    controller: controller?._controller,
+    initialValue: controller?.selected,
+    selectedOptionBuilder: (context, value) => Text(value.toString()),
+    allowDeselection: allowDeselection,
+    onChanged: _onChanged,
+    focusNode: controller?._focusNode,
+    footer: footer,
+    decoration: _decoration,
+    placeholder: Text(hint),
+    options: _options,
+  );
 
   ShadSelectFormField<T> get _selectSingleForm => ShadSelectFormField<T>(
-        minWidth: width,
-        controller: controller?._controller,
-        initialValue: controller?.selected,
-        selectedOptionBuilder: (context, value) => Text(value.toString()),
-        allowDeselection: allowDeselection,
-        onChanged: _onChanged,
-        focusNode: controller?._focusNode,
-        validator: (value) => (value == null) ? errorMessage : null,
-        error: InputError.new,
-        footer: footer,
-        decoration: _decoration,
-        placeholder: Text(hint),
-        options: _options,
-      );
+    minWidth: width,
+    controller: controller?._controller,
+    initialValue: controller?.selected,
+    selectedOptionBuilder: (context, value) => Text(value.toString()),
+    allowDeselection: allowDeselection,
+    onChanged: _onChanged,
+    focusNode: controller?._focusNode,
+    validator: (value) => (value == null) ? errorMessage : null,
+    error: InputError.new,
+    footer: footer,
+    decoration: _decoration,
+    placeholder: Text(hint),
+    options: _options,
+  );
 
   void _onChanged(T? element) {
     controller?._focusNode.unfocus();
 
     if (element != null) {
-      controller?.select(element);
+      //controller?.select(element);
       onChange?.call(element);
     }
   }
@@ -94,7 +88,7 @@ class DropdownInputSingle<T> extends StatelessWidget {
 }
 
 class DropdownInputSingleController<T> {
-  final ShadPopoverController _controller = ShadPopoverController();
+  final ShadSelectController<T> _controller = ShadSelectController();
   final FocusNode _focusNode = FocusNode();
   T? _selected;
 
@@ -104,7 +98,7 @@ class DropdownInputSingleController<T> {
 
   bool get isNotEmpty => _selected != null;
 
-  void close() => _controller.hide();
+  void close() {}
 
   void select(T value) {
     _selected = value;

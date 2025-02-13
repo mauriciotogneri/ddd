@@ -17,37 +17,39 @@ class RequirementsListState extends BaseState {
   final DropdownInputMultipleController<RequirementType> typeFilterController =
       DropdownInputMultipleController();
   final DropdownInputMultipleController<RequirementStatus>
-      statusFilterController = DropdownInputMultipleController();
+  statusFilterController = DropdownInputMultipleController();
   final DropdownInputMultipleController<String> componentFilterController =
       DropdownInputMultipleController();
   final DropdownInputMultipleController<String> platformFilterController =
       DropdownInputMultipleController();
   final DropdownInputMultipleController<RequirementImportance>
-      importanceFilterController = DropdownInputMultipleController();
+  importanceFilterController = DropdownInputMultipleController();
   final List<Requirement> _allRequirements = Data.requirements();
 
-  List<Requirement> get requirements => _allRequirements
-      .where((requirement) => requirement.matches(
-            queryFilter: queryFilterController.text,
-            typeFilter: typeFilterController.selected,
-            statusFilter: statusFilterController.selected,
-            componentFilter: componentFilterController.selected,
-            platformFilter: platformFilterController.selected,
-            importanceFilter: importanceFilterController.selected,
-          ))
-      .toList();
+  List<Requirement> get requirements =>
+      _allRequirements
+          .where(
+            (requirement) => requirement.matches(
+              queryFilter: queryFilterController.text,
+              typeFilter: typeFilterController.selected,
+              statusFilter: statusFilterController.selected,
+              componentFilter: componentFilterController.selected,
+              platformFilter: platformFilterController.selected,
+              importanceFilter: importanceFilterController.selected,
+            ),
+          )
+          .toList();
 
-  void onRequirementSelected(Requirement requirement) =>
-      Navigation.stack(RequirementDetailsView.instance(
-        requirement: requirement,
-      ));
+  void onRequirementSelected(Requirement requirement) => Navigation.stack(
+    RequirementDetailsView.instance(requirement: requirement),
+  );
 
   void onCreateRequirement(BuildContext context) => BaseDialog.show(
-        context: context,
-        dialog: CreateRequirementDialog.instance(
-          onCreateRequirement: _createRequirement,
-        ),
-      );
+    context: context,
+    dialog: CreateRequirementDialog.instance(
+      onCreateRequirement: _createRequirement,
+    ),
+  );
 
   void _createRequirement({
     required String name,

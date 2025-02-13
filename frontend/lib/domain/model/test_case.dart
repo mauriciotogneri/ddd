@@ -30,9 +30,7 @@ class TestCase implements CustomTableCell {
       case 0:
         return Text(
           name,
-          style: const TextStyle(
-            overflow: TextOverflow.ellipsis,
-          ),
+          style: const TextStyle(overflow: TextOverflow.ellipsis),
         );
       case 1:
         return CustomChip(text: isAutomated ? 'Yes' : 'No');

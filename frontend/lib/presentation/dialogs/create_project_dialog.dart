@@ -15,35 +15,32 @@ class CreateProjectDialog extends StatelessWidget {
 
   factory CreateProjectDialog.instance({
     required OnCreateProject onCreateProject,
-  }) =>
-      CreateProjectDialog._(CreateProjectDialogState(
-        onCreateProject: onCreateProject,
-      ));
+  }) => CreateProjectDialog._(
+    CreateProjectDialogState(onCreateProject: onCreateProject),
+  );
 
   @override
   Widget build(BuildContext context) {
     return StateProvider<CreateProjectDialogState>(
       state: state,
-      builder: (context, state) => BaseDialog(
-        title: 'New project',
-        width: 350,
-        actions: [
-          const SecondaryButton(
-            text: 'Cancel',
-            onPressed: Navigation.pop,
+      builder:
+          (context, state) => BaseDialog(
+            title: 'New project',
+            width: 350,
+            actions: [
+              const SecondaryButton(text: 'Cancel', onPressed: Navigation.pop),
+              PrimaryButton(
+                text: 'Create',
+                onPressed: () {
+                  if (state.formValid) {
+                    Navigation.pop();
+                    state.onCreate();
+                  }
+                },
+              ),
+            ],
+            content: FormFields(state),
           ),
-          PrimaryButton(
-            text: 'Create',
-            onPressed: () {
-              if (state.formValid) {
-                Navigation.pop();
-                state.onCreate();
-              }
-            },
-          ),
-        ],
-        content: FormFields(state),
-      ),
     );
   }
 }
@@ -91,12 +88,10 @@ class CreateProjectDialogState extends BaseState {
   bool get formValid => formKey.currentState!.validate();
 
   void onCreate() => onCreateProject(
-        name: nameController.text,
-        description: descriptionController.text,
-      );
+    name: nameController.text,
+    description: descriptionController.text,
+  );
 }
 
-typedef OnCreateProject = void Function({
-  required String name,
-  required String description,
-});
+typedef OnCreateProject =
+    void Function({required String name, required String description});

@@ -31,55 +31,48 @@ class DropdownInputMultiple<T> extends StatelessWidget {
       const ShadDecoration(color: Palette.background1);
 
   List<Widget> get _options => [
-        for (final T element in values)
-          ShadOption(
-            value: element,
-            child: Text(element.toString()),
-          ),
-        if (footer != null) ...[
-          const VBox(4),
-          const HorizontalDivider(
-            height: 0.2,
-            color: Palette.divider,
-          ),
-        ],
-      ];
+    for (final T element in values)
+      ShadOption(value: element, child: Text(element.toString())),
+    if (footer != null) ...[
+      const VBox(4),
+      const HorizontalDivider(height: 0.2, color: Palette.divider),
+    ],
+  ];
 
   ShadSelect<T> get _selectMultiple => ShadSelect<T>.multiple(
-        minWidth: width,
-        controller: controller?._controller,
-        initialValues: controller?.selected ?? [],
-        selectedOptionsBuilder: (context, values) => Text(
+    minWidth: width,
+    controller: controller?._controller,
+    initialValues: controller?.selected ?? [],
+    selectedOptionsBuilder:
+        (context, values) => Text(
           values.join(', '),
-          style: const TextStyle(
-            overflow: TextOverflow.ellipsis,
-          ),
+          style: const TextStyle(overflow: TextOverflow.ellipsis),
         ),
-        allowDeselection: allowDeselection,
-        onChanged: _onChanged,
-        focusNode: controller?._focusNode,
-        footer: footer,
-        decoration: _decoration,
-        placeholder: Text(hint),
-        options: _options,
-      );
+    allowDeselection: allowDeselection,
+    onChanged: _onChanged,
+    focusNode: controller?._focusNode,
+    footer: footer,
+    decoration: _decoration,
+    placeholder: Text(hint),
+    options: _options,
+  );
 
   ShadSelectMultipleFormField<T> get _selectMultipleForm =>
       ShadSelectMultipleFormField(
         minWidth: width,
         controller: controller?._controller,
         initialValue: controller?.selected ?? [],
-        selectedOptionsBuilder: (context, values) => Text(
-          values.join(', '),
-          style: const TextStyle(
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
+        selectedOptionsBuilder:
+            (context, values) => Text(
+              values.join(', '),
+              style: const TextStyle(overflow: TextOverflow.ellipsis),
+            ),
         allowDeselection: allowDeselection,
         onChanged: _onChanged,
         focusNode: controller?._focusNode,
-        validator: (value) =>
-            ((value == null) || (value.isEmpty)) ? errorMessage : null,
+        validator:
+            (value) =>
+                ((value == null) || (value.isEmpty)) ? errorMessage : null,
         error: InputError.new,
         footer: footer,
         decoration: _decoration,
@@ -106,7 +99,7 @@ class DropdownInputMultiple<T> extends StatelessWidget {
 }
 
 class DropdownInputMultipleController<T> {
-  final ShadPopoverController _controller = ShadPopoverController();
+  final ShadSelectController<T> _controller = ShadSelectController();
   final FocusNode _focusNode = FocusNode();
   final List<T> _selected = [];
 
@@ -116,7 +109,7 @@ class DropdownInputMultipleController<T> {
 
   bool get isNotEmpty => _selected.isNotEmpty;
 
-  void close() => _controller.hide();
+  void close() {}
 
   void select(List<T> value) {
     _selected.clear();

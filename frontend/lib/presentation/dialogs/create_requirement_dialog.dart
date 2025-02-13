@@ -21,35 +21,32 @@ class CreateRequirementDialog extends StatelessWidget {
 
   factory CreateRequirementDialog.instance({
     required OnCreateRequirement onCreateRequirement,
-  }) =>
-      CreateRequirementDialog._(CreateRequirementDialogState(
-        onCreateRequirement: onCreateRequirement,
-      ));
+  }) => CreateRequirementDialog._(
+    CreateRequirementDialogState(onCreateRequirement: onCreateRequirement),
+  );
 
   @override
   Widget build(BuildContext context) {
     return StateProvider<CreateRequirementDialogState>(
       state: state,
-      builder: (context, state) => BaseDialog(
-        title: 'New requirement',
-        width: 350,
-        actions: [
-          const SecondaryButton(
-            text: 'Cancel',
-            onPressed: Navigation.pop,
+      builder:
+          (context, state) => BaseDialog(
+            title: 'New requirement',
+            width: 350,
+            actions: [
+              const SecondaryButton(text: 'Cancel', onPressed: Navigation.pop),
+              PrimaryButton(
+                text: 'Create',
+                onPressed: () {
+                  if (state.formValid) {
+                    Navigation.pop();
+                    state.onCreate();
+                  }
+                },
+              ),
+            ],
+            content: FormFields(state),
           ),
-          PrimaryButton(
-            text: 'Create',
-            onPressed: () {
-              if (state.formValid) {
-                Navigation.pop();
-                state.onCreate();
-              }
-            },
-          ),
-        ],
-        content: FormFields(state),
-      ),
     );
   }
 }
@@ -209,7 +206,7 @@ class CreateRequirementDialogState extends BaseState {
   final DropdownInputSingleController<RequirementStatus> statusController =
       DropdownInputSingleController();
   final DropdownInputSingleController<RequirementImportance>
-      importanceController = DropdownInputSingleController();
+  importanceController = DropdownInputSingleController();
   final DropdownInputSingleController<String> componentController =
       DropdownInputSingleController();
   final DropdownInputMultipleController<String> platformsController =
@@ -220,24 +217,25 @@ class CreateRequirementDialogState extends BaseState {
   bool get formValid => formKey.currentState!.validate();
 
   void onCreate() => onCreateRequirement(
-        name: nameController.text,
-        description: descriptionController.text,
-        id: idController.text,
-        type: typeController.selected!,
-        status: statusController.selected!,
-        importance: importanceController.selected!,
-        component: componentController.selected!,
-        platforms: platformsController.selected,
-      );
+    name: nameController.text,
+    description: descriptionController.text,
+    id: idController.text,
+    type: typeController.selected!,
+    status: statusController.selected!,
+    importance: importanceController.selected!,
+    component: componentController.selected!,
+    platforms: platformsController.selected,
+  );
 }
 
-typedef OnCreateRequirement = void Function({
-  required String name,
-  required String description,
-  required String id,
-  required RequirementType type,
-  required RequirementStatus status,
-  required RequirementImportance importance,
-  required String component,
-  required List<String> platforms,
-});
+typedef OnCreateRequirement =
+    void Function({
+      required String name,
+      required String description,
+      required String id,
+      required RequirementType type,
+      required RequirementStatus status,
+      required RequirementImportance importance,
+      required String component,
+      required List<String> platforms,
+    });

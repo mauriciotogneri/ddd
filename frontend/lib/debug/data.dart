@@ -58,11 +58,7 @@ class Data {
     'Security',
   ];
 
-  static const List<String> _platforms = [
-    'Web',
-    'Android',
-    'iOS',
-  ];
+  static const List<String> _platforms = ['Web', 'Android', 'iOS'];
 
   static final List<Requirement> _requirements = [
     for (int i = 0; i < 20; i++)
@@ -74,12 +70,13 @@ class Data {
         name: 'Requirement ${i + 1}',
         description: _random(_texts),
         component: _random(_components),
-        platforms: {
-          for (int i = 0; i < Random().nextInt(_platforms.length) + 1; i++)
-            _random(_platforms)
-        }.toList(),
+        platforms:
+            {
+              for (int i = 0; i < Random().nextInt(_platforms.length) + 1; i++)
+                _random(_platforms),
+            }.toList(),
         tags: [
-          for (int i = 0; i < Random().nextInt(3) + 1; i++) 'Tag ${i + 1}'
+          for (int i = 0; i < Random().nextInt(3) + 1; i++) 'Tag ${i + 1}',
         ],
       ),
   ];
@@ -94,16 +91,18 @@ class Data {
           preconditions: _random(_texts),
           steps: _random(_texts),
           expected: _random(_texts),
-          lastRun:
-              DateTime.now().subtract(Duration(days: Random().nextInt(30))),
-        )
+          lastRun: DateTime.now().subtract(
+            Duration(days: Random().nextInt(30)),
+          ),
+        ),
   ];
 
   static List<Requirement> requirements() => _requirements;
 
-  static List<TestCase> testCases(Requirement requirement) => _testCases
-      .where((testCase) => testCase.requirement == requirement)
-      .toList();
+  static List<TestCase> testCases(Requirement requirement) =>
+      _testCases
+          .where((testCase) => testCase.requirement == requirement)
+          .toList();
 
   static T _random<T>(List<T> list) {
     return list[Random().nextInt(list.length)];

@@ -16,10 +16,7 @@ class SecondaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: expanded ? double.infinity : null,
-      child: ShadButton.outline(
-        onPressed: onPressed,
-        child: Text(text),
-      ),
+      child: ShadButton.outline(onPressed: onPressed, child: Text(text)),
     );
   }
 }

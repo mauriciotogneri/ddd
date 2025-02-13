@@ -23,7 +23,7 @@ class RequirementDetailsState extends BaseState {
   final DropdownInputSingleController<RequirementStatus> statusController =
       DropdownInputSingleController();
   final DropdownInputSingleController<RequirementImportance>
-      importanceController = DropdownInputSingleController();
+  importanceController = DropdownInputSingleController();
   final DropdownInputSingleController<String> componentController =
       DropdownInputSingleController();
   final DropdownInputMultipleController<String> platformsController =

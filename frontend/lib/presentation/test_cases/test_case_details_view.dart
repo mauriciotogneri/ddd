@@ -18,20 +18,19 @@ class TestCaseDetailsView extends StatelessWidget {
   factory TestCaseDetailsView.instance({
     required Requirement requirement,
     required TestCase testCase,
-  }) =>
-      TestCaseDetailsView._(TestCaseDetailsState(
-        requirement: requirement,
-        testCase: testCase,
-      ));
+  }) => TestCaseDetailsView._(
+    TestCaseDetailsState(requirement: requirement, testCase: testCase),
+  );
 
   @override
   Widget build(BuildContext context) {
     return StateProvider<TestCaseDetailsState>(
       state: state,
-      builder: (context, state) => BaseView.withBack(
-        header: const Title4(text: 'Test case details'),
-        content: FormFields(state),
-      ),
+      builder:
+          (context, state) => BaseView.withBack(
+            header: const Title4(text: 'Test case details'),
+            content: FormFields(state),
+          ),
     );
   }
 }
@@ -64,9 +63,7 @@ class FormFields extends StatelessWidget {
               const HBox(16),
               InputEntry(
                 input: Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 8,
-                  ),
+                  padding: const EdgeInsets.only(bottom: 8),
                   child: ShadSwitch(
                     value: state.testCase.isAutomated,
                     padding: const EdgeInsets.only(
@@ -127,11 +124,7 @@ class InputEntry extends StatelessWidget {
   final String? label;
   final Widget input;
 
-  const InputEntry({
-    required this.input,
-    this.label,
-    this.width,
-  });
+  const InputEntry({required this.input, this.label, this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -140,10 +133,7 @@ class InputEntry extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
-        children: [
-          if (label != null) InputLabel(label!),
-          input,
-        ],
+        children: [if (label != null) InputLabel(label!), input],
       ),
     );
   }
