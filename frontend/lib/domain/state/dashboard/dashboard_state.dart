@@ -7,10 +7,10 @@ import 'package:testflow/domain/events/stack_view_event.dart';
 import 'package:testflow/domain/events/unstack_view_event.dart';
 import 'package:testflow/domain/model/project.dart';
 import 'package:testflow/presentation/common/dropdown/custom_dropdown.dart';
+import 'package:testflow/presentation/components/components_view.dart';
 import 'package:testflow/presentation/dashboard/dashboard_screen.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/create_project_dialog.dart';
-import 'package:testflow/presentation/requirements/requirements_list_view.dart';
 
 class DashboardState extends BaseState {
   int activeView = 0;
@@ -48,7 +48,8 @@ class DashboardState extends BaseState {
     viewsStack.clear();
 
     if (index == VIEW_REQUIREMENTS) {
-      _addView(RequirementsListView.instance());
+      _addView(ComponentsView.instance());
+      //_addView(RequirementsListView.instance());
     } else if (index == VIEW_SUITES) {
       _addView(const SuitesView());
     } else if (index == VIEW_SESSIONS) {

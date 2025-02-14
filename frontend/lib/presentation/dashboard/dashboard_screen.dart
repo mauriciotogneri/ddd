@@ -30,6 +30,7 @@ class Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.max,
       children: [NavigationMenu(state), Expanded(child: ActiveView(state))],
     );
   }

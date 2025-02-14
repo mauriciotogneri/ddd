@@ -17,19 +17,19 @@ class BaseView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       color: backgroundColor,
       padding: padding,
-      child: child,
+      child: SizedBox.expand(child: child),
     );
   }
 
   factory BaseView.normal({required Widget header, required Widget content}) =>
       BaseView(
         padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        backgroundColor: Colors.red,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [header, Flexible(child: content)],
+          children: [header, content],
         ),
       );
 
@@ -42,11 +42,9 @@ class BaseView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         HeaderWithBack(header),
-        Flexible(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 6, right: 6),
-            child: content,
-          ),
+        Padding(
+          padding: const EdgeInsets.only(left: 6, right: 6),
+          child: content,
         ),
       ],
     ),
