@@ -5,5 +5,8 @@ import 'package:testflow/presentation/common/input/custom_text_input.dart';
 class ComponentsState extends BaseState {
   final GlobalKey<FormState> form1Key = GlobalKey<FormState>();
   final GlobalKey<FormState> form2Key = GlobalKey<FormState>();
-  final TextInputController queryFilterController = TextInputController();
+  final TextInputController queryController = TextInputController();
+  final TextInputController nameController = TextInputController();
+  final TextInputController occupationController = TextInputController();
+  final TextInputController commentsController = TextInputController();
 }

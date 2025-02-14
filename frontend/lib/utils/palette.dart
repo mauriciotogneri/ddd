@@ -14,7 +14,8 @@ class Palette {
   static const Color borderInputError = Color(0xffff0000);
 
   static const Color background1 = Color(0xffffffff);
-  static const Color backgroundInput = Color(0xffffffff);
+  static const Color backgroundInputEnabled = Color(0xffffffff);
+  static const Color backgroundInputDisabled = Color(0xfff8f8f8);
 
   static const Color background2 = Color(0xfff8f8f8); // REVIEW
   static const Color background3 = Color(0xfff2f2f2); // REVIEW

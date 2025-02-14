@@ -88,8 +88,11 @@ class _CustomTextInputState extends State<CustomTextInput> {
                   : null,
           suffixIcon: _suffixICon,
           filled: widget.filled,
-          fillColor: Palette.backgroundInput,
-          hoverColor: Palette.backgroundInput,
+          fillColor:
+              widget.enabled
+                  ? Palette.backgroundInputEnabled
+                  : Palette.backgroundInputDisabled,
+          hoverColor: Palette.backgroundInputEnabled,
           hintText: widget.hint,
           hintStyle: const TextStyle(fontSize: 14, color: Palette.textHint),
         ),
