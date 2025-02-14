@@ -140,6 +140,7 @@ class TextInputs extends StatelessWidget {
           CustomTextInput(
             width: 616,
             minLines: 5,
+            maxLines: 5,
             hint: 'Description',
             controller: state.descriptionController,
             keyboardType: TextInputType.multiline,
