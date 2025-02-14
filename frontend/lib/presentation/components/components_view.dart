@@ -52,6 +52,8 @@ class Content extends StatelessWidget {
         const VBox(16),
         TextInputForm(state),
         const VBox(16),
+        const ButtonFields(),
+        const VBox(16),
         DropdownFields(state),
       ],
     );
@@ -176,24 +178,45 @@ class TextInputForm extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
-                  child: SecondaryButton(
-                    text: 'Cancel',
-                    icon: Icons.close,
-                    onPressed: () {},
-                  ),
+                  child: SecondaryButton(text: 'Cancel', onPressed: () {}),
                 ),
                 const HBox(16),
                 Expanded(
-                  child: PrimaryButton(
-                    text: 'Submit',
-                    icon: Icons.send,
-                    onPressed: () {},
-                  ),
+                  child: PrimaryButton(text: 'Submit', onPressed: () {}),
                 ),
               ],
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ButtonFields extends StatelessWidget {
+  const ButtonFields();
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SecondaryButton(
+            text: 'Cancel',
+            width: 200,
+            icon: Icons.close,
+            onPressed: () {},
+          ),
+          const VBox(16),
+          PrimaryButton(
+            text: 'Submit',
+            width: 200,
+            icon: Icons.send,
+            onPressed: () {},
+          ),
+        ],
       ),
     );
   }
