@@ -31,14 +31,10 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //return TextFields(state);
-    return const Text('CONTENT');
-    /*return Expanded(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [TextFields(state)],
-      ),
-    );*/
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [TextFields(state), DropdownFields(state)],
+    );
   }
 }
 
@@ -50,10 +46,11 @@ class TextFields extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: state.formKey,
+      key: state.form1Key,
       child: Row(
         children: [
           TextInputField(
+            width: 300,
             hint: 'Query',
             controller: state.queryFilterController,
             onChange: (_) => state.notify(),
@@ -61,6 +58,20 @@ class TextFields extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class DropdownFields extends StatelessWidget {
+  final ComponentsState state;
+
+  const DropdownFields(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: state.form2Key,
+      child: const Row(children: [Text('Dropdown')]),
     );
   }
 }

@@ -26,7 +26,6 @@ class BaseView extends StatelessWidget {
   factory BaseView.normal({required Widget header, required Widget content}) =>
       BaseView(
         padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-        backgroundColor: Colors.red,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [header, content],
