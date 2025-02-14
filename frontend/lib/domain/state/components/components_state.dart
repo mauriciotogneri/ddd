@@ -9,4 +9,5 @@ class ComponentsState extends BaseState {
   final TextInputController nameController = TextInputController();
   final TextInputController occupationController = TextInputController();
   final TextInputController commentsController = TextInputController();
+  final TextInputController descriptionController = TextInputController();
 }

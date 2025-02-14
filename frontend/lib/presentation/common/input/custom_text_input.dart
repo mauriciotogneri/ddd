@@ -72,8 +72,10 @@ class _CustomTextInputState extends State<CustomTextInput> {
         style: const TextStyle(fontSize: 14),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(
+            top: 14,
             left: 12,
             right: widget.canClear ? 0 : 12,
+            bottom: 14,
           ),
           isDense: true,
           border: _enabledBorder,
@@ -108,15 +110,15 @@ class _CustomTextInputState extends State<CustomTextInput> {
   }
 
   InputBorder get _enabledBorder => const OutlineInputBorder(
-    borderSide: BorderSide(color: Palette.borderInputEnabled, width: 0.3),
+    borderSide: BorderSide(color: Palette.borderInputEnabled, width: 0.5),
   );
 
   InputBorder get _focusedBorder => const OutlineInputBorder(
-    borderSide: BorderSide(color: Palette.borderInputFocused, width: 0.3),
+    borderSide: BorderSide(color: Palette.borderInputFocused, width: 0.5),
   );
 
   InputBorder get _errorBorder => const OutlineInputBorder(
-    borderSide: BorderSide(color: Palette.borderInputError, width: 0.3),
+    borderSide: BorderSide(color: Palette.borderInputError, width: 0.5),
   );
 
   Widget? get _suffixICon =>

@@ -92,37 +92,49 @@ class TextInputs extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomCard(
       expand: true,
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          CustomTextInput(
-            width: 300,
-            hint: 'Query',
-            canClear: true,
-            controller: state.queryController,
-            prefixIcon: Icons.search,
+          Row(
+            children: [
+              CustomTextInput(
+                width: 300,
+                hint: 'Query',
+                canClear: true,
+                controller: state.queryController,
+                prefixIcon: Icons.search,
+              ),
+              const HBox(16),
+              CustomTextInput(
+                width: 300,
+                hint: 'Name',
+                controller: state.nameController,
+                prefixIcon: Icons.person_outline,
+              ),
+              const HBox(16),
+              CustomTextInput(
+                width: 300,
+                hint: 'Occupation',
+                enabled: false,
+                controller: state.occupationController,
+                prefixIcon: Icons.work_outline,
+              ),
+              const HBox(16),
+              Expanded(
+                child: CustomTextInput(
+                  hint: 'Comments',
+                  controller: state.commentsController,
+                ),
+              ),
+            ],
           ),
-          const HBox(16),
+          const VBox(16),
           CustomTextInput(
-            width: 300,
-            hint: 'Name',
-            controller: state.nameController,
-            prefixIcon: Icons.person_outline,
-          ),
-          const HBox(16),
-          CustomTextInput(
-            width: 300,
-            hint: 'Occupation',
-            enabled: false,
-            controller: state.occupationController,
-            prefixIcon: Icons.work_outline,
-          ),
-          const HBox(16),
-          Expanded(
-            child: CustomTextInput(
-              hint: 'Comments',
-              controller: state.commentsController,
-              prefixIcon: Icons.chat_outlined,
-            ),
+            width: 616,
+            maxLines: 5,
+            hint: 'Description',
+            controller: state.descriptionController,
           ),
         ],
       ),
