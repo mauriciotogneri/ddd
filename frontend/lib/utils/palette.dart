@@ -10,8 +10,9 @@ class Palette {
   static const Color borderTable = Color(0xffdddddd); // REVIEW
   static const Color borderCard = Color(0xffdddddd);
   static const Color borderInputEnabled = Color(0xffaaaaaa);
-  static const Color borderInputFocused = Color.fromARGB(255, 27, 134, 221);
+  static const Color borderInputFocused = Color(0xff1b86dd);
   static const Color borderInputError = Color(0xffff0000);
+  static const Color borderButtonError = Color(0xffff0000);
 
   static const Color background1 = Color(0xffffffff);
   static const Color backgroundInputEnabled = Color(0xffffffff);

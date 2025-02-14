@@ -4,6 +4,7 @@ class SecondaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
   final IconData? icon;
+  final Color? color;
   final double? width;
   final bool enabled;
 
@@ -11,6 +12,7 @@ class SecondaryButton extends StatelessWidget {
     required this.text,
     this.onPressed,
     this.icon,
+    this.color,
     this.width,
     this.enabled = true,
   });
@@ -23,11 +25,17 @@ class SecondaryButton extends StatelessWidget {
       child: OutlinedButton.icon(
         onPressed: enabled ? onPressed : null,
         style: ButtonStyle(
+          foregroundColor:
+              (color != null) ? WidgetStateProperty.all(color) : null,
+          side:
+              (color != null)
+                  ? WidgetStateProperty.all(BorderSide(color: color!))
+                  : null,
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
           ),
         ),
-        icon: (icon != null) ? Icon(icon!) : null,
+        icon: (icon != null) ? Icon(icon!, color: color) : null,
         label: Text(text),
       ),
     );

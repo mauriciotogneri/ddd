@@ -13,6 +13,7 @@ import 'package:testflow/presentation/common/text/body_small.dart';
 import 'package:testflow/presentation/common/text/title_large.dart';
 import 'package:testflow/presentation/common/text/title_medium.dart';
 import 'package:testflow/presentation/common/text/title_small.dart';
+import 'package:testflow/utils/palette.dart';
 
 class ComponentsView extends StatelessWidget {
   final ComponentsState state;
@@ -206,6 +207,7 @@ class ButtonFields extends StatelessWidget {
           SecondaryButton(
             text: 'Cancel',
             width: 200,
+            color: Palette.borderButtonError,
             icon: Icons.close,
             onPressed: () {},
           ),
@@ -214,6 +216,7 @@ class ButtonFields extends StatelessWidget {
             text: 'Submit',
             width: 200,
             icon: Icons.send,
+            color: Palette.borderButtonError,
             onPressed: () {},
           ),
         ],
