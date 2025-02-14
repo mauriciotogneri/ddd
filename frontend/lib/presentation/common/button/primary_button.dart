@@ -20,14 +20,15 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       height: 40,
       width: width,
-      child: FilledButton(
+      child: FilledButton.icon(
         onPressed: enabled ? onPressed : null,
         style: ButtonStyle(
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
           ),
         ),
-        child: Text(text),
+        icon: (icon != null) ? Icon(icon!) : null,
+        label: Text(text),
       ),
     );
   }
