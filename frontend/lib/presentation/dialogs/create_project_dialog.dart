@@ -63,10 +63,7 @@ class FormFields extends StatelessWidget {
             errorMessage: 'Name is required',
           ),
           const InputLabel('Description'),
-          TextInputField(
-            maxLines: 5,
-            controller: state.descriptionController,
-          ),
+          TextInputField(maxLines: 5, controller: state.descriptionController),
           const VBox(16),
         ],
       ),
