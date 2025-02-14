@@ -61,7 +61,7 @@ class FormFields extends StatelessWidget {
                 label: 'Name',
                 input: CustomTextInput(
                   controller: state.nameController,
-                  errorMessage: 'Name is required',
+                  //errorMessage: 'Name is required',
                 ),
               ),
               InputEntry(
@@ -69,7 +69,7 @@ class FormFields extends StatelessWidget {
                 label: 'ID',
                 input: CustomTextInput(
                   controller: state.idController,
-                  errorMessage: 'ID is required',
+                  //errorMessage: 'ID is required',
                 ),
               ),
               InputEntry(
@@ -286,7 +286,7 @@ class TestCaseDetails extends StatelessWidget {
                 label: 'Name',
                 input: CustomTextInput(
                   controller: TextInputController()..text = testCase.name,
-                  errorMessage: 'Name is required',
+                  //errorMessage: 'Name is required',
                 ),
               ),
               const HBox(16),

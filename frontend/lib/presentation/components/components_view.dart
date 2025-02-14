@@ -2,6 +2,7 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/state/components/components_state.dart';
 import 'package:testflow/presentation/common/card/custom_card.dart';
+import 'package:testflow/presentation/common/input/custom_password_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/page/pane.dart';
 import 'package:testflow/presentation/common/text/body_large.dart';
@@ -149,18 +150,26 @@ class TextInputForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: state.form1Key,
-      child: const Row(
-        children: [
-          /*CustomTextInput(
-            width: 300,
-            hint: 'Query',
-            controller: state.queryFilterController,
-            onChange: (_) => state.notify(),
-            prefixIcon: const TextInputIcon(Icons.email_outlined),
-          ),*/
-        ],
+    return CustomCard(
+      child: Form(
+        key: state.textFormKey,
+        child: Column(
+          children: [
+            CustomTextInput(
+              width: 300,
+              hint: 'Email',
+              controller: state.emailController,
+              prefixIcon: Icons.email_outlined,
+            ),
+            const VBox(16),
+            CustomPasswordInput(
+              width: 300,
+              hint: 'Password',
+              controller: state.passwordController,
+              prefixIcon: Icons.lock_outline_rounded,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -173,9 +182,6 @@ class DropdownFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: state.form2Key,
-      child: const Row(children: [Text('Dropdown')]),
-    );
+    return const Text('Dropdown fields');
   }
 }

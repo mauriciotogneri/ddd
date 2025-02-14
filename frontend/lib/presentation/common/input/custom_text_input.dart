@@ -20,7 +20,6 @@ class CustomTextInput extends StatefulWidget {
   final int? maxLines;
   final double? width;
   final Function(String)? onChange;
-  final String? errorMessage;
 
   const CustomTextInput({
     required this.controller,
@@ -40,7 +39,6 @@ class CustomTextInput extends StatefulWidget {
     this.maxLines = 1,
     this.width,
     this.onChange,
-    this.errorMessage,
   });
 
   @override

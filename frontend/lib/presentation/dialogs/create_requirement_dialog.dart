@@ -66,7 +66,7 @@ class FormFields extends StatelessWidget {
           CustomTextInput(
             autofocus: true,
             controller: state.nameController,
-            errorMessage: 'Name is required',
+            //errorMessage: 'Name is required',
           ),
           const InputLabel('Description'),
           CustomTextInput(maxLines: 5, controller: state.descriptionController),
@@ -80,7 +80,7 @@ class FormFields extends StatelessWidget {
                     const InputLabel('ID'),
                     CustomTextInput(
                       controller: state.idController,
-                      errorMessage: 'ID is required',
+                      //errorMessage: 'ID is required',
                     ),
                   ],
                 ),

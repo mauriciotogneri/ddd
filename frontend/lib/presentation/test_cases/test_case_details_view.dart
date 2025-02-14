@@ -54,7 +54,7 @@ class FormFields extends StatelessWidget {
                 label: 'Name',
                 input: CustomTextInput(
                   controller: state.nameController,
-                  errorMessage: 'Name is required',
+                  //errorMessage: 'Name is required',
                 ),
               ),
               const HBox(16),

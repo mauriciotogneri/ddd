@@ -2,7 +2,6 @@ import 'package:testflow/presentation/common/input/custom_text_input.dart';
 
 class CustomPasswordInput extends CustomTextInput {
   const CustomPasswordInput({
-    required super.hint,
     required super.controller,
     super.keyboardType,
     super.textInputAction,
@@ -11,9 +10,11 @@ class CustomPasswordInput extends CustomTextInput {
     super.autofocus,
     super.readOnly,
     super.filled,
+    super.hint,
     super.autofillHints,
     super.prefixIcon,
     super.maxLength,
     super.onChange,
+    super.width,
   }) : super(obscureText: true, maxLines: 1);
 }
