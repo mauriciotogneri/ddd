@@ -4,9 +4,9 @@ import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/model/test_case.dart';
 import 'package:testflow/domain/state/test_cases/test_case_details_state.dart';
 import 'package:testflow/presentation/common/input/text_input_field.dart';
+import 'package:testflow/presentation/common/page/pane.dart';
 import 'package:testflow/presentation/common/text/input_label.dart';
 import 'package:testflow/presentation/common/text/title_4.dart';
-import 'package:testflow/presentation/common/view/base_view.dart';
 
 class TestCaseDetailsView extends StatelessWidget {
   final TestCaseDetailsState state;
@@ -25,7 +25,7 @@ class TestCaseDetailsView extends StatelessWidget {
     return StateProvider<TestCaseDetailsState>(
       state: state,
       builder:
-          (context, state) => BaseView.withBack(
+          (context, state) => Pane.withBack(
             header: const Title4(text: 'Test case details'),
             content: FormFields(state),
           ),

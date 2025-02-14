@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
-class BaseView extends StatelessWidget {
+class Pane extends StatelessWidget {
   final Widget child;
   final EdgeInsets padding;
   final Color backgroundColor;
 
-  const BaseView({
+  const Pane({
     required this.child,
     required this.padding,
     this.backgroundColor = Palette.background2,
@@ -23,8 +23,8 @@ class BaseView extends StatelessWidget {
     );
   }
 
-  factory BaseView.normal({required Widget header, required Widget content}) =>
-      BaseView(
+  factory Pane.normal({required Widget header, required Widget content}) =>
+      Pane(
         padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,22 +32,20 @@ class BaseView extends StatelessWidget {
         ),
       );
 
-  factory BaseView.withBack({
-    required Widget header,
-    required Widget content,
-  }) => BaseView(
-    padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        HeaderWithBack(header),
-        Padding(
-          padding: const EdgeInsets.only(left: 6, right: 6),
-          child: content,
+  factory Pane.withBack({required Widget header, required Widget content}) =>
+      Pane(
+        padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HeaderWithBack(header),
+            Padding(
+              padding: const EdgeInsets.only(left: 6, right: 6),
+              child: content,
+            ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 }
 
 class HeaderWithBack extends StatelessWidget {

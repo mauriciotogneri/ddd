@@ -9,10 +9,10 @@ import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/dropdown/custom_dropdown.dart';
 import 'package:testflow/presentation/common/input/text_input_field.dart';
+import 'package:testflow/presentation/common/page/pane.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/input_label.dart';
 import 'package:testflow/presentation/common/text/title_4.dart';
-import 'package:testflow/presentation/common/view/base_view.dart';
 import 'package:testflow/utils/palette.dart';
 
 class RequirementDetailsView extends StatelessWidget {
@@ -30,7 +30,7 @@ class RequirementDetailsView extends StatelessWidget {
     return StateProvider<RequirementDetailsState>(
       state: state,
       builder:
-          (context, state) => BaseView.withBack(
+          (context, state) => Pane.withBack(
             header: const Title4(text: 'Requirement details'),
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

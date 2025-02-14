@@ -2,7 +2,7 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/state/components/components_state.dart';
 import 'package:testflow/presentation/common/input/text_input_field.dart';
-import 'package:testflow/presentation/common/view/base_view.dart';
+import 'package:testflow/presentation/common/page/pane.dart';
 
 class ComponentsView extends StatelessWidget {
   final ComponentsState state;
@@ -16,7 +16,7 @@ class ComponentsView extends StatelessWidget {
     return StateProvider<ComponentsState>(
       state: state,
       builder:
-          (context, state) => BaseView.normal(
+          (context, state) => Pane.normal(
             header: const Text('COMPONENTS'),
             content: Content(state),
           ),
