@@ -43,6 +43,9 @@ class DashboardState extends BaseState {
     _subscriptionUnstackViewEvent?.cancel();
   }
 
+  List<DropdownItem<Project>> get projects =>
+      Data.projects().map((e) => DropdownItem(value: e, text: e.name)).toList();
+
   void onRootViewChange(int index) {
     activeView = index;
     viewsStack.clear();
