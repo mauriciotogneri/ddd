@@ -6,13 +6,13 @@ class CustomDropdownSingle<T> extends StatelessWidget {
   final List<DropdownItem<T>> values;
   final String hint;
   final IconData? icon;
-  final Widget? footer;
+  final Widget? footer; // TODO(momo): implement
   final double? width;
-  final bool allowDeselection;
+  final bool allowDeselection; // TODO(momo): implement
   final bool enabled;
   final CustomDropdownSingleController<T>? controller;
   final Function(T)? onSelected;
-  final String? errorMessage;
+  final String? errorMessage; // TODO(momo): implement
 
   const CustomDropdownSingle({
     required this.values,
