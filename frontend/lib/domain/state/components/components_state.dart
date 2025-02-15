@@ -13,7 +13,7 @@ class ComponentsState extends BaseState {
   final GlobalKey<FormState> textFormKey = GlobalKey<FormState>();
   final TextInputController emailController = TextInputController();
   final TextInputController passwordController = TextInputController();
-  final CustomDropdownSingleController<Country> genderController =
+  final CustomDropdownSingleController<Gender> genderController =
       CustomDropdownSingleController();
   final List<DropdownItem<Gender>> genderItems =
       Gender.values.map((e) => e.item).toList();

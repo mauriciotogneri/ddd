@@ -187,7 +187,6 @@ class TextInputForm extends StatelessWidget {
               icon: Icons.person_outline,
               values: state.genderItems,
               hint: 'Gender',
-              allowDeselection: true,
               controller: state.genderController,
             ),
             const VBox(16),
