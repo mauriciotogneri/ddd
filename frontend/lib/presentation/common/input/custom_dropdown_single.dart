@@ -7,7 +7,6 @@ class CustomDropdownSingle<T> extends StatelessWidget {
   final List<DropdownItem<T>> values;
   final String hint;
   final IconData? icon;
-  final Widget? footer; // TODO(momo): implement
   final double? width;
   final bool allowDeselection;
   final bool enabled;
@@ -19,7 +18,6 @@ class CustomDropdownSingle<T> extends StatelessWidget {
     required this.values,
     required this.hint,
     this.icon,
-    this.footer,
     this.width,
     this.onSelected,
     this.errorMessage,
