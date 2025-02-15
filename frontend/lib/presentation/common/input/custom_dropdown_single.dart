@@ -28,8 +28,6 @@ class CustomDropdownSingle<T> extends StatelessWidget {
   });
 
   void _onSelected(T? element) {
-    controller?._focusNode.unfocus();
-
     if (element != null) {
       controller?.select(element);
       onSelected?.call(element);
@@ -41,70 +39,93 @@ class CustomDropdownSingle<T> extends StatelessWidget {
     return SizedBox(
       width: width,
       height: 40,
-      child: DropdownMenu<T>(
-        width: width,
-        enableSearch: false,
-        enableFilter: false,
-        enabled: enabled,
-        hintText: hint,
-        initialSelection: controller?.selected,
-        onSelected: _onSelected,
-        focusNode: controller?._focusNode,
-        textStyle: const TextStyle(color: Palette.textEnabled, fontSize: 14),
-        dropdownMenuEntries: [
-          for (final DropdownItem<T> item in values)
-            DropdownMenuEntry(
-              value: item.value,
-              label: item.text,
-              enabled: item.enabled,
-              leadingIcon: InputIcon.create(item.icon),
-              labelWidget: Text(
-                item.text,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Palette.textEnabled,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(
-                  const Color(0xfff8f8f8),
-                ),
-              ),
+      child: Material(
+        color: Palette.background1,
+        borderRadius: const BorderRadius.all(Radius.circular(4)),
+        child: InkWell(
+          onTap: () {},
+          overlayColor: WidgetStateProperty.all(Palette.backgroundDropdownMenu),
+          borderRadius: const BorderRadius.all(Radius.circular(4)),
+          child: DropdownMenu<T>(
+            width: width,
+            enableSearch: false,
+            enableFilter: false,
+            requestFocusOnTap: false,
+            enabled: enabled,
+            hintText: hint,
+            initialSelection: controller?.selected,
+            onSelected: (element) {
+              FocusScope.of(context).unfocus();
+              _onSelected(element);
+            },
+            textStyle: const TextStyle(
+              color: Palette.textEnabled,
+              fontSize: 14,
             ),
-        ],
-        leadingIcon: InputIcon.create(icon),
-        trailingIcon: const InputIcon(icon: Icons.keyboard_arrow_down_rounded),
-        selectedTrailingIcon: const InputIcon(
-          icon: Icons.keyboard_arrow_up_rounded,
+            dropdownMenuEntries: [
+              for (final DropdownItem<T> item in values)
+                DropdownMenuEntry(
+                  value: item.value,
+                  label: item.text,
+                  enabled: item.enabled,
+                  leadingIcon: InputIcon.create(item.icon),
+                  labelWidget: Text(
+                    item.text,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Palette.textEnabled,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(
+                      Palette.backgroundDropdownMenu,
+                    ),
+                  ),
+                ),
+            ],
+            leadingIcon: InputIcon.create(icon),
+            trailingIcon: const InputIcon(
+              icon: Icons.keyboard_arrow_down_rounded,
+            ),
+            selectedTrailingIcon: const InputIcon(
+              icon: Icons.keyboard_arrow_up_rounded,
+            ),
+            inputDecorationTheme: InputDecorationTheme(
+              contentPadding: EdgeInsets.only(
+                left: (icon == null) ? 12 : 0,
+                right: 12,
+              ),
+              border: _enabledBorder,
+              enabledBorder: _enabledBorder,
+              disabledBorder: _enabledBorder,
+              focusedBorder: _focusedBorder,
+              errorBorder: _errorBorder,
+              focusedErrorBorder: _errorBorder,
+            ),
+            menuStyle: MenuStyle(
+              elevation: WidgetStateProperty.all(0),
+              padding: WidgetStateProperty.all(const EdgeInsets.all(0)),
+            ),
+            expandedInsets: const EdgeInsets.all(0),
+          ),
         ),
-        inputDecorationTheme: InputDecorationTheme(
-          contentPadding: const EdgeInsets.only(left: 12, right: 12),
-          border: _enabledBorder,
-          enabledBorder: _enabledBorder,
-          disabledBorder: _enabledBorder,
-          focusedBorder: _focusedBorder,
-          errorBorder: _errorBorder,
-          focusedErrorBorder: _errorBorder,
-        ),
-        menuStyle: MenuStyle(
-          elevation: WidgetStateProperty.all(0),
-          padding: WidgetStateProperty.all(const EdgeInsets.all(0)),
-        ),
-        expandedInsets: const EdgeInsets.all(0),
       ),
     );
   }
 
   InputBorder get _enabledBorder => const OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(4)),
     borderSide: BorderSide(color: Palette.borderInputEnabled, width: 0.5),
   );
 
   InputBorder get _focusedBorder => const OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(4)),
     borderSide: BorderSide(color: Palette.borderInputFocused, width: 0.5),
   );
 
   InputBorder get _errorBorder => const OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(4)),
     borderSide: BorderSide(color: Palette.borderInputError, width: 0.5),
   );
 }
@@ -136,7 +157,6 @@ class DropdownItem<T> {
 }
 
 class CustomDropdownSingleController<T> {
-  final FocusNode _focusNode = FocusNode();
   T? _selected;
 
   T? get selected => _selected;

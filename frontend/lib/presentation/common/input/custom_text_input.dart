@@ -120,14 +120,17 @@ class _CustomTextInputState extends State<CustomTextInput> {
   }
 
   InputBorder get _enabledBorder => const OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(4)),
     borderSide: BorderSide(color: Palette.borderInputEnabled, width: 0.5),
   );
 
   InputBorder get _focusedBorder => const OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(4)),
     borderSide: BorderSide(color: Palette.borderInputFocused, width: 0.5),
   );
 
   InputBorder get _errorBorder => const OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(4)),
     borderSide: BorderSide(color: Palette.borderInputError, width: 0.5),
   );
 
