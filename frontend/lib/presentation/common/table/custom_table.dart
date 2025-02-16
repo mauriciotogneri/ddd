@@ -26,14 +26,17 @@ class CustomTable<T extends TableElement> extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(6)),
           border: Border.all(color: Palette.borderInputEnabled, width: 1),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ColumnsHeader(columns),
-            const Divider(height: 1, color: Palette.borderInputEnabled),
-            RowsList(columns: columns, rows: rows, onSelected: onSelected),
-          ],
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(6)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ColumnsHeader(columns),
+              const Divider(height: 1, color: Palette.borderInputEnabled),
+              RowsList(columns: columns, rows: rows, onSelected: onSelected),
+            ],
+          ),
         ),
       ),
     );
