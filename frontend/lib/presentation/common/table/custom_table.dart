@@ -46,9 +46,14 @@ class ColumnsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [for (final TableColumn column in columns) ColumnCell(column)],
+    return Container(
+      color: Palette.backgroundTableHeader,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (final TableColumn column in columns) ColumnCell(column),
+        ],
+      ),
     );
   }
 }
@@ -61,21 +66,13 @@ class ColumnCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TableCell(
-      content: Container(
-        color: Palette.backgroundTableHeader,
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 8,
-            bottom: 8,
-          ),
-          child: CustomText(
-            text: column.name,
-            color: Palette.textTitle,
-            size: 14,
-            weight: FontWeight.w500,
-          ),
+      content: Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+        child: CustomText(
+          text: column.name,
+          color: Palette.textTitle,
+          size: 14,
+          weight: FontWeight.w500,
         ),
       ),
       width: column.width,
@@ -177,7 +174,13 @@ class TableCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (width != null) {
-      return SizedBox(width: width, child: content);
+      return SizedBox(
+        width: width,
+        child: Align(
+          alignment: alignment ?? Alignment.centerLeft,
+          child: content,
+        ),
+      );
     } else {
       return Expanded(child: content);
     }

@@ -77,24 +77,25 @@ class Requirement implements TableElement {
   String toString() => name;
 
   static List<TableColumn> get columns => const [
-    TableColumn(id: RequirementColumns.id, name: 'ID', width: 100),
+    TableColumn(id: RequirementColumns.id, name: 'ID', width: 150),
     TableColumn(id: RequirementColumns.name, name: 'Name'),
     TableColumn(
       id: RequirementColumns.component,
       name: 'Component',
-      width: 150,
+      width: 250,
     ),
-    TableColumn(id: RequirementColumns.type, name: 'Type', width: 150),
+    TableColumn(id: RequirementColumns.type, name: 'Type', width: 200),
     TableColumn(id: RequirementColumns.status, name: 'Status', width: 150),
     TableColumn(
       id: RequirementColumns.importance,
       name: 'Importance',
-      width: 150,
+      width: 120,
     ),
     TableColumn(
       id: RequirementColumns.numberOfTestCases,
       name: 'Test Cases',
-      width: 150,
+      width: 120,
+      alignment: Alignment.center,
     ),
   ];
 
