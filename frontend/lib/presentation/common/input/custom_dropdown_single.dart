@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:testflow/presentation/common/form/error_input_wrapper.dart';
 import 'package:testflow/presentation/common/icon/input_icon.dart';
 import 'package:testflow/presentation/common/input/custom_input.dart';
+import 'package:testflow/presentation/common/text/custom_text.dart';
 import 'package:testflow/utils/palette.dart';
 
 class CustomDropdownSingle<T> extends StatelessWidget {
@@ -88,13 +89,14 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                                 label: item.text,
                                 enabled: item.enabled,
                                 leadingIcon: InputIcon.create(item.icon),
-                                labelWidget: Text(
-                                  item.text,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    color: Palette.textInput,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                                labelWidget: CustomText(
+                                  text: item.text,
+                                  size: 14,
+                                  color:
+                                      item.enabled
+                                          ? Palette.textInput
+                                          : Palette.textDisabled,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                                 trailingIcon:
                                     item.value == controller.selected
@@ -102,7 +104,9 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                                         : null,
                                 style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all(
-                                    Palette.backgroundEmpty,
+                                    item.enabled
+                                        ? Palette.backgroundEmpty
+                                        : Palette.backgroundInputDisabled,
                                   ),
                                 ),
                               ),

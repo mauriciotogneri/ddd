@@ -26,16 +26,16 @@ class ComponentsState extends BaseState {
   final CustomDropdownSingleController<Country> countryController =
       CustomDropdownSingleController();
   final List<DropdownItem<Country>> countryItems = [
-    const Country(code: 'CH', name: 'Switzerland').item,
-    const Country(code: 'ES', name: 'Spain').item,
-    const Country(code: 'FR', name: 'France').item,
-    const Country(code: 'DE', name: 'Germany').item,
-    const Country(code: 'AU', name: 'Austria').item,
-    const Country(code: 'BE', name: 'Belgium').item,
-    const Country(code: 'IT', name: 'Italy').item,
-    const Country(code: 'PT', name: 'Portugal').item,
-    const Country(code: 'PL', name: 'Poland').item,
-    const Country(code: 'NL', name: 'Netherlands').item,
+    const Country(code: 'CH', name: 'Switzerland').item(),
+    const Country(code: 'ES', name: 'Spain').item(),
+    const Country(code: 'FR', name: 'France').item(),
+    const Country(code: 'DE', name: 'Germany').item(),
+    const Country(code: 'AU', name: 'Austria').item(),
+    const Country(code: 'BE', name: 'Belgium').item(),
+    const Country(code: 'IT', name: 'Italy').item(),
+    const Country(code: 'PT', name: 'Portugal').item(),
+    const Country(code: 'PL', name: 'Poland').item(),
+    const Country(code: 'NL', name: 'Netherlands').item(false),
   ];
   final CustomDropdownSingleController<String> dayController =
       CustomDropdownSingleController();
@@ -72,7 +72,8 @@ class Country {
 
   const Country({required this.code, required this.name});
 
-  DropdownItem<Country> get item => DropdownItem(value: this, text: toString());
+  DropdownItem<Country> item([bool enabled = true]) =>
+      DropdownItem(value: this, text: toString(), enabled: enabled);
 
   String get flag => code.toUpperCase().replaceAllMapped(
     RegExp(r'[A-Z]'),
