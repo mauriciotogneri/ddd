@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:testflow/presentation/common/form/error_input_wrapper.dart';
 import 'package:testflow/presentation/common/icon/input_icon.dart';
 import 'package:testflow/presentation/common/input/custom_input.dart';
-import 'package:testflow/presentation/common/text/custom_text.dart';
 import 'package:testflow/utils/palette.dart';
 
 class CustomDropdownSingle<T> extends StatelessWidget {
@@ -81,6 +80,7 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                           textStyle: const TextStyle(
                             color: Palette.textInput,
                             fontSize: 14,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           dropdownMenuEntries: [
                             for (final DropdownItem<T> item in values)
@@ -89,15 +89,6 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                                 label: item.text,
                                 enabled: item.enabled,
                                 leadingIcon: InputIcon.create(item.icon),
-                                labelWidget: CustomText(
-                                  text: item.text,
-                                  size: 14,
-                                  color:
-                                      item.enabled
-                                          ? Palette.textInput
-                                          : Palette.textDisabled,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
                                 trailingIcon:
                                     item.value == controller.selected
                                         ? const InputIcon(icon: Icons.check)
@@ -189,8 +180,8 @@ class DropdownItem<T> {
     this.icon,
   });
 
-  factory DropdownItem.create(T value) =>
-      DropdownItem(value: value, text: value.toString());
+  factory DropdownItem.create(T value, [bool enabled = true]) =>
+      DropdownItem(value: value, text: value.toString(), enabled: enabled);
 
   @override
   bool operator ==(Object other) =>

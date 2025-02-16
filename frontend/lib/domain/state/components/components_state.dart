@@ -45,8 +45,8 @@ class ComponentsState extends BaseState {
     DropdownItem.create('Wednesday'),
     DropdownItem.create('Thursday'),
     DropdownItem.create('Friday'),
-    DropdownItem.create('Saturday'),
-    DropdownItem.create('Sunday'),
+    DropdownItem.create('Saturday', false),
+    DropdownItem.create('Sunday', false),
   ];
 
   void onSubmitForm() {
