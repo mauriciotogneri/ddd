@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:testflow/presentation/common/chip/custom_chip.dart';
+import 'package:testflow/utils/palette.dart';
 
 enum RequirementStatus {
   draft,
@@ -19,24 +21,30 @@ enum RequirementStatus {
   Color get foregroundColor {
     switch (this) {
       case RequirementStatus.draft:
-        return const Color(0xff515055);
+        return Palette.chipGreyForeground;
       case RequirementStatus.active:
-        return const Color(0xff38683A);
+        return Palette.chipGreenForeground;
       case RequirementStatus.inactive:
-        return const Color(0xff9C4238);
+        return Palette.chipRedForeground;
     }
   }
 
   Color get backgroundColor {
     switch (this) {
       case RequirementStatus.draft:
-        return const Color(0xffEFEEF1);
+        return Palette.chipGreyBackground;
       case RequirementStatus.active:
-        return const Color(0xffEDF8EC);
+        return Palette.chipGreenBackground;
       case RequirementStatus.inactive:
-        return const Color(0xffFDE9E6);
+        return Palette.chipRedBackground;
     }
   }
+
+  CustomChip get chip => CustomChip(
+    text: localized,
+    backgroundColor: backgroundColor,
+    foregroundColor: foregroundColor,
+  );
 
   @override
   String toString() => localized;

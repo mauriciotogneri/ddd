@@ -2,6 +2,7 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/state/components/components_state.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
+import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/presentation/common/button/primary_button.dart';
 import 'package:testflow/presentation/common/button/secondary_button.dart';
 import 'package:testflow/presentation/common/card/custom_card.dart';
@@ -315,17 +316,34 @@ class Row2Column4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomCard(
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: [
-          RequirementImportance.critical.chip,
-          const VBox(16),
-          RequirementImportance.high.chip,
-          const VBox(16),
-          RequirementImportance.medium.chip,
-          const VBox(16),
-          RequirementImportance.low.chip,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RequirementImportance.critical.chip,
+              const VBox(16),
+              RequirementImportance.high.chip,
+              const VBox(16),
+              RequirementImportance.medium.chip,
+              const VBox(16),
+              RequirementImportance.low.chip,
+            ],
+          ),
+          const HBox(16),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RequirementStatus.draft.chip,
+              const VBox(16),
+              RequirementStatus.active.chip,
+              const VBox(16),
+              RequirementStatus.inactive.chip,
+            ],
+          ),
         ],
       ),
     );
