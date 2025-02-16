@@ -54,8 +54,8 @@ class FormFields extends StatelessWidget {
     return Form(
       key: state.formKey,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           const TitleSmall(text: 'Name'),
           CustomTextInput(

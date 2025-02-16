@@ -50,6 +50,8 @@ class NavigationMenu extends StatelessWidget {
       child: SizedBox(
         width: 250,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
           children: [
             ProjectSelector(state),
             NavigationMenuRow(

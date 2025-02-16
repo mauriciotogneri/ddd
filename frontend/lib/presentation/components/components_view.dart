@@ -197,6 +197,8 @@ class Row2Column1 extends StatelessWidget {
       child: Form(
         key: state.signInFormKey,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             CustomTextInput(
               width: 300,

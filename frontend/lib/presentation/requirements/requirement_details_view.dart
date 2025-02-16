@@ -30,6 +30,7 @@ class RequirementDetailsView extends StatelessWidget {
             header: const TitleMedium(text: 'Requirement details'),
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [FormFields(state), TestCasesBlock(state)],
             ),
           ),
@@ -47,8 +48,8 @@ class FormFields extends StatelessWidget {
     return Form(
       key: state.formKey,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             children: [
@@ -93,9 +94,9 @@ class FormFields extends StatelessWidget {
               const Flexible(
                 flex: 2,
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Flexible(
                       flex: 1,
@@ -270,9 +271,9 @@ class TestCaseDetails extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,

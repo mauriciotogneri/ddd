@@ -26,7 +26,11 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(6)),
           border: Border.all(color: Palette.borderInputEnabled, width: 1),
         ),
-        child: const Placeholder(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [ColumnsHeader(columns)],
+        ),
         /*ShadTable(
             columnCount: columns.length,
             rowCount: rows.length,
@@ -64,6 +68,17 @@ class CustomTable<T extends CustomTableCell> extends StatelessWidget {
           ),*/
       ),
     );
+  }
+}
+
+class ColumnsHeader extends StatelessWidget {
+  final List<TableColumn> columns;
+
+  const ColumnsHeader(this.columns);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(children: []);
   }
 }
 
