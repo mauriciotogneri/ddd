@@ -46,16 +46,7 @@ class Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScrollableColumn(
-      children: [
-        const VBox(16),
-        Row1(state),
-        const VBox(16),
-        TextInputForm(state),
-        const VBox(16),
-        const ButtonFields(),
-        const VBox(16),
-        DropdownFields(state),
-      ],
+      children: [const VBox(16), Row1(state), const VBox(16), Row2(state)],
     );
   }
 }
@@ -68,6 +59,7 @@ class Row1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Row1Column1(),
         const HBox(16),
@@ -164,10 +156,30 @@ class Row1Column2 extends StatelessWidget {
   }
 }
 
-class TextInputForm extends StatelessWidget {
+class Row2 extends StatelessWidget {
   final ComponentsState state;
 
-  const TextInputForm(this.state);
+  const Row2(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row2Column1(state),
+        const HBox(16),
+        const Row2Column2(),
+        const HBox(16),
+        Row2Column3(state),
+      ],
+    );
+  }
+}
+
+class Row2Column1 extends StatelessWidget {
+  final ComponentsState state;
+
+  const Row2Column1(this.state);
 
   @override
   Widget build(BuildContext context) {
@@ -230,8 +242,8 @@ class TextInputForm extends StatelessWidget {
   }
 }
 
-class ButtonFields extends StatelessWidget {
-  const ButtonFields();
+class Row2Column2 extends StatelessWidget {
+  const Row2Column2();
 
   @override
   Widget build(BuildContext context) {
@@ -261,10 +273,10 @@ class ButtonFields extends StatelessWidget {
   }
 }
 
-class DropdownFields extends StatelessWidget {
+class Row2Column3 extends StatelessWidget {
   final ComponentsState state;
 
-  const DropdownFields(this.state);
+  const Row2Column3(this.state);
 
   @override
   Widget build(BuildContext context) {
@@ -281,7 +293,6 @@ class DropdownFields extends StatelessWidget {
             allowDeselection: true,
             controller: state.countryController,
           ),
-          const VBox(1000),
         ],
       ),
     );
