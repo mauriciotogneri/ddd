@@ -143,7 +143,7 @@ class NavigationMenuRow extends StatelessWidget {
         title: Text(
           text,
           style: Theme.of(context).textTheme.labelLarge!.copyWith(
-            color: Palette.textEnabled,
+            color: Palette.textTitle,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),
         ),

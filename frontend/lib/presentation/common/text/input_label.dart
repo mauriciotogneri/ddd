@@ -13,7 +13,7 @@ class InputLabel extends StatelessWidget {
       child: Text(
         text,
         style: const TextStyle(
-          color: Palette.textEnabled,
+          color: Palette.textTitle,
           fontWeight: FontWeight.bold,
         ),
       ),

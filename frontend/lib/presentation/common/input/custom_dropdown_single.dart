@@ -74,7 +74,7 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                       _onSelected(element);
                     },
                     textStyle: const TextStyle(
-                      color: Palette.textEnabled,
+                      color: Palette.textTitle,
                       fontSize: 14,
                     ),
                     dropdownMenuEntries: [
@@ -88,7 +88,7 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                             item.text,
                             style: const TextStyle(
                               fontSize: 14,
-                              color: Palette.textEnabled,
+                              color: Palette.textTitle,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
