@@ -227,7 +227,7 @@ class Row2Column1 extends StatelessWidget {
               controller: state.genderController,
               errorMessage: 'Gender is required',
             ),
-            const VBox(16),
+            const VBox(24),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
