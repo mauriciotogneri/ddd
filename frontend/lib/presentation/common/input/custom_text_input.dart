@@ -76,7 +76,7 @@ class _CustomTextInputState extends State<CustomTextInput> {
         autofillHints: widget.autofillHints,
         textCapitalization: widget.capitalization,
         onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
-        style: const TextStyle(fontSize: 14),
+        style: const TextStyle(fontSize: 14, color: Palette.textInput),
         validator: (value) {
           if ((widget.validator != null) && !widget.validator!(value ?? '')) {
             return widget.errorMessage;
