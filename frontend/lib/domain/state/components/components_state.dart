@@ -57,6 +57,7 @@ class ComponentsState extends BaseState {
   }
 
   void onCancelSubmit() {
+    signInFormKey.reset();
     emailController.clear();
     passwordController.clear();
     genderController.clear();
