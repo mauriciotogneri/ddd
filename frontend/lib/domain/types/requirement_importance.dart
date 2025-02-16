@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testflow/presentation/common/chip/custom_chip.dart';
+import 'package:testflow/utils/palette.dart';
 
 enum RequirementImportance {
   low,
@@ -27,9 +28,9 @@ enum RequirementImportance {
       case RequirementImportance.medium:
         return const Color(0xff38683A);
       case RequirementImportance.high:
-        return const Color(0xffA87A38);
+        return const Color(0xFFBB7F16);
       case RequirementImportance.critical:
-        return const Color(0xff9C4238);
+        return Palette.chipRedForeground;
     }
   }
 
@@ -42,7 +43,7 @@ enum RequirementImportance {
       case RequirementImportance.high:
         return const Color(0xffFFF1DF);
       case RequirementImportance.critical:
-        return const Color(0xffFDE9E6);
+        return Palette.chipRedBackground;
     }
   }
 

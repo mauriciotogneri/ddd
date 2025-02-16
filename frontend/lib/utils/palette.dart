@@ -28,4 +28,7 @@ class Palette {
   static const Color textBody = Color(0xff444444);
   static const Color textHint = Color(0xff9CA3AF);
   static const Color textError = Color(0xffC64343);
+
+  static const Color chipRedForeground = Color(0xff9C4238);
+  static const Color chipRedBackground = Color(0xffFDE9E6);
 }
