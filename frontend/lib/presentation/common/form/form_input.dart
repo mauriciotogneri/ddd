@@ -21,13 +21,7 @@ class FormInput<T> extends StatelessWidget {
     return LabelInputWrapper(
       name: name,
       child: FormField<T>(
-        validator: (_) {
-          if (controller.isEmpty) {
-            return errorMessage;
-          } else {
-            return null;
-          }
-        },
+        validator: (_) => controller.isEmpty ? errorMessage : null,
         builder:
             (fieldState) => ErrorInputWrapper(
               errorMessage: fieldState.errorText,
