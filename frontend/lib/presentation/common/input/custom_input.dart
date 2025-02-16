@@ -1,0 +1,21 @@
+import 'package:flutter/material.dart';
+import 'package:testflow/utils/palette.dart';
+
+class CustomInput {
+  static InputBorder get enabledBorder => OutlineInputBorder(
+    borderRadius: borderRadius,
+    borderSide: const BorderSide(color: Palette.borderInputEnabled, width: 1),
+  );
+
+  static InputBorder get focusedBorder => OutlineInputBorder(
+    borderRadius: borderRadius,
+    borderSide: const BorderSide(color: Palette.borderInputFocused, width: 1),
+  );
+
+  static InputBorder get errorBorder => OutlineInputBorder(
+    borderRadius: borderRadius,
+    borderSide: const BorderSide(color: Palette.borderInputError, width: 1),
+  );
+
+  static BorderRadius get borderRadius => BorderRadius.circular(4);
+}

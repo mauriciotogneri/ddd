@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:testflow/presentation/common/icon/input_icon.dart';
-import 'package:testflow/presentation/common/input/custom_input_border.dart';
+import 'package:testflow/presentation/common/input/custom_input.dart';
 import 'package:testflow/utils/palette.dart';
 
 class CustomTextInput extends StatefulWidget {
@@ -92,12 +92,12 @@ class _CustomTextInputState extends State<CustomTextInput> {
             bottom: 14,
           ),
           isDense: true,
-          border: CustomInputBorder.enabledBorder,
-          enabledBorder: CustomInputBorder.enabledBorder,
-          disabledBorder: CustomInputBorder.enabledBorder,
-          focusedBorder: CustomInputBorder.focusedBorder,
-          errorBorder: CustomInputBorder.errorBorder,
-          focusedErrorBorder: CustomInputBorder.errorBorder,
+          border: CustomInput.enabledBorder,
+          enabledBorder: CustomInput.enabledBorder,
+          disabledBorder: CustomInput.enabledBorder,
+          focusedBorder: CustomInput.focusedBorder,
+          errorBorder: CustomInput.errorBorder,
+          focusedErrorBorder: CustomInput.errorBorder,
           prefixIcon: InputIcon.create(
             widget.prefixIcon,
             enabled: widget.enabled,

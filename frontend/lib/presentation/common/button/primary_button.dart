@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testflow/presentation/common/input/custom_input.dart';
 import 'package:testflow/utils/palette.dart';
 
 class PrimaryButton extends StatelessWidget {
@@ -32,7 +33,7 @@ class PrimaryButton extends StatelessWidget {
           backgroundColor:
               (color != null) ? WidgetStateProperty.all(color) : null,
           shape: WidgetStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+            RoundedRectangleBorder(borderRadius: CustomInput.borderRadius),
           ),
         ),
         icon: _icon,

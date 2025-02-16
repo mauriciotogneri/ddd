@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:testflow/domain/model/project.dart';
 import 'package:testflow/domain/state/dashboard/dashboard_state.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
+import 'package:testflow/presentation/common/input/custom_input.dart';
 import 'package:testflow/utils/palette.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -149,7 +150,7 @@ class NavigationMenuRow extends StatelessWidget {
         leading: Icon(icon, size: 20),
         minLeadingWidth: 0,
         dense: true,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        shape: RoundedRectangleBorder(borderRadius: CustomInput.borderRadius),
         visualDensity: VisualDensity.compact,
         contentPadding: const EdgeInsets.only(
           top: 0,

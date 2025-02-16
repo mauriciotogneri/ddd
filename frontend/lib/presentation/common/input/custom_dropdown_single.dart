@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testflow/presentation/common/form/error_input_wrapper.dart';
 import 'package:testflow/presentation/common/icon/input_icon.dart';
-import 'package:testflow/presentation/common/input/custom_input_border.dart';
+import 'package:testflow/presentation/common/input/custom_input.dart';
 import 'package:testflow/utils/palette.dart';
 
 class CustomDropdownSingle<T> extends StatelessWidget {
@@ -55,11 +55,11 @@ class CustomDropdownSingle<T> extends StatelessWidget {
               height: 40,
               child: Material(
                 color: Palette.background1,
-                borderRadius: const BorderRadius.all(Radius.circular(4)),
+                borderRadius: CustomInput.borderRadius,
                 child: InkWell(
                   onTap: () {},
                   overlayColor: WidgetStateProperty.all(Palette.background1),
-                  borderRadius: const BorderRadius.all(Radius.circular(4)),
+                  borderRadius: CustomInput.borderRadius,
                   child: DropdownMenu<T>(
                     width: width,
                     enableSearch: false,
@@ -119,22 +119,22 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                       ),
                       border:
                           (fieldState.errorText != null)
-                              ? CustomInputBorder.errorBorder
-                              : CustomInputBorder.enabledBorder,
+                              ? CustomInput.errorBorder
+                              : CustomInput.enabledBorder,
                       enabledBorder:
                           (fieldState.errorText != null)
-                              ? CustomInputBorder.errorBorder
-                              : CustomInputBorder.enabledBorder,
+                              ? CustomInput.errorBorder
+                              : CustomInput.enabledBorder,
                       disabledBorder:
                           (fieldState.errorText != null)
-                              ? CustomInputBorder.errorBorder
-                              : CustomInputBorder.enabledBorder,
+                              ? CustomInput.errorBorder
+                              : CustomInput.enabledBorder,
                       focusedBorder:
                           (fieldState.errorText != null)
-                              ? CustomInputBorder.errorBorder
-                              : CustomInputBorder.focusedBorder,
-                      errorBorder: CustomInputBorder.errorBorder,
-                      focusedErrorBorder: CustomInputBorder.errorBorder,
+                              ? CustomInput.errorBorder
+                              : CustomInput.focusedBorder,
+                      errorBorder: CustomInput.errorBorder,
+                      focusedErrorBorder: CustomInput.errorBorder,
                       hintStyle: const TextStyle(
                         fontSize: 14,
                         color: Palette.textHint,
