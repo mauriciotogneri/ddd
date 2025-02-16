@@ -18,7 +18,6 @@ class Palette {
   static const Color backgroundDropdownMenu = Color(0xfff8f8f8);
   static const Color backgroundPane = Color(0xfff3f3f3);
 
-  static const Color background3 = Color(0xfff2f2f2); // REVIEW
   static const Color backgroundTableHeader = Color(0xFFF1F4F9); // REVIEW
 
   static const Color iconEnabled = Color(0xff6B7280);
