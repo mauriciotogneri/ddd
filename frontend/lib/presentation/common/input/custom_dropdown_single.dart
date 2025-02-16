@@ -100,7 +100,7 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                                   : null,
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all(
-                              Palette.backgroundDropdownMenu,
+                              Palette.backgroundEmpty,
                             ),
                           ),
                         ),
@@ -145,6 +145,17 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                     menuStyle: MenuStyle(
                       elevation: WidgetStateProperty.all(0),
                       padding: WidgetStateProperty.all(const EdgeInsets.all(0)),
+                      side: WidgetStateProperty.all(
+                        const BorderSide(
+                          color: Palette.borderInputEnabled,
+                          width: 1,
+                        ),
+                      ),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                      ),
                     ),
                     expandedInsets: const EdgeInsets.all(0),
                   ),
