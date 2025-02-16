@@ -62,102 +62,107 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                     Palette.backgroundEmpty,
                   ),
                   borderRadius: CustomInput.borderRadius,
-                  child: DropdownMenu<T>(
-                    width: width,
-                    enableSearch: false,
-                    enableFilter: false,
-                    requestFocusOnTap: false,
-                    enabled: enabled,
-                    hintText: hint,
-                    controller: controller._controller,
-                    initialSelection: controller.selected,
-                    onSelected: (element) {
-                      FocusScope.of(context).unfocus();
-                      _onSelected(element);
-                    },
-                    textStyle: const TextStyle(
-                      color: Palette.textTitle,
-                      fontSize: 14,
-                    ),
-                    dropdownMenuEntries: [
-                      for (final DropdownItem<T> item in values)
-                        DropdownMenuEntry(
-                          value: item.value,
-                          label: item.text,
-                          enabled: item.enabled,
-                          leadingIcon: InputIcon.create(item.icon),
-                          labelWidget: Text(
-                            item.text,
-                            style: const TextStyle(
+                  child: LayoutBuilder(
+                    builder:
+                        (context, constraints) => DropdownMenu<T>(
+                          width: constraints.maxWidth + 8,
+                          enableSearch: false,
+                          enableFilter: false,
+                          requestFocusOnTap: false,
+                          enabled: enabled,
+                          hintText: hint,
+                          controller: controller._controller,
+                          initialSelection: controller.selected,
+                          onSelected: (element) {
+                            FocusScope.of(context).unfocus();
+                            _onSelected(element);
+                          },
+                          textStyle: const TextStyle(
+                            color: Palette.textTitle,
+                            fontSize: 14,
+                          ),
+                          dropdownMenuEntries: [
+                            for (final DropdownItem<T> item in values)
+                              DropdownMenuEntry(
+                                value: item.value,
+                                label: item.text,
+                                enabled: item.enabled,
+                                leadingIcon: InputIcon.create(item.icon),
+                                labelWidget: Text(
+                                  item.text,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Palette.textTitle,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                trailingIcon:
+                                    item.value == controller.selected
+                                        ? const InputIcon(icon: Icons.check)
+                                        : null,
+                                style: ButtonStyle(
+                                  backgroundColor: WidgetStateProperty.all(
+                                    Palette.backgroundEmpty,
+                                  ),
+                                ),
+                              ),
+                          ],
+                          leadingIcon: InputIcon.create(icon),
+                          trailingIcon: const InputIcon(
+                            icon: Icons.keyboard_arrow_down_rounded,
+                            size: 18,
+                          ),
+                          selectedTrailingIcon: const InputIcon(
+                            icon: Icons.keyboard_arrow_up_rounded,
+                            size: 18,
+                          ),
+                          inputDecorationTheme: InputDecorationTheme(
+                            contentPadding: EdgeInsets.only(
+                              left: (icon == null) ? 12 : 0,
+                              right: 12,
+                            ),
+                            border:
+                                (fieldState.errorText != null)
+                                    ? CustomInput.errorBorder
+                                    : CustomInput.enabledBorder,
+                            enabledBorder:
+                                (fieldState.errorText != null)
+                                    ? CustomInput.errorBorder
+                                    : CustomInput.enabledBorder,
+                            disabledBorder:
+                                (fieldState.errorText != null)
+                                    ? CustomInput.errorBorder
+                                    : CustomInput.enabledBorder,
+                            focusedBorder:
+                                (fieldState.errorText != null)
+                                    ? CustomInput.errorBorder
+                                    : CustomInput.focusedBorder,
+                            errorBorder: CustomInput.errorBorder,
+                            focusedErrorBorder: CustomInput.errorBorder,
+                            hintStyle: const TextStyle(
                               fontSize: 14,
-                              color: Palette.textTitle,
-                              overflow: TextOverflow.ellipsis,
+                              color: Palette.textHint,
                             ),
                           ),
-                          trailingIcon:
-                              item.value == controller.selected
-                                  ? const InputIcon(icon: Icons.check)
-                                  : null,
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all(
-                              Palette.backgroundEmpty,
+                          menuStyle: MenuStyle(
+                            elevation: WidgetStateProperty.all(0),
+                            padding: WidgetStateProperty.all(
+                              const EdgeInsets.all(0),
+                            ),
+                            side: WidgetStateProperty.all(
+                              const BorderSide(
+                                color: Palette.borderInputEnabled,
+                                width: 1,
+                              ),
+                            ),
+                            shape: WidgetStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0),
+                              ),
                             ),
                           ),
+                          expandedInsets: const EdgeInsets.all(0),
                         ),
-                    ],
-                    leadingIcon: InputIcon.create(icon),
-                    trailingIcon: const InputIcon(
-                      icon: Icons.keyboard_arrow_down_rounded,
-                      size: 18,
-                    ),
-                    selectedTrailingIcon: const InputIcon(
-                      icon: Icons.keyboard_arrow_up_rounded,
-                      size: 18,
-                    ),
-                    inputDecorationTheme: InputDecorationTheme(
-                      contentPadding: EdgeInsets.only(
-                        left: (icon == null) ? 12 : 0,
-                        right: 12,
-                      ),
-                      border:
-                          (fieldState.errorText != null)
-                              ? CustomInput.errorBorder
-                              : CustomInput.enabledBorder,
-                      enabledBorder:
-                          (fieldState.errorText != null)
-                              ? CustomInput.errorBorder
-                              : CustomInput.enabledBorder,
-                      disabledBorder:
-                          (fieldState.errorText != null)
-                              ? CustomInput.errorBorder
-                              : CustomInput.enabledBorder,
-                      focusedBorder:
-                          (fieldState.errorText != null)
-                              ? CustomInput.errorBorder
-                              : CustomInput.focusedBorder,
-                      errorBorder: CustomInput.errorBorder,
-                      focusedErrorBorder: CustomInput.errorBorder,
-                      hintStyle: const TextStyle(
-                        fontSize: 14,
-                        color: Palette.textHint,
-                      ),
-                    ),
-                    menuStyle: MenuStyle(
-                      elevation: WidgetStateProperty.all(0),
-                      padding: WidgetStateProperty.all(const EdgeInsets.all(0)),
-                      side: WidgetStateProperty.all(
-                        const BorderSide(
-                          color: Palette.borderInputEnabled,
-                          width: 1,
-                        ),
-                      ),
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0),
-                        ),
-                      ),
-                    ),
-                    expandedInsets: const EdgeInsets.all(0),
                   ),
                 ),
               ),
