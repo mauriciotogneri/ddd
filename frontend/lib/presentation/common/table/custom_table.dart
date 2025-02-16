@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testflow/presentation/common/layout/scrollable_column.dart';
 import 'package:testflow/presentation/common/text/custom_text.dart';
 import 'package:testflow/utils/palette.dart';
 
@@ -48,6 +49,7 @@ class ColumnsHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Palette.backgroundTableHeader,
+      padding: const EdgeInsets.only(left: 16, right: 16),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -66,14 +68,11 @@ class ColumnCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TableCell(
-      content: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
-        child: CustomText(
-          text: column.name,
-          color: Palette.textTitle,
-          size: 14,
-          weight: FontWeight.w500,
-        ),
+      content: CustomText(
+        text: column.name,
+        color: Palette.textTitle,
+        size: 14,
+        weight: FontWeight.w500,
       ),
       width: column.width,
       alignment: column.alignment,
@@ -94,18 +93,19 @@ class RowsList<T extends TableElement> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        for (int i = 0; i < rows.length; i++)
-          RowContent(
-            columns: columns,
-            row: rows[i],
-            index: i,
-            onSelected: onSelected,
-          ),
-      ],
+    return SizedBox(
+      height: 500,
+      child: ScrollableColumn(
+        children: [
+          for (int i = 0; i < rows.length; i++)
+            RowContent(
+              columns: columns,
+              row: rows[i],
+              index: i,
+              onSelected: onSelected,
+            ),
+        ],
+      ),
     );
   }
 }
@@ -132,34 +132,22 @@ class RowContent<T extends TableElement> extends StatelessWidget {
               : Palette.backgroundRowOdd,
       child: InkWell(
         onTap: () => onSelected(row),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (final TableColumn column in columns)
-              RowCell(column: column, content: row.cell(column)),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (final TableColumn column in columns)
+                TableCell(
+                  content: row.cell(column),
+                  width: column.width,
+                  alignment: column.alignment,
+                ),
+            ],
+          ),
         ),
       ),
-    );
-  }
-}
-
-class RowCell extends StatelessWidget {
-  final TableColumn column;
-  final Widget content;
-
-  const RowCell({required this.column, required this.content});
-
-  @override
-  Widget build(BuildContext context) {
-    return TableCell(
-      content: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
-        child: content,
-      ),
-      width: column.width,
-      alignment: column.alignment,
     );
   }
 }
@@ -173,16 +161,19 @@ class TableCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Widget widget = SizedBox(
+      width: width,
+      height: 40,
+      child: Align(
+        alignment: alignment ?? Alignment.centerLeft,
+        child: content,
+      ),
+    );
+
     if (width != null) {
-      return SizedBox(
-        width: width,
-        child: Align(
-          alignment: alignment ?? Alignment.centerLeft,
-          child: content,
-        ),
-      );
+      return widget;
     } else {
-      return Expanded(child: content);
+      return Expanded(child: widget);
     }
   }
 }
