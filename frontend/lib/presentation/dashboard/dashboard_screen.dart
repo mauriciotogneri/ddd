@@ -161,7 +161,6 @@ class NavigationMenuRow extends StatelessWidget {
         selected: isSelected,
         tileColor: Palette.transparent,
         selectedTileColor: Palette.menuSelectedLight,
-        hoverColor: isSelected ? Palette.transparent : Palette.menuHover,
       ),
     );
   }
