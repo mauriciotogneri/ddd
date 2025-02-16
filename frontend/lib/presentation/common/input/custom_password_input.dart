@@ -10,6 +10,7 @@ class CustomPasswordInput extends CustomTextInput {
     super.autofocus,
     super.readOnly,
     super.filled,
+    super.name,
     super.hint,
     super.autofillHints,
     super.prefixIcon,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:testflow/presentation/common/form/label_input_wrapper.dart';
 import 'package:testflow/presentation/common/icon/input_icon.dart';
 import 'package:testflow/presentation/common/input/custom_input.dart';
 import 'package:testflow/utils/palette.dart';
@@ -15,6 +16,7 @@ class CustomTextInput extends StatefulWidget {
   final bool filled;
   final bool obscureText;
   final bool canClear;
+  final String? name;
   final String? hint;
   final Iterable<String>? autofillHints;
   final IconData? prefixIcon;
@@ -37,6 +39,7 @@ class CustomTextInput extends StatefulWidget {
     this.filled = true,
     this.obscureText = false,
     this.canClear = false,
+    this.name,
     this.hint,
     this.autofillHints,
     this.prefixIcon,
@@ -58,72 +61,75 @@ class _CustomTextInputState extends State<CustomTextInput> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.width,
-      child: TextFormField(
-        autofocus: widget.autofocus,
-        minLines: widget.minLines,
-        maxLines: widget.maxLines,
-        readOnly: widget.readOnly,
-        enableInteractiveSelection: !widget.readOnly,
-        enabled: widget.enabled,
-        keyboardType: widget.keyboardType,
-        focusNode: widget.controller._focusNode,
-        textInputAction: widget.textInputAction,
-        controller: widget.controller._controller,
-        onChanged: _onChanged,
-        obscureText: widget.obscureText,
-        autofillHints: widget.autofillHints,
-        textCapitalization: widget.capitalization,
-        onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
-        style: const TextStyle(
-          color: Palette.textInput,
-          fontSize: 14,
-          overflow: TextOverflow.ellipsis,
-        ),
-        validator: (value) {
-          if ((widget.validator != null) && !widget.validator!(value ?? '')) {
-            return widget.errorMessage;
-          } else {
-            return null;
-          }
-        },
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(
-            top: 14,
-            left: 12,
-            right: widget.canClear ? 0 : 12,
-            bottom: 14,
-          ),
-          isDense: true,
-          border: CustomInput.enabledBorder,
-          enabledBorder: CustomInput.enabledBorder,
-          disabledBorder: CustomInput.enabledBorder,
-          focusedBorder: CustomInput.focusedBorder,
-          errorBorder: CustomInput.errorBorder,
-          focusedErrorBorder: CustomInput.errorBorder,
-          prefixIcon: InputIcon.create(
-            widget.prefixIcon,
-            enabled: widget.enabled,
-          ),
-          suffixIcon: _suffixICon,
-          filled: widget.filled,
-          fillColor:
-              widget.enabled
-                  ? Palette.backgroundInputEnabled
-                  : Palette.backgroundInputDisabled,
-          hoverColor: Palette.backgroundInputEnabled,
-          hintText: widget.hint,
-          hintStyle: const TextStyle(
-            color: Palette.textHint,
+    return LabelInputWrapper(
+      name: widget.name,
+      child: SizedBox(
+        width: widget.width,
+        child: TextFormField(
+          autofocus: widget.autofocus,
+          minLines: widget.minLines,
+          maxLines: widget.maxLines,
+          readOnly: widget.readOnly,
+          enableInteractiveSelection: !widget.readOnly,
+          enabled: widget.enabled,
+          keyboardType: widget.keyboardType,
+          focusNode: widget.controller._focusNode,
+          textInputAction: widget.textInputAction,
+          controller: widget.controller._controller,
+          onChanged: _onChanged,
+          obscureText: widget.obscureText,
+          autofillHints: widget.autofillHints,
+          textCapitalization: widget.capitalization,
+          onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
+          style: const TextStyle(
+            color: Palette.textInput,
             fontSize: 14,
             overflow: TextOverflow.ellipsis,
           ),
+          validator: (value) {
+            if ((widget.validator != null) && !widget.validator!(value ?? '')) {
+              return widget.errorMessage;
+            } else {
+              return null;
+            }
+          },
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.only(
+              top: 14,
+              left: 12,
+              right: widget.canClear ? 0 : 12,
+              bottom: 14,
+            ),
+            isDense: true,
+            border: CustomInput.enabledBorder,
+            enabledBorder: CustomInput.enabledBorder,
+            disabledBorder: CustomInput.enabledBorder,
+            focusedBorder: CustomInput.focusedBorder,
+            errorBorder: CustomInput.errorBorder,
+            focusedErrorBorder: CustomInput.errorBorder,
+            prefixIcon: InputIcon.create(
+              widget.prefixIcon,
+              enabled: widget.enabled,
+            ),
+            suffixIcon: _suffixICon,
+            filled: widget.filled,
+            fillColor:
+                widget.enabled
+                    ? Palette.backgroundInputEnabled
+                    : Palette.backgroundInputDisabled,
+            hoverColor: Palette.backgroundInputEnabled,
+            hintText: widget.hint,
+            hintStyle: const TextStyle(
+              color: Palette.textHint,
+              fontSize: 14,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          inputFormatters: [
+            if (widget.maxLength != null)
+              LengthLimitingTextInputFormatter(widget.maxLength),
+          ],
         ),
-        inputFormatters: [
-          if (widget.maxLength != null)
-            LengthLimitingTextInputFormatter(widget.maxLength),
-        ],
       ),
     );
   }

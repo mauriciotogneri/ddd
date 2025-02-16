@@ -115,6 +115,7 @@ class Row1Column2 extends StatelessWidget {
             children: [
               CustomTextInput(
                 width: 300,
+                name: 'Query',
                 hint: 'Query',
                 canClear: true,
                 controller: state.queryController,
@@ -123,6 +124,7 @@ class Row1Column2 extends StatelessWidget {
               const HBox(16),
               CustomTextInput(
                 width: 300,
+                name: 'Name',
                 hint: 'Name',
                 controller: state.nameController,
                 prefixIcon: Icons.person_outline,
@@ -130,6 +132,7 @@ class Row1Column2 extends StatelessWidget {
               const HBox(16),
               CustomTextInput(
                 width: 300,
+                name: 'Occupation',
                 hint: 'Occupation',
                 enabled: false,
                 controller: state.occupationController,
@@ -138,6 +141,7 @@ class Row1Column2 extends StatelessWidget {
               const HBox(16),
               Expanded(
                 child: CustomTextInput(
+                  name: 'Comments',
                   hint: 'Comments',
                   controller: state.commentsController,
                 ),
@@ -196,6 +200,7 @@ class Row2Column1 extends StatelessWidget {
           children: [
             CustomTextInput(
               width: 300,
+              name: 'Email',
               hint: 'Email',
               controller: state.emailController,
               prefixIcon: Icons.email_outlined,
@@ -205,6 +210,7 @@ class Row2Column1 extends StatelessWidget {
             const VBox(16),
             CustomPasswordInput(
               width: 300,
+              name: 'Password',
               hint: 'Password',
               controller: state.passwordController,
               prefixIcon: Icons.lock_outline_rounded,
@@ -216,6 +222,7 @@ class Row2Column1 extends StatelessWidget {
               width: 300,
               icon: Icons.person_outline,
               values: state.genderItems,
+              name: 'Gender',
               hint: 'Gender',
               controller: state.genderController,
               errorMessage: 'Gender is required',

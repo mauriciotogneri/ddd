@@ -7,7 +7,6 @@ import 'package:testflow/presentation/common/button/primary_button.dart';
 import 'package:testflow/presentation/common/button/secondary_button.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
-import 'package:testflow/presentation/common/text/input_label.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/utils/navigation.dart';
 
@@ -61,14 +60,17 @@ class FormFields extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const InputLabel('Name'),
           CustomTextInput(
             autofocus: true,
             controller: state.nameController,
+            name: 'Name',
             //errorMessage: 'Name is required',
           ),
-          const InputLabel('Description'),
-          CustomTextInput(maxLines: 5, controller: state.descriptionController),
+          CustomTextInput(
+            maxLines: 5,
+            controller: state.descriptionController,
+            name: 'Description',
+          ),
           Row(
             children: [
               Expanded(
@@ -76,9 +78,9 @@ class FormFields extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const InputLabel('ID'),
                     CustomTextInput(
                       controller: state.idController,
+                      name: 'ID',
                       //errorMessage: 'ID is required',
                     ),
                   ],
@@ -89,7 +91,6 @@ class FormFields extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    InputLabel('Type'),
                     /*CustomDropdownSingle<RequirementType>(
                       width: 240,
                       values:
@@ -98,6 +99,7 @@ class FormFields extends StatelessWidget {
                               .toList(),
                       controller: state.typeController,
                       allowDeselection: true,
+                      name: 'Type',
                       errorMessage: 'Type is required',
                     ),*/
                   ],
@@ -112,7 +114,6 @@ class FormFields extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    InputLabel('Status'),
                     /*CustomDropdownSingle<RequirementStatus>(
                       width: 240,
                       values:
@@ -121,6 +122,7 @@ class FormFields extends StatelessWidget {
                               .toList(),
                       controller: state.statusController,
                       allowDeselection: true,
+                      name: 'Status',
                       errorMessage: 'Status is required',
                     ),*/
                   ],
@@ -131,7 +133,6 @@ class FormFields extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    InputLabel('Importance'),
                     /*CustomDropdownSingle<RequirementImportance>(
                       width: 240,
                       values:
@@ -140,6 +141,7 @@ class FormFields extends StatelessWidget {
                               .toList(),
                       controller: state.importanceController,
                       allowDeselection: true,
+                      name: 'Importance',
                       errorMessage: 'Importance is required',
                     ),*/
                   ],
@@ -154,7 +156,6 @@ class FormFields extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    InputLabel('Component'),
                     /*CustomDropdownSingle<String>(
                       width: 240,
                       values:
@@ -163,6 +164,7 @@ class FormFields extends StatelessWidget {
                               .toList(),
                       controller: state.componentController,
                       allowDeselection: true,
+                      name: 'Component',
                       errorMessage: 'Component is required',
                     ),*/
                   ],
@@ -173,7 +175,6 @@ class FormFields extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    InputLabel('Platforms'),
                     /*CustomDropdownSingle<String>(
                       width: 240,
                       values:
@@ -182,6 +183,7 @@ class FormFields extends StatelessWidget {
                               .toList(),
                       controller: state.platformsController,
                       allowDeselection: true,
+                      name: 'Platforms',
                       errorMessage: 'Platforms is required',
                     ),*/
                   ],
