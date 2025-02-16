@@ -38,6 +38,7 @@ class Content extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const TitleMedium(text: 'Sign in'),
+            const VBox(8),
             FormInputs(state),
             SignInButton(state),
           ],
@@ -89,6 +90,9 @@ class SignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PrimaryButton(text: 'Sign in', onPressed: state.onSignIn);
+    return SizedBox(
+      width: double.infinity,
+      child: PrimaryButton(text: 'Sign in', onPressed: state.onSignIn),
+    );
   }
 }
