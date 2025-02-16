@@ -4,8 +4,6 @@ class Palette {
   static const Color transparent = Colors.transparent;
   static const Color primary = Colors.blue;
 
-  static const Color backgroundTableHeader = Color(0xfff1f4f9); // REVIEW
-
   static const Color semanticError = Color(0xffeB5757);
   static const Color semanticSuccess = Color(0xff00d18b);
 
@@ -26,6 +24,9 @@ class Palette {
   static const Color backgroundInputHover = Color(0xfffafafa);
   static const Color backgroundDropdownMenu = Color(0xfff8f8f8);
   static const Color backgroundPane = Color(0xfff6f7fb);
+  static const Color backgroundTableHeader = Color(0xfff1f4f9);
+  static const Color backgroundRowEven = Color(0xffffffff);
+  static const Color backgroundRowOdd = Color(0xfff6f6fe);
 
   static const Color iconEnabled = Color(0xff9c9c9c);
   static const Color iconDisabled = Color(0xffbbbbbb);

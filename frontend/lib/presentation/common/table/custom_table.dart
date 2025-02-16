@@ -98,8 +98,13 @@ class RowsList<T extends TableElement> extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        for (final T row in rows)
-          RowContent(columns: columns, row: row, onSelected: onSelected),
+        for (int i = 0; i < rows.length; i++)
+          RowContent(
+            columns: columns,
+            row: rows[i],
+            index: i,
+            onSelected: onSelected,
+          ),
       ],
     );
   }
@@ -108,18 +113,23 @@ class RowsList<T extends TableElement> extends StatelessWidget {
 class RowContent<T extends TableElement> extends StatelessWidget {
   final List<TableColumn> columns;
   final T row;
+  final int index;
   final Function(T) onSelected;
 
   const RowContent({
     required this.columns,
     required this.row,
+    required this.index,
     required this.onSelected,
   });
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Palette.backgroundEmpty,
+      color:
+          (index % 2 == 0)
+              ? Palette.backgroundRowEven
+              : Palette.backgroundRowOdd,
       child: InkWell(
         onTap: () => onSelected(row),
         child: Row(
