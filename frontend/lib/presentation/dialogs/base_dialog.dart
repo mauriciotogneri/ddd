@@ -14,11 +14,7 @@ class BaseDialog extends StatelessWidget {
   });
 
   static void show({required BuildContext context, required Widget dialog}) =>
-      showDialog(
-        barrierColor: const Color(0xeedddddd),
-        context: context,
-        builder: (context) => dialog,
-      );
+      showDialog(context: context, builder: (context) => dialog);
 
   @override
   Widget build(BuildContext context) {

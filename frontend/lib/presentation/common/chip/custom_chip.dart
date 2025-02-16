@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testflow/utils/palette.dart';
 
 class CustomChip extends StatelessWidget {
   final String text;
@@ -17,9 +18,9 @@ class CustomChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final double chipSize = size ?? 12;
     final Color chipForegroundColor =
-        foregroundColor ?? const Color(0xff515055);
+        foregroundColor ?? Palette.chipGreyForeground;
     final Color chipBackgroundColor =
-        backgroundColor ?? const Color(0xffEFEEF1);
+        backgroundColor ?? Palette.chipGreyBackground;
 
     return Container(
       decoration: BoxDecoration(
