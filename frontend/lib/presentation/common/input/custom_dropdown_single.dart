@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testflow/presentation/common/form/error_input_wrapper.dart';
 import 'package:testflow/presentation/common/icon/input_icon.dart';
+import 'package:testflow/presentation/common/input/custom_input_border.dart';
 import 'package:testflow/utils/palette.dart';
 
 class CustomDropdownSingle<T> extends StatelessWidget {
@@ -57,9 +58,7 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(4)),
                 child: InkWell(
                   onTap: () {},
-                  overlayColor: WidgetStateProperty.all(
-                    Palette.backgroundDropdownMenu,
-                  ),
+                  overlayColor: WidgetStateProperty.all(Palette.background1),
                   borderRadius: const BorderRadius.all(Radius.circular(4)),
                   child: DropdownMenu<T>(
                     width: width,
@@ -107,9 +106,11 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                     leadingIcon: InputIcon.create(icon),
                     trailingIcon: const InputIcon(
                       icon: Icons.keyboard_arrow_down_rounded,
+                      size: 18,
                     ),
                     selectedTrailingIcon: const InputIcon(
                       icon: Icons.keyboard_arrow_up_rounded,
+                      size: 18,
                     ),
                     inputDecorationTheme: InputDecorationTheme(
                       contentPadding: EdgeInsets.only(
@@ -118,22 +119,22 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                       ),
                       border:
                           (fieldState.errorText != null)
-                              ? _errorBorder
-                              : _enabledBorder,
+                              ? CustomInputBorder.errorBorder
+                              : CustomInputBorder.enabledBorder,
                       enabledBorder:
                           (fieldState.errorText != null)
-                              ? _errorBorder
-                              : _enabledBorder,
+                              ? CustomInputBorder.errorBorder
+                              : CustomInputBorder.enabledBorder,
                       disabledBorder:
                           (fieldState.errorText != null)
-                              ? _errorBorder
-                              : _enabledBorder,
+                              ? CustomInputBorder.errorBorder
+                              : CustomInputBorder.enabledBorder,
                       focusedBorder:
                           (fieldState.errorText != null)
-                              ? _errorBorder
-                              : _focusedBorder,
-                      errorBorder: _errorBorder,
-                      focusedErrorBorder: _errorBorder,
+                              ? CustomInputBorder.errorBorder
+                              : CustomInputBorder.focusedBorder,
+                      errorBorder: CustomInputBorder.errorBorder,
+                      focusedErrorBorder: CustomInputBorder.errorBorder,
                       hintStyle: const TextStyle(
                         fontSize: 14,
                         color: Palette.textHint,
@@ -151,21 +152,6 @@ class CustomDropdownSingle<T> extends StatelessWidget {
           ),
     );
   }
-
-  InputBorder get _enabledBorder => const OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(4)),
-    borderSide: BorderSide(color: Palette.borderInputEnabled, width: 0.5),
-  );
-
-  InputBorder get _focusedBorder => const OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(4)),
-    borderSide: BorderSide(color: Palette.borderInputFocused, width: 0.5),
-  );
-
-  InputBorder get _errorBorder => const OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(4)),
-    borderSide: BorderSide(color: Palette.borderInputError, width: 0.5),
-  );
 }
 
 class DropdownItem<T> {

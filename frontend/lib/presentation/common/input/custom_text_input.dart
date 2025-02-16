@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:testflow/presentation/common/icon/input_icon.dart';
+import 'package:testflow/presentation/common/input/custom_input_border.dart';
 import 'package:testflow/utils/palette.dart';
 
 class CustomTextInput extends StatefulWidget {
@@ -91,12 +92,12 @@ class _CustomTextInputState extends State<CustomTextInput> {
             bottom: 14,
           ),
           isDense: true,
-          border: _enabledBorder,
-          enabledBorder: _enabledBorder,
-          disabledBorder: _enabledBorder,
-          focusedBorder: _focusedBorder,
-          errorBorder: _errorBorder,
-          focusedErrorBorder: _errorBorder,
+          border: CustomInputBorder.enabledBorder,
+          enabledBorder: CustomInputBorder.enabledBorder,
+          disabledBorder: CustomInputBorder.enabledBorder,
+          focusedBorder: CustomInputBorder.focusedBorder,
+          errorBorder: CustomInputBorder.errorBorder,
+          focusedErrorBorder: CustomInputBorder.errorBorder,
           prefixIcon: InputIcon.create(
             widget.prefixIcon,
             enabled: widget.enabled,
@@ -118,21 +119,6 @@ class _CustomTextInputState extends State<CustomTextInput> {
       ),
     );
   }
-
-  InputBorder get _enabledBorder => const OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(4)),
-    borderSide: BorderSide(color: Palette.borderInputEnabled, width: 0.5),
-  );
-
-  InputBorder get _focusedBorder => const OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(4)),
-    borderSide: BorderSide(color: Palette.borderInputFocused, width: 0.5),
-  );
-
-  InputBorder get _errorBorder => const OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(4)),
-    borderSide: BorderSide(color: Palette.borderInputError, width: 0.5),
-  );
 
   Widget? get _suffixICon =>
       (widget.canClear && showClear) ? ClearIcon(_onClear) : null;

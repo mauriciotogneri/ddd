@@ -5,12 +5,18 @@ class InputIcon extends StatelessWidget {
   final IconData icon;
   final Color? color;
   final bool enabled;
+  final double size;
 
-  const InputIcon({required this.icon, this.color, this.enabled = true});
+  const InputIcon({
+    required this.icon,
+    this.color,
+    this.size = 16,
+    this.enabled = true,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Icon(icon, size: 16, color: iconColor);
+    return Icon(icon, size: size, color: iconColor);
   }
 
   Color get iconColor {
