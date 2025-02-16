@@ -20,13 +20,13 @@ class Palette {
 
   static const Color backgroundTableHeader = Color(0xFFF1F4F9); // REVIEW
 
-  static const Color iconEnabled = Color(0xff6B7280);
+  static const Color iconEnabled = Color(0xff9c9c9c);
   static const Color iconDisabled = Color(0xffbbbbbb);
   static const Color iconLoader = Color(0xffffffff);
 
   static const Color textTitle = Color(0xff222222);
   static const Color textBody = Color(0xff444444);
-  static const Color textHint = Color(0xff9CA3AF);
+  static const Color textHint = Color(0xff9c9c9c);
   static const Color textError = Color(0xffC64343);
 
   static const Color chipRedForeground = Color(0xff9c4238);
