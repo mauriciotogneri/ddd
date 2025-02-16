@@ -15,8 +15,12 @@ class TestFlow extends StatelessWidget {
       title: 'TestFlow',
       navigatorKey: Navigation.getRoutes.key,
       navigatorObservers: [Navigation.getRoutes.routeObserver],
-      theme: ThemeData(colorSchemeSeed: Palette.primary, useMaterial3: true),
-      home: kDebugMode ? DashboardScreen.instance() : SignInScreen.instance(),
+      theme: ThemeData(
+        colorSchemeSeed: Palette.primary,
+        useMaterial3: true,
+        scaffoldBackgroundColor: Palette.backgroundPane,
+      ),
+      home: !kDebugMode ? DashboardScreen.instance() : SignInScreen.instance(),
     );
   }
 }

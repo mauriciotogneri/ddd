@@ -1,15 +1,12 @@
 import 'package:dafluta/dafluta.dart';
-import 'package:flutter/material.dart';
+import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/utils/navigation.dart';
 
 class SignInState extends BaseState {
-  final GlobalKey<FormState> formKey = GlobalKey();
+  final FormKey formKey = const FormKey();
   final TextInputController emailController = TextInputController();
   final TextInputController passwordController = TextInputController();
-
-  bool get formFilled =>
-      emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
 
   @override
   void onLoad() {
@@ -19,10 +16,9 @@ class SignInState extends BaseState {
   }
 
   void onSignIn() {
-    //emailController.unfocus();
-    //passwordController.unfocus();
-
-    _signIn();
+    if (formKey.validate()) {
+      _signIn();
+    }
   }
 
   void _signIn() => Navigation.dashboardScreen();

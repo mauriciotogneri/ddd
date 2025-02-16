@@ -6,6 +6,7 @@ import 'package:testflow/presentation/common/card/custom_card.dart';
 import 'package:testflow/presentation/common/input/custom_password_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/text/title_medium.dart';
+import 'package:testflow/utils/validator.dart';
 
 class SignInScreen extends StatelessWidget {
   final SignInState state;
@@ -62,15 +63,17 @@ class FormInputs extends StatelessWidget {
           CustomTextInput(
             hint: 'Email',
             controller: state.emailController,
-            onChange: (_) => state.notify(),
             prefixIcon: Icons.email_outlined,
+            validator: Validator.isNotEmpty,
+            errorMessage: 'Email is required',
           ),
           const VBox(16),
           CustomPasswordInput(
             hint: 'Password',
             controller: state.passwordController,
-            onChange: (_) => state.notify(),
             prefixIcon: Icons.lock_outlined,
+            validator: Validator.isNotEmpty,
+            errorMessage: 'Password is required',
           ),
           const VBox(16),
         ],
@@ -86,10 +89,6 @@ class SignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PrimaryButton(
-      text: 'Sign in',
-      onPressed: state.onSignIn,
-      enabled: state.formFilled,
-    );
+    return PrimaryButton(text: 'Sign in', onPressed: state.onSignIn);
   }
 }
