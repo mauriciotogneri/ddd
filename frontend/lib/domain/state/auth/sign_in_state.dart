@@ -5,8 +5,9 @@ import 'package:testflow/utils/navigation.dart';
 
 class SignInState extends BaseState {
   final FormKey formKey = const FormKey();
-  final TextInputController emailController = TextInputController();
-  final TextInputController passwordController = TextInputController();
+  final CustomTextInputController emailController = CustomTextInputController();
+  final CustomTextInputController passwordController =
+      CustomTextInputController();
 
   @override
   void onLoad() {

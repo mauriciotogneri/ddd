@@ -13,7 +13,8 @@ import 'package:testflow/presentation/requirements/requirement_details_view.dart
 import 'package:testflow/utils/navigation.dart';
 
 class RequirementsListState extends BaseState {
-  final TextInputController queryFilterController = TextInputController();
+  final CustomTextInputController queryFilterController =
+      CustomTextInputController();
   final CustomDropdownSingleController<RequirementType> typeFilterController =
       CustomDropdownSingleController();
   final CustomDropdownSingleController<RequirementStatus>

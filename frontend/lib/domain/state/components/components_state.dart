@@ -6,16 +6,20 @@ import 'package:testflow/presentation/common/input/custom_text_input.dart';
 
 class ComponentsState extends BaseState {
   // Row 1 / Column 2
-  final TextInputController queryController = TextInputController();
-  final TextInputController nameController = TextInputController();
-  final TextInputController occupationController = TextInputController();
-  final TextInputController commentsController = TextInputController();
-  final TextInputController descriptionController = TextInputController();
+  final CustomTextInputController queryController = CustomTextInputController();
+  final CustomTextInputController nameController = CustomTextInputController();
+  final CustomTextInputController occupationController =
+      CustomTextInputController();
+  final CustomTextInputController commentsController =
+      CustomTextInputController();
+  final CustomTextInputController descriptionController =
+      CustomTextInputController();
 
   // Row 2 / Column 1
   final FormKey signInFormKey = const FormKey();
-  final TextInputController emailController = TextInputController();
-  final TextInputController passwordController = TextInputController();
+  final CustomTextInputController emailController = CustomTextInputController();
+  final CustomTextInputController passwordController =
+      CustomTextInputController();
   final CustomDropdownSingleController<Gender> genderController =
       CustomDropdownSingleController();
   final List<DropdownItem<Gender>> genderItems =

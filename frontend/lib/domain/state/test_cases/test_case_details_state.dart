@@ -8,10 +8,12 @@ class TestCaseDetailsState extends BaseState {
   final Requirement requirement;
   final TestCase testCase;
   final GlobalKey<FormState> formKey = GlobalKey();
-  final TextInputController nameController = TextInputController();
-  final TextInputController preconditionsController = TextInputController();
-  final TextInputController stepsController = TextInputController();
-  final TextInputController expectedController = TextInputController();
+  final CustomTextInputController nameController = CustomTextInputController();
+  final CustomTextInputController preconditionsController =
+      CustomTextInputController();
+  final CustomTextInputController stepsController = CustomTextInputController();
+  final CustomTextInputController expectedController =
+      CustomTextInputController();
 
   bool get formValid => formKey.currentState!.validate();
 

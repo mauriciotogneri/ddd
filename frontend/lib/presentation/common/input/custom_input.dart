@@ -19,3 +19,11 @@ class CustomInput {
 
   static BorderRadius get borderRadius => BorderRadius.circular(4);
 }
+
+abstract class CustomInputController<T> {
+  T? get value;
+
+  bool get isEmpty;
+
+  bool get isNotEmpty => !isEmpty;
+}

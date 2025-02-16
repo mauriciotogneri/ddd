@@ -74,8 +74,9 @@ class FormFields extends StatelessWidget {
 class CreateProjectDialogState extends BaseState {
   final GlobalKey<FormState> formKey = GlobalKey();
   final OnCreateProject onCreateProject;
-  final TextInputController nameController = TextInputController();
-  final TextInputController descriptionController = TextInputController();
+  final CustomTextInputController nameController = CustomTextInputController();
+  final CustomTextInputController descriptionController =
+      CustomTextInputController();
 
   CreateProjectDialogState({required this.onCreateProject});
 

@@ -13,11 +13,12 @@ class RequirementDetailsState extends BaseState {
   final Requirement requirement;
   final List<TestCase> testCases = [];
   final GlobalKey<FormState> formKey = GlobalKey();
-  final TextInputController idController = TextInputController();
+  final CustomTextInputController idController = CustomTextInputController();
   final CustomDropdownSingleController<RequirementType> typeController =
       CustomDropdownSingleController();
-  final TextInputController nameController = TextInputController();
-  final TextInputController descriptionController = TextInputController();
+  final CustomTextInputController nameController = CustomTextInputController();
+  final CustomTextInputController descriptionController =
+      CustomTextInputController();
   final CustomDropdownSingleController<RequirementStatus> statusController =
       CustomDropdownSingleController();
   final CustomDropdownSingleController<RequirementImportance>

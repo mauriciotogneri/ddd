@@ -4,9 +4,9 @@ import 'package:testflow/utils/palette.dart';
 
 class ErrorInputWrapper extends StatelessWidget {
   final Widget child;
-  final String? error;
+  final String? errorMessage;
 
-  const ErrorInputWrapper({required this.child, this.error});
+  const ErrorInputWrapper({required this.child, this.errorMessage});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +15,10 @@ class ErrorInputWrapper extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         child,
-        if (error != null)
+        if (errorMessage != null)
           Padding(
-            padding: const EdgeInsets.only(top: 4, left: 12),
-            child: BodySmall(text: error!, color: Palette.textError),
+            padding: const EdgeInsets.only(top: 4, left: 2),
+            child: BodySmall(text: errorMessage!, color: Palette.textError),
           ),
       ],
     );
