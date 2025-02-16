@@ -23,7 +23,7 @@ class CustomTextInput extends StatefulWidget {
   final int? maxLines;
   final double? width;
   final String? errorMessage;
-  final Function(String)? onChange;
+  final Function(String)? onChanged;
   final bool Function(String value)? validator;
 
   const CustomTextInput({
@@ -45,7 +45,7 @@ class CustomTextInput extends StatefulWidget {
     this.maxLines = 1,
     this.width,
     this.errorMessage,
-    this.onChange,
+    this.onChanged,
     this.validator,
   });
 
@@ -133,14 +133,14 @@ class _CustomTextInputState extends State<CustomTextInput> {
 
   void _onClear() {
     widget.controller.clear();
-    widget.onChange?.call('');
+    widget.onChanged?.call('');
     setState(() {
       showClear = false;
     });
   }
 
   void _onChanged(String text) {
-    widget.onChange?.call(text);
+    widget.onChanged?.call(text);
     setState(() {
       showClear = text.isNotEmpty;
     });

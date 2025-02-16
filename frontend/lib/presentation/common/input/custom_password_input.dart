@@ -16,7 +16,7 @@ class CustomPasswordInput extends CustomTextInput {
     super.maxLength,
     super.width,
     super.errorMessage,
-    super.onChange,
+    super.onChanged,
     super.validator,
   }) : super(obscureText: true, maxLines: 1);
 }

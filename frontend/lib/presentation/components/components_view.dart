@@ -292,8 +292,9 @@ class Row2Column3 extends StatelessWidget {
         children: [
           CustomDropdownSingle(
             width: 300,
-            icon: Icons.flag_outlined,
+            icon: state.countryController.isEmpty ? Icons.public : null,
             values: state.countryItems,
+            onSelected: (_) => state.notify(),
             hint: 'Country',
             allowDeselection: true,
             controller: state.countryController,

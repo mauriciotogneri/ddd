@@ -65,7 +65,7 @@ class TableFilters extends StatelessWidget {
           hint: 'Filter…',
           canClear: true,
           controller: state.queryFilterController,
-          onChange: (_) => state.notify(),
+          onChanged: (_) => state.notify(),
         ),
         CustomDropdownSingle<RequirementType>(
           width: 200,
