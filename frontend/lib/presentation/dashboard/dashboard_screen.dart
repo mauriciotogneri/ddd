@@ -98,19 +98,6 @@ class ProjectSelector extends StatelessWidget {
           values: state.projects,
           hint: 'Project',
           controller: state.projectsController,
-          /*footer: Padding(
-            padding: const EdgeInsets.only(bottom: 4),
-            child: TextButton(
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.add_circle_outline),
-                  Text('Create project'),
-                ],
-              ),
-              onPressed: () => state.onCreateProject(context),
-            ),
-          ),*/
           onSelected: state.onChangeProject,
         ),
       ),
