@@ -8,12 +8,14 @@ class CustomTable<T extends TableElement> extends StatelessWidget {
   final List<TableColumn> columns;
   final List<T> rows;
   final Function(T) onSelected;
+  final List<Widget> filters;
   final double? width;
 
   const CustomTable({
     required this.columns,
     required this.rows,
     required this.onSelected,
+    this.filters = const [],
     this.width,
   });
 
@@ -33,6 +35,7 @@ class CustomTable<T extends TableElement> extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
+              FilterRow(filters),
               HeaderRow(columns),
               const Divider(height: 1, color: Palette.borderInputEnabled),
               ItemRows(columns: columns, rows: rows, onSelected: onSelected),
@@ -46,6 +49,25 @@ class CustomTable<T extends TableElement> extends StatelessWidget {
   }
 }
 
+class FilterRow extends StatelessWidget {
+  final List<Widget> filters;
+
+  const FilterRow(this.filters);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+      color: Palette.backgroundTableHeader,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [...filters],
+      ),
+    );
+  }
+}
+
 class HeaderRow extends StatelessWidget {
   final List<TableColumn> columns;
 
@@ -54,6 +76,7 @@ class HeaderRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 40,
       color: Palette.backgroundTableHeader,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

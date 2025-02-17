@@ -30,7 +30,10 @@ class RequirementsListState extends BaseState {
           .where(
             (requirement) => requirement.matches(
               queryFilter: queryFilterController.text,
-              typeFilter: [], //typeFilterController.selected
+              typeFilter:
+                  typeFilterController.isNotEmpty
+                      ? [typeFilterController.selected!]
+                      : [],
               statusFilter: [], //statusFilterController.selected
               componentFilter: [], //componentFilterController.selected
               platformFilter: [], //platformFilterController.selected

@@ -128,6 +128,25 @@ class Table extends StatelessWidget {
         columns: Requirement.columns,
         rows: state.requirements,
         onSelected: state.onRequirementSelected,
+        filters: [
+          CustomTextInput(
+            width: 300,
+            hint: 'Filter…',
+            canClear: true,
+            prefixIcon: Icons.search,
+            controller: state.queryFilterController,
+            onChanged: (_) => state.notify(),
+          ),
+          const HBox(8),
+          CustomDropdownSingle<RequirementType>(
+            width: 200,
+            values: RequirementType.values.map(DropdownItem.create).toList(),
+            controller: state.typeFilterController,
+            onSelected: (_) => state.notify(),
+            allowDeselection: true,
+            hint: 'Type',
+          ),
+        ],
       ),
     );
   }
