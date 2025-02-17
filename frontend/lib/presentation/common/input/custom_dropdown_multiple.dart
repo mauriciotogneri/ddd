@@ -76,7 +76,7 @@ class CustomDropdownMultiple<T> extends StatelessWidget {
                               enabled: item.enabled,
                               leadingIcon: InputIcon.create(item.icon),
                               trailingIcon:
-                                  item.value == controller.selected
+                                  controller.selected.contains(item.value)
                                       ? const InputIcon(icon: Icons.check)
                                       : null,
                               style: ButtonStyle(
@@ -182,12 +182,17 @@ class CustomDropdownMultipleController<T>
     } else {
       _selected.add(value);
     }
+
+    _updateDisplay();
   }
 
   void select(List<T> value) {
     _selected.clear();
     _selected.addAll(value);
+    _updateDisplay();
+  }
 
+  void _updateDisplay() {
     if (selected.isEmpty) {
       _controller.text = '';
     } else if (selected.length == 1) {
