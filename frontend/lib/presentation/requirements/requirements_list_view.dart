@@ -70,7 +70,7 @@ class Table extends StatelessWidget {
           ),
           const HBox(8),
           CustomDropdownSingle<String>(
-            width: 150,
+            width: 180,
             values:
                 Data.currentProject.components
                     .map(DropdownItem.create)
@@ -82,7 +82,7 @@ class Table extends StatelessWidget {
           ),
           const HBox(8),
           CustomDropdownSingle<RequirementType>(
-            width: 150,
+            width: 180,
             values: RequirementType.values.map(DropdownItem.create).toList(),
             controller: state.typeFilterController,
             onSelected: (_) => state.notify(),
@@ -91,7 +91,7 @@ class Table extends StatelessWidget {
           ),
           const HBox(8),
           CustomDropdownSingle<RequirementStatus>(
-            width: 150,
+            width: 180,
             values: RequirementStatus.values.map(DropdownItem.create).toList(),
             controller: state.statusFilterController,
             onSelected: (_) => state.notify(),
@@ -100,7 +100,7 @@ class Table extends StatelessWidget {
           ),
           const HBox(8),
           CustomDropdownSingle<RequirementImportance>(
-            width: 150,
+            width: 180,
             values:
                 RequirementImportance.values.map(DropdownItem.create).toList(),
             controller: state.importanceFilterController,
@@ -110,7 +110,7 @@ class Table extends StatelessWidget {
           ),
           const HBox(8),
           CustomDropdownSingle<String>(
-            width: 150,
+            width: 180,
             values:
                 Data.currentProject.platforms.map(DropdownItem.create).toList(),
             controller: state.platformFilterController,
