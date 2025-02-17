@@ -1,4 +1,5 @@
 import 'package:dafluta/dafluta.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/model/project.dart';
 import 'package:testflow/domain/state/dashboard/dashboard_state.dart';
@@ -78,12 +79,13 @@ class NavigationMenu extends StatelessWidget {
               icon: Icons.settings_outlined,
               index: DashboardState.VIEW_SETTINGS,
             ),
-            NavigationMenuRow(
-              state: state,
-              text: 'Components',
-              icon: Icons.format_paint_outlined,
-              index: DashboardState.VIEW_COMPONENTS,
-            ),
+            if (kDebugMode)
+              NavigationMenuRow(
+                state: state,
+                text: 'Components',
+                icon: Icons.format_paint_outlined,
+                index: DashboardState.VIEW_COMPONENTS,
+              ),
           ],
         ),
       ),
