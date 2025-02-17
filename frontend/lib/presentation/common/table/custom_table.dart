@@ -51,7 +51,6 @@ class ColumnsHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Palette.backgroundTableHeader,
-      padding: const EdgeInsets.only(left: 16, right: 16),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -131,20 +130,17 @@ class RowContent<T extends TableElement> extends StatelessWidget {
               : Palette.backgroundRowOdd,
       child: InkWell(
         onTap: () => onSelected(row),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              for (final TableColumn column in columns)
-                TableCell(
-                  content: row.cell(column),
-                  width: column.width,
-                  alignment: column.alignment,
-                ),
-            ],
-          ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (final TableColumn column in columns)
+              TableCell(
+                content: row.cell(column),
+                width: column.width,
+                alignment: column.alignment,
+              ),
+          ],
         ),
       ),
     );
@@ -160,20 +156,19 @@ class TableCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget widget = SizedBox(
-      width: width,
-      height: 40,
-      child: Align(
-        alignment: alignment ?? Alignment.centerLeft,
-        child: content,
+    final Widget widget = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: SizedBox(
+        width: width,
+        height: 40,
+        child: Align(
+          alignment: alignment ?? Alignment.centerLeft,
+          child: content,
+        ),
       ),
     );
 
-    if (width != null) {
-      return widget;
-    } else {
-      return Expanded(child: widget);
-    }
+    return (width != null) ? widget : Expanded(child: widget);
   }
 }
 
