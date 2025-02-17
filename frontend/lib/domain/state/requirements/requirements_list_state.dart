@@ -5,7 +5,7 @@ import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
-import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
+import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/create_requirement_dialog.dart';
@@ -13,16 +13,16 @@ import 'package:testflow/presentation/dialogs/create_requirement_dialog.dart';
 class RequirementsListState extends BaseState {
   final CustomTextInputController queryFilterController =
       CustomTextInputController();
-  final CustomDropdownSingleController<RequirementType> typeFilterController =
-      CustomDropdownSingleController();
-  final CustomDropdownSingleController<RequirementStatus>
-  statusFilterController = CustomDropdownSingleController();
-  final CustomDropdownSingleController<String> componentFilterController =
-      CustomDropdownSingleController();
-  final CustomDropdownSingleController<String> platformFilterController =
-      CustomDropdownSingleController();
-  final CustomDropdownSingleController<RequirementImportance>
-  importanceFilterController = CustomDropdownSingleController();
+  final CustomDropdownMultipleController<RequirementType> typeFilterController =
+      CustomDropdownMultipleController();
+  final CustomDropdownMultipleController<RequirementStatus>
+  statusFilterController = CustomDropdownMultipleController();
+  final CustomDropdownMultipleController<String> componentFilterController =
+      CustomDropdownMultipleController();
+  final CustomDropdownMultipleController<String> platformFilterController =
+      CustomDropdownMultipleController();
+  final CustomDropdownMultipleController<RequirementImportance>
+  importanceFilterController = CustomDropdownMultipleController();
   final List<Requirement> _allRequirements = Data.requirements();
 
   List<Requirement> get requirements =>
@@ -30,14 +30,11 @@ class RequirementsListState extends BaseState {
           .where(
             (requirement) => requirement.matches(
               queryFilter: queryFilterController.text,
-              typeFilter:
-                  typeFilterController.isNotEmpty
-                      ? [typeFilterController.selected!]
-                      : [],
-              statusFilter: [], //statusFilterController.selected
-              componentFilter: [], //componentFilterController.selected
-              platformFilter: [], //platformFilterController.selected
-              importanceFilter: [], //importanceFilterController.selected
+              typeFilter: typeFilterController.selected,
+              statusFilter: statusFilterController.selected,
+              componentFilter: componentFilterController.selected,
+              platformFilter: platformFilterController.selected,
+              importanceFilter: importanceFilterController.selected,
             ),
           )
           .toList();

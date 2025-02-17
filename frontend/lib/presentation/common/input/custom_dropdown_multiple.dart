@@ -38,7 +38,7 @@ class _CustomDropdownMultipleState<T> extends State<CustomDropdownMultiple<T>> {
     if (element != null) {
       widget.controller._onSelected(element);
       widget.onSelected?.call(widget.controller.selected);
-      setState(() {});
+      setState(() {}); // needed to update the check icon for the selected ones
     }
   }
 

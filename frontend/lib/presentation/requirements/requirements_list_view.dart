@@ -6,6 +6,7 @@ import 'package:testflow/domain/state/requirements/requirements_list_state.dart'
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
+import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
@@ -69,7 +70,7 @@ class Table extends StatelessWidget {
             onChanged: (_) => state.notify(),
           ),
           const HBox(8),
-          CustomDropdownSingle<String>(
+          CustomDropdownMultiple<String>(
             width: 180,
             values:
                 Data.currentProject.components
@@ -77,45 +78,40 @@ class Table extends StatelessWidget {
                     .toList(),
             controller: state.componentFilterController,
             onSelected: (_) => state.notify(),
-            allowDeselection: true,
             hint: 'Component',
           ),
           const HBox(8),
-          CustomDropdownSingle<RequirementType>(
+          CustomDropdownMultiple<RequirementType>(
             width: 180,
             values: RequirementType.values.map(DropdownItem.create).toList(),
             controller: state.typeFilterController,
             onSelected: (_) => state.notify(),
-            allowDeselection: true,
             hint: 'Type',
           ),
           const HBox(8),
-          CustomDropdownSingle<RequirementStatus>(
+          CustomDropdownMultiple<RequirementStatus>(
             width: 180,
             values: RequirementStatus.values.map(DropdownItem.create).toList(),
             controller: state.statusFilterController,
             onSelected: (_) => state.notify(),
-            allowDeselection: true,
             hint: 'Status',
           ),
           const HBox(8),
-          CustomDropdownSingle<RequirementImportance>(
+          CustomDropdownMultiple<RequirementImportance>(
             width: 180,
             values:
                 RequirementImportance.values.map(DropdownItem.create).toList(),
             controller: state.importanceFilterController,
             onSelected: (_) => state.notify(),
-            allowDeselection: true,
             hint: 'Importance',
           ),
           const HBox(8),
-          CustomDropdownSingle<String>(
+          CustomDropdownMultiple<String>(
             width: 180,
             values:
                 Data.currentProject.platforms.map(DropdownItem.create).toList(),
             controller: state.platformFilterController,
             onSelected: (_) => state.notify(),
-            allowDeselection: true,
             hint: 'Platform',
           ),
         ],
