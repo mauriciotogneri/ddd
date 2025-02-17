@@ -158,15 +158,13 @@ class TableCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget widget = Padding(
+    final Widget widget = Container(
+      width: width,
+      height: 40,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: SizedBox(
-        width: width,
-        height: 40,
-        child: Align(
-          alignment: alignment ?? Alignment.centerLeft,
-          child: content,
-        ),
+      child: Align(
+        alignment: alignment ?? Alignment.centerLeft,
+        child: content,
       ),
     );
 
