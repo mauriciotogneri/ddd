@@ -6,7 +6,6 @@ import 'package:testflow/domain/state/requirements/requirements_list_state.dart'
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
-import 'package:testflow/presentation/common/button/primary_button.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
@@ -41,26 +40,6 @@ class Header extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 16),
       child: TitleMedium(text: 'Requirements'),
-    );
-  }
-}
-
-class TableFilters extends StatelessWidget {
-  final RequirementsListState state;
-
-  const TableFilters(this.state);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Spacer(),
-        PrimaryButton(
-          icon: Icons.add,
-          text: 'Add',
-          onPressed: () => state.onCreateRequirement(context),
-        ),
-      ],
     );
   }
 }

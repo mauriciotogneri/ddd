@@ -1,5 +1,7 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
+import 'package:testflow/presentation/common/button/primary_button.dart';
+import 'package:testflow/presentation/common/button/secondary_icon_button.dart';
 import 'package:testflow/presentation/common/input/custom_input.dart';
 import 'package:testflow/presentation/common/text/custom_text.dart';
 import 'package:testflow/utils/palette.dart';
@@ -57,14 +59,65 @@ class FilterRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+      height: 54,
+      padding: const EdgeInsets.only(top: 8, bottom: 4, left: 8, right: 8),
       color: Palette.backgroundTableHeader,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [...filters],
+        children: [
+          ...filters,
+          const Spacer(),
+          const HBox(16),
+          TableSelectColumns(() {}),
+          const HBox(8),
+          TableExportButton(() {}),
+          const HBox(8),
+          TableCreateAction(text: 'Create', onPressed: () {}),
+        ],
       ),
     );
+  }
+}
+
+class TableSelectColumns extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const TableSelectColumns(this.onPressed);
+
+  @override
+  Widget build(BuildContext context) {
+    return SecondaryIconButton(
+      icon: Icons.checklist_rounded,
+      onPressed: onPressed,
+      size: 40,
+    );
+  }
+}
+
+class TableExportButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const TableExportButton(this.onPressed);
+
+  @override
+  Widget build(BuildContext context) {
+    return SecondaryIconButton(
+      icon: Icons.ios_share_outlined,
+      onPressed: onPressed,
+      size: 40,
+    );
+  }
+}
+
+class TableCreateAction extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  const TableCreateAction({required this.text, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return PrimaryButton(icon: Icons.add, text: text, onPressed: onPressed);
   }
 }
 
