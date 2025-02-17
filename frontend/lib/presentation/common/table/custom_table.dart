@@ -71,7 +71,7 @@ class HeaderCell extends StatelessWidget {
     return TableCell(
       content: CustomText(
         text: column.name,
-        color: Palette.textTitle,
+        color: Palette.textBody,
         size: 14,
         weight: FontWeight.w500,
       ),
@@ -162,6 +162,11 @@ class TableCell extends StatelessWidget {
       width: width,
       height: 40,
       padding: const EdgeInsets.symmetric(horizontal: 16),
+      decoration: const BoxDecoration(
+        border: Border(
+          right: BorderSide(color: Palette.borderInputEnabled, width: 1),
+        ),
+      ),
       child: Align(
         alignment: alignment ?? Alignment.centerLeft,
         child: content,

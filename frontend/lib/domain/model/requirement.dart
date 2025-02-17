@@ -84,12 +84,23 @@ class Requirement implements TableElement {
       name: 'Component',
       width: 250,
     ),
-    TableColumn(id: RequirementColumns.type, name: 'Type', width: 200),
-    TableColumn(id: RequirementColumns.status, name: 'Status', width: 150),
+    TableColumn(
+      id: RequirementColumns.type,
+      name: 'Type',
+      width: 170,
+      alignment: Alignment.center,
+    ),
+    TableColumn(
+      id: RequirementColumns.status,
+      name: 'Status',
+      width: 130,
+      alignment: Alignment.center,
+    ),
     TableColumn(
       id: RequirementColumns.importance,
       name: 'Importance',
-      width: 120,
+      width: 130,
+      alignment: Alignment.center,
     ),
     TableColumn(
       id: RequirementColumns.numberOfTestCases,
