@@ -11,7 +11,6 @@ import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_password_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
-import 'package:testflow/presentation/common/layout/scrollable_column.dart';
 import 'package:testflow/presentation/common/text/body_large.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
 import 'package:testflow/presentation/common/text/body_small.dart';
@@ -33,23 +32,15 @@ class ComponentsView extends StatelessWidget {
     return StateProvider<ComponentsState>(
       state: state,
       builder:
-          (context, state) => Pane.normal(
-            header: const TitleLarge(text: 'COMPONENTS'),
-            content: Content(state),
+          (context, state) => Pane.scrollable(
+            children: [
+              const VBox(16),
+              Row1(state),
+              const VBox(16),
+              Row2(state),
+              const VBox(16),
+            ],
           ),
-    );
-  }
-}
-
-class Content extends StatelessWidget {
-  final ComponentsState state;
-
-  const Content(this.state);
-
-  @override
-  Widget build(BuildContext context) {
-    return ScrollableColumn(
-      children: [const VBox(16), Row1(state), const VBox(16), Row2(state)],
     );
   }
 }
@@ -61,13 +52,16 @@ class Row1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Row1Column1(),
-        const HBox(16),
-        Expanded(child: Row1Column2(state)),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Row1Column1(),
+          const HBox(16),
+          Expanded(child: Row1Column2(state)),
+        ],
+      ),
     );
   }
 }
@@ -170,17 +164,20 @@ class Row2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row2Column1(state),
-        const HBox(16),
-        const Row2Column2(),
-        const HBox(16),
-        Row2Column3(state),
-        const HBox(16),
-        const Row2Column4(),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row2Column1(state),
+          const HBox(16),
+          const Row2Column2(),
+          const HBox(16),
+          Row2Column3(state),
+          const HBox(16),
+          const Row2Column4(),
+        ],
+      ),
     );
   }
 }

@@ -21,9 +21,10 @@ class Pane extends StatelessWidget {
     );
   }
 
-  factory Pane.normal({required Widget header, required Widget content}) =>
-      Pane(child: ScrollableColumn(children: [header, content]));
+  factory Pane.scrollable({required List<Widget> children}) =>
+      Pane(child: ScrollableColumn(children: children));
 
+  // TODO(momo): remove
   factory Pane.withBack({required Widget header, required Widget content}) =>
       Pane(
         child: Column(

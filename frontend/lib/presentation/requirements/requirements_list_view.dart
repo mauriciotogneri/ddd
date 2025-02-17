@@ -26,17 +26,8 @@ class RequirementsListView extends StatelessWidget {
     return StateProvider<RequirementsListState>(
       state: state,
       builder:
-          (context, state) => Pane.normal(
-            header: const Header(),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const VBox(16),
-                //TableFilters(state),
-                Table(state),
-              ],
-            ),
+          (context, state) => Pane.scrollable(
+            children: [const Header(), Table(state), const VBox(16)],
           ),
     );
   }
@@ -47,7 +38,10 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const TitleMedium(text: 'Requirements');
+    return const Padding(
+      padding: EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 16),
+      child: TitleMedium(text: 'Requirements'),
+    );
   }
 }
 
@@ -128,10 +122,13 @@ class Table extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomTable<Requirement>(
-      columns: Requirement.columns,
-      rows: state.requirements,
-      onSelected: state.onRequirementSelected,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: CustomTable<Requirement>(
+        columns: Requirement.columns,
+        rows: state.requirements,
+        onSelected: state.onRequirementSelected,
+      ),
     );
   }
 }
