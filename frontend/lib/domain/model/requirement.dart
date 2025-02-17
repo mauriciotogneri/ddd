@@ -5,6 +5,7 @@ import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/extensions/string_extension.dart';
+import 'package:testflow/presentation/common/chip/custom_chip.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
 
@@ -82,7 +83,8 @@ class Requirement implements TableElement {
     TableColumn(
       id: RequirementColumns.component,
       name: 'Component',
-      width: 250,
+      width: 200,
+      alignment: Alignment.center,
     ),
     TableColumn(
       id: RequirementColumns.type,
@@ -118,7 +120,7 @@ class Requirement implements TableElement {
       case RequirementColumns.name:
         return BodyMedium(text: name);
       case RequirementColumns.component:
-        return BodyMedium(text: component);
+        return CustomChip(text: component);
       case RequirementColumns.type:
         return type.chip;
       case RequirementColumns.status:
