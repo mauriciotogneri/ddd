@@ -1,4 +1,6 @@
+import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
+import 'package:testflow/presentation/common/input/custom_input.dart';
 import 'package:testflow/presentation/common/text/custom_text.dart';
 import 'package:testflow/utils/palette.dart';
 
@@ -34,6 +36,8 @@ class CustomTable<T extends TableElement> extends StatelessWidget {
               HeaderRow(columns),
               const Divider(height: 1, color: Palette.borderInputEnabled),
               ItemRows(columns: columns, rows: rows, onSelected: onSelected),
+              const Divider(height: 1, color: Palette.borderInputEnabled),
+              FooterRow(rows.length),
             ],
           ),
         ),
@@ -169,6 +173,93 @@ class TableCell extends StatelessWidget {
     );
 
     return (width != null) ? widget : Expanded(child: widget);
+  }
+}
+
+class FooterRow extends StatelessWidget {
+  final int total;
+
+  const FooterRow(this.total);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Palette.backgroundTableHeader,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FooterTotal(total),
+          const Spacer(),
+          FooterButton(
+            icon: Icons.keyboard_arrow_left_rounded,
+            onPressed: () {},
+          ),
+          const HBox(8),
+          FooterButton(
+            icon: Icons.keyboard_arrow_right_rounded,
+            onPressed: () {},
+          ),
+          const HBox(8),
+        ],
+      ),
+    );
+  }
+}
+
+class FooterTotal extends StatelessWidget {
+  final int total;
+
+  const FooterTotal(this.total);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Center(
+          child: CustomText(
+            text: 'Total: $total',
+            color: Palette.textTitle,
+            size: 14,
+            weight: FontWeight.w500,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class FooterButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  const FooterButton({required this.icon, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: SizedBox(
+        width: 34,
+        height: 34,
+        child: OutlinedButton.icon(
+          onPressed: onPressed,
+          style: ButtonStyle(
+            padding: WidgetStateProperty.all(const EdgeInsets.only(left: 6)),
+            foregroundColor: WidgetStateProperty.all(Palette.textSecondary),
+            side: WidgetStateProperty.all(
+              const BorderSide(color: Palette.borderButtonSecondary),
+            ),
+            shape: WidgetStateProperty.all(
+              RoundedRectangleBorder(borderRadius: CustomInput.borderRadius),
+            ),
+          ),
+          icon: Icon(icon, color: Palette.iconEnabled, size: 20),
+          label: const Empty(),
+        ),
+      ),
+    );
   }
 }
 
