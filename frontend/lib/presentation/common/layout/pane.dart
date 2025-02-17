@@ -1,16 +1,15 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
+import 'package:testflow/presentation/common/layout/scrollable_column.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
 class Pane extends StatelessWidget {
   final Widget child;
-  final EdgeInsets padding;
   final Color backgroundColor;
 
   const Pane({
     required this.child,
-    required this.padding,
     this.backgroundColor = Palette.backgroundPane,
   });
 
@@ -18,23 +17,15 @@ class Pane extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: backgroundColor,
-      padding: padding,
       child: SizedBox.expand(child: child),
     );
   }
 
   factory Pane.normal({required Widget header, required Widget content}) =>
-      Pane(
-        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [header, content],
-        ),
-      );
+      Pane(child: ScrollableColumn(children: [header, content]));
 
   factory Pane.withBack({required Widget header, required Widget content}) =>
       Pane(
-        padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
