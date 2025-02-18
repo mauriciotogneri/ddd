@@ -80,40 +80,40 @@ class Requirement implements TableElement {
   String toString() => name;
 
   static List<TableColumn> get columns => const [
-    TableColumn(id: RequirementColumns.id, name: 'ID', width: 150),
-    TableColumn(id: RequirementColumns.name, name: 'Name'),
+    TableColumn(id: RequirementColumn.id, name: 'ID', width: 150),
+    TableColumn(id: RequirementColumn.name, name: 'Name'),
     TableColumn(
-      id: RequirementColumns.component,
+      id: RequirementColumn.component,
       name: 'Component',
       width: 200,
       alignment: Alignment.center,
     ),
     TableColumn(
-      id: RequirementColumns.platforms,
+      id: RequirementColumn.platforms,
       name: 'Platforms',
       width: 200,
       alignment: Alignment.center,
     ),
     TableColumn(
-      id: RequirementColumns.type,
+      id: RequirementColumn.type,
       name: 'Type',
       width: 170,
       alignment: Alignment.center,
     ),
     TableColumn(
-      id: RequirementColumns.status,
+      id: RequirementColumn.status,
       name: 'Status',
       width: 130,
       alignment: Alignment.center,
     ),
     TableColumn(
-      id: RequirementColumns.importance,
+      id: RequirementColumn.importance,
       name: 'Importance',
       width: 130,
       alignment: Alignment.center,
     ),
     TableColumn(
-      id: RequirementColumns.numberOfTestCases,
+      id: RequirementColumn.numberOfTestCases,
       name: 'Test Cases',
       width: 120,
       alignment: Alignment.center,
@@ -123,13 +123,13 @@ class Requirement implements TableElement {
   @override
   Widget cell(TableColumn column) {
     switch (column.id) {
-      case RequirementColumns.id:
+      case RequirementColumn.id:
         return BodyMedium(text: id);
-      case RequirementColumns.name:
+      case RequirementColumn.name:
         return BodyMedium(text: name);
-      case RequirementColumns.component:
+      case RequirementColumn.component:
         return CustomChip(text: component);
-      case RequirementColumns.platforms:
+      case RequirementColumn.platforms:
         if (platforms.isEmpty) {
           return const Empty();
         } else if (platforms.length == 1) {
@@ -137,13 +137,13 @@ class Requirement implements TableElement {
         } else {
           return CustomChip(text: '${platforms.length} platforms');
         }
-      case RequirementColumns.type:
+      case RequirementColumn.type:
         return type.chip;
-      case RequirementColumns.status:
+      case RequirementColumn.status:
         return status.chip;
-      case RequirementColumns.importance:
+      case RequirementColumn.importance:
         return importance.chip;
-      case RequirementColumns.numberOfTestCases:
+      case RequirementColumn.numberOfTestCases:
         return BodyMedium(text: numberOfTestCases.toString());
       default:
         return const Empty();
@@ -151,7 +151,7 @@ class Requirement implements TableElement {
   }
 }
 
-enum RequirementColumns {
+enum RequirementColumn {
   id,
   name,
   component,

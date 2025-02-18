@@ -58,7 +58,7 @@ class FormFields extends StatelessWidget {
                 ),
               ),
               const HBox(16),
-              InputEntry(
+              /*InputEntry(
                 input: Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Switch(
@@ -72,7 +72,7 @@ class FormFields extends StatelessWidget {
                     onChanged: (_) {},
                   ),
                 ),
-              ),
+              ),*/
             ],
           ),
           InputEntry(

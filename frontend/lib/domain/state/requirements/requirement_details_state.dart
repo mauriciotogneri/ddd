@@ -6,6 +6,7 @@ import 'package:testflow/domain/model/test_case.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
+import 'package:testflow/domain/types/test_case_execution.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
@@ -30,7 +31,10 @@ class RequirementDetailsState extends BaseState {
       CustomDropdownMultipleController();
   TestCase? selectedTestCase;
 
-  bool get formValid => formKey.currentState!.validate();
+  final CustomTextInputController queryFilterController =
+      CustomTextInputController();
+  final CustomDropdownSingleController<TestCaseExecution>
+  executionFilterController = CustomDropdownSingleController();
 
   RequirementDetailsState({required this.requirement}) {
     idController.text = requirement.id;
@@ -45,8 +49,19 @@ class RequirementDetailsState extends BaseState {
     testCases.addAll(Data.testCases(requirement));
   }
 
+  bool get hasFilters =>
+      queryFilterController.isNotEmpty || executionFilterController.isNotEmpty;
+
+  void onResetFilters() {
+    queryFilterController.clear();
+    executionFilterController.clear();
+    notify();
+  }
+
   void onTestCaseSelected(TestCase testCase) {
     selectedTestCase = testCase;
     notify();
   }
+
+  void onCreateTestCase(BuildContext context) {}
 }

@@ -49,10 +49,6 @@ class RequirementsListState extends BaseState {
       platformFilterController.isNotEmpty ||
       importanceFilterController.isNotEmpty;
 
-  void onRequirementSelected(Requirement requirement) => Navigation.stack(
-    RequirementDetailsView.instance(requirement: requirement),
-  );
-
   void onResetFilters() {
     queryFilterController.clear();
     typeFilterController.clear();
@@ -62,6 +58,10 @@ class RequirementsListState extends BaseState {
     importanceFilterController.clear();
     notify();
   }
+
+  void onRequirementSelected(Requirement requirement) => Navigation.stack(
+    RequirementDetailsView.instance(requirement: requirement),
+  );
 
   void onCreateRequirement(BuildContext context) => BaseDialog.show(
     context: context,

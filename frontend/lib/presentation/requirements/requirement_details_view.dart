@@ -7,14 +7,13 @@ import 'package:testflow/domain/state/requirements/requirement_details_state.dar
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
+import 'package:testflow/domain/types/test_case_execution.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
-import 'package:testflow/presentation/common/text/title_large.dart';
 import 'package:testflow/presentation/common/text/title_medium.dart';
-import 'package:testflow/utils/palette.dart';
 
 class RequirementDetailsView extends StatelessWidget {
   final RequirementDetailsState state;
@@ -35,7 +34,7 @@ class RequirementDetailsView extends StatelessWidget {
             children: [
               const TitleMedium(text: 'Requirement details'),
               FormFields(state),
-              //TestCasesBlock(state),
+              Table(state),
             ],
           ),
     );
@@ -178,44 +177,6 @@ class FormFields extends StatelessWidget {
   }
 }
 
-class TestCasesBlock extends StatelessWidget {
-  final RequirementDetailsState state;
-
-  const TestCasesBlock(this.state);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const HorizontalDivider(
-            color: Palette.borderInputEnabled,
-            height: 0.5,
-          ),
-          const VBox(16),
-          const TitleLarge(text: 'Test cases'),
-          const VBox(16),
-          Expanded(
-            child: Row(
-              children: [
-                Flexible(child: Table(state)),
-                Flexible(
-                  child:
-                      (state.selectedTestCase != null)
-                          ? TestCaseDetails(state.selectedTestCase!)
-                          : const Empty(),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class Table extends StatelessWidget {
   final RequirementDetailsState state;
 
@@ -223,78 +184,30 @@ class Table extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
+    return Padding(
+      padding: const EdgeInsets.all(16),
       child: CustomTable<TestCase>(
-        width: 995,
-        columns: const [
-          /*TableColumn(name: 'Name'),
-          TableColumn(name: 'Is automated', width: 100),
-          TableColumn(
-            name: 'Last run',
-            width: 100,
-            alignment: Alignment.centerRight,
-          ),*/
-        ],
+        columns: TestCase.columns,
         rows: state.testCases,
         onSelected: state.onTestCaseSelected,
-      ),
-    );
-  }
-}
-
-class TestCaseDetails extends StatelessWidget {
-  final TestCase testCase;
-
-  const TestCaseDetails(this.testCase);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              CustomTextInput(
-                name: 'Name',
-                controller: CustomTextInputController()..text = testCase.name,
-                errorMessage: 'Name is required',
-              ),
-              const HBox(16),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Switch(
-                  value: testCase.isAutomated,
-                  padding: const EdgeInsets.only(
-                    top: 0,
-                    bottom: 0,
-                    left: 8,
-                    right: 0,
-                  ),
-                  onChanged: (_) {},
-                ),
-              ),
-            ],
-          ),
+        onResetFilters: state.hasFilters ? state.onResetFilters : null,
+        onCreateItem: () => state.onCreateTestCase(context),
+        filters: [
           CustomTextInput(
-            maxLines: 4,
-            name: 'Preconditions',
-            controller:
-                CustomTextInputController()..text = testCase.preconditions,
+            width: 300,
+            hint: 'Filter…',
+            canClear: true,
+            prefixIcon: Icons.search,
+            controller: state.queryFilterController,
+            onChanged: (_) => state.notify(),
           ),
-          CustomTextInput(
-            maxLines: 4,
-            name: 'Steps',
-            controller: CustomTextInputController()..text = testCase.steps,
-          ),
-          CustomTextInput(
-            maxLines: 4,
-            name: 'Expected result',
-            controller: CustomTextInputController()..text = testCase.expected,
+          const HBox(8),
+          CustomDropdownSingle<TestCaseExecution>(
+            width: 200,
+            values: TestCaseExecution.items,
+            controller: state.executionFilterController,
+            onSelected: (_) => state.notify(),
+            hint: 'Component',
           ),
         ],
       ),

@@ -5,6 +5,7 @@ import 'package:testflow/domain/model/test_case.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
+import 'package:testflow/domain/types/test_case_execution.dart';
 
 class Data {
   static Project currentProject = _projects.first;
@@ -87,7 +88,7 @@ class Data {
         TestCase(
           requirement: requirement,
           name: 'Test case ${i + 1}',
-          isAutomated: Random().nextBool(),
+          execution: _random(TestCaseExecution.values),
           preconditions: _random(_texts),
           steps: _random(_texts),
           expected: _random(_texts),
