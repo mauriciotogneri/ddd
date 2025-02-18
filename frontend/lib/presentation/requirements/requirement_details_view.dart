@@ -202,7 +202,7 @@ class Table extends StatelessWidget {
             onChanged: (_) => state.notify(),
           ),
           const HBox(8),
-          CustomDropdownSingle<TestCaseExecution>(
+          CustomDropdownMultiple<TestCaseExecution>(
             width: 200,
             values: TestCaseExecution.items,
             controller: state.executionFilterController,

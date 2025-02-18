@@ -2,6 +2,7 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/types/test_case_execution.dart';
+import 'package:testflow/extensions/string_extension.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
 import 'package:testflow/presentation/common/text/body_small.dart';
@@ -16,6 +17,7 @@ class TestCase implements TableElement {
   final String steps;
   final String expected;
   final DateTime lastRun;
+  final List<String> tags;
 
   const TestCase({
     required this.requirement,
@@ -25,7 +27,29 @@ class TestCase implements TableElement {
     required this.steps,
     required this.expected,
     required this.lastRun,
+    required this.tags,
   });
+
+  bool matches({
+    required String queryFilter,
+    required List<TestCaseExecution> executionFilter,
+  }) {
+    if (queryFilter.isEmpty && executionFilter.isEmpty) {
+      return true;
+    } else {
+      final bool matchesQuery =
+          queryFilter.isEmpty ||
+          name.matches(queryFilter) ||
+          preconditions.matches(queryFilter) ||
+          steps.matches(queryFilter) ||
+          expected.matches(queryFilter) ||
+          tags.any((tag) => tag.matches(queryFilter));
+      final bool matchesExecution =
+          executionFilter.isEmpty || executionFilter.contains(execution);
+
+      return matchesQuery && matchesExecution;
+    }
+  }
 
   static List<TableColumn> get columns => const [
     TableColumn(id: TestCaseColumn.name, name: 'Name'),

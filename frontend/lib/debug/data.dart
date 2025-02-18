@@ -95,6 +95,9 @@ class Data {
           lastRun: DateTime.now().subtract(
             Duration(days: Random().nextInt(30)),
           ),
+          tags: [
+            for (int i = 0; i < Random().nextInt(3) + 1; i++) 'Tag ${i + 1}',
+          ],
         ),
   ];
 

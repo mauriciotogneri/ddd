@@ -13,7 +13,7 @@ import 'package:testflow/presentation/common/input/custom_text_input.dart';
 
 class RequirementDetailsState extends BaseState {
   final Requirement requirement;
-  final List<TestCase> testCases = [];
+  final List<TestCase> _allTestCases = [];
   final GlobalKey<FormState> formKey = GlobalKey();
   final CustomTextInputController idController = CustomTextInputController();
   final CustomDropdownSingleController<RequirementType> typeController =
@@ -33,8 +33,18 @@ class RequirementDetailsState extends BaseState {
 
   final CustomTextInputController queryFilterController =
       CustomTextInputController();
-  final CustomDropdownSingleController<TestCaseExecution>
-  executionFilterController = CustomDropdownSingleController();
+  final CustomDropdownMultipleController<TestCaseExecution>
+  executionFilterController = CustomDropdownMultipleController();
+
+  List<TestCase> get testCases =>
+      _allTestCases
+          .where(
+            (testCase) => testCase.matches(
+              queryFilter: queryFilterController.text,
+              executionFilter: executionFilterController.selected,
+            ),
+          )
+          .toList();
 
   RequirementDetailsState({required this.requirement}) {
     idController.text = requirement.id;
@@ -46,7 +56,7 @@ class RequirementDetailsState extends BaseState {
     componentController.select(requirement.component);
     platformsController.select(requirement.platforms);
 
-    testCases.addAll(Data.testCases(requirement));
+    _allTestCases.addAll(Data.testCases(requirement));
   }
 
   bool get hasFilters =>
