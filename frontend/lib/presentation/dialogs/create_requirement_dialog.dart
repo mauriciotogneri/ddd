@@ -1,11 +1,13 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
+import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/button/primary_text_button.dart';
 import 'package:testflow/presentation/common/button/secondary_text_button.dart';
 import 'package:testflow/presentation/common/form/form_key.dart';
+import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
@@ -35,7 +37,7 @@ class CreateRequirementDialog extends StatelessWidget {
                 text: 'Cancel',
                 onPressed: Navigation.pop,
               ),
-              const HBox(8),
+              const HBox(4),
               PrimaryTextButton(text: 'Create', onPressed: state.onCreate),
             ],
             content: FormFields(state),
@@ -63,13 +65,15 @@ class FormFields extends StatelessWidget {
             name: 'Name',
             errorMessage: 'Name is required',
           ),
-          const HBox(16),
+          const VBox(16),
           CustomTextInput(
-            maxLines: 5,
-            controller: state.descriptionController,
+            minLines: 3,
+            maxLines: 3,
             name: 'Description',
+            controller: state.descriptionController,
+            keyboardType: TextInputType.multiline,
           ),
-          const HBox(16),
+          const VBox(16),
           Row(
             children: [
               Expanded(
@@ -85,6 +89,7 @@ class FormFields extends StatelessWidget {
                   ],
                 ),
               ),
+              const HBox(16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +99,6 @@ class FormFields extends StatelessWidget {
                       width: 240,
                       values: RequirementType.items,
                       controller: state.typeController,
-                      allowDeselection: true,
                       name: 'Type',
                       errorMessage: 'Type is required',
                     ),
@@ -103,85 +107,77 @@ class FormFields extends StatelessWidget {
               ),
             ],
           ),
-          const Row(
+          const VBox(16),
+          Row(
             children: [
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    /*CustomDropdownSingle<RequirementStatus>(
+                    CustomDropdownSingle<RequirementStatus>(
                       width: 240,
-                      values:
-                          RequirementStatus.values
-                              .map(DropdownItem.create)
-                              .toList(),
+                      values: RequirementStatus.items,
                       controller: state.statusController,
-                      allowDeselection: true,
                       name: 'Status',
                       errorMessage: 'Status is required',
-                    ),*/
+                    ),
                   ],
                 ),
               ),
+              const HBox(16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    /*CustomDropdownSingle<RequirementImportance>(
+                    CustomDropdownSingle<RequirementImportance>(
                       width: 240,
-                      values:
-                          RequirementImportance.values
-                              .map(DropdownItem.create)
-                              .toList(),
+                      values: RequirementImportance.items,
                       controller: state.importanceController,
-                      allowDeselection: true,
                       name: 'Importance',
                       errorMessage: 'Importance is required',
-                    ),*/
+                    ),
                   ],
                 ),
               ),
             ],
           ),
-          const Row(
+          const VBox(16),
+          Row(
             children: [
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    /*CustomDropdownSingle<String>(
+                    CustomDropdownSingle<String>(
                       width: 240,
-                      values:
-                          Data.currentProject.components
-                              .map(DropdownItem.create)
-                              .toList(),
+                      values: DropdownItem.fromList(
+                        Data.currentProject.components,
+                      ),
                       controller: state.componentController,
-                      allowDeselection: true,
                       name: 'Component',
                       errorMessage: 'Component is required',
-                    ),*/
+                    ),
                   ],
                 ),
               ),
+              const HBox(16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    /*CustomDropdownSingle<String>(
+                    CustomDropdownMultiple<String>(
                       width: 240,
-                      values:
-                          Data.currentProject.platforms
-                              .map(DropdownItem.create)
-                              .toList(),
+                      values: DropdownItem.fromList(
+                        Data.currentProject.platforms,
+                      ),
                       controller: state.platformsController,
-                      allowDeselection: true,
                       name: 'Platforms',
                       errorMessage: 'Platforms is required',
-                    ),*/
+                    ),
                   ],
                 ),
               ),
@@ -209,8 +205,8 @@ class CreateRequirementDialogState extends BaseState {
   importanceController = CustomDropdownSingleController();
   final CustomDropdownSingleController<String> componentController =
       CustomDropdownSingleController();
-  final CustomDropdownSingleController<String> platformsController =
-      CustomDropdownSingleController();
+  final CustomDropdownMultipleController<String> platformsController =
+      CustomDropdownMultipleController();
 
   CreateRequirementDialogState({required this.onCreateRequirement});
 
@@ -226,7 +222,7 @@ class CreateRequirementDialogState extends BaseState {
         status: statusController.selected!,
         importance: importanceController.selected!,
         component: componentController.selected!,
-        platforms: [platformsController.selected!],
+        platforms: platformsController.selected,
       );
     }
   }
