@@ -9,6 +9,8 @@ import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/create_requirement_dialog.dart';
+import 'package:testflow/presentation/requirements/requirement_details_view.dart';
+import 'package:testflow/utils/navigation.dart';
 
 class RequirementsListState extends BaseState {
   final CustomTextInputController queryFilterController =
@@ -47,12 +49,9 @@ class RequirementsListState extends BaseState {
       platformFilterController.isNotEmpty ||
       importanceFilterController.isNotEmpty;
 
-  void onRequirementSelected(Requirement requirement) {
-    print('Selected requirement: $requirement');
-  }
-  /*Navigation.stack(
+  void onRequirementSelected(Requirement requirement) => Navigation.stack(
     RequirementDetailsView.instance(requirement: requirement),
-  );*/
+  );
 
   void onResetFilters() {
     queryFilterController.clear();

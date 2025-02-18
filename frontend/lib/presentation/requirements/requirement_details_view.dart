@@ -26,13 +26,12 @@ class RequirementDetailsView extends StatelessWidget {
     return StateProvider<RequirementDetailsState>(
       state: state,
       builder:
-          (context, state) => Pane.withBack(
-            header: const TitleMedium(text: 'Requirement details'),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [FormFields(state), TestCasesBlock(state)],
-            ),
+          (context, state) => Pane.scrollable(
+            children: const [
+              TitleMedium(text: 'Requirement details'),
+              //FormFields(state),
+              //TestCasesBlock(state),
+            ],
           ),
     );
   }
