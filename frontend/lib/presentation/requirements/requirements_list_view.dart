@@ -10,8 +10,8 @@ import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
+import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
-import 'package:testflow/presentation/common/text/title_medium.dart';
 
 class RequirementsListView extends StatelessWidget {
   final RequirementsListState state;
@@ -27,20 +27,13 @@ class RequirementsListView extends StatelessWidget {
       state: state,
       builder:
           (context, state) => Pane.scrollable(
-            children: [const Header(), Table(state), const VBox(16)],
+            children: [
+              const NavigationPath('Requirements'),
+              const VBox(16),
+              Table(state),
+              const VBox(16),
+            ],
           ),
-    );
-  }
-}
-
-class Header extends StatelessWidget {
-  const Header();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 16),
-      child: TitleMedium(text: 'Requirements'),
     );
   }
 }

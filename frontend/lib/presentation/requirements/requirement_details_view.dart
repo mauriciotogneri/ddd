@@ -13,8 +13,8 @@ import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
+import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
-import 'package:testflow/presentation/common/text/title_medium.dart';
 
 class RequirementDetailsView extends StatelessWidget {
   final RequirementDetailsState state;
@@ -33,7 +33,7 @@ class RequirementDetailsView extends StatelessWidget {
       builder:
           (context, state) => Pane.scrollable(
             children: [
-              const TitleMedium(text: 'Requirement details'),
+              const NavigationPath('Requirement details'),
               FormFields(state),
               Table(state),
             ],
