@@ -46,7 +46,7 @@ class DashboardState extends BaseState {
   }
 
   List<DropdownItem<Project>> get projects =>
-      Data.projects().map((e) => DropdownItem(value: e, text: e.name)).toList();
+      DropdownItem.fromList(Data.projects());
 
   void onRootViewChange(int index) {
     activeView = index;

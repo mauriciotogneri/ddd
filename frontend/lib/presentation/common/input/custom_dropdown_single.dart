@@ -183,6 +183,9 @@ class DropdownItem<T> {
   factory DropdownItem.create(T value, [bool enabled = true]) =>
       DropdownItem(value: value, text: value.toString(), enabled: enabled);
 
+  static List<DropdownItem<T>> fromList<T>(List<T> items) =>
+      items.map(DropdownItem.create).toList();
+
   @override
   bool operator ==(Object other) =>
       other is DropdownItem &&

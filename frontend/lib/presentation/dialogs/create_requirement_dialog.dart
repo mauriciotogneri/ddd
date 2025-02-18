@@ -5,6 +5,7 @@ import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/button/primary_text_button.dart';
 import 'package:testflow/presentation/common/button/secondary_text_button.dart';
+import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
@@ -34,15 +35,8 @@ class CreateRequirementDialog extends StatelessWidget {
                 text: 'Cancel',
                 onPressed: Navigation.pop,
               ),
-              PrimaryTextButton(
-                text: 'Create',
-                onPressed: () {
-                  if (state.formValid) {
-                    Navigation.pop();
-                    state.onCreate();
-                  }
-                },
-              ),
+              const HBox(8),
+              PrimaryTextButton(text: 'Create', onPressed: state.onCreate),
             ],
             content: FormFields(state),
           ),
@@ -67,13 +61,15 @@ class FormFields extends StatelessWidget {
             autofocus: true,
             controller: state.nameController,
             name: 'Name',
-            //errorMessage: 'Name is required',
+            errorMessage: 'Name is required',
           ),
+          const HBox(16),
           CustomTextInput(
             maxLines: 5,
             controller: state.descriptionController,
             name: 'Description',
           ),
+          const HBox(16),
           Row(
             children: [
               Expanded(
@@ -84,27 +80,24 @@ class FormFields extends StatelessWidget {
                     CustomTextInput(
                       controller: state.idController,
                       name: 'ID',
-                      //errorMessage: 'ID is required',
+                      errorMessage: 'ID is required',
                     ),
                   ],
                 ),
               ),
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    /*CustomDropdownSingle<RequirementType>(
+                    CustomDropdownSingle<RequirementType>(
                       width: 240,
-                      values:
-                          RequirementType.values
-                              .map(DropdownItem.create)
-                              .toList(),
+                      values: RequirementType.items,
                       controller: state.typeController,
                       allowDeselection: true,
                       name: 'Type',
                       errorMessage: 'Type is required',
-                    ),*/
+                    ),
                   ],
                 ),
               ),
@@ -202,7 +195,7 @@ class FormFields extends StatelessWidget {
 }
 
 class CreateRequirementDialogState extends BaseState {
-  final GlobalKey<FormState> formKey = GlobalKey();
+  final FormKey formKey = const FormKey();
   final OnCreateRequirement onCreateRequirement;
   final CustomTextInputController idController = CustomTextInputController();
   final CustomDropdownSingleController<RequirementType> typeController =
@@ -221,18 +214,22 @@ class CreateRequirementDialogState extends BaseState {
 
   CreateRequirementDialogState({required this.onCreateRequirement});
 
-  bool get formValid => formKey.currentState!.validate();
+  void onCreate() {
+    if (formKey.validate()) {
+      Navigation.pop();
 
-  void onCreate() => onCreateRequirement(
-    name: nameController.text,
-    description: descriptionController.text,
-    id: idController.text,
-    type: typeController.selected!,
-    status: statusController.selected!,
-    importance: importanceController.selected!,
-    component: componentController.selected!,
-    platforms: [platformsController.selected!],
-  );
+      onCreateRequirement(
+        name: nameController.text,
+        description: descriptionController.text,
+        id: idController.text,
+        type: typeController.selected!,
+        status: statusController.selected!,
+        importance: importanceController.selected!,
+        component: componentController.selected!,
+        platforms: [platformsController.selected!],
+      );
+    }
+  }
 }
 
 typedef OnCreateRequirement =

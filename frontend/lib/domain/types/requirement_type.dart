@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testflow/presentation/common/chip/custom_chip.dart';
+import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/utils/palette.dart';
 
 enum RequirementType {
@@ -38,6 +39,11 @@ enum RequirementType {
     backgroundColor: backgroundColor,
     foregroundColor: foregroundColor,
   );
+
+  static List<DropdownItem<RequirementType>> get items =>
+      RequirementType.values
+          .map((type) => DropdownItem(value: type, text: type.localized))
+          .toList();
 
   @override
   String toString() => localized;

@@ -72,10 +72,7 @@ class Table extends StatelessWidget {
           const HBox(8),
           CustomDropdownMultiple<String>(
             width: 180,
-            values:
-                Data.currentProject.components
-                    .map(DropdownItem.create)
-                    .toList(),
+            values: DropdownItem.fromList(Data.currentProject.components),
             controller: state.componentFilterController,
             onSelected: (_) => state.notify(),
             hint: 'Component',
@@ -83,8 +80,7 @@ class Table extends StatelessWidget {
           const HBox(8),
           CustomDropdownMultiple<String>(
             width: 180,
-            values:
-                Data.currentProject.platforms.map(DropdownItem.create).toList(),
+            values: DropdownItem.fromList(Data.currentProject.platforms),
             controller: state.platformFilterController,
             onSelected: (_) => state.notify(),
             hint: 'Platform',
@@ -92,7 +88,7 @@ class Table extends StatelessWidget {
           const HBox(8),
           CustomDropdownMultiple<RequirementType>(
             width: 180,
-            values: RequirementType.values.map(DropdownItem.create).toList(),
+            values: RequirementType.items,
             controller: state.typeFilterController,
             onSelected: (_) => state.notify(),
             hint: 'Type',
@@ -100,7 +96,7 @@ class Table extends StatelessWidget {
           const HBox(8),
           CustomDropdownMultiple<RequirementStatus>(
             width: 180,
-            values: RequirementStatus.values.map(DropdownItem.create).toList(),
+            values: RequirementStatus.items,
             controller: state.statusFilterController,
             onSelected: (_) => state.notify(),
             hint: 'Status',
@@ -108,8 +104,7 @@ class Table extends StatelessWidget {
           const HBox(8),
           CustomDropdownMultiple<RequirementImportance>(
             width: 180,
-            values:
-                RequirementImportance.values.map(DropdownItem.create).toList(),
+            values: RequirementImportance.items,
             controller: state.importanceFilterController,
             onSelected: (_) => state.notify(),
             hint: 'Importance',
