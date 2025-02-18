@@ -1,3 +1,4 @@
+import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/utils/palette.dart';
 
@@ -20,7 +21,7 @@ class CustomInput {
   static BorderRadius get borderRadius => BorderRadius.circular(4);
 }
 
-abstract class CustomInputController<T> {
+abstract class CustomInputController<T> extends BaseState {
   T? get value;
 
   bool get isEmpty;

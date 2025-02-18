@@ -1,3 +1,4 @@
+import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:testflow/presentation/common/form/form_input.dart';
@@ -5,7 +6,7 @@ import 'package:testflow/presentation/common/icon/input_icon.dart';
 import 'package:testflow/presentation/common/input/custom_input.dart';
 import 'package:testflow/utils/palette.dart';
 
-class CustomTextInput extends StatefulWidget {
+class CustomTextInput extends StatelessWidget {
   final CustomTextInputController controller;
   final TextInputType keyboardType;
   final TextCapitalization capitalization;
@@ -53,117 +54,106 @@ class CustomTextInput extends StatefulWidget {
   });
 
   @override
-  State<CustomTextInput> createState() => _CustomTextInputState();
-}
-
-class _CustomTextInputState extends State<CustomTextInput> {
-  bool showClear = false;
-
-  @override
   Widget build(BuildContext context) {
-    return FormInput(
-      name: widget.name,
-      errorMessage: widget.errorMessage,
-      controller: widget.controller,
+    return StateProvider<CustomTextInputController>(
+      state: controller,
       builder:
-          (hasError) => SizedBox(
-            width: widget.width,
-            height:
-                ((widget.minLines == null) || (widget.minLines! == 1))
-                    ? 40
-                    : null,
-            child: TextField(
-              autofocus: widget.autofocus,
-              minLines: widget.minLines,
-              maxLines: widget.maxLines,
-              readOnly: widget.readOnly,
-              enableInteractiveSelection: !widget.readOnly,
-              enabled: widget.enabled,
-              keyboardType: widget.keyboardType,
-              focusNode: widget.controller._focusNode,
-              textInputAction: widget.textInputAction,
-              controller: widget.controller._controller,
-              onChanged: _onChanged,
-              obscureText: widget.obscureText,
-              autofillHints: widget.autofillHints,
-              textCapitalization: widget.capitalization,
-              style: const TextStyle(
-                color: Palette.textInput,
-                fontSize: 14,
-                overflow: TextOverflow.ellipsis,
-              ),
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(
-                  top: 14,
-                  left: 12,
-                  right: widget.canClear ? 0 : 12,
-                  bottom: 14,
-                ),
-                isDense: true,
-                border:
-                    hasError
-                        ? CustomInput.errorBorder
-                        : CustomInput.enabledBorder,
-                enabledBorder:
-                    hasError
-                        ? CustomInput.errorBorder
-                        : CustomInput.enabledBorder,
+          (context, state) => FormInput(
+            name: name,
+            errorMessage: errorMessage,
+            controller: controller,
+            builder:
+                (hasError) => SizedBox(
+                  width: width,
+                  height: ((minLines == null) || (minLines! == 1)) ? 40 : null,
+                  child: TextField(
+                    autofocus: autofocus,
+                    minLines: minLines,
+                    maxLines: maxLines,
+                    readOnly: readOnly,
+                    enableInteractiveSelection: !readOnly,
+                    enabled: enabled,
+                    keyboardType: keyboardType,
+                    focusNode: controller._focusNode,
+                    textInputAction: textInputAction,
+                    controller: controller._controller,
+                    onChanged: _onChanged,
+                    obscureText: obscureText,
+                    autofillHints: autofillHints,
+                    textCapitalization: capitalization,
+                    style: const TextStyle(
+                      color: Palette.textInput,
+                      fontSize: 14,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(
+                        top: 14,
+                        left: 12,
+                        right: canClear ? 0 : 12,
+                        bottom: 14,
+                      ),
+                      isDense: true,
+                      border:
+                          hasError
+                              ? CustomInput.errorBorder
+                              : CustomInput.enabledBorder,
+                      enabledBorder:
+                          hasError
+                              ? CustomInput.errorBorder
+                              : CustomInput.enabledBorder,
 
-                disabledBorder:
-                    hasError
-                        ? CustomInput.errorBorder
-                        : CustomInput.enabledBorder,
+                      disabledBorder:
+                          hasError
+                              ? CustomInput.errorBorder
+                              : CustomInput.enabledBorder,
 
-                focusedBorder:
-                    hasError
-                        ? CustomInput.errorBorder
-                        : CustomInput.focusedBorder,
-                errorBorder: CustomInput.errorBorder,
-                focusedErrorBorder: CustomInput.errorBorder,
+                      focusedBorder:
+                          hasError
+                              ? CustomInput.errorBorder
+                              : CustomInput.focusedBorder,
+                      errorBorder: CustomInput.errorBorder,
+                      focusedErrorBorder: CustomInput.errorBorder,
 
-                prefixIcon: InputIcon.create(
-                  widget.prefixIcon,
-                  enabled: widget.enabled,
+                      prefixIcon: InputIcon.create(
+                        prefixIcon,
+                        enabled: enabled,
+                      ),
+                      suffixIcon: _suffixICon,
+                      filled: filled,
+                      fillColor:
+                          enabled
+                              ? Palette.backgroundInputEnabled
+                              : Palette.backgroundInputDisabled,
+                      hoverColor: Palette.backgroundInputEnabled,
+                      hintText: hint,
+                      hintStyle: const TextStyle(
+                        color: Palette.textHint,
+                        fontSize: 14,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    inputFormatters: [
+                      if (maxLength != null)
+                        LengthLimitingTextInputFormatter(maxLength),
+                    ],
+                  ),
                 ),
-                suffixIcon: _suffixICon,
-                filled: widget.filled,
-                fillColor:
-                    widget.enabled
-                        ? Palette.backgroundInputEnabled
-                        : Palette.backgroundInputDisabled,
-                hoverColor: Palette.backgroundInputEnabled,
-                hintText: widget.hint,
-                hintStyle: const TextStyle(
-                  color: Palette.textHint,
-                  fontSize: 14,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              inputFormatters: [
-                if (widget.maxLength != null)
-                  LengthLimitingTextInputFormatter(widget.maxLength),
-              ],
-            ),
           ),
     );
   }
 
   Widget? get _suffixICon =>
-      (widget.canClear && showClear) ? ClearIcon(_onClear) : null;
+      (canClear && controller._showClear) ? ClearIcon(_onClear) : null;
 
   void _onClear() {
-    widget.controller.clear();
-    widget.onChanged?.call('');
-    setState(() {
-      showClear = false;
-    });
+    onChanged?.call('');
+    controller.clear();
   }
 
   void _onChanged(String text) {
-    widget.onChanged?.call(text);
-    setState(() {
-      showClear = text.isNotEmpty;
-    });
+    onChanged?.call(text);
+    controller.onChanged(text);
   }
 }
 
@@ -187,6 +177,7 @@ class ClearIcon extends StatelessWidget {
 class CustomTextInputController extends CustomInputController<String> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
+  bool _showClear = false;
 
   String get text => _controller.text.trim();
 
@@ -202,5 +193,12 @@ class CustomTextInputController extends CustomInputController<String> {
 
   void clear() {
     _controller.text = '';
+    _showClear = false;
+    notify();
+  }
+
+  void onChanged(String text) {
+    _showClear = text.isNotEmpty;
+    notify();
   }
 }
