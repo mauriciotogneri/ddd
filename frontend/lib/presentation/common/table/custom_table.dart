@@ -137,7 +137,7 @@ class TableExportButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SecondaryIconButton(
-      icon: Icons.ios_share_outlined,
+      icon: Icons.file_download_outlined,
       onPressed: onPressed,
     );
   }
