@@ -274,7 +274,7 @@ class TableCell extends StatelessWidget {
   Widget build(BuildContext context) {
     final Widget widget = Container(
       width: width,
-      height: 40,
+      height: 45,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Align(
         alignment: alignment ?? Alignment.centerLeft,
