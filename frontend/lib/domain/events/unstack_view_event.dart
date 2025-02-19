@@ -1,5 +1,7 @@
 import 'package:testflow/domain/events/events.dart';
 
 class UnstackViewEvent extends Event {
-  const UnstackViewEvent();
+  final int amount;
+
+  const UnstackViewEvent({required this.amount});
 }

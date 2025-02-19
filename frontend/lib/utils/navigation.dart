@@ -67,7 +67,8 @@ class Navigation {
 
   static void stack(Widget view) => StackViewEvent(view).dispatch();
 
-  static void unstack() => const UnstackViewEvent().dispatch();
+  static void unstack([int amount = 0]) =>
+      UnstackViewEvent(amount: amount).dispatch();
 
   static void dialog(String name, Widget widget) => push(
     PageRouteBuilder(

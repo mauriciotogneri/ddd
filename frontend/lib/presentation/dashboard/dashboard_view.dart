@@ -1,6 +1,5 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
-import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/state/dashboard/dashboard_state.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
@@ -20,7 +19,7 @@ class DashboardView extends StatelessWidget {
       builder:
           (context, state) => Pane.scrollable(
             children: [
-              NavigationPath(paths: [Data.currentProject.name, 'Dashboard']),
+              const NavigationPath(paths: ['Dashboard']),
               Content(),
             ],
           ),

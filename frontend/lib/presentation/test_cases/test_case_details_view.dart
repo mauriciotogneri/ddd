@@ -1,6 +1,5 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
-import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/model/test_case.dart';
 import 'package:testflow/domain/state/test_cases/test_case_details_state.dart';
@@ -32,7 +31,6 @@ class TestCaseDetailsView extends StatelessWidget {
             children: [
               NavigationPath(
                 paths: [
-                  Data.currentProject.name,
                   'Requirements',
                   state.requirement.id,
                   state.testCase.name,

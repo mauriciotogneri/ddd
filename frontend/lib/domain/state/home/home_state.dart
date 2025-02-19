@@ -68,14 +68,14 @@ class HomeState extends BaseState {
     notify();
   }
 
-  void _removeView() {
-    viewsStack.removeLast();
-    notify();
-  }
-
   void _onViewStacked(StackViewEvent event) => _addView(event.view);
 
-  void _onViewUnstacked(UnstackViewEvent event) => _removeView();
+  void _onViewUnstacked(UnstackViewEvent event) {
+    for (int i = 0; i < event.amount; i++) {
+      viewsStack.removeLast();
+    }
+    notify();
+  }
 
   void onChangeProject(Project project) {
     Data.onChangeProject(project);

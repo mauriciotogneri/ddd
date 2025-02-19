@@ -1,6 +1,7 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/presentation/common/text/custom_text.dart';
+import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
 class NavigationPath extends StatelessWidget {
@@ -20,7 +21,11 @@ class NavigationPath extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             for (int i = 0; i < paths.length; i++)
-              PathSection(text: paths[i], isLast: i == paths.length - 1),
+              PathSection(
+                text: paths[i],
+                isLast: i == paths.length - 1,
+                unstack: paths.length - i - 1,
+              ),
           ],
         ),
       ),
@@ -31,14 +36,19 @@ class NavigationPath extends StatelessWidget {
 class PathSection extends StatelessWidget {
   final String text;
   final bool isLast;
+  final int unstack;
 
-  const PathSection({required this.text, required this.isLast});
+  const PathSection({
+    required this.text,
+    required this.isLast,
+    required this.unstack,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
-      onTap: isLast ? null : () {},
+      onTap: isLast ? null : () => Navigation.unstack(unstack),
       child: Row(
         children: [
           const HBox(12),
