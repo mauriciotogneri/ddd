@@ -2,6 +2,7 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/presentation/common/button/primary_text_button.dart';
 import 'package:testflow/presentation/common/button/secondary_text_button.dart';
+import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/text/title_small.dart';
@@ -80,7 +81,7 @@ class FormFields extends StatelessWidget {
 }
 
 class CreateProjectDialogState extends BaseState {
-  final GlobalKey<FormState> formKey = GlobalKey();
+  final FormKey formKey = const FormKey();
   final OnCreateProject onCreateProject;
   final CustomTextInputController nameController = CustomTextInputController();
   final CustomTextInputController descriptionController =

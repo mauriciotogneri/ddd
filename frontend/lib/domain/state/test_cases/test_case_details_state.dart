@@ -1,14 +1,18 @@
 import 'package:dafluta/dafluta.dart';
-import 'package:flutter/material.dart';
 import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/model/test_case.dart';
+import 'package:testflow/domain/types/test_case_execution.dart';
+import 'package:testflow/presentation/common/form/form_key.dart';
+import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 
 class TestCaseDetailsState extends BaseState {
   final Requirement requirement;
   final TestCase testCase;
-  final GlobalKey<FormState> formKey = GlobalKey();
+  final FormKey formKey = const FormKey();
   final CustomTextInputController nameController = CustomTextInputController();
+  final CustomDropdownSingleController<TestCaseExecution> executionController =
+      CustomDropdownSingleController();
   final CustomTextInputController preconditionsController =
       CustomTextInputController();
   final CustomTextInputController stepsController = CustomTextInputController();
@@ -19,6 +23,7 @@ class TestCaseDetailsState extends BaseState {
 
   TestCaseDetailsState({required this.requirement, required this.testCase}) {
     nameController.text = testCase.name;
+    executionController.select(testCase.execution);
     preconditionsController.text = testCase.preconditions;
     stepsController.text = testCase.steps;
     expectedController.text = testCase.expected;

@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/model/test_case.dart';
 import 'package:testflow/domain/state/test_cases/test_case_details_state.dart';
+import 'package:testflow/domain/types/test_case_execution.dart';
+import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
+import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
-import 'package:testflow/presentation/common/text/title_small.dart';
 
 class TestCaseDetailsView extends StatelessWidget {
   final TestCaseDetailsState state;
@@ -42,87 +44,59 @@ class FormFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: state.formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              InputEntry(
-                width: 840,
-                label: 'Name',
-                input: CustomTextInput(
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Form(
+        key: state.formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CustomTextInput(
+                  width: 300,
+                  name: 'Name',
                   controller: state.nameController,
-                  //errorMessage: 'Name is required',
+                  errorMessage: 'Name is required',
                 ),
-              ),
-              const HBox(16),
-              /*InputEntry(
-                input: Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Switch(
-                    value: state.testCase.isAutomated,
-                    padding: const EdgeInsets.only(
-                      top: 0,
-                      bottom: 0,
-                      left: 8,
-                      right: 0,
-                    ),
-                    onChanged: (_) {},
-                  ),
+                const HBox(16),
+                CustomDropdownSingle<TestCaseExecution>(
+                  name: 'Execution',
+                  values: TestCaseExecution.items,
+                  controller: state.executionController,
+                  errorMessage: 'Execution is required',
                 ),
-              ),*/
-            ],
-          ),
-          InputEntry(
-            width: 1000,
-            label: 'Preconditions',
-            input: CustomTextInput(
+              ],
+            ),
+            const VBox(16),
+            CustomMultilineInput(
+              width: 1000,
+              minLines: 5,
               maxLines: 5,
+              name: 'Preconditions',
               controller: state.preconditionsController,
             ),
-          ),
-          InputEntry(
-            width: 1000,
-            label: 'Steps',
-            input: CustomTextInput(
+            const VBox(16),
+            CustomTextInput(
+              width: 1000,
+              minLines: 5,
               maxLines: 5,
+              name: 'Steps',
               controller: state.stepsController,
             ),
-          ),
-          InputEntry(
-            width: 1000,
-            label: 'Expected result',
-            input: CustomTextInput(
+            const VBox(16),
+            CustomTextInput(
+              width: 1000,
+              minLines: 5,
               maxLines: 5,
+              name: 'Expected result',
               controller: state.expectedController,
             ),
-          ),
-          const VBox(16),
-        ],
-      ),
-    );
-  }
-}
-
-class InputEntry extends StatelessWidget {
-  final double? width;
-  final String? label;
-  final Widget input;
-
-  const InputEntry({required this.input, this.label, this.width});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [if (label != null) TitleSmall(text: label!), input],
+            const VBox(16),
+          ],
+        ),
       ),
     );
   }

@@ -35,6 +35,7 @@ class Content extends StatelessWidget {
       child: CustomCard(
         width: 350,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             const TitleMedium(text: 'Sign in'),
@@ -58,6 +59,7 @@ class FormInputs extends StatelessWidget {
     return Form(
       key: state.formKey,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           const VBox(10),

@@ -7,6 +7,7 @@ import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/domain/types/test_case_execution.dart';
+import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
@@ -16,7 +17,7 @@ import 'package:testflow/utils/navigation.dart';
 class RequirementDetailsState extends BaseState {
   final Requirement requirement;
   final List<TestCase> _allTestCases = [];
-  final GlobalKey<FormState> formKey = GlobalKey();
+  final FormKey formKey = const FormKey();
   final CustomTextInputController idController = CustomTextInputController();
   final CustomDropdownSingleController<RequirementType> typeController =
       CustomDropdownSingleController();
