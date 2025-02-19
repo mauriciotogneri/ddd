@@ -9,29 +9,24 @@ import 'package:testflow/domain/events/unstack_view_event.dart';
 import 'package:testflow/domain/model/project.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/components/components_view.dart';
+import 'package:testflow/presentation/dashboard/dashboard_view.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/create_project_dialog.dart';
 import 'package:testflow/presentation/home/home_screen.dart';
 import 'package:testflow/presentation/requirements/requirements_list_view.dart';
 
 class HomeState extends BaseState {
-  int activeView = 0;
+  HomeView activeView = HomeView.dashboard;
   StreamSubscription? _subscriptionStackViewEvent;
   StreamSubscription? _subscriptionUnstackViewEvent;
   final CustomDropdownSingleController<Project> projectsController =
       CustomDropdownSingleController();
   final List<Widget> viewsStack = [];
 
-  static const int VIEW_REQUIREMENTS = 0;
-  static const int VIEW_SUITES = 1;
-  static const int VIEW_SESSIONS = 2;
-  static const int VIEW_SETTINGS = 3;
-  static const int VIEW_COMPONENTS = 4;
-
   @override
   void onLoad() {
     projectsController.select(Data.currentProject);
-    onRootViewChange(VIEW_REQUIREMENTS);
+    onRootViewChange(HomeView.dashboard);
     notify();
 
     _subscriptionStackViewEvent = Events.listen<StackViewEvent>(_onViewStacked);
@@ -49,19 +44,21 @@ class HomeState extends BaseState {
   List<DropdownItem<Project>> get projects =>
       DropdownItem.fromList(Data.projects());
 
-  void onRootViewChange(int index) {
-    activeView = index;
+  void onRootViewChange(HomeView view) {
+    activeView = view;
     viewsStack.clear();
 
-    if (index == VIEW_REQUIREMENTS) {
+    if (view == HomeView.dashboard) {
+      _addView(DashboardView.instance());
+    } else if (view == HomeView.requirements) {
       _addView(RequirementsListView.instance());
-    } else if (index == VIEW_SUITES) {
+    } else if (view == HomeView.suites) {
       _addView(const SuitesView());
-    } else if (index == VIEW_SESSIONS) {
+    } else if (view == HomeView.sessions) {
       _addView(const SessionsView());
-    } else if (index == VIEW_SETTINGS) {
+    } else if (view == HomeView.settings) {
       _addView(const SettingsView());
-    } else if (index == VIEW_COMPONENTS) {
+    } else if (view == HomeView.components) {
       _addView(ComponentsView.instance());
     }
   }
@@ -106,4 +103,13 @@ class HomeState extends BaseState {
     );
     notify();
   }
+}
+
+enum HomeView {
+  dashboard,
+  requirements,
+  suites,
+  sessions,
+  settings,
+  components,
 }

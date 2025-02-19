@@ -57,34 +57,40 @@ class NavigationMenu extends StatelessWidget {
             ProjectSelector(state),
             NavigationMenuRow(
               state: state,
+              text: 'Dashboard',
+              icon: Icons.bar_chart,
+              view: HomeView.dashboard,
+            ),
+            NavigationMenuRow(
+              state: state,
               text: 'Requirements',
               icon: Icons.checklist,
-              index: HomeState.VIEW_REQUIREMENTS,
+              view: HomeView.requirements,
             ),
             NavigationMenuRow(
               state: state,
               text: 'Suites',
               icon: Icons.quiz_outlined,
-              index: HomeState.VIEW_SUITES,
+              view: HomeView.suites,
             ),
             NavigationMenuRow(
               state: state,
               text: 'Sessions',
               icon: Icons.find_in_page_outlined,
-              index: HomeState.VIEW_SESSIONS,
+              view: HomeView.sessions,
             ),
             NavigationMenuRow(
               state: state,
               text: 'Settings',
               icon: Icons.settings_outlined,
-              index: HomeState.VIEW_SETTINGS,
+              view: HomeView.settings,
             ),
             if (kDebugMode)
               NavigationMenuRow(
                 state: state,
                 text: 'Components',
                 icon: Icons.format_paint_outlined,
-                index: HomeState.VIEW_COMPONENTS,
+                view: HomeView.components,
               ),
           ],
         ),
@@ -119,18 +125,18 @@ class NavigationMenuRow extends StatelessWidget {
   final HomeState state;
   final String text;
   final IconData icon;
-  final int index;
+  final HomeView view;
 
   const NavigationMenuRow({
     required this.state,
     required this.text,
     required this.icon,
-    required this.index,
+    required this.view,
   });
 
   @override
   Widget build(BuildContext context) {
-    final bool isSelected = state.activeView == index;
+    final bool isSelected = state.activeView == view;
 
     return Container(
       margin: const EdgeInsets.only(top: 8, left: 16, right: 16),
@@ -154,7 +160,7 @@ class NavigationMenuRow extends StatelessWidget {
           left: 12,
           right: 8,
         ),
-        onTap: () => state.onRootViewChange(index),
+        onTap: () => state.onRootViewChange(view),
         selected: isSelected,
         tileColor: Palette.transparent,
         selectedTileColor: Palette.menuSelectedLight,
