@@ -43,6 +43,27 @@ class Data {
     _requirements.add(requirement);
   }
 
+  static void onCreateTestCase({
+    required Requirement requirement,
+    required String name,
+    required TestCaseExecution execution,
+    required String preconditions,
+    required String steps,
+    required String expected,
+  }) {
+    final TestCase testCase = TestCase(
+      requirement: requirement,
+      name: name,
+      execution: execution,
+      preconditions: preconditions,
+      steps: steps,
+      expected: expected,
+      lastRun: DateTime.now(),
+      tags: [],
+    );
+    _testCases.add(testCase);
+  }
+
   static List<Project> projects() {
     _projects.sort((a, b) => a.name.compareTo(b.name));
 

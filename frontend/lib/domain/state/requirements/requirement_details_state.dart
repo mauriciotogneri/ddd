@@ -11,6 +11,8 @@ import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
+import 'package:testflow/presentation/dialogs/base_dialog.dart';
+import 'package:testflow/presentation/dialogs/create_test_case_dialog.dart';
 import 'package:testflow/presentation/test_cases/test_case_details_view.dart';
 import 'package:testflow/utils/navigation.dart';
 
@@ -74,5 +76,26 @@ class RequirementDetailsState extends BaseState {
     TestCaseDetailsView.instance(requirement: requirement, testCase: testCase),
   );
 
-  void onCreateTestCase(BuildContext context) {}
+  void onCreateTestCase(BuildContext context) => BaseDialog.show(
+    context: context,
+    dialog: CreateTestCaseDialog.instance(onCreateRequirement: _createTestCase),
+  );
+
+  void _createTestCase({
+    required String name,
+    required TestCaseExecution execution,
+    required String preconditions,
+    required String steps,
+    required String expected,
+  }) {
+    Data.onCreateTestCase(
+      requirement: requirement,
+      name: name,
+      execution: execution,
+      preconditions: preconditions,
+      steps: steps,
+      expected: expected,
+    );
+    notify();
+  }
 }
