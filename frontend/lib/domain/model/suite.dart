@@ -46,9 +46,9 @@ class Suite implements TableElement {
       final bool matchesQuery =
           queryFilter.isEmpty ||
           name.matches(queryFilter) ||
-          componentFilter.any((tag) => tag.matches(queryFilter)) ||
-          platformFilter.any((tag) => tag.matches(queryFilter)) ||
-          tags.any((tag) => tag.matches(queryFilter));
+          componentFilter.any((e) => e.matches(queryFilter)) ||
+          platformFilter.any((e) => e.matches(queryFilter)) ||
+          tags.any((e) => e.matches(queryFilter));
       final bool matchesType =
           typeFilter.isEmpty || typeFilter.any(types.contains);
       final bool matchesStatus =

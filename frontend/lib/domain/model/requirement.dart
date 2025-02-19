@@ -38,16 +38,16 @@ class Requirement implements TableElement {
     required String queryFilter,
     required List<RequirementType> typeFilter,
     required List<RequirementStatus> statusFilter,
+    required List<RequirementImportance> importanceFilter,
     required List<String> componentFilter,
     required List<String> platformFilter,
-    required List<RequirementImportance> importanceFilter,
   }) {
     if (queryFilter.isEmpty &&
         typeFilter.isEmpty &&
         statusFilter.isEmpty &&
+        importanceFilter.isEmpty &&
         componentFilter.isEmpty &&
-        platformFilter.isEmpty &&
-        importanceFilter.isEmpty) {
+        platformFilter.isEmpty) {
       return true;
     } else {
       final bool matchesQuery =
@@ -56,23 +56,24 @@ class Requirement implements TableElement {
           name.matches(queryFilter) ||
           description.matches(queryFilter) ||
           component.matches(queryFilter) ||
-          tags.any((tag) => tag.matches(queryFilter));
+          platforms.any((e) => e.matches(queryFilter)) ||
+          tags.any((e) => e.matches(queryFilter));
       final bool matchesType = typeFilter.isEmpty || typeFilter.contains(type);
       final bool matchesStatus =
           statusFilter.isEmpty || statusFilter.contains(status);
+      final bool matchesImportance =
+          importanceFilter.isEmpty || importanceFilter.contains(importance);
       final bool matchesComponent =
           componentFilter.isEmpty || componentFilter.contains(component);
       final bool matchesPlatform =
           platformFilter.isEmpty || platformFilter.any(platforms.contains);
-      final bool matchesImportance =
-          importanceFilter.isEmpty || importanceFilter.contains(importance);
 
       return matchesQuery &&
           matchesType &&
           matchesStatus &&
+          matchesImportance &&
           matchesComponent &&
-          matchesPlatform &&
-          matchesImportance;
+          matchesPlatform;
     }
   }
 
