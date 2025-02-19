@@ -27,6 +27,7 @@ class Palette {
   static const Color backgroundTableHeader = Color(0xfff1f4f9);
   static const Color backgroundRowEven = Color(0xffffffff);
   static const Color backgroundRowOdd = Color(0xfff6f6fe);
+  static const Color backgroundNavigationPath = Color(0xfff0f0f0);
 
   static const Color iconEnabled = Color(0xff9c9c9c);
   static const Color iconDisabled = Color(0xffbbbbbb);
