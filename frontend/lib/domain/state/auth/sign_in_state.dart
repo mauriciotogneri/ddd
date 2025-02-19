@@ -22,5 +22,5 @@ class SignInState extends BaseState {
     }
   }
 
-  void _signIn() => Navigation.dashboardScreen();
+  void _signIn() => Navigation.homeScreen();
 }

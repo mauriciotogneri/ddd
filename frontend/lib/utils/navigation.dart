@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:testflow/domain/events/stack_view_event.dart';
 import 'package:testflow/domain/events/unstack_view_event.dart';
 import 'package:testflow/presentation/auth/sign_in_screen.dart';
-import 'package:testflow/presentation/dashboard/dashboard_screen.dart';
+import 'package:testflow/presentation/home/home_screen.dart';
 import 'package:testflow/utils/locator.dart';
 import 'package:testflow/utils/log.dart';
 
@@ -84,8 +84,8 @@ class Navigation {
   static void signInScreen() =>
       pushAlone(FadeRoute(SignInScreen.instance(), name: 'sign_in'));
 
-  // ============================= DASHBOARD ================================ \\
+  // ================================ HOME ================================== \\
 
-  static void dashboardScreen() =>
-      pushAlone(BasicRoute(DashboardScreen.instance(), name: 'dashboard  '));
+  static void homeScreen() =>
+      pushAlone(BasicRoute(HomeScreen.instance(), name: 'home'));
 }

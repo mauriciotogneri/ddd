@@ -2,22 +2,22 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/model/project.dart';
-import 'package:testflow/domain/state/dashboard/dashboard_state.dart';
+import 'package:testflow/domain/state/home/home_state.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_input.dart';
 import 'package:testflow/presentation/common/text/custom_text.dart';
 import 'package:testflow/utils/palette.dart';
 
-class DashboardScreen extends StatelessWidget {
-  final DashboardState state;
+class HomeScreen extends StatelessWidget {
+  final HomeState state;
 
-  const DashboardScreen._(this.state);
+  const HomeScreen._(this.state);
 
-  factory DashboardScreen.instance() => DashboardScreen._(DashboardState());
+  factory HomeScreen.instance() => HomeScreen._(HomeState());
 
   @override
   Widget build(BuildContext context) {
-    return StateProvider<DashboardState>(
+    return StateProvider<HomeState>(
       state: state,
       builder: (context, state) => Scaffold(body: Content(state)),
     );
@@ -25,7 +25,7 @@ class DashboardScreen extends StatelessWidget {
 }
 
 class Content extends StatelessWidget {
-  final DashboardState state;
+  final HomeState state;
 
   const Content(this.state);
 
@@ -39,7 +39,7 @@ class Content extends StatelessWidget {
 }
 
 class NavigationMenu extends StatelessWidget {
-  final DashboardState state;
+  final HomeState state;
 
   const NavigationMenu(this.state);
 
@@ -59,32 +59,32 @@ class NavigationMenu extends StatelessWidget {
               state: state,
               text: 'Requirements',
               icon: Icons.checklist,
-              index: DashboardState.VIEW_REQUIREMENTS,
+              index: HomeState.VIEW_REQUIREMENTS,
             ),
             NavigationMenuRow(
               state: state,
               text: 'Suites',
               icon: Icons.quiz_outlined,
-              index: DashboardState.VIEW_SUITES,
+              index: HomeState.VIEW_SUITES,
             ),
             NavigationMenuRow(
               state: state,
               text: 'Sessions',
               icon: Icons.find_in_page_outlined,
-              index: DashboardState.VIEW_SESSIONS,
+              index: HomeState.VIEW_SESSIONS,
             ),
             NavigationMenuRow(
               state: state,
               text: 'Settings',
               icon: Icons.settings_outlined,
-              index: DashboardState.VIEW_SETTINGS,
+              index: HomeState.VIEW_SETTINGS,
             ),
             if (kDebugMode)
               NavigationMenuRow(
                 state: state,
                 text: 'Components',
                 icon: Icons.format_paint_outlined,
-                index: DashboardState.VIEW_COMPONENTS,
+                index: HomeState.VIEW_COMPONENTS,
               ),
           ],
         ),
@@ -94,7 +94,7 @@ class NavigationMenu extends StatelessWidget {
 }
 
 class ProjectSelector extends StatelessWidget {
-  final DashboardState state;
+  final HomeState state;
 
   const ProjectSelector(this.state);
 
@@ -116,7 +116,7 @@ class ProjectSelector extends StatelessWidget {
 }
 
 class NavigationMenuRow extends StatelessWidget {
-  final DashboardState state;
+  final HomeState state;
   final String text;
   final IconData icon;
   final int index;
@@ -164,7 +164,7 @@ class NavigationMenuRow extends StatelessWidget {
 }
 
 class ActiveView extends StatelessWidget {
-  final DashboardState state;
+  final HomeState state;
 
   const ActiveView(this.state);
 
