@@ -16,7 +16,7 @@ import 'package:testflow/presentation/home/home_screen.dart';
 import 'package:testflow/presentation/requirements/requirements_list_view.dart';
 
 class HomeState extends BaseState {
-  HomeView activeView = HomeView.dashboard;
+  HomeView activeView = HomeView.requirements;
   StreamSubscription? _subscriptionStackViewEvent;
   StreamSubscription? _subscriptionUnstackViewEvent;
   final CustomDropdownSingleController<Project> projectsController =
@@ -26,7 +26,7 @@ class HomeState extends BaseState {
   @override
   void onLoad() {
     projectsController.select(Data.currentProject);
-    onRootViewChange(HomeView.dashboard);
+    onRootViewChange(activeView);
     notify();
 
     _subscriptionStackViewEvent = Events.listen<StackViewEvent>(_onViewStacked);

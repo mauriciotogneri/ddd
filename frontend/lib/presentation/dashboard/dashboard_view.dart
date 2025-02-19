@@ -30,10 +30,17 @@ class Content extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.all(16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
-        children: [BodyMedium(text: 'Dashboard')],
+        children: [
+          BodyMedium(text: '• Coverage %'),
+          BodyMedium(text: '• Success/Failure rate'),
+          BodyMedium(text: '• Current test failing'),
+          BodyMedium(text: '• Most failures'),
+          BodyMedium(text: '• Slowest tests'),
+          BodyMedium(text: '• Most flaky tests'),
+        ],
       ),
     );
   }
