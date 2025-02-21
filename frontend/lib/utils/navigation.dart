@@ -112,4 +112,7 @@ class Navigation {
 
   static void go({required BuildContext context, required String path}) =>
       context.go(path);
+
+  static void push({required BuildContext context, required String path}) =>
+      context.push(path);
 }

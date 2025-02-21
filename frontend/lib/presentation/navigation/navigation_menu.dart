@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/project.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
@@ -33,7 +34,29 @@ class LeftMenu extends StatefulWidget {
 }
 
 class _LeftMenuState extends State<LeftMenu> {
-  MenuItem selectedMenu = MenuItem.dashboard;
+  MenuItem? selectedMenu;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final String location =
+        GoRouter.of(context).routerDelegate.currentConfiguration.uri.toString();
+
+    if (location.endsWith('/dashboard')) {
+      selectedMenu = MenuItem.dashboard;
+    } else if (location.endsWith('/requirements')) {
+      selectedMenu = MenuItem.requirements;
+    } else if (location.endsWith('/suites')) {
+      selectedMenu = MenuItem.suites;
+    } else if (location.endsWith('/sessions')) {
+      selectedMenu = MenuItem.sessions;
+    } else if (location.endsWith('/settings')) {
+      selectedMenu = MenuItem.settings;
+    } else if (location.endsWith('/components')) {
+      selectedMenu = MenuItem.components;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
