@@ -77,9 +77,9 @@ class FormFields extends StatelessWidget {
                     children: [
                       Expanded(
                         child: CustomTextInput(
-                          name: 'ID',
+                          name: 'Code',
                           controller: state.idController,
-                          errorMessage: 'ID is required',
+                          errorMessage: 'Code is required',
                         ),
                       ),
                       const HBox(16),
