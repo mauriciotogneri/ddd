@@ -42,5 +42,7 @@ class TestCaseDetailsState extends BaseState {
     preconditionsController.text = testCase.preconditions;
     stepsController.text = testCase.steps;
     expectedController.text = testCase.expected;
+
+    notify();
   }
 }

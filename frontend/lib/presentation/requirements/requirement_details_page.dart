@@ -34,7 +34,7 @@ class RequirementDetailsPage extends StatelessWidget {
       builder:
           (context, state) => Pane.scrollable(
             children: [
-              NavigationPath(paths: ['Requirements', state.requirementId]),
+              NavigationPath(paths: ['Requirements', state.requirement.code]),
               FormFields(state),
               Table(state),
             ],
