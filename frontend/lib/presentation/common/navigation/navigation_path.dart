@@ -1,7 +1,6 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/presentation/common/text/custom_text.dart';
-import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
 class NavigationPath extends StatelessWidget {
@@ -48,7 +47,7 @@ class PathSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
-      onTap: isLast ? null : () => Navigation.unstack(unstack),
+      onTap: () {}, //isLast ? null : () => Navigation.unstack(unstack),
       child: Row(
         children: [
           const HBox(12),

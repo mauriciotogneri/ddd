@@ -8,7 +8,6 @@ import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
-import 'package:testflow/utils/navigation.dart';
 
 class CreateTestCaseDialog extends StatelessWidget {
   final CreateTestCaseDialogState state;
@@ -30,12 +29,15 @@ class CreateTestCaseDialog extends StatelessWidget {
             title: 'New test case',
             width: 500,
             actions: [
-              const SecondaryTextButton(
+              SecondaryTextButton(
                 text: 'Cancel',
-                onPressed: Navigation.pop,
+                onPressed: Navigator.of(context).pop,
               ),
               const HBox(4),
-              PrimaryTextButton(text: 'Create', onPressed: state.onCreate),
+              PrimaryTextButton(
+                text: 'Create',
+                onPressed: () => state.onCreate(context),
+              ),
             ],
             content: FormFields(state),
           ),
@@ -124,9 +126,9 @@ class CreateTestCaseDialogState extends BaseState {
 
   CreateTestCaseDialogState({required this.onCreateTestCase});
 
-  void onCreate() {
+  void onCreate(BuildContext context) {
     if (formKey.validate()) {
-      Navigation.pop();
+      Navigator.of(context).pop();
 
       onCreateTestCase(
         name: nameController.text,

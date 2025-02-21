@@ -94,7 +94,10 @@ class SignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: PrimaryTextButton(text: 'Sign in', onPressed: state.onSignIn),
+      child: PrimaryTextButton(
+        text: 'Sign in',
+        onPressed: () => state.onSignIn(context),
+      ),
     );
   }
 }

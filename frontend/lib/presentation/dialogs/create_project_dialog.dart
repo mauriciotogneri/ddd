@@ -7,7 +7,6 @@ import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/text/title_small.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
-import 'package:testflow/utils/navigation.dart';
 
 class CreateProjectDialog extends StatelessWidget {
   final CreateProjectDialogState state;
@@ -29,15 +28,15 @@ class CreateProjectDialog extends StatelessWidget {
             title: 'New project',
             width: 350,
             actions: [
-              const SecondaryTextButton(
+              SecondaryTextButton(
                 text: 'Cancel',
-                onPressed: Navigation.pop,
+                onPressed: Navigator.of(context).pop,
               ),
               PrimaryTextButton(
                 text: 'Create',
                 onPressed: () {
                   if (state.formValid) {
-                    Navigation.pop();
+                    Navigator.of(context).pop();
                     state.onCreate();
                   }
                 },

@@ -5,7 +5,7 @@ import 'package:testflow/utils/palette.dart';
 class Style {
   static const String FONT_NAME = 'Outfit';
 
-  static ThemeData themeData() => ThemeData(
+  static ThemeData get themeData => ThemeData(
     fontFamily: 'Outfit',
     colorSchemeSeed: Palette.primary,
     useMaterial3: true,

@@ -1,9 +1,9 @@
-import 'package:testflow/utils/navigation.dart';
+import 'package:flutter/material.dart';
 
 class AlertController<T> {
   final T state;
 
   const AlertController(this.state);
 
-  void close() => Navigation.pop();
+  void close(BuildContext context) => Navigator.of(context).pop();
 }

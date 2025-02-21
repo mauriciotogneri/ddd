@@ -12,7 +12,6 @@ import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
-import 'package:testflow/utils/navigation.dart';
 
 class CreateRequirementDialog extends StatelessWidget {
   final CreateRequirementDialogState state;
@@ -34,12 +33,15 @@ class CreateRequirementDialog extends StatelessWidget {
             title: 'New requirement',
             width: 350,
             actions: [
-              const SecondaryTextButton(
+              SecondaryTextButton(
                 text: 'Cancel',
-                onPressed: Navigation.pop,
+                onPressed: Navigator.of(context).pop,
               ),
               const HBox(4),
-              PrimaryTextButton(text: 'Create', onPressed: state.onCreate),
+              PrimaryTextButton(
+                text: 'Create',
+                onPressed: () => state.onCreate(context),
+              ),
             ],
             content: FormFields(state),
           ),
@@ -216,9 +218,9 @@ class CreateRequirementDialogState extends BaseState {
 
   CreateRequirementDialogState({required this.onCreateRequirement});
 
-  void onCreate() {
+  void onCreate(BuildContext context) {
     if (formKey.validate()) {
-      Navigation.pop();
+      Navigator.of(context).pop();
 
       onCreateRequirement(
         name: nameController.text,

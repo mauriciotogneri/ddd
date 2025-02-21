@@ -1,6 +1,8 @@
 import 'dart:async';
+
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get_it/get_it.dart';
 import 'package:testflow/domain/events/events.dart';
 import 'package:testflow/utils/navigation.dart';
@@ -25,6 +27,8 @@ class Locator {
     );*/
 
     //ErrorHandler.setup();
+
+    setUrlStrategy(PathUrlStrategy());
 
     //locator.registerSingleton<Environment>(environment);
     locator.registerSingleton<Navigation>(Navigation());

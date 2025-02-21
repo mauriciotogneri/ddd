@@ -1,92 +1,25 @@
-import 'package:dafluta/dafluta.dart';
-import 'package:flutter/widgets.dart';
-import 'package:testflow/domain/events/stack_view_event.dart';
-import 'package:testflow/domain/events/unstack_view_event.dart';
+import 'package:go_router/go_router.dart';
 import 'package:testflow/presentation/auth/sign_in_screen.dart';
 import 'package:testflow/presentation/home/home_screen.dart';
-import 'package:testflow/utils/locator.dart';
-import 'package:testflow/utils/log.dart';
+import 'package:testflow/presentation/splash/splash_page.dart';
 
 class Navigation {
-  final Routes routes = Routes();
+  static String get PATH_ROOT => '/';
+  static String get PATH_SIGNIN => '/sign-in';
+  static String get PATH_HOME => '/home';
 
-  static Navigation get _get => locator<Navigation>();
-
-  static Routes get getRoutes => _get.routes;
-
-  static BuildContext get context => _get.routes.key.currentContext!;
-
-  static bool get isOnlyRoute =>
-      (_currentRoute?.isCurrent ?? false) && (_currentRoute?.isFirst ?? false);
-
-  static Route<dynamic>? get _currentRoute => _get.routes.current();
-
-  static void hideKeyboard() => Keyboard.hide(context);
-
-  static bool isCurrent(String name) => _currentRoute?.settings.name == name;
-
-  static Future<T?>? push<T>(Route<T> route) {
-    final String? name = route.settings.name;
-
-    if (name != null) {
-      Log.trace('Navigation', 'Push: $name');
-    }
-
-    return _get.routes.push(route);
-  }
-
-  static Future<T?>? pushAlone<T>(Route<T> route) {
-    final String? name = route.settings.name;
-
-    if (name != null) {
-      Log.trace('Navigation', 'Push alone: $name');
-    }
-
-    return _get.routes.pushAlone(route);
-  }
-
-  static Future<T?>? pushReplacement<T>(Route<T> route) {
-    final String? name = route.settings.name;
-
-    if (name != null) {
-      Log.trace('Navigation', 'Push replacement: $name');
-    }
-
-    _get.routes.pushReplacement(route);
-    return null;
-  }
-
-  static void pop<T>([T? result]) {
-    Log.trace('Navigation', 'Pop: ${_currentRoute?.settings.name}');
-
-    return _get.routes.pop(result);
-  }
-
-  static void popUntil(RoutePredicate predicate) =>
-      _get.routes.popUntil(predicate);
-
-  static void stack(Widget view) => StackViewEvent(view).dispatch();
-
-  static void unstack([int amount = 0]) =>
-      UnstackViewEvent(amount: amount).dispatch();
-
-  static void dialog(String name, Widget widget) => push(
-    PageRouteBuilder(
-      opaque: false,
-      pageBuilder: (context, _, __) => widget,
-      transitionDuration: Duration.zero,
-      reverseTransitionDuration: Duration.zero,
-      settings: RouteSettings(name: name),
+  static List<RouteBase> get routes => [
+    GoRoute(
+      path: PATH_ROOT,
+      builder: (context, state) => SplashPage.instance(),
     ),
-  );
-
-  // ================================ AUTH ================================== \\
-
-  static void signInScreen() =>
-      pushAlone(FadeRoute(SignInScreen.instance(), name: 'sign_in'));
-
-  // ================================ HOME ================================== \\
-
-  static void homeScreen() =>
-      pushAlone(BasicRoute(HomeScreen.instance(), name: 'home'));
+    GoRoute(
+      path: PATH_SIGNIN,
+      builder: (context, state) => SignInScreen.instance(),
+    ),
+    GoRoute(
+      path: PATH_HOME,
+      builder: (context, state) => HomeScreen.instance(),
+    ),
+  ];
 }

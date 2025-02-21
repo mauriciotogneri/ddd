@@ -1,7 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:testflow/presentation/auth/sign_in_screen.dart';
-import 'package:testflow/presentation/home/home_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/style.dart';
 
@@ -10,13 +8,11 @@ class TestFlow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'TestFlow',
-      navigatorKey: Navigation.getRoutes.key,
-      navigatorObservers: [Navigation.getRoutes.routeObserver],
-      theme: Style.themeData(),
-      home: kDebugMode ? HomeScreen.instance() : SignInScreen.instance(),
+      theme: Style.themeData,
+      routerConfig: GoRouter(routes: Navigation.routes),
     );
   }
 }
