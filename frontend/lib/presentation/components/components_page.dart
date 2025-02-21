@@ -22,12 +22,12 @@ import 'package:testflow/presentation/common/text/title_small.dart';
 import 'package:testflow/utils/palette.dart';
 import 'package:testflow/utils/validator.dart';
 
-class ComponentsView extends StatelessWidget {
+class ComponentsPage extends StatelessWidget {
   final ComponentsState state;
 
-  const ComponentsView._(this.state);
+  const ComponentsPage._(this.state);
 
-  factory ComponentsView.instance() => ComponentsView._(ComponentsState());
+  factory ComponentsPage.instance() => ComponentsPage._(ComponentsState());
 
   @override
   Widget build(BuildContext context) {

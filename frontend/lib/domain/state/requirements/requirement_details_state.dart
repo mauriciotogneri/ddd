@@ -71,7 +71,7 @@ class RequirementDetailsState extends BaseState {
   }
 
   void onTestCaseSelected(TestCase testCase) {} /* Navigation.stack(
-    TestCaseDetailsView.instance(requirement: requirement, testCase: testCase),
+    TestCaseDetailsPage.instance(requirement: requirement, testCase: testCase),
   );*/
 
   void onCreateTestCase(BuildContext context) => BaseDialog.show(

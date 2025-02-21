@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/project.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_input.dart';
 import 'package:testflow/presentation/common/text/custom_text.dart';
+import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -33,7 +33,7 @@ class LeftMenu extends StatefulWidget {
 }
 
 class _LeftMenuState extends State<LeftMenu> {
-  NavigationState state = NavigationState.dashboard;
+  MenuItem selectedMenu = MenuItem.dashboard;
 
   @override
   Widget build(BuildContext context) {
@@ -50,44 +50,44 @@ class _LeftMenuState extends State<LeftMenu> {
             NavigationMenuRow(
               text: 'Dashboard',
               icon: Icons.bar_chart,
-              isSelected: state == NavigationState.dashboard,
-              view: NavigationState.dashboard,
+              isSelected: selectedMenu == MenuItem.dashboard,
+              menu: MenuItem.dashboard,
               onSelected: _onMenuSelected,
             ),
             NavigationMenuRow(
               text: 'Requirements',
               icon: Icons.checklist,
-              isSelected: state == NavigationState.requirements,
-              view: NavigationState.requirements,
+              isSelected: selectedMenu == MenuItem.requirements,
+              menu: MenuItem.requirements,
               onSelected: _onMenuSelected,
             ),
             NavigationMenuRow(
               text: 'Suites',
               icon: Icons.quiz_outlined,
-              isSelected: state == NavigationState.suites,
-              view: NavigationState.suites,
+              isSelected: selectedMenu == MenuItem.suites,
+              menu: MenuItem.suites,
               onSelected: _onMenuSelected,
             ),
             NavigationMenuRow(
               text: 'Sessions',
               icon: Icons.find_in_page_outlined,
-              isSelected: state == NavigationState.sessions,
-              view: NavigationState.sessions,
+              isSelected: selectedMenu == MenuItem.sessions,
+              menu: MenuItem.sessions,
               onSelected: _onMenuSelected,
             ),
             NavigationMenuRow(
               text: 'Settings',
               icon: Icons.settings_outlined,
-              isSelected: state == NavigationState.settings,
-              view: NavigationState.settings,
+              isSelected: selectedMenu == MenuItem.settings,
+              menu: MenuItem.settings,
               onSelected: _onMenuSelected,
             ),
             if (kDebugMode)
               NavigationMenuRow(
                 text: 'Components',
                 icon: Icons.format_paint_outlined,
-                isSelected: state == NavigationState.components,
-                view: NavigationState.components,
+                isSelected: selectedMenu == MenuItem.components,
+                menu: MenuItem.components,
                 onSelected: _onMenuSelected,
               ),
           ],
@@ -98,31 +98,32 @@ class _LeftMenuState extends State<LeftMenu> {
 
   void _onProjectSelected(BuildContext context, Project project) {
     Data.onChangeProject(project);
-    setState(() => state = NavigationState.dashboard);
-    context.go('/projects/${project.id}/dashboard');
+    setState(() => selectedMenu = MenuItem.dashboard);
+    Navigation.dashboard(context: context, projectId: project.id);
   }
 
-  void _onMenuSelected(NavigationState view) {
-    setState(() => state = view);
+  void _onMenuSelected(MenuItem menu) {
+    setState(() => selectedMenu = menu);
+    final String projectId = Data.currentProject.id;
 
-    switch (view) {
-      case NavigationState.dashboard:
-        context.go('/projects/${Data.currentProject.id}/dashboard');
+    switch (menu) {
+      case MenuItem.dashboard:
+        Navigation.dashboard(context: context, projectId: projectId);
         break;
-      case NavigationState.requirements:
-        context.go('/projects/${Data.currentProject.id}/requirements');
+      case MenuItem.requirements:
+        Navigation.requirements(context: context, projectId: projectId);
         break;
-      case NavigationState.suites:
-        context.go('/projects/${Data.currentProject.id}/suites');
+      case MenuItem.suites:
+        Navigation.suites(context: context, projectId: projectId);
         break;
-      case NavigationState.sessions:
-        context.go('/projects/${Data.currentProject.id}/sessions');
+      case MenuItem.sessions:
+        Navigation.sessions(context: context, projectId: projectId);
         break;
-      case NavigationState.settings:
-        context.go('/projects/${Data.currentProject.id}/settings');
+      case MenuItem.settings:
+        Navigation.settings(context: context, projectId: projectId);
         break;
-      case NavigationState.components:
-        context.go('/projects/${Data.currentProject.id}/components');
+      case MenuItem.components:
+        Navigation.components(context: context, projectId: projectId);
         break;
     }
   }
@@ -168,14 +169,14 @@ class NavigationMenuRow extends StatelessWidget {
   final String text;
   final IconData icon;
   final bool isSelected;
-  final NavigationState view;
-  final Function(NavigationState) onSelected;
+  final MenuItem menu;
+  final Function(MenuItem) onSelected;
 
   const NavigationMenuRow({
     required this.text,
     required this.icon,
     required this.isSelected,
-    required this.view,
+    required this.menu,
     required this.onSelected,
   });
 
@@ -203,7 +204,7 @@ class NavigationMenuRow extends StatelessWidget {
           left: 12,
           right: 8,
         ),
-        onTap: () => onSelected(view),
+        onTap: () => onSelected(menu),
         selected: isSelected,
         tileColor: Palette.transparent,
         selectedTileColor: Palette.menuSelectedLight,
@@ -212,7 +213,7 @@ class NavigationMenuRow extends StatelessWidget {
   }
 }
 
-enum NavigationState {
+enum MenuItem {
   dashboard,
   requirements,
   suites,

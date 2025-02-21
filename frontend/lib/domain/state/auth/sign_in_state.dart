@@ -1,8 +1,9 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:testflow/debug/data.dart';
 import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
+import 'package:testflow/utils/navigation.dart';
 
 class SignInState extends BaseState {
   final FormKey formKey = const FormKey();
@@ -23,5 +24,6 @@ class SignInState extends BaseState {
     }
   }
 
-  void _signIn(BuildContext context) => context.go('/projects/1/dashboard');
+  void _signIn(BuildContext context) =>
+      Navigation.dashboard(context: context, projectId: Data.currentProject.id);
 }

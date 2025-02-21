@@ -13,12 +13,12 @@ import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 
-class SuitesListView extends StatelessWidget {
+class SuitesListPage extends StatelessWidget {
   final SuitesListState state;
 
-  const SuitesListView._(this.state);
+  const SuitesListPage._(this.state);
 
-  factory SuitesListView.instance() => SuitesListView._(SuitesListState());
+  factory SuitesListPage.instance() => SuitesListPage._(SuitesListState());
 
   @override
   Widget build(BuildContext context) {

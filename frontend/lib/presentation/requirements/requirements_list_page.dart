@@ -13,13 +13,13 @@ import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 
-class RequirementsListView extends StatelessWidget {
+class RequirementsListPage extends StatelessWidget {
   final RequirementsListState state;
 
-  const RequirementsListView._(this.state);
+  const RequirementsListPage._(this.state);
 
-  factory RequirementsListView.instance() =>
-      RequirementsListView._(RequirementsListState());
+  factory RequirementsListPage.instance() =>
+      RequirementsListPage._(RequirementsListState());
 
   @override
   Widget build(BuildContext context) {

@@ -16,13 +16,13 @@ import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 
-class RequirementDetailsView extends StatelessWidget {
+class RequirementDetailsPage extends StatelessWidget {
   final RequirementDetailsState state;
 
-  const RequirementDetailsView._(this.state);
+  const RequirementDetailsPage._(this.state);
 
-  factory RequirementDetailsView.instance({required Requirement requirement}) =>
-      RequirementDetailsView._(
+  factory RequirementDetailsPage.instance({required Requirement requirement}) =>
+      RequirementDetailsPage._(
         RequirementDetailsState(requirement: requirement),
       );
 

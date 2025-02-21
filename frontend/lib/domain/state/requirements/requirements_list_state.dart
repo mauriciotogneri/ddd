@@ -58,7 +58,7 @@ class RequirementsListState extends BaseState {
   }
 
   void onRequirementSelected(Requirement requirement) {} /*Navigation.stack(
-    RequirementDetailsView.instance(requirement: requirement),
+    RequirementDetailsPage.instance(requirement: requirement),
   );*/
 
   void onCreateRequirement(BuildContext context) => BaseDialog.show(

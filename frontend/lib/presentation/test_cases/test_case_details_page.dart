@@ -10,15 +10,15 @@ import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 
-class TestCaseDetailsView extends StatelessWidget {
+class TestCaseDetailsPage extends StatelessWidget {
   final TestCaseDetailsState state;
 
-  const TestCaseDetailsView._(this.state);
+  const TestCaseDetailsPage._(this.state);
 
-  factory TestCaseDetailsView.instance({
+  factory TestCaseDetailsPage.instance({
     required Requirement requirement,
     required TestCase testCase,
-  }) => TestCaseDetailsView._(
+  }) => TestCaseDetailsPage._(
     TestCaseDetailsState(requirement: requirement, testCase: testCase),
   );
 

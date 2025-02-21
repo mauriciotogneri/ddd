@@ -5,12 +5,12 @@ import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
 
-class DashboardView extends StatelessWidget {
+class DashboardPage extends StatelessWidget {
   final DashboardState state;
 
-  const DashboardView._(this.state);
+  const DashboardPage._(this.state);
 
-  factory DashboardView.instance() => DashboardView._(DashboardState());
+  factory DashboardPage.instance() => DashboardPage._(DashboardState());
 
   @override
   Widget build(BuildContext context) {
