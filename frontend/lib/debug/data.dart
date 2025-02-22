@@ -67,6 +67,27 @@ class Data {
     _testCases.add(testCase);
   }
 
+  static void onCreateSuite({
+    required String name,
+    required List<RequirementType> types,
+    required List<RequirementStatus> statuses,
+    required List<RequirementImportance> importances,
+    required List<String> components,
+    required List<String> platforms,
+  }) {
+    final Suite suite = Suite(
+      id: DateTime.now().toIso8601String(),
+      name: name,
+      types: types,
+      statuses: statuses,
+      importances: importances,
+      components: components,
+      platforms: platforms,
+      tags: [],
+    );
+    _suites.add(suite);
+  }
+
   static List<Project> projects() {
     _projects.sort((a, b) => a.name.compareTo(b.name));
 

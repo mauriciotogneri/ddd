@@ -8,7 +8,7 @@ import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
-import 'package:testflow/presentation/dialogs/create_requirement_dialog.dart';
+import 'package:testflow/presentation/dialogs/create_suite_dialog.dart';
 
 class SuiteListState extends BaseState {
   final CustomTextInputController queryFilterController =
@@ -28,7 +28,7 @@ class SuiteListState extends BaseState {
   List<Suite> get suites =>
       _allSuites
           .where(
-            (requirement) => requirement.matches(
+            (suite) => suite.matches(
               queryFilter: queryFilterController.text,
               typeFilter: typeFilterController.selected,
               statusFilter: statusFilterController.selected,
@@ -61,27 +61,23 @@ class SuiteListState extends BaseState {
 
   void onCreateSuite(BuildContext context) => BaseDialog.show(
     context: context,
-    dialog: CreateRequirementDialog.instance(onCreateRequirement: _createSuite),
+    dialog: CreateSuiteDialog.instance(onCreateSuite: _createSuite),
   );
 
   void _createSuite({
     required String name,
-    required String code,
-    required String description,
-    required RequirementType type,
-    required RequirementStatus status,
-    required RequirementImportance importance,
-    required String component,
+    required List<RequirementType> types,
+    required List<RequirementStatus> statuses,
+    required List<RequirementImportance> importances,
+    required List<String> components,
     required List<String> platforms,
   }) {
-    Data.onCreateRequirement(
+    Data.onCreateSuite(
       name: name,
-      code: code,
-      description: description,
-      type: type,
-      status: status,
-      importance: importance,
-      component: component,
+      types: types,
+      statuses: statuses,
+      importances: importances,
+      components: components,
       platforms: platforms,
     );
     notify();
