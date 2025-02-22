@@ -32,6 +32,7 @@ class Palette {
 
   static const Color iconEnabled = Color(0xff9c9c9c);
   static const Color iconDisabled = Color(0xffbbbbbb);
+  static const Color iconButton = Color(0xff555555);
   static const Color iconLoader = Color(0xffffffff);
 
   static const Color textTitle = Color(0xff333333);
