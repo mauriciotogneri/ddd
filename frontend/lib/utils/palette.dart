@@ -22,6 +22,7 @@ class Palette {
   static const Color backgroundInputEnabled = Color(0xffffffff);
   static const Color backgroundInputDisabled = Color(0xfff3f3f3);
   static const Color backgroundInputHover = Color(0xfffafafa);
+  static const Color backgroundButtonHover = Color(0xfff0f0f0);
   static const Color backgroundDropdownMenu = Color(0xfff8f8f8);
   static const Color backgroundPane = Color(0xfff6f7fb);
   static const Color backgroundTableHeader = Color(0xfff1f4f9);
