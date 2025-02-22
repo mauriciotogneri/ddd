@@ -61,7 +61,7 @@ class Data {
       preconditions: preconditions,
       steps: steps,
       expected: expected,
-      lastRun: DateTime.now(),
+      lastRun: DateTime.now().subtract(Duration(days: Random().nextInt(30))),
       tags: [],
     );
     _testCases.add(testCase);

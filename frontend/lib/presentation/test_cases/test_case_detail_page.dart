@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/state/test_cases/test_case_detail_state.dart';
@@ -190,18 +192,22 @@ class Metadata extends StatelessWidget {
     return MetadataCard([
       MetadataItem(
         label: 'Created on',
-        value: Formatter.fullDateTime(DateTime.now()),
+        value: Formatter.fullDateTime(
+          DateTime.now().subtract(Duration(days: Random().nextInt(30))),
+        ),
       ),
       const MetadataItem(label: 'Created by', value: 'John Doe'),
       MetadataItem(
         label: 'Updated on',
-        value: Formatter.fullDateTime(DateTime.now()),
+        value: Formatter.fullDateTime(
+          DateTime.now().subtract(Duration(days: Random().nextInt(30))),
+        ),
       ),
       const MetadataItem(label: 'Updated by', value: 'Jane Doe'),
       MetadataItem(
         label: 'Last run',
         value:
-            '${Formatter.fullDateTime(DateTime.now())}\n${Formatter.daysAgo(DateTime.now())} days ago',
+            '${Formatter.fullDateTime(DateTime.now().subtract(Duration(days: Random().nextInt(30))))}\n${Formatter.daysAgo(DateTime.now().subtract(Duration(days: Random().nextInt(30))))} days ago',
       ),
     ]);
   }
