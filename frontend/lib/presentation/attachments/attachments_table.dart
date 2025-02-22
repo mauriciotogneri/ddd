@@ -5,8 +5,8 @@ import 'package:testflow/domain/model/attachment.dart';
 import 'package:testflow/domain/types/attachment_type.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
-import 'dart:html' as html;
 import 'package:testflow/presentation/common/table/custom_table.dart';
+import 'package:web/web.dart';
 
 class AttachmentsTable extends StatelessWidget {
   final AttachmentsState state;
@@ -89,5 +89,5 @@ class AttachmentsState extends BaseState {
   void onUploadAttachment() {}
 
   void onAttachmentSelected(Attachment attachment) =>
-      html.window.open(attachment.url, attachment.name);
+      window.open(attachment.url);
 }
