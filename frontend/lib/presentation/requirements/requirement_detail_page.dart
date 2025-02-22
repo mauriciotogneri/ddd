@@ -340,21 +340,11 @@ class TabBarExample extends StatelessWidget {
       child: CustomTabs(
         tabs: const [
           TabItem(title: 'Test Cases', width: 150, icon: Icons.list),
-          TabItem(title: 'History', width: 150, icon: Icons.history),
           TabItem(title: 'Attachments', width: 150, icon: Icons.attachment),
         ],
-        children: [Table(state), const History(), const Attachments()],
+        children: [Table(state), const Attachments()],
       ),
     );
-  }
-}
-
-class History extends StatelessWidget {
-  const History();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('History'));
   }
 }
 
