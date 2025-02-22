@@ -4,13 +4,13 @@ import 'package:testflow/presentation/auth/sign_in_page.dart';
 import 'package:testflow/presentation/components/components_page.dart';
 import 'package:testflow/presentation/dashboard/dashboard_page.dart';
 import 'package:testflow/presentation/navigation/navigation_menu.dart';
-import 'package:testflow/presentation/requirements/requirement_details_page.dart';
-import 'package:testflow/presentation/requirements/requirements_list_page.dart';
-import 'package:testflow/presentation/sessions/sessions_page.dart';
+import 'package:testflow/presentation/requirements/requirement_detail_page.dart';
+import 'package:testflow/presentation/requirements/requirement_list_page.dart';
+import 'package:testflow/presentation/sessions/session_list_page.dart';
 import 'package:testflow/presentation/settings/settings_page.dart';
 import 'package:testflow/presentation/splash/splash_page.dart';
-import 'package:testflow/presentation/suites/suites_list_page.dart';
-import 'package:testflow/presentation/test_cases/test_case_details_page.dart';
+import 'package:testflow/presentation/suites/suite_list_page.dart';
+import 'package:testflow/presentation/test_cases/test_case_detail_page.dart';
 
 class Navigation {
   static final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey();
@@ -35,14 +35,14 @@ class Navigation {
           GoRoute(
             path: '/projects/:projectId/requirements',
             builder:
-                (context, state) => RequirementsListPage.instance(
+                (context, state) => RequirementListPage.instance(
                   projectId: state.pathParameters['projectId']!,
                 ),
             routes: [
               GoRoute(
                 path: ':requirementId',
                 builder:
-                    (context, state) => RequirementDetailsPage.instance(
+                    (context, state) => RequirementDetailPage.instance(
                       projectId: state.pathParameters['projectId']!,
                       requirementId: state.pathParameters['requirementId']!,
                     ),
@@ -50,7 +50,7 @@ class Navigation {
                   GoRoute(
                     path: 'cases/:testCaseId',
                     builder:
-                        (context, state) => TestCaseDetailsPage.instance(
+                        (context, state) => TestCaseDetailPage.instance(
                           projectId: state.pathParameters['projectId']!,
                           requirementId: state.pathParameters['requirementId']!,
                           testCaseId: state.pathParameters['testCaseId']!,
@@ -62,11 +62,11 @@ class Navigation {
           ),
           GoRoute(
             path: '/projects/:projectId/suites',
-            builder: (context, state) => SuitesListPage.instance(),
+            builder: (context, state) => SuiteListPage.instance(),
           ),
           GoRoute(
             path: '/projects/:projectId/sessions',
-            builder: (context, state) => SessionsPage.instance(),
+            builder: (context, state) => SessionListPage.instance(),
           ),
           GoRoute(
             path: '/projects/:projectId/settings',
@@ -92,32 +92,32 @@ class Navigation {
     required String projectId,
   }) => go(context: context, path: '/projects/$projectId/dashboard');
 
-  static void requirementsList({
+  static void requirementList({
     required BuildContext context,
     required String projectId,
-  }) => go(context: context, path: requirementsListPath(projectId));
+  }) => go(context: context, path: requirementListPath(projectId));
 
-  static String requirementsListPath(String projectId) =>
+  static String requirementListPath(String projectId) =>
       '/projects/$projectId/requirements';
 
-  static void requirementDetails({
+  static void requirementDetail({
     required BuildContext context,
     required String projectId,
     required String requirementId,
   }) => go(
     context: context,
-    path: requirementDetailsPath(
+    path: requirementDetailPath(
       projectId: projectId,
       requirementId: requirementId,
     ),
   );
 
-  static String requirementDetailsPath({
+  static String requirementDetailPath({
     required String projectId,
     required String requirementId,
   }) => '/projects/$projectId/requirements/$requirementId';
 
-  static void testCaseDetails({
+  static void testCaseDetail({
     required BuildContext context,
     required String projectId,
     required String requirementId,
@@ -127,12 +127,12 @@ class Navigation {
     path: '/projects/$projectId/requirements/$requirementId/cases/$testCaseId',
   );
 
-  static void suites({
+  static void suiteList({
     required BuildContext context,
     required String projectId,
   }) => go(context: context, path: '/projects/$projectId/suites');
 
-  static void sessions({
+  static void sessionList({
     required BuildContext context,
     required String projectId,
   }) => go(context: context, path: '/projects/$projectId/sessions');

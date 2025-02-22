@@ -2,7 +2,7 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/test_case.dart';
-import 'package:testflow/domain/state/requirements/requirement_details_state.dart';
+import 'package:testflow/domain/state/requirements/requirement_detail_state.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
@@ -18,21 +18,21 @@ import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
-class RequirementDetailsPage extends StatelessWidget {
-  final RequirementDetailsState state;
+class RequirementDetailPage extends StatelessWidget {
+  final RequirementDetailState state;
 
-  const RequirementDetailsPage._(this.state);
+  const RequirementDetailPage._(this.state);
 
-  factory RequirementDetailsPage.instance({
+  factory RequirementDetailPage.instance({
     required String projectId,
     required String requirementId,
-  }) => RequirementDetailsPage._(
-    RequirementDetailsState(projectId: projectId, requirementId: requirementId),
+  }) => RequirementDetailPage._(
+    RequirementDetailState(projectId: projectId, requirementId: requirementId),
   );
 
   @override
   Widget build(BuildContext context) {
-    return StateProvider<RequirementDetailsState>(
+    return StateProvider<RequirementDetailState>(
       state: state,
       builder:
           (context, state) => state.isLoading ? const Empty() : Content(state),
@@ -41,7 +41,7 @@ class RequirementDetailsPage extends StatelessWidget {
 }
 
 class Content extends StatelessWidget {
-  final RequirementDetailsState state;
+  final RequirementDetailState state;
 
   const Content(this.state);
 
@@ -54,7 +54,7 @@ class Content extends StatelessWidget {
             paths: [
               PathItem(
                 text: 'Requirements',
-                path: Navigation.requirementsListPath(state.projectId),
+                path: Navigation.requirementListPath(state.projectId),
               ),
               PathItem(text: state.requirement.code),
             ],
@@ -81,7 +81,7 @@ class Content extends StatelessWidget {
 }
 
 class FormFields extends StatelessWidget {
-  final RequirementDetailsState state;
+  final RequirementDetailState state;
 
   const FormFields(this.state);
 
@@ -221,7 +221,7 @@ class FormFields extends StatelessWidget {
 }
 
 class Table extends StatelessWidget {
-  final RequirementDetailsState state;
+  final RequirementDetailState state;
 
   const Table(this.state);
 

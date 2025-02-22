@@ -15,7 +15,7 @@ import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/create_test_case_dialog.dart';
 import 'package:testflow/utils/navigation.dart';
 
-class RequirementDetailsState extends BaseState {
+class RequirementDetailState extends BaseState {
   final String projectId;
   final String requirementId;
   Requirement? _requirement;
@@ -51,7 +51,7 @@ class RequirementDetailsState extends BaseState {
           )
           .toList();
 
-  RequirementDetailsState({
+  RequirementDetailState({
     required this.projectId,
     required this.requirementId,
   });
@@ -89,7 +89,7 @@ class RequirementDetailsState extends BaseState {
   void onTestCaseSelected({
     required BuildContext context,
     required String testCaseId,
-  }) => Navigation.testCaseDetails(
+  }) => Navigation.testCaseDetail(
     context: context,
     projectId: projectId,
     requirementId: requirementId,

@@ -1,7 +1,7 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
-import 'package:testflow/domain/model/suite.dart';
+import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
@@ -9,8 +9,10 @@ import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/create_requirement_dialog.dart';
+import 'package:testflow/utils/navigation.dart';
 
-class SuitesListState extends BaseState {
+class RequirementListState extends BaseState {
+  final String projectId;
   final CustomTextInputController queryFilterController =
       CustomTextInputController();
   final CustomDropdownMultipleController<RequirementType> typeFilterController =
@@ -23,10 +25,12 @@ class SuitesListState extends BaseState {
       CustomDropdownMultipleController();
   final CustomDropdownMultipleController<RequirementImportance>
   importanceFilterController = CustomDropdownMultipleController();
-  final List<Suite> _allSuites = Data.suites();
+  final List<Requirement> _allRequirements = Data.requirements();
 
-  List<Suite> get suites =>
-      _allSuites
+  RequirementListState({required this.projectId});
+
+  List<Requirement> get requirements =>
+      _allRequirements
           .where(
             (requirement) => requirement.matches(
               queryFilter: queryFilterController.text,
@@ -57,7 +61,14 @@ class SuitesListState extends BaseState {
     notify();
   }
 
-  void onSuiteSelected(Suite suite) {}
+  void onRequirementSelected({
+    required BuildContext context,
+    required String requirementId,
+  }) => Navigation.requirementDetail(
+    context: context,
+    projectId: projectId,
+    requirementId: requirementId,
+  );
 
   void onCreateRequirement(BuildContext context) => BaseDialog.show(
     context: context,

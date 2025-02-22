@@ -1,6 +1,6 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
-import 'package:testflow/domain/state/test_cases/test_case_details_state.dart';
+import 'package:testflow/domain/state/test_cases/test_case_detail_state.dart';
 import 'package:testflow/domain/types/test_case_execution.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
@@ -11,17 +11,17 @@ import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
-class TestCaseDetailsPage extends StatelessWidget {
-  final TestCaseDetailsState state;
+class TestCaseDetailPage extends StatelessWidget {
+  final TestCaseDetailState state;
 
-  const TestCaseDetailsPage._(this.state);
+  const TestCaseDetailPage._(this.state);
 
-  factory TestCaseDetailsPage.instance({
+  factory TestCaseDetailPage.instance({
     required String projectId,
     required String requirementId,
     required String testCaseId,
-  }) => TestCaseDetailsPage._(
-    TestCaseDetailsState(
+  }) => TestCaseDetailPage._(
+    TestCaseDetailState(
       projectId: projectId,
       requirementId: requirementId,
       testCaseId: testCaseId,
@@ -30,7 +30,7 @@ class TestCaseDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StateProvider<TestCaseDetailsState>(
+    return StateProvider<TestCaseDetailState>(
       state: state,
       builder:
           (context, state) => state.isLoading ? const Empty() : Content(state),
@@ -39,7 +39,7 @@ class TestCaseDetailsPage extends StatelessWidget {
 }
 
 class Content extends StatelessWidget {
-  final TestCaseDetailsState state;
+  final TestCaseDetailState state;
 
   const Content(this.state);
 
@@ -52,11 +52,11 @@ class Content extends StatelessWidget {
             paths: [
               PathItem(
                 text: 'Requirements',
-                path: Navigation.requirementsListPath(state.projectId),
+                path: Navigation.requirementListPath(state.projectId),
               ),
               PathItem(
                 text: state.requirement.code,
-                path: Navigation.requirementDetailsPath(
+                path: Navigation.requirementDetailPath(
                   projectId: state.projectId,
                   requirementId: state.requirement.id,
                 ),
@@ -85,7 +85,7 @@ class Content extends StatelessWidget {
 }
 
 class FormFields extends StatelessWidget {
-  final TestCaseDetailsState state;
+  final TestCaseDetailState state;
 
   const FormFields(this.state);
 

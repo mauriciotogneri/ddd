@@ -1,7 +1,7 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
-import 'package:testflow/domain/model/requirement.dart';
+import 'package:testflow/domain/model/suite.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
@@ -9,10 +9,8 @@ import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/create_requirement_dialog.dart';
-import 'package:testflow/utils/navigation.dart';
 
-class RequirementsListState extends BaseState {
-  final String projectId;
+class SuiteListState extends BaseState {
   final CustomTextInputController queryFilterController =
       CustomTextInputController();
   final CustomDropdownMultipleController<RequirementType> typeFilterController =
@@ -25,12 +23,10 @@ class RequirementsListState extends BaseState {
       CustomDropdownMultipleController();
   final CustomDropdownMultipleController<RequirementImportance>
   importanceFilterController = CustomDropdownMultipleController();
-  final List<Requirement> _allRequirements = Data.requirements();
+  final List<Suite> _allSuites = Data.suites();
 
-  RequirementsListState({required this.projectId});
-
-  List<Requirement> get requirements =>
-      _allRequirements
+  List<Suite> get suites =>
+      _allSuites
           .where(
             (requirement) => requirement.matches(
               queryFilter: queryFilterController.text,
@@ -61,14 +57,7 @@ class RequirementsListState extends BaseState {
     notify();
   }
 
-  void onRequirementSelected({
-    required BuildContext context,
-    required String requirementId,
-  }) => Navigation.requirementDetails(
-    context: context,
-    projectId: projectId,
-    requirementId: requirementId,
-  );
+  void onSuiteSelected(Suite suite) {}
 
   void onCreateRequirement(BuildContext context) => BaseDialog.show(
     context: context,

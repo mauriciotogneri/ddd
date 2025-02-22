@@ -1,8 +1,8 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
-import 'package:testflow/domain/model/requirement.dart';
-import 'package:testflow/domain/state/requirements/requirements_list_state.dart';
+import 'package:testflow/domain/model/suite.dart';
+import 'package:testflow/domain/state/suites/suite_list_state.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
@@ -13,24 +13,21 @@ import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 
-class RequirementsListPage extends StatelessWidget {
-  final RequirementsListState state;
+class SuiteListPage extends StatelessWidget {
+  final SuiteListState state;
 
-  const RequirementsListPage._(this.state);
+  const SuiteListPage._(this.state);
 
-  factory RequirementsListPage.instance({required String projectId}) =>
-      RequirementsListPage._(RequirementsListState(projectId: projectId));
+  factory SuiteListPage.instance() => SuiteListPage._(SuiteListState());
 
   @override
   Widget build(BuildContext context) {
-    return StateProvider<RequirementsListState>(
+    return StateProvider<SuiteListState>(
       state: state,
       builder:
           (context, state) => Pane.scrollable(
             children: [
-              const PaneHeader(
-                path: NavigationPath(paths: [PathItem(text: 'Requirements')]),
-              ),
+              const NavigationPath(paths: [PathItem(text: 'Suites')]),
               Table(state),
             ],
           ),
@@ -39,7 +36,7 @@ class RequirementsListPage extends StatelessWidget {
 }
 
 class Table extends StatelessWidget {
-  final RequirementsListState state;
+  final SuiteListState state;
 
   const Table(this.state);
 
@@ -47,14 +44,10 @@ class Table extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(32),
-      child: CustomTable<Requirement>(
-        columns: Requirement.columns,
-        rows: state.requirements,
-        onSelected:
-            (requirement) => state.onRequirementSelected(
-              context: context,
-              requirementId: requirement.id,
-            ),
+      child: CustomTable<Suite>(
+        columns: Suite.columns,
+        rows: state.suites,
+        onSelected: state.onSuiteSelected,
         onResetFilters: state.hasFilters ? state.onResetFilters : null,
         onCreateItem: () => state.onCreateRequirement(context),
         filters: [

@@ -7,7 +7,7 @@ import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 
-class TestCaseDetailsState extends BaseState {
+class TestCaseDetailState extends BaseState {
   final String projectId;
   final String requirementId;
   final String testCaseId;
@@ -24,7 +24,7 @@ class TestCaseDetailsState extends BaseState {
   final CustomTextInputController expectedController =
       CustomTextInputController();
 
-  TestCaseDetailsState({
+  TestCaseDetailState({
     required this.projectId,
     required this.requirementId,
     required this.testCaseId,
