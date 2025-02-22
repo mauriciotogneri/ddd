@@ -1,6 +1,7 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
+import 'package:testflow/utils/palette.dart';
 
 class ContextMenu extends StatelessWidget {
   final IconData icon;
@@ -11,7 +12,17 @@ class ContextMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MenuAnchor(
-      style: MenuStyle(elevation: WidgetStateProperty.all(0)),
+      style: MenuStyle(
+        elevation: WidgetStateProperty.all(0),
+        backgroundColor: WidgetStateProperty.all(Palette.backgroundEmpty),
+        padding: WidgetStateProperty.all(const EdgeInsets.all(0)),
+        side: WidgetStateProperty.all(
+          const BorderSide(color: Palette.borderInputEnabled, width: 1),
+        ),
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+        ),
+      ),
       clipBehavior: Clip.none,
       menuChildren: children,
       builder:
