@@ -28,7 +28,7 @@ class SecondaryIconButton extends StatelessWidget {
           foregroundColor:
               (color != null)
                   ? WidgetStateProperty.all(color)
-                  : WidgetStateProperty.all(Palette.textSecondary),
+                  : WidgetStateProperty.all(Palette.textTitle),
           side:
               (color != null)
                   ? WidgetStateProperty.all(BorderSide(color: color!))

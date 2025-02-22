@@ -30,18 +30,24 @@ class SecondaryTextButton extends StatelessWidget {
           foregroundColor:
               (color != null)
                   ? WidgetStateProperty.all(color)
-                  : WidgetStateProperty.all(Palette.textSecondary),
+                  : WidgetStateProperty.all(Palette.textTitle),
           side:
               (color != null)
                   ? WidgetStateProperty.all(BorderSide(color: color!))
                   : WidgetStateProperty.all(
-                    const BorderSide(color: Palette.borderButtonSecondary),
+                    const BorderSide(
+                      width: 0.5,
+                      color: Palette.borderButtonSecondary,
+                    ),
                   ),
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(borderRadius: CustomInput.borderRadius),
           ),
         ),
-        icon: (icon != null) ? Icon(icon!, color: color) : null,
+        icon:
+            (icon != null)
+                ? Icon(icon!, color: color ?? Palette.textTitle)
+                : null,
         label: Text(text),
       ),
     );

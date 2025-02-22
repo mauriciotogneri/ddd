@@ -113,7 +113,6 @@ class ResetFiltersButton extends StatelessWidget {
     return SecondaryTextButton(
       icon: Icons.clear,
       onPressed: onPressed,
-      color: Palette.textSecondary,
       text: 'Reset',
     );
   }
@@ -363,7 +362,7 @@ class FooterButton extends StatelessWidget {
           onPressed: onPressed,
           style: ButtonStyle(
             padding: WidgetStateProperty.all(const EdgeInsets.only(left: 6)),
-            foregroundColor: WidgetStateProperty.all(Palette.textSecondary),
+            foregroundColor: WidgetStateProperty.all(Palette.textTitle),
             side: WidgetStateProperty.all(
               const BorderSide(color: Palette.borderButtonSecondary),
             ),
@@ -371,7 +370,7 @@ class FooterButton extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: CustomInput.borderRadius),
             ),
           ),
-          icon: Icon(icon, color: Palette.iconEnabled, size: 20),
+          icon: Icon(icon, color: Palette.textTitle, size: 20),
           label: const Empty(),
         ),
       ),

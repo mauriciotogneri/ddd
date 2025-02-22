@@ -35,8 +35,8 @@ class Palette {
 
   static const Color textTitle = Color(0xff333333);
   static const Color textBody = Color(0xff6b7280);
-  static const Color textInput = Color(0xff606060);
   static const Color textSecondary = Color(0xff777777);
+  static const Color textInput = Color(0xff606060);
   static const Color textHint = Color(0xffd0d0d0);
   static const Color textDisabled = Color(0xffd0d0d0);
   static const Color textError = Color(0xffC64343);
