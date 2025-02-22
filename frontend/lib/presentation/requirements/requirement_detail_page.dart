@@ -7,6 +7,7 @@ import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/domain/types/test_case_execution.dart';
+import 'package:testflow/presentation/common/card/metadata_card.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
@@ -15,6 +16,7 @@ import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/menu/context_menu.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
+import 'package:testflow/utils/formatter.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
@@ -47,34 +49,63 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Pane.scrollable(
-      children: [
-        PaneHeader(
-          path: NavigationPath(
-            paths: [
-              PathItem(
-                text: 'Requirements',
-                path: Navigation.requirementListPath(state.projectId),
-              ),
-              PathItem(text: state.requirement.code),
-            ],
+    return Pane.scrollable(children: [Header(state), Body(state)]);
+  }
+}
+
+class Header extends StatelessWidget {
+  final RequirementDetailState state;
+
+  const Header(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return PaneHeader(
+      path: NavigationPath(
+        paths: [
+          PathItem(
+            text: 'Requirements',
+            path: Navigation.requirementListPath(state.projectId),
           ),
-          actions: [
-            ContextMenu(
-              icon: Icons.more_horiz,
-              children: [
-                ContextMenuItem(
-                  icon: Icons.delete_outline,
-                  text: 'Delete',
-                  color: Palette.semanticError,
-                  onPressed: state.onDeleteRequirement,
-                ),
-              ],
+          PathItem(text: state.requirement.code),
+        ],
+      ),
+      actions: [
+        ContextMenu(
+          icon: Icons.more_horiz,
+          children: [
+            ContextMenuItem(
+              icon: Icons.delete_outline,
+              text: 'Delete',
+              color: Palette.semanticError,
+              onPressed: state.onDeleteRequirement,
             ),
           ],
         ),
-        FormFields(state),
-        Table(state),
+      ],
+    );
+  }
+}
+
+class Body extends StatelessWidget {
+  final RequirementDetailState state;
+
+  const Body(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [FormFields(state), Table(state)],
+          ),
+        ),
+        const Metadata(),
+        const HBox(32),
       ],
     );
   }
@@ -88,7 +119,7 @@ class FormFields extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.only(top: 32, right: 32, bottom: 32, left: 32),
       child: Form(
         key: state.formKey.key,
         child: Column(
@@ -228,7 +259,7 @@ class Table extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.only(right: 32, bottom: 32, left: 32),
       child: CustomTable<TestCase>(
         columns: TestCase.columns,
         rows: state.testCases,
@@ -259,5 +290,25 @@ class Table extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class Metadata extends StatelessWidget {
+  const Metadata();
+
+  @override
+  Widget build(BuildContext context) {
+    return MetadataCard([
+      MetadataItem(
+        label: 'Created on',
+        value: Formatter.fullDateTime(DateTime.now()),
+      ),
+      const MetadataItem(label: 'Created by', value: 'John Doe'),
+      MetadataItem(
+        label: 'Updated on',
+        value: Formatter.fullDateTime(DateTime.now()),
+      ),
+      const MetadataItem(label: 'Updated by', value: 'Jane Doe'),
+    ]);
   }
 }
