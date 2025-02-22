@@ -3,7 +3,7 @@ import 'package:testflow/presentation/common/chip/custom_chip.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/utils/palette.dart';
 
-enum RequirementStatus {
+enum RequirementStatus implements Chipable {
   draft,
   active,
   inactive;
@@ -41,6 +41,7 @@ enum RequirementStatus {
     }
   }
 
+  @override
   CustomChip get chip => CustomChip(
     text: localized,
     backgroundColor: backgroundColor,

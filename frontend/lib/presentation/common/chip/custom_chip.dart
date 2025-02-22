@@ -58,7 +58,13 @@ class ChipGroup<T> extends StatelessWidget {
     if (items.isEmpty) {
       return const Empty();
     } else if (items.length == 1) {
-      return CustomChip(text: items.first.toString());
+      final T item = items.first;
+
+      if (item is Chipable) {
+        return item.chip;
+      } else {
+        return CustomChip(text: item.toString());
+      }
     } else {
       return Tooltip(
         message: items.join('\n'),
@@ -67,4 +73,8 @@ class ChipGroup<T> extends StatelessWidget {
       );
     }
   }
+}
+
+abstract class Chipable {
+  CustomChip get chip;
 }
