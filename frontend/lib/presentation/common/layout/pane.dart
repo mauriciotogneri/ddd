@@ -28,7 +28,7 @@ class PaneHeader extends StatelessWidget {
   final NavigationPath path;
   final List<Widget> actions;
 
-  const PaneHeader({required this.path, required this.actions});
+  const PaneHeader({required this.path, this.actions = const []});
 
   @override
   Widget build(BuildContext context) {

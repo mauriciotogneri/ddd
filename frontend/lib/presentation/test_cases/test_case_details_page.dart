@@ -32,12 +32,14 @@ class TestCaseDetailsPage extends StatelessWidget {
       builder:
           (context, state) => Pane.scrollable(
             children: [
-              NavigationPath(
-                paths: [
-                  'Requirements',
-                  state.requirement.code,
-                  state.testCase.name,
-                ],
+              PaneHeader(
+                path: NavigationPath(
+                  paths: [
+                    'Requirements',
+                    state.requirement.code,
+                    state.testCase.name,
+                  ],
+                ),
               ),
               FormFields(state),
             ],
