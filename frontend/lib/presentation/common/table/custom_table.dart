@@ -343,7 +343,7 @@ class FooterControls extends StatelessWidget {
         SecondaryIconButton(
           size: 34,
           iconSize: 22,
-          icon: Icons.skip_previous_rounded,
+          icon: Icons.first_page,
           onPressed: () {},
         ),
         const HBox(8),
@@ -373,7 +373,7 @@ class FooterControls extends StatelessWidget {
         SecondaryIconButton(
           size: 34,
           iconSize: 22,
-          icon: Icons.skip_next_rounded,
+          icon: Icons.last_page,
           onPressed: () {},
         ),
         const HBox(8),
