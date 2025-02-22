@@ -5,9 +5,7 @@ import 'package:testflow/domain/types/test_case_execution.dart';
 import 'package:testflow/extensions/string_extension.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
-import 'package:testflow/presentation/common/text/body_small.dart';
 import 'package:testflow/utils/formatter.dart';
-import 'package:testflow/utils/palette.dart';
 
 class TestCase implements TableElement {
   final String id;
@@ -72,16 +70,9 @@ class TestCase implements TableElement {
       case TestCaseColumn.executionType:
         return execution.chip;
       case TestCaseColumn.lastRun:
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            BodyMedium(text: Formatter.fullDateTime(lastRun)),
-            BodySmall(
-              text: '${Formatter.daysAgo(lastRun)} days ago',
-              color: Palette.textSecondary,
-            ),
-          ],
+        return Tooltip(
+          message: Formatter.fullDateTime(lastRun),
+          child: BodyMedium(text: '${Formatter.daysAgo(lastRun)} days ago'),
         );
       default:
         return const Empty();
