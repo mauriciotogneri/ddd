@@ -19,7 +19,7 @@ class DashboardPage extends StatelessWidget {
       builder:
           (context, state) => Pane.scrollable(
             children: [
-              const NavigationPath(paths: ['Dashboard']),
+              const NavigationPath(paths: [PathItem(text: 'Dashboard')]),
               Content(),
             ],
           ),

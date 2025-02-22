@@ -132,7 +132,7 @@ class _LeftMenuState extends State<LeftMenu> {
         Navigation.dashboard(context: context, projectId: projectId);
         break;
       case MenuItem.requirements:
-        Navigation.requirements(context: context, projectId: projectId);
+        Navigation.requirementsList(context: context, projectId: projectId);
         break;
       case MenuItem.suites:
         Navigation.suites(context: context, projectId: projectId);

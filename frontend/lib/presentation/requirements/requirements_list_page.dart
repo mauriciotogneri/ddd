@@ -28,7 +28,9 @@ class RequirementsListPage extends StatelessWidget {
       builder:
           (context, state) => Pane.scrollable(
             children: [
-              const PaneHeader(path: NavigationPath(paths: ['Requirements'])),
+              const PaneHeader(
+                path: NavigationPath(paths: [PathItem(text: 'Requirements')]),
+              ),
               Table(state),
             ],
           ),

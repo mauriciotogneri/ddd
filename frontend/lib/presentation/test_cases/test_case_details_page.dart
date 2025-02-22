@@ -7,6 +7,7 @@ import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
+import 'package:testflow/utils/navigation.dart';
 
 class TestCaseDetailsPage extends StatelessWidget {
   final TestCaseDetailsState state;
@@ -35,9 +36,18 @@ class TestCaseDetailsPage extends StatelessWidget {
               PaneHeader(
                 path: NavigationPath(
                   paths: [
-                    'Requirements',
-                    state.requirement.code,
-                    state.testCase.name,
+                    PathItem(
+                      text: 'Requirements',
+                      path: Navigation.requirementsListPath(state.projectId),
+                    ),
+                    PathItem(
+                      text: state.requirement.code,
+                      path: Navigation.requirementDetailsPath(
+                        projectId: state.projectId,
+                        requirementId: state.requirement.id,
+                      ),
+                    ),
+                    PathItem(text: state.testCase.name),
                   ],
                 ),
               ),

@@ -27,7 +27,7 @@ class SuitesListPage extends StatelessWidget {
       builder:
           (context, state) => Pane.scrollable(
             children: [
-              const NavigationPath(paths: ['Suites']),
+              const NavigationPath(paths: [PathItem(text: 'Suites')]),
               Table(state),
             ],
           ),

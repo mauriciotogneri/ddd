@@ -15,6 +15,7 @@ import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/menu/context_menu.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
+import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
 class RequirementDetailsPage extends StatelessWidget {
@@ -38,7 +39,13 @@ class RequirementDetailsPage extends StatelessWidget {
             children: [
               PaneHeader(
                 path: NavigationPath(
-                  paths: ['Requirements', state.requirement.code],
+                  paths: [
+                    PathItem(
+                      text: 'Requirements',
+                      path: Navigation.requirementsListPath(state.projectId),
+                    ),
+                    PathItem(text: state.requirement.code),
+                  ],
                 ),
                 actions: [
                   ContextMenu(

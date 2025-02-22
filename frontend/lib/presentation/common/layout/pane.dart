@@ -35,7 +35,7 @@ class PaneHeader extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 16, left: 32, right: 32),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [path, const Spacer(), ...actions],
       ),

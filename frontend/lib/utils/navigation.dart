@@ -92,10 +92,13 @@ class Navigation {
     required String projectId,
   }) => go(context: context, path: '/projects/$projectId/dashboard');
 
-  static void requirements({
+  static void requirementsList({
     required BuildContext context,
     required String projectId,
-  }) => go(context: context, path: '/projects/$projectId/requirements');
+  }) => go(context: context, path: requirementsListPath(projectId));
+
+  static String requirementsListPath(String projectId) =>
+      '/projects/$projectId/requirements';
 
   static void requirementDetails({
     required BuildContext context,
@@ -103,8 +106,16 @@ class Navigation {
     required String requirementId,
   }) => go(
     context: context,
-    path: '/projects/$projectId/requirements/$requirementId',
+    path: requirementDetailsPath(
+      projectId: projectId,
+      requirementId: requirementId,
+    ),
   );
+
+  static String requirementDetailsPath({
+    required String projectId,
+    required String requirementId,
+  }) => '/projects/$projectId/requirements/$requirementId';
 
   static void testCaseDetails({
     required BuildContext context,
