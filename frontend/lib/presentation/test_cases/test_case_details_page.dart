@@ -31,29 +31,40 @@ class TestCaseDetailsPage extends StatelessWidget {
     return StateProvider<TestCaseDetailsState>(
       state: state,
       builder:
-          (context, state) => Pane.scrollable(
-            children: [
-              PaneHeader(
-                path: NavigationPath(
-                  paths: [
-                    PathItem(
-                      text: 'Requirements',
-                      path: Navigation.requirementsListPath(state.projectId),
-                    ),
-                    PathItem(
-                      text: state.requirement.code,
-                      path: Navigation.requirementDetailsPath(
-                        projectId: state.projectId,
-                        requirementId: state.requirement.id,
-                      ),
-                    ),
-                    PathItem(text: state.testCase.name),
-                  ],
+          (context, state) => state.isLoading ? const Empty() : Content(state),
+    );
+  }
+}
+
+class Content extends StatelessWidget {
+  final TestCaseDetailsState state;
+
+  const Content(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Pane.scrollable(
+      children: [
+        PaneHeader(
+          path: NavigationPath(
+            paths: [
+              PathItem(
+                text: 'Requirements',
+                path: Navigation.requirementsListPath(state.projectId),
+              ),
+              PathItem(
+                text: state.requirement.code,
+                path: Navigation.requirementDetailsPath(
+                  projectId: state.projectId,
+                  requirementId: state.requirement.id,
                 ),
               ),
-              FormFields(state),
+              PathItem(text: state.testCase.name),
             ],
           ),
+        ),
+        FormFields(state),
+      ],
     );
   }
 }

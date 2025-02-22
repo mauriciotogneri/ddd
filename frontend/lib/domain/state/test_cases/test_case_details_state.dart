@@ -11,8 +11,8 @@ class TestCaseDetailsState extends BaseState {
   final String projectId;
   final String requirementId;
   final String testCaseId;
-  late final Requirement requirement;
-  late final TestCase testCase;
+  Requirement? _requirement;
+  TestCase? _testCase;
 
   final FormKey formKey = const FormKey();
   final CustomTextInputController nameController = CustomTextInputController();
@@ -32,10 +32,16 @@ class TestCaseDetailsState extends BaseState {
     required this.testCaseId,
   });
 
+  Requirement get requirement => _requirement!;
+
+  TestCase get testCase => _testCase!;
+
+  bool get isLoading => (_requirement == null) || (_testCase == null);
+
   @override
   void onLoad() {
-    requirement = Data.requirementById(requirementId);
-    testCase = Data.testCaseById(testCaseId);
+    _requirement = Data.requirementById(requirementId);
+    _testCase = Data.testCaseById(testCaseId);
 
     nameController.text = testCase.name;
     executionController.select(testCase.execution);

@@ -35,36 +35,47 @@ class RequirementDetailsPage extends StatelessWidget {
     return StateProvider<RequirementDetailsState>(
       state: state,
       builder:
-          (context, state) => Pane.scrollable(
-            children: [
-              PaneHeader(
-                path: NavigationPath(
-                  paths: [
-                    PathItem(
-                      text: 'Requirements',
-                      path: Navigation.requirementsListPath(state.projectId),
-                    ),
-                    PathItem(text: state.requirement.code),
-                  ],
-                ),
-                actions: [
-                  ContextMenu(
-                    icon: Icons.more_horiz,
-                    children: [
-                      ContextMenuItem(
-                        icon: Icons.delete_outline,
-                        text: 'Delete',
-                        color: Palette.semanticError,
-                        onPressed: state.onDeleteRequirement,
-                      ),
-                    ],
-                  ),
-                ],
+          (context, state) => state.isLoading ? const Empty() : Content(state),
+    );
+  }
+}
+
+class Content extends StatelessWidget {
+  final RequirementDetailsState state;
+
+  const Content(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Pane.scrollable(
+      children: [
+        PaneHeader(
+          path: NavigationPath(
+            paths: [
+              PathItem(
+                text: 'Requirements',
+                path: Navigation.requirementsListPath(state.projectId),
               ),
-              FormFields(state),
-              Table(state),
+              PathItem(text: state.requirement.code),
             ],
           ),
+          actions: [
+            ContextMenu(
+              icon: Icons.more_horiz,
+              children: [
+                ContextMenuItem(
+                  icon: Icons.delete_outline,
+                  text: 'Delete',
+                  color: Palette.semanticError,
+                  onPressed: state.onDeleteRequirement,
+                ),
+              ],
+            ),
+          ],
+        ),
+        FormFields(state),
+        Table(state),
+      ],
     );
   }
 }

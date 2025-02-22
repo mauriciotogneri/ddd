@@ -18,7 +18,7 @@ import 'package:testflow/utils/navigation.dart';
 class RequirementDetailsState extends BaseState {
   final String projectId;
   final String requirementId;
-  late final Requirement requirement;
+  Requirement? _requirement;
   final List<TestCase> _allTestCases = [];
   final FormKey formKey = const FormKey();
   final CustomTextInputController idController = CustomTextInputController();
@@ -56,9 +56,13 @@ class RequirementDetailsState extends BaseState {
     required this.requirementId,
   });
 
+  Requirement get requirement => _requirement!;
+
+  bool get isLoading => _requirement == null;
+
   @override
   void onLoad() {
-    requirement = Data.requirementById(requirementId);
+    _requirement = Data.requirementById(requirementId);
 
     idController.text = requirement.code;
     typeController.select(requirement.type);
