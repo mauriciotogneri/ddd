@@ -2,12 +2,15 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/state/test_cases/test_case_detail_state.dart';
 import 'package:testflow/domain/types/test_case_execution.dart';
+import 'package:testflow/presentation/common/card/custom_card.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/menu/context_menu.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
+import 'package:testflow/presentation/common/text/custom_text.dart';
+import 'package:testflow/utils/formatter.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
@@ -45,40 +48,64 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Pane.scrollable(
-      children: [
-        PaneHeader(
-          path: NavigationPath(
-            paths: [
-              PathItem(
-                text: 'Requirements',
-                path: Navigation.requirementListPath(state.projectId),
-              ),
-              PathItem(
-                text: state.requirement.code,
-                path: Navigation.requirementDetailPath(
-                  projectId: state.projectId,
-                  requirementId: state.requirement.id,
-                ),
-              ),
-              PathItem(text: state.testCase.name),
-            ],
+    return Pane.scrollable(children: [Header(state), Body(state)]);
+  }
+}
+
+class Header extends StatelessWidget {
+  final TestCaseDetailState state;
+
+  const Header(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return PaneHeader(
+      path: NavigationPath(
+        paths: [
+          PathItem(
+            text: 'Requirements',
+            path: Navigation.requirementListPath(state.projectId),
           ),
-          actions: [
-            ContextMenu(
-              icon: Icons.more_horiz,
-              children: [
-                ContextMenuItem(
-                  icon: Icons.delete_outline,
-                  text: 'Delete',
-                  color: Palette.semanticError,
-                  onPressed: state.onDeleteTestCase,
-                ),
-              ],
+          PathItem(
+            text: state.requirement.code,
+            path: Navigation.requirementDetailPath(
+              projectId: state.projectId,
+              requirementId: state.requirement.id,
+            ),
+          ),
+          PathItem(text: state.testCase.name),
+        ],
+      ),
+      actions: [
+        ContextMenu(
+          icon: Icons.more_horiz,
+          children: [
+            ContextMenuItem(
+              icon: Icons.delete_outline,
+              text: 'Delete',
+              color: Palette.semanticError,
+              onPressed: state.onDeleteTestCase,
             ),
           ],
         ),
-        FormFields(state),
+      ],
+    );
+  }
+}
+
+class Body extends StatelessWidget {
+  final TestCaseDetailState state;
+
+  const Body(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(child: FormFields(state)),
+        const Metadata(),
+        const HBox(32),
       ],
     );
   }
@@ -103,11 +130,12 @@ class FormFields extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                CustomTextInput(
-                  width: 835,
-                  name: 'Name',
-                  controller: state.nameController,
-                  errorMessage: 'Name is required',
+                Expanded(
+                  child: CustomTextInput(
+                    name: 'Name',
+                    controller: state.nameController,
+                    errorMessage: 'Name is required',
+                  ),
                 ),
                 const HBox(16),
                 CustomDropdownSingle<TestCaseExecution>(
@@ -121,7 +149,6 @@ class FormFields extends StatelessWidget {
             ),
             const VBox(16),
             CustomMultilineInput(
-              width: 1000,
               minLines: 5,
               maxLines: 5,
               name: 'Preconditions',
@@ -129,7 +156,6 @@ class FormFields extends StatelessWidget {
             ),
             const VBox(16),
             CustomTextInput(
-              width: 1000,
               minLines: 5,
               maxLines: 5,
               name: 'Steps',
@@ -137,7 +163,6 @@ class FormFields extends StatelessWidget {
             ),
             const VBox(16),
             CustomTextInput(
-              width: 1000,
               minLines: 5,
               maxLines: 5,
               name: 'Expected result',
@@ -147,6 +172,75 @@ class FormFields extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class Metadata extends StatelessWidget {
+  const Metadata();
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomCard(
+      width: 350,
+      margin: const EdgeInsets.only(top: 60),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          MetadataItem(
+            label: 'Created on',
+            value: Formatter.fullDateTime(DateTime.now()),
+          ),
+          const VBox(16),
+          const MetadataItem(label: 'Created by', value: 'John Doe'),
+          const VBox(16),
+          MetadataItem(
+            label: 'Updated on',
+            value: Formatter.fullDateTime(DateTime.now()),
+          ),
+          const VBox(16),
+          const MetadataItem(label: 'Updated by', value: 'Jane Doe'),
+          const VBox(16),
+          MetadataItem(
+            label: 'Last run',
+            value:
+                '${Formatter.fullDateTime(DateTime.now())}\n${Formatter.daysAgo(DateTime.now())} days ago',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MetadataItem extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const MetadataItem({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        SizedBox(
+          width: 150,
+          child: CustomText(
+            text: label,
+            size: 14,
+            color: Palette.textTitle,
+            weight: FontWeight.bold,
+          ),
+        ),
+        CustomText(
+          text: value,
+          size: 14,
+          color: Palette.textBody,
+          weight: FontWeight.normal,
+        ),
+      ],
     );
   }
 }
