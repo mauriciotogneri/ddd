@@ -6,8 +6,10 @@ import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
+import 'package:testflow/presentation/common/menu/context_menu.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/utils/navigation.dart';
+import 'package:testflow/utils/palette.dart';
 
 class TestCaseDetailsPage extends StatelessWidget {
   final TestCaseDetailsState state;
@@ -62,6 +64,19 @@ class Content extends StatelessWidget {
               PathItem(text: state.testCase.name),
             ],
           ),
+          actions: [
+            ContextMenu(
+              icon: Icons.more_horiz,
+              children: [
+                ContextMenuItem(
+                  icon: Icons.delete_outline,
+                  text: 'Delete',
+                  color: Palette.semanticError,
+                  onPressed: state.onDeleteTestCase,
+                ),
+              ],
+            ),
+          ],
         ),
         FormFields(state),
       ],

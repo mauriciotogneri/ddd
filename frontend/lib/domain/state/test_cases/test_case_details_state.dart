@@ -49,4 +49,6 @@ class TestCaseDetailsState extends BaseState {
 
     notify();
   }
+
+  void onDeleteTestCase() {}
 }
