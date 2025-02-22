@@ -1,4 +1,5 @@
 import 'package:dafluta/dafluta.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/attachment.dart';
@@ -6,6 +7,7 @@ import 'package:testflow/domain/types/attachment_type.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
+import 'package:testflow/utils/custom_snackbar.dart';
 import 'package:web/web.dart';
 
 class AttachmentsTable extends StatelessWidget {
@@ -27,7 +29,7 @@ class AttachmentsTable extends StatelessWidget {
               rows: state.attachments,
               onSelected: state.onAttachmentSelected,
               onResetFilters: state.hasFilters ? state.onResetFilters : null,
-              onCreateItem: state.onUploadAttachment,
+              onCreateItem: () => state.onUploadAttachment(context),
               createButtonText: 'Upload',
               createButtonIcon: Icons.file_upload_outlined,
               filters: [
@@ -86,7 +88,20 @@ class AttachmentsState extends BaseState {
     notify();
   }
 
-  void onUploadAttachment() {}
+  Future onUploadAttachment(BuildContext context) async {
+    final FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.any,
+      allowMultiple: true,
+    );
+
+    if ((result != null) && (context.mounted)) {
+      CustomSnackbar.show(
+        context: context,
+        message:
+            'Uploading ${result.files.length} file${result.files.length > 1 ? 's' : ''}…',
+      );
+    }
+  }
 
   void onAttachmentSelected(Attachment attachment) =>
       window.open(attachment.url);
