@@ -31,6 +31,7 @@ class SecondaryTextButton extends StatelessWidget {
               (color != null)
                   ? WidgetStateProperty.all(color)
                   : WidgetStateProperty.all(Palette.textTitle),
+          backgroundColor: WidgetStateProperty.all(Palette.backgroundEmpty),
           side:
               (color != null)
                   ? WidgetStateProperty.all(BorderSide(color: color!))
