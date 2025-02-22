@@ -60,7 +60,11 @@ class ChipGroup<T> extends StatelessWidget {
     } else if (items.length == 1) {
       return CustomChip(text: items.first.toString());
     } else {
-      return CustomChip(text: '${items.length} $plural');
+      return Tooltip(
+        message: items.join('\n'),
+        textAlign: TextAlign.center,
+        child: CustomChip(text: '${items.length} $plural'),
+      );
     }
   }
 }
