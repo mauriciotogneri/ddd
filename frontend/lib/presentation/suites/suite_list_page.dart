@@ -51,7 +51,7 @@ class Table extends StatelessWidget {
         rows: state.suites,
         onSelected: state.onSuiteSelected,
         onResetFilters: state.hasFilters ? state.onResetFilters : null,
-        onCreateItem: () => state.onCreateRequirement(context),
+        onCreateItem: () => state.onCreateSuite(context),
         filters: [
           CustomTextInput(
             width: 300,

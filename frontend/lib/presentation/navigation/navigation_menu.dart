@@ -103,7 +103,7 @@ class _LeftMenuState extends State<LeftMenu> {
             ),
             NavigationMenuRow(
               text: 'Settings',
-              icon: Icons.settings_outlined,
+              icon: Icons.tune,
               isSelected: selectedMenu == MenuItem.settings,
               menu: MenuItem.settings,
               onSelected:

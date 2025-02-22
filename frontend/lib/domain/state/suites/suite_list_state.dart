@@ -17,12 +17,12 @@ class SuiteListState extends BaseState {
       CustomDropdownMultipleController();
   final CustomDropdownMultipleController<RequirementStatus>
   statusFilterController = CustomDropdownMultipleController();
+  final CustomDropdownMultipleController<RequirementImportance>
+  importanceFilterController = CustomDropdownMultipleController();
   final CustomDropdownMultipleController<String> componentFilterController =
       CustomDropdownMultipleController();
   final CustomDropdownMultipleController<String> platformFilterController =
       CustomDropdownMultipleController();
-  final CustomDropdownMultipleController<RequirementImportance>
-  importanceFilterController = CustomDropdownMultipleController();
   final List<Suite> _allSuites = Data.suites();
 
   List<Suite> get suites =>
@@ -32,9 +32,9 @@ class SuiteListState extends BaseState {
               queryFilter: queryFilterController.text,
               typeFilter: typeFilterController.selected,
               statusFilter: statusFilterController.selected,
+              importanceFilter: importanceFilterController.selected,
               componentFilter: componentFilterController.selected,
               platformFilter: platformFilterController.selected,
-              importanceFilter: importanceFilterController.selected,
             ),
           )
           .toList();
@@ -43,30 +43,28 @@ class SuiteListState extends BaseState {
       queryFilterController.isNotEmpty ||
       typeFilterController.isNotEmpty ||
       statusFilterController.isNotEmpty ||
+      importanceFilterController.isNotEmpty ||
       componentFilterController.isNotEmpty ||
-      platformFilterController.isNotEmpty ||
-      importanceFilterController.isNotEmpty;
+      platformFilterController.isNotEmpty;
 
   void onResetFilters() {
     queryFilterController.clear();
     typeFilterController.clear();
     statusFilterController.clear();
+    importanceFilterController.clear();
     componentFilterController.clear();
     platformFilterController.clear();
-    importanceFilterController.clear();
     notify();
   }
 
   void onSuiteSelected(Suite suite) {}
 
-  void onCreateRequirement(BuildContext context) => BaseDialog.show(
+  void onCreateSuite(BuildContext context) => BaseDialog.show(
     context: context,
-    dialog: CreateRequirementDialog.instance(
-      onCreateRequirement: _createRequirement,
-    ),
+    dialog: CreateRequirementDialog.instance(onCreateRequirement: _createSuite),
   );
 
-  void _createRequirement({
+  void _createSuite({
     required String name,
     required String code,
     required String description,

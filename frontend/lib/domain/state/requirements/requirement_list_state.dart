@@ -19,12 +19,12 @@ class RequirementListState extends BaseState {
       CustomDropdownMultipleController();
   final CustomDropdownMultipleController<RequirementStatus>
   statusFilterController = CustomDropdownMultipleController();
+  final CustomDropdownMultipleController<RequirementImportance>
+  importanceFilterController = CustomDropdownMultipleController();
   final CustomDropdownMultipleController<String> componentFilterController =
       CustomDropdownMultipleController();
   final CustomDropdownMultipleController<String> platformFilterController =
       CustomDropdownMultipleController();
-  final CustomDropdownMultipleController<RequirementImportance>
-  importanceFilterController = CustomDropdownMultipleController();
   final List<Requirement> _allRequirements = Data.requirements();
 
   RequirementListState({required this.projectId});
@@ -36,9 +36,9 @@ class RequirementListState extends BaseState {
               queryFilter: queryFilterController.text,
               typeFilter: typeFilterController.selected,
               statusFilter: statusFilterController.selected,
+              importanceFilter: importanceFilterController.selected,
               componentFilter: componentFilterController.selected,
               platformFilter: platformFilterController.selected,
-              importanceFilter: importanceFilterController.selected,
             ),
           )
           .toList();
@@ -47,17 +47,17 @@ class RequirementListState extends BaseState {
       queryFilterController.isNotEmpty ||
       typeFilterController.isNotEmpty ||
       statusFilterController.isNotEmpty ||
+      importanceFilterController.isNotEmpty ||
       componentFilterController.isNotEmpty ||
-      platformFilterController.isNotEmpty ||
-      importanceFilterController.isNotEmpty;
+      platformFilterController.isNotEmpty;
 
   void onResetFilters() {
     queryFilterController.clear();
     typeFilterController.clear();
     statusFilterController.clear();
+    importanceFilterController.clear();
     componentFilterController.clear();
     platformFilterController.clear();
-    importanceFilterController.clear();
     notify();
   }
 

@@ -157,7 +157,21 @@ class Data {
         ),
   ];
 
-  static final List<Suite> _suites = [];
+  static final List<Suite> _suites = [
+    for (int i = 0; i < 10; i++)
+      Suite(
+        id: '${i + 1}',
+        name: 'Suite ${i + 1}',
+        types: [],
+        statuses: [],
+        importances: [],
+        components: [],
+        platforms: [],
+        tags: [
+          for (int i = 0; i < Random().nextInt(3) + 1; i++) 'Tag ${i + 1}',
+        ],
+      ),
+  ];
 
   static List<Requirement> requirements() => _requirements;
 

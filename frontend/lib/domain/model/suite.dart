@@ -9,6 +9,7 @@ import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
 
 class Suite implements TableElement {
+  final String id;
   final String name;
   final List<RequirementType> types;
   final List<RequirementStatus> statuses;
@@ -18,6 +19,7 @@ class Suite implements TableElement {
   final List<String> tags;
 
   const Suite({
+    required this.id,
     required this.name,
     required this.types,
     required this.statuses,
