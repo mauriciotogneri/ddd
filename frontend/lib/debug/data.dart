@@ -4,11 +4,14 @@ import 'package:testflow/domain/model/project.dart';
 import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/model/suite.dart';
 import 'package:testflow/domain/model/test_case.dart';
+import 'package:testflow/domain/model/test_run.dart';
 import 'package:testflow/domain/types/attachment_type.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/domain/types/test_case_execution.dart';
+import 'package:testflow/domain/types/test_run_reproducibility.dart';
+import 'package:testflow/domain/types/test_run_status.dart';
 
 class Data {
   static Project currentProject = _projects.first;
@@ -43,9 +46,9 @@ class Data {
       component: component,
       platforms: platforms,
       tags: [],
-      createdOn: DateTime.now().subtract(Duration(days: Random().nextInt(30))),
+      createdOn: randomDate(),
       createdBy: 'John Doe',
-      updatedOn: DateTime.now().subtract(Duration(days: Random().nextInt(30))),
+      updatedOn: randomDate(),
       updatedBy: 'Jane Doe',
     );
     _requirements.add(requirement);
@@ -61,17 +64,17 @@ class Data {
   }) {
     final TestCase testCase = TestCase(
       id: DateTime.now().toIso8601String(),
-      requirement: requirement,
+      requirementId: requirement.id,
       name: name,
       execution: execution,
       preconditions: preconditions,
       steps: steps,
       expected: expected,
-      lastRun: DateTime.now().subtract(Duration(days: Random().nextInt(30))),
+      lastRun: randomDate(),
       tags: [],
-      createdOn: DateTime.now().subtract(Duration(days: Random().nextInt(30))),
+      createdOn: randomDate(),
       createdBy: 'John Doe',
-      updatedOn: DateTime.now().subtract(Duration(days: Random().nextInt(30))),
+      updatedOn: randomDate(),
       updatedBy: 'Jane Doe',
     );
     _testCases.add(testCase);
@@ -94,9 +97,9 @@ class Data {
       components: components,
       platforms: platforms,
       tags: [],
-      createdOn: DateTime.now().subtract(Duration(days: Random().nextInt(30))),
+      createdOn: randomDate(),
       createdBy: 'John Doe',
-      updatedOn: DateTime.now().subtract(Duration(days: Random().nextInt(30))),
+      updatedOn: randomDate(),
       updatedBy: 'Jane Doe',
     );
     _suites.add(suite);
@@ -175,13 +178,9 @@ class Data {
         tags: [
           for (int i = 0; i < Random().nextInt(3) + 1; i++) 'Tag ${i + 1}',
         ],
-        createdOn: DateTime.now().subtract(
-          Duration(days: Random().nextInt(30)),
-        ),
+        createdOn: randomDate(),
         createdBy: 'John Doe',
-        updatedOn: DateTime.now().subtract(
-          Duration(days: Random().nextInt(30)),
-        ),
+        updatedOn: randomDate(),
         updatedBy: 'Jane Doe',
       ),
   ];
@@ -191,25 +190,41 @@ class Data {
       for (int i = 0; i < Random().nextInt(50) + 1; i++)
         TestCase(
           id: '${requirement.id}-${i + 1}',
-          requirement: requirement,
+          requirementId: requirement.id,
           name: 'Test case ${i + 1}',
           execution: _random(TestCaseExecution.values),
           preconditions: _random(_texts),
           steps: _random(_texts),
           expected: _random(_texts),
-          lastRun: DateTime.now().subtract(
-            Duration(days: Random().nextInt(30)),
-          ),
+          lastRun: randomDate(),
           tags: [
             for (int i = 0; i < Random().nextInt(3) + 1; i++) 'Tag ${i + 1}',
           ],
-          createdOn: DateTime.now().subtract(
-            Duration(days: Random().nextInt(30)),
-          ),
+          createdOn: randomDate(),
           createdBy: 'John Doe',
-          updatedOn: DateTime.now().subtract(
-            Duration(days: Random().nextInt(30)),
-          ),
+          updatedOn: randomDate(),
+          updatedBy: 'Jane Doe',
+        ),
+  ];
+
+  static final List<TestRun> _testRuns = [
+    for (final TestCase testCase in _testCases)
+      for (int i = 0; i < Random().nextInt(10) + 1; i++)
+        TestRun(
+          id: '${testCase.requirementId}-${testCase.id}-${i + 1}',
+          requirementId: testCase.requirementId,
+          testCaseId: testCase.id,
+          name: 'Test run ${i + 1}',
+          preconditions: testCase.preconditions,
+          steps: testCase.steps,
+          expected: testCase.expected,
+          actual: _random(_texts),
+          status: _random(TestRunStatus.values),
+          reproducibility: _random(TestRunReproducibility.values),
+          timestamp: randomDate(),
+          createdOn: randomDate(),
+          createdBy: 'John Doe',
+          updatedOn: randomDate(),
           updatedBy: 'Jane Doe',
         ),
   ];
@@ -227,13 +242,9 @@ class Data {
         tags: [
           for (int i = 0; i < Random().nextInt(3) + 1; i++) 'Tag ${i + 1}',
         ],
-        createdOn: DateTime.now().subtract(
-          Duration(days: Random().nextInt(30)),
-        ),
+        createdOn: randomDate(),
         createdBy: 'John Doe',
-        updatedOn: DateTime.now().subtract(
-          Duration(days: Random().nextInt(30)),
-        ),
+        updatedOn: randomDate(),
         updatedBy: 'Jane Doe',
       ),
   ];
@@ -244,8 +255,11 @@ class Data {
 
   static List<TestCase> testCases(Requirement requirement) =>
       _testCases
-          .where((testCase) => testCase.requirement == requirement)
+          .where((testCase) => testCase.requirementId == requirement.id)
           .toList();
+
+  static List<TestRun> testRuns(TestCase testCase) =>
+      _testRuns.where((testRun) => testRun.testCaseId == testCase.id).toList();
 
   static List<Attachment> attachments() {
     final List<Attachment> attachments = [];
@@ -258,9 +272,7 @@ class Data {
           url: 'https://place.dog/500/500',
           type: _random(AttachmentType.values),
           size: _randomFileSize(),
-          uploadedOn: DateTime.now().subtract(
-            Duration(days: Random().nextInt(30)),
-          ),
+          uploadedOn: randomDate(),
           uploadedBy: 'John Doe',
         ),
       );
@@ -292,6 +304,9 @@ class Data {
 
     return result.toList();
   }
+
+  static DateTime randomDate() =>
+      DateTime.now().subtract(Duration(days: Random().nextInt(30)));
 
   static final List<Project> _projects = [
     const Project(

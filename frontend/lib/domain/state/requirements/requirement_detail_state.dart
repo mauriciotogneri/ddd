@@ -41,6 +41,11 @@ class RequirementDetailState extends BaseState {
   final CustomDropdownMultipleController<TestCaseExecution>
   executionFilterController = CustomDropdownMultipleController();
 
+  RequirementDetailState({
+    required this.projectId,
+    required this.requirementId,
+  });
+
   List<TestCase> get testCases =>
       _allTestCases
           .where(
@@ -51,14 +56,12 @@ class RequirementDetailState extends BaseState {
           )
           .toList();
 
-  RequirementDetailState({
-    required this.projectId,
-    required this.requirementId,
-  });
-
   Requirement get requirement => _requirement!;
 
   bool get isLoading => _requirement == null;
+
+  bool get hasFilters =>
+      queryFilterController.isNotEmpty || executionFilterController.isNotEmpty;
 
   @override
   void onLoad() {
@@ -76,9 +79,6 @@ class RequirementDetailState extends BaseState {
     _allTestCases.addAll(Data.testCases(requirement));
     notify();
   }
-
-  bool get hasFilters =>
-      queryFilterController.isNotEmpty || executionFilterController.isNotEmpty;
 
   void onResetFilters() {
     queryFilterController.clear();

@@ -1,6 +1,5 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
-import 'package:testflow/domain/model/requirement.dart';
 import 'package:testflow/domain/types/test_case_execution.dart';
 import 'package:testflow/extensions/string_extension.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
@@ -9,7 +8,7 @@ import 'package:testflow/utils/formatter.dart';
 
 class TestCase implements TableElement {
   final String id;
-  final Requirement requirement;
+  final String requirementId;
   final String name;
   final TestCaseExecution execution;
   final String preconditions;
@@ -24,7 +23,7 @@ class TestCase implements TableElement {
 
   const TestCase({
     required this.id,
-    required this.requirement,
+    required this.requirementId,
     required this.name,
     required this.execution,
     required this.preconditions,

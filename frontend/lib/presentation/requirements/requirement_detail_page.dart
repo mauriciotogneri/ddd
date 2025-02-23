@@ -115,7 +115,7 @@ class Body extends StatelessWidget {
             const HBox(32),
           ],
         ),
-        TabBarExample(state),
+        TabSection(state),
       ],
     );
   }
@@ -327,10 +327,10 @@ class Metadata extends StatelessWidget {
   }
 }
 
-class TabBarExample extends StatelessWidget {
+class TabSection extends StatelessWidget {
   final RequirementDetailState state;
 
-  const TabBarExample(this.state);
+  const TabSection(this.state);
 
   @override
   Widget build(BuildContext context) {

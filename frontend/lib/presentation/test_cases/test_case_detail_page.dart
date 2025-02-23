@@ -1,14 +1,21 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
+import 'package:testflow/domain/model/test_run.dart';
 import 'package:testflow/domain/state/test_cases/test_case_detail_state.dart';
 import 'package:testflow/domain/types/test_case_execution.dart';
+import 'package:testflow/domain/types/test_run_reproducibility.dart';
+import 'package:testflow/domain/types/test_run_status.dart';
+import 'package:testflow/presentation/attachments/attachments_table.dart';
 import 'package:testflow/presentation/common/card/metadata_card.dart';
+import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/menu/context_menu.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
+import 'package:testflow/presentation/common/table/custom_table.dart';
+import 'package:testflow/presentation/tabs/custom_tabs.dart';
 import 'package:testflow/utils/formatter.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
@@ -106,12 +113,19 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(child: FormFields(state)),
-        Metadata(state),
-        const HBox(32),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(child: FormFields(state)),
+            Metadata(state),
+            const HBox(32),
+          ],
+        ),
+        TabSection(state),
       ],
     );
   }
@@ -125,7 +139,7 @@ class FormFields extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.only(top: 32, right: 32, bottom: 16, left: 32),
       child: Form(
         key: state.formKey.key,
         child: Column(
@@ -209,5 +223,72 @@ class Metadata extends StatelessWidget {
         tooltip: Formatter.fullDateTime(state.testCase.lastRun),
       ),
     ]);
+  }
+}
+
+class TabSection extends StatelessWidget {
+  final TestCaseDetailState state;
+
+  const TabSection(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 32, bottom: 32, left: 32),
+      child: CustomTabs(
+        tabs: const [
+          TabItem(title: 'Test Cases', width: 150, icon: Icons.list),
+          TabItem(title: 'Attachments', width: 150, icon: Icons.attachment),
+        ],
+        children: [Table(state), AttachmentsTable.instance()],
+      ),
+    );
+  }
+}
+
+class Table extends StatelessWidget {
+  final TestCaseDetailState state;
+
+  const Table(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 16),
+      child: CustomTable<TestRun>(
+        columns: TestRun.columns,
+        rows: state.testRuns,
+        onSelected:
+            (testRun) =>
+                state.onTestRunSelected(context: context, testRun: testRun),
+        onResetFilters: state.hasFilters ? state.onResetFilters : null,
+        filters: [
+          CustomTextInput(
+            width: 300,
+            hint: 'Filter…',
+            canClear: true,
+            prefixIcon: Icons.search,
+            controller: state.queryFilterController,
+            onChanged: (_) => state.notify(),
+          ),
+          const HBox(8),
+          CustomDropdownMultiple<TestRunStatus>(
+            width: 200,
+            values: TestRunStatus.items,
+            controller: state.statusFilterController,
+            onSelected: (_) => state.notify(),
+            hint: 'Status',
+          ),
+          const HBox(8),
+          CustomDropdownMultiple<TestRunReproducibility>(
+            width: 200,
+            values: TestRunReproducibility.items,
+            controller: state.reproducibilityFilterController,
+            onSelected: (_) => state.notify(),
+            hint: 'Reproducibility',
+          ),
+        ],
+      ),
+    );
   }
 }
