@@ -20,7 +20,11 @@ class NavigationMenu extends StatelessWidget {
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
-        children: [const LeftMenu(), Expanded(child: child)],
+        children: [
+          const LeftMenu(),
+          const VerticalDivider(width: 0.5, color: Palette.borderInputEnabled),
+          Expanded(child: child),
+        ],
       ),
     );
   }
