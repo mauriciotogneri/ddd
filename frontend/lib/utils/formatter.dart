@@ -17,10 +17,17 @@ class Formatter {
     return '$date $time';
   }
 
-  static int daysAgo(DateTime dateTime) {
+  static String daysAgo(DateTime dateTime) {
     final DateTime now = DateTime.now();
+    final int days = now.difference(dateTime).inDays;
 
-    return now.difference(dateTime).inDays;
+    if (days == 0) {
+      return 'Today';
+    } else if (days == 1) {
+      return 'Yesterday';
+    } else {
+      return '$days days ago';
+    }
   }
 
   static String fileSize(int size) {

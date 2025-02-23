@@ -230,7 +230,7 @@ class Metadata extends StatelessWidget {
       MetadataItem(
         label: 'Last run',
         value:
-            '${Formatter.dateMonthYear(state.testCase.lastRun)}\n${Formatter.daysAgo(state.testCase.lastRun)} days ago',
+            '${Formatter.dateMonthYear(state.testCase.lastRun)}\n${Formatter.daysAgo(state.testCase.lastRun)}',
         tooltip: Formatter.fullDateTime(state.testCase.lastRun),
       ),
     ]);
@@ -248,7 +248,7 @@ class TabSection extends StatelessWidget {
       padding: const EdgeInsets.only(right: 32, bottom: 32, left: 32),
       child: CustomTabs(
         tabs: const [
-          TabItem(title: 'Test runs', width: 150, icon: Icons.list),
+          TabItem(title: 'History', width: 150, icon: Icons.list),
           TabItem(title: 'Attachments', width: 150, icon: Icons.attachment),
         ],
         children: [Table(state), AttachmentsTable.instance()],

@@ -97,7 +97,7 @@ class TestRun implements TableElement {
       case TestCaseColumn.timestamp:
         return Tooltip(
           message: Formatter.fullDateTime(timestamp),
-          child: BodyMedium(text: '${Formatter.daysAgo(timestamp)} days ago'),
+          child: BodyMedium(text: Formatter.daysAgo(timestamp)),
         );
       default:
         return const Empty();

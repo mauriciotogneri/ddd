@@ -79,7 +79,7 @@ class TestCase implements TableElement {
       case TestCaseColumn.lastRun:
         return Tooltip(
           message: Formatter.fullDateTime(lastRun),
-          child: BodyMedium(text: '${Formatter.daysAgo(lastRun)} days ago'),
+          child: BodyMedium(text: Formatter.daysAgo(lastRun)),
         );
       default:
         return const Empty();
