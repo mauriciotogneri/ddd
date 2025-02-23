@@ -106,12 +106,22 @@ class TabButton extends StatelessWidget {
                     if (tabItem.icon != null)
                       Padding(
                         padding: const EdgeInsets.only(right: 8),
-                        child: Icon(tabItem.icon!, size: 18),
+                        child: Icon(
+                          tabItem.icon!,
+                          size: 18,
+                          color:
+                              isSelected
+                                  ? Palette.backgroundTabSelected
+                                  : Palette.textTitle,
+                        ),
                       ),
                     CustomText(
                       text: tabItem.title,
-                      color: Palette.textTitle,
-                      weight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      color:
+                          isSelected
+                              ? Palette.backgroundTabSelected
+                              : Palette.textTitle,
+                      weight: FontWeight.normal,
                     ),
                   ],
                 ),
