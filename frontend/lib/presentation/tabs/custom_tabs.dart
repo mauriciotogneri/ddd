@@ -96,7 +96,7 @@ class TabButton extends StatelessWidget {
                   left: 16,
                   right: 16,
                   top: 12,
-                  bottom: 9,
+                  bottom: 10,
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -131,7 +131,7 @@ class TabButton extends StatelessWidget {
                     isSelected
                         ? Palette.backgroundTabSelected
                         : Palette.transparent,
-                height: 3,
+                height: 2,
               ),
             ],
           ),
