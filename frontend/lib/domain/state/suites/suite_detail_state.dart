@@ -9,6 +9,7 @@ import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/confirmation_dialog.dart';
+import 'package:testflow/utils/palette.dart';
 
 class SuiteDetailState extends BaseState {
   final String projectId;
@@ -49,7 +50,8 @@ class SuiteDetailState extends BaseState {
     context: context,
     dialog: ConfirmationDialog(
       message: 'Do you want to delete the test suite?',
-      onAcceptButton: 'Delete',
+      acceptButtonText: 'Delete',
+      acceptButtonColor: Palette.borderButtonError,
       onAccept: () {},
     ),
   );

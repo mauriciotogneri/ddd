@@ -5,14 +5,16 @@ import 'package:testflow/presentation/dialogs/base_alert.dart';
 
 class ConfirmationDialog extends StatelessWidget {
   final String message;
-  final String onAcceptButton;
   final VoidCallback onAccept;
+  final String acceptButtonText;
+  final Color? acceptButtonColor;
   final VoidCallback? onCancel;
 
   const ConfirmationDialog({
     required this.message,
-    required this.onAcceptButton,
     required this.onAccept,
+    required this.acceptButtonText,
+    this.acceptButtonColor,
     this.onCancel,
   });
 
@@ -26,7 +28,8 @@ class ConfirmationDialog extends StatelessWidget {
           onPressed: Navigator.of(context).pop,
         ),
         PrimaryTextButton(
-          text: onAcceptButton,
+          text: acceptButtonText,
+          color: acceptButtonColor,
           onPressed: () {
             Navigator.of(context).pop();
             onAccept();
