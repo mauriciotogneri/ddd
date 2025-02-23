@@ -7,10 +7,10 @@ import 'package:testflow/presentation/dashboard/dashboard_page.dart';
 import 'package:testflow/presentation/navigation/navigation_menu.dart';
 import 'package:testflow/presentation/requirements/requirement_detail_page.dart';
 import 'package:testflow/presentation/requirements/requirement_list_page.dart';
-import 'package:testflow/presentation/sessions/session_list_page.dart';
 import 'package:testflow/presentation/settings/settings_page.dart';
 import 'package:testflow/presentation/splash/splash_page.dart';
 import 'package:testflow/presentation/test_cases/test_case_detail_page.dart';
+import 'package:testflow/presentation/test_sessions/test_session_list_page.dart';
 import 'package:testflow/presentation/test_suites/test_suite_detail_page.dart';
 import 'package:testflow/presentation/test_suites/test_suite_list_page.dart';
 
@@ -81,7 +81,7 @@ class Navigation {
           ),
           GoRoute(
             path: '/projects/:projectId/sessions',
-            builder: (context, state) => SessionListPage.instance(),
+            builder: (context, state) => TestSessionListPage.instance(),
           ),
           GoRoute(
             path: '/projects/:projectId/settings',
@@ -120,7 +120,7 @@ class Navigation {
   static String testSuiteListPath({required String projectId}) =>
       '/projects/$projectId/suites';
 
-  static String sessionListPath({required String projectId}) =>
+  static String testSessionListPath({required String projectId}) =>
       '/projects/$projectId/sessions';
 
   static String settingsPath({required String projectId}) =>

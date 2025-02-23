@@ -53,7 +53,7 @@ class _LeftMenuState extends State<LeftMenu> {
     } else if (location.endsWith('/suites')) {
       selectedMenu = MenuItem.testSuites;
     } else if (location.endsWith('/sessions')) {
-      selectedMenu = MenuItem.sessions;
+      selectedMenu = MenuItem.testSessions;
     } else if (location.endsWith('/settings')) {
       selectedMenu = MenuItem.settings;
     } else if (location.endsWith('/components')) {
@@ -100,8 +100,8 @@ class _LeftMenuState extends State<LeftMenu> {
             NavigationMenuRow(
               text: 'Sessions',
               icon: Icons.checklist,
-              isSelected: selectedMenu == MenuItem.sessions,
-              menu: MenuItem.sessions,
+              isSelected: selectedMenu == MenuItem.testSessions,
+              menu: MenuItem.testSessions,
               onSelected:
                   (menu) => _onMenuSelected(context: context, menu: menu),
             ),
@@ -151,8 +151,8 @@ class _LeftMenuState extends State<LeftMenu> {
       case MenuItem.testSuites:
         context.testSuiteList(projectId: projectId);
         break;
-      case MenuItem.sessions:
-        context.sessionList(projectId: projectId);
+      case MenuItem.testSessions:
+        context.testSessionList(projectId: projectId);
         break;
       case MenuItem.settings:
         context.settings(projectId: projectId);
@@ -261,7 +261,7 @@ enum MenuItem {
   dashboard,
   requirements,
   testSuites,
-  sessions,
+  testSessions,
   settings,
   components,
 }

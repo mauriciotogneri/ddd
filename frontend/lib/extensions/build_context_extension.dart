@@ -23,9 +23,9 @@ extension BuildContextExtension on BuildContext {
     path: Navigation.testSuiteListPath(projectId: projectId),
   );
 
-  void sessionList({required String projectId}) => Navigation.go(
+  void testSessionList({required String projectId}) => Navigation.go(
     context: this,
-    path: Navigation.sessionListPath(projectId: projectId),
+    path: Navigation.testSessionListPath(projectId: projectId),
   );
 
   void settings({required String projectId}) => Navigation.go(
