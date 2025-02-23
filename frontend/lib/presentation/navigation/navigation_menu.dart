@@ -233,13 +233,11 @@ class NavigationMenuRow extends StatelessWidget {
         dense: true,
         shape: RoundedRectangleBorder(
           borderRadius: CustomInput.borderRadius,
-          side:
-              isSelected
-                  ? const BorderSide(
-                    color: Palette.borderInputEnabled,
-                    width: 0.5,
-                  )
-                  : BorderSide.none,
+          side: BorderSide(
+            color:
+                isSelected ? Palette.borderInputEnabled : Palette.transparent,
+            width: 0.5,
+          ),
         ),
         visualDensity: VisualDensity.compact,
         contentPadding: const EdgeInsets.only(
