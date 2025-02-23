@@ -13,6 +13,7 @@ class CustomBottomSheet extends StatelessWidget {
   }) {
     showModalBottomSheet(
       context: context,
+      useRootNavigator: true,
       backgroundColor: Palette.transparent,
       builder: (context) => child,
     );
