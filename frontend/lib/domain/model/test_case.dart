@@ -1,7 +1,9 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/types/test_case_execution.dart';
+import 'package:testflow/domain/types/test_run_status.dart';
 import 'package:testflow/extensions/string_extension.dart';
+import 'package:testflow/presentation/common/history/last_results.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
 import 'package:testflow/utils/formatter.dart';
@@ -63,10 +65,15 @@ class TestCase implements TableElement {
     TableColumn(
       id: TestCaseColumn.executionType,
       name: 'Execution',
-      width: 200,
+      width: 300,
       alignment: Alignment.center,
     ),
     TableColumn(id: TestCaseColumn.lastRun, name: 'Last run', width: 200),
+    TableColumn(
+      id: TestCaseColumn.lastResults,
+      name: 'Last results',
+      width: 300,
+    ),
   ];
 
   @override
@@ -81,10 +88,18 @@ class TestCase implements TableElement {
           message: Formatter.fullDateTime(lastRun),
           child: BodyMedium(text: Formatter.daysAgo(lastRun)),
         );
+      case TestCaseColumn.lastResults:
+        return const LastResults([
+          TestRunStatus.failed,
+          TestRunStatus.passed,
+          TestRunStatus.skipped,
+          TestRunStatus.blocked,
+          TestRunStatus.pending,
+        ]);
       default:
         return const Empty();
     }
   }
 }
 
-enum TestCaseColumn { name, executionType, lastRun }
+enum TestCaseColumn { name, executionType, lastRun, lastResults }
