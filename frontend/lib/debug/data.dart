@@ -103,6 +103,14 @@ class Data {
     _suites.add(suite);
   }
 
+  static void deleteRequirement(Requirement requirement) {
+    _requirements.remove(requirement);
+  }
+
+  static void deleteTestCase(TestCase testCase) {
+    _testCases.remove(testCase);
+  }
+
   static void deleteSuite(Suite suite) {
     _suites.remove(suite);
   }

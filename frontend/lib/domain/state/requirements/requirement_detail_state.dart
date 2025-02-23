@@ -13,7 +13,9 @@ import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
+import 'package:testflow/presentation/dialogs/confirmation_dialog.dart';
 import 'package:testflow/presentation/dialogs/create_test_case_dialog.dart';
+import 'package:testflow/utils/palette.dart';
 
 class RequirementDetailState extends BaseState {
   final String projectId;
@@ -118,5 +120,22 @@ class RequirementDetailState extends BaseState {
     notify();
   }
 
-  void onDeleteRequirement() {}
+  void onDeleteRequirement(BuildContext context) => BaseDialog.show(
+    context: context,
+    dialog: ConfirmationDialog(
+      message: 'Do you want to delete the requirement?',
+      acceptButtonText: 'Delete',
+      acceptButtonColor: Palette.borderButtonError,
+      onAccept:
+          () => _deleteRequirement(context: context, requirement: requirement),
+    ),
+  );
+
+  void _deleteRequirement({
+    required BuildContext context,
+    required Requirement requirement,
+  }) {
+    Data.deleteRequirement(requirement);
+    Navigator.of(context).pop();
+  }
 }

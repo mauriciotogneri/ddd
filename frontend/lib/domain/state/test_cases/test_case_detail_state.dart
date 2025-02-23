@@ -11,6 +11,9 @@ import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
+import 'package:testflow/presentation/dialogs/base_dialog.dart';
+import 'package:testflow/presentation/dialogs/confirmation_dialog.dart';
+import 'package:testflow/utils/palette.dart';
 
 class TestCaseDetailState extends BaseState {
   final String projectId;
@@ -86,10 +89,28 @@ class TestCaseDetailState extends BaseState {
     notify();
   }
 
-  void onDeleteTestCase() {}
-
   void onTestRunSelected({
     required BuildContext context,
     required TestRun testRun,
   }) {}
+
+  void onQuickTest() {}
+
+  void onDeleteTestCase(BuildContext context) => BaseDialog.show(
+    context: context,
+    dialog: ConfirmationDialog(
+      message: 'Do you want to delete the test case?',
+      acceptButtonText: 'Delete',
+      acceptButtonColor: Palette.borderButtonError,
+      onAccept: () => _deleteTestCase(context: context, testCase: testCase),
+    ),
+  );
+
+  void _deleteTestCase({
+    required BuildContext context,
+    required TestCase testCase,
+  }) {
+    Data.deleteTestCase(testCase);
+    Navigator.of(context).pop();
+  }
 }

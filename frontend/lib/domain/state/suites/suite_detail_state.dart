@@ -49,7 +49,7 @@ class SuiteDetailState extends BaseState {
   void onDeleteSuite(BuildContext context) => BaseDialog.show(
     context: context,
     dialog: ConfirmationDialog(
-      message: 'Do you want to delete the test suite?',
+      message: 'Do you want to delete the suite?',
       acceptButtonText: 'Delete',
       acceptButtonColor: Palette.borderButtonError,
       onAccept: () => _deleteSuite(context: context, suite: suite),
