@@ -18,9 +18,9 @@ extension BuildContextExtension on BuildContext {
     path: Navigation.requirementListPath(projectId: projectId),
   );
 
-  void suiteList({required String projectId}) => Navigation.go(
+  void testSuiteList({required String projectId}) => Navigation.go(
     context: this,
-    path: Navigation.suiteListPath(projectId: projectId),
+    path: Navigation.testSuiteListPath(projectId: projectId),
   );
 
   void sessionList({required String projectId}) => Navigation.go(
@@ -66,14 +66,16 @@ extension BuildContextExtension on BuildContext {
     ),
   );
 
-  // ================================ SUITE ================================= \\
+  // ============================= TEST SUITES ============================== \\
 
-  void suiteDetail({required String projectId, required String suiteId}) =>
-      Navigation.go(
-        context: this,
-        path: Navigation.suiteDetailPath(
-          projectId: projectId,
-          suiteId: suiteId,
-        ),
-      );
+  void testSuiteDetail({
+    required String projectId,
+    required String testSuiteId,
+  }) => Navigation.go(
+    context: this,
+    path: Navigation.testSuiteDetailPath(
+      projectId: projectId,
+      testSuiteId: testSuiteId,
+    ),
+  );
 }

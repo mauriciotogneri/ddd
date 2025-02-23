@@ -1,16 +1,16 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
-import 'package:testflow/domain/model/suite.dart';
+import 'package:testflow/domain/model/test_suite.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/extensions/build_context_extension.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
-import 'package:testflow/presentation/dialogs/create_suite_dialog.dart';
+import 'package:testflow/presentation/dialogs/create_test_suite_dialog.dart';
 
-class SuiteListState extends BaseState {
+class TestSuiteListState extends BaseState {
   final String projectId;
   final CustomTextInputController queryFilterController =
       CustomTextInputController();
@@ -23,12 +23,12 @@ class SuiteListState extends BaseState {
   final CustomDropdownMultipleController<String> platformFilterController =
       CustomDropdownMultipleController();
 
-  SuiteListState({required this.projectId});
+  TestSuiteListState({required this.projectId});
 
-  List<Suite> get suites =>
-      Data.suites()
+  List<TestSuite> get testSuites =>
+      Data.testSuites()
           .where(
-            (suite) => suite.matches(
+            (testSuite) => testSuite.matches(
               queryFilter: queryFilterController.text,
               typeFilter: typeFilterController.selected,
               importanceFilter: importanceFilterController.selected,
@@ -54,24 +54,24 @@ class SuiteListState extends BaseState {
     notify();
   }
 
-  void onSuiteSelected({
+  void onTestSuiteSelected({
     required BuildContext context,
-    required String suiteId,
-  }) => context.suiteDetail(projectId: projectId, suiteId: suiteId);
+    required String testSuiteId,
+  }) => context.testSuiteDetail(projectId: projectId, testSuiteId: testSuiteId);
 
-  void onCreateSuite(BuildContext context) => BaseDialog.show(
+  void onCreateTestSuite(BuildContext context) => BaseDialog.show(
     context: context,
-    dialog: CreateSuiteDialog.instance(onCreateSuite: _createSuite),
+    dialog: CreateTestSuiteDialog.instance(onCreateTestSuite: _createTestSuite),
   );
 
-  void _createSuite({
+  void _createTestSuite({
     required String name,
     required List<RequirementType> types,
     required List<RequirementImportance> importances,
     required List<String> components,
     required List<String> platforms,
   }) {
-    Data.createSuite(
+    Data.createTestSuite(
       name: name,
       types: types,
       importances: importances,

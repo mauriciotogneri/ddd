@@ -11,17 +11,20 @@ import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 
-class CreateSuiteDialog extends StatelessWidget {
-  final CreateSuiteDialogState state;
+class CreateTestSuiteDialog extends StatelessWidget {
+  final CreateTestSuiteDialogState state;
 
-  const CreateSuiteDialog._(this.state);
+  const CreateTestSuiteDialog._(this.state);
 
-  factory CreateSuiteDialog.instance({required OnCreateSuite onCreateSuite}) =>
-      CreateSuiteDialog._(CreateSuiteDialogState(onCreateSuite: onCreateSuite));
+  factory CreateTestSuiteDialog.instance({
+    required OnCreateTestSuite onCreateTestSuite,
+  }) => CreateTestSuiteDialog._(
+    CreateTestSuiteDialogState(onCreateTestSuite: onCreateTestSuite),
+  );
 
   @override
   Widget build(BuildContext context) {
-    return StateProvider<CreateSuiteDialogState>(
+    return StateProvider<CreateTestSuiteDialogState>(
       state: state,
       builder:
           (context, state) => BaseDialog(
@@ -45,7 +48,7 @@ class CreateSuiteDialog extends StatelessWidget {
 }
 
 class FormFields extends StatelessWidget {
-  final CreateSuiteDialogState state;
+  final CreateTestSuiteDialogState state;
 
   const FormFields(this.state);
 
@@ -150,9 +153,9 @@ class FormFields extends StatelessWidget {
   }
 }
 
-class CreateSuiteDialogState extends BaseState {
+class CreateTestSuiteDialogState extends BaseState {
   final FormKey formKey = FormKey();
-  final OnCreateSuite onCreateSuite;
+  final OnCreateTestSuite onCreateTestSuite;
   final CustomTextInputController nameController = CustomTextInputController();
   final CustomDropdownMultipleController<RequirementType> typesController =
       CustomDropdownMultipleController();
@@ -163,13 +166,13 @@ class CreateSuiteDialogState extends BaseState {
   final CustomDropdownMultipleController<String> platformsController =
       CustomDropdownMultipleController();
 
-  CreateSuiteDialogState({required this.onCreateSuite});
+  CreateTestSuiteDialogState({required this.onCreateTestSuite});
 
   void onCreate(BuildContext context) {
     if (formKey.validate()) {
       Navigator.of(context).pop();
 
-      onCreateSuite(
+      onCreateTestSuite(
         name: nameController.text,
         types: typesController.selected,
         importances: importancesController.selected,
@@ -180,7 +183,7 @@ class CreateSuiteDialogState extends BaseState {
   }
 }
 
-typedef OnCreateSuite =
+typedef OnCreateTestSuite =
     void Function({
       required String name,
       required List<RequirementType> types,

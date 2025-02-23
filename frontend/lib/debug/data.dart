@@ -2,9 +2,9 @@ import 'dart:math';
 import 'package:testflow/domain/model/attachment.dart';
 import 'package:testflow/domain/model/project.dart';
 import 'package:testflow/domain/model/requirement.dart';
-import 'package:testflow/domain/model/suite.dart';
 import 'package:testflow/domain/model/test_case.dart';
 import 'package:testflow/domain/model/test_run.dart';
+import 'package:testflow/domain/model/test_suite.dart';
 import 'package:testflow/domain/types/attachment_type.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_status.dart';
@@ -81,14 +81,14 @@ class Data {
     _testCases.add(testCase);
   }
 
-  static void createSuite({
+  static void createTestSuite({
     required String name,
     required List<RequirementType> types,
     required List<RequirementImportance> importances,
     required List<String> components,
     required List<String> platforms,
   }) {
-    final Suite suite = Suite(
+    final TestSuite testSuite = TestSuite(
       id: DateTime.now().toIso8601String(),
       name: name,
       types: types,
@@ -101,7 +101,7 @@ class Data {
       updatedOn: randomDate(),
       updatedBy: 'Jane Doe',
     );
-    _suites.add(suite);
+    _testSuites.add(testSuite);
   }
 
   static void deleteRequirement(Requirement requirement) {
@@ -112,8 +112,8 @@ class Data {
     _testCases.remove(testCase);
   }
 
-  static void deleteSuite(Suite suite) {
-    _suites.remove(suite);
+  static void deleteTestSuite(TestSuite testSuite) {
+    _testSuites.remove(testSuite);
   }
 
   static void deleteAttachment(Attachment attachment) {
@@ -153,17 +153,17 @@ class Data {
       }
     }
 
-    throw Exception('TestCase not found');
+    throw Exception('Test case not found');
   }
 
-  static Suite suiteById(String id) {
-    for (final Suite suite in _suites) {
-      if (suite.id == id) {
-        return suite;
+  static TestSuite testSuiteById(String id) {
+    for (final TestSuite testSuite in _testSuites) {
+      if (testSuite.id == id) {
+        return testSuite;
       }
     }
 
-    throw Exception('Suite not found');
+    throw Exception('Test suite not found');
   }
 
   static const List<String> _components = [
@@ -245,11 +245,11 @@ class Data {
         ),
   ];
 
-  static final List<Suite> _suites = [
+  static final List<TestSuite> _testSuites = [
     for (int i = 0; i < 10; i++)
-      Suite(
+      TestSuite(
         id: '${i + 1}',
-        name: 'Suite ${i + 1}',
+        name: 'Test suite ${i + 1}',
         types: _randomList(RequirementType.values),
         importances: _randomList(RequirementImportance.values),
         components: _randomList(_components),
@@ -279,7 +279,7 @@ class Data {
 
   static List<Requirement> requirements() => _requirements;
 
-  static List<Suite> suites() => _suites;
+  static List<TestSuite> testSuites() => _testSuites;
 
   static List<TestCase> testCases(Requirement requirement) =>
       _testCases

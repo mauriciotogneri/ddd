@@ -51,7 +51,7 @@ class _LeftMenuState extends State<LeftMenu> {
     } else if (location.endsWith('/requirements')) {
       selectedMenu = MenuItem.requirements;
     } else if (location.endsWith('/suites')) {
-      selectedMenu = MenuItem.suites;
+      selectedMenu = MenuItem.testSuites;
     } else if (location.endsWith('/sessions')) {
       selectedMenu = MenuItem.sessions;
     } else if (location.endsWith('/settings')) {
@@ -92,8 +92,8 @@ class _LeftMenuState extends State<LeftMenu> {
             NavigationMenuRow(
               text: 'Suites',
               icon: Icons.event_repeat_outlined,
-              isSelected: selectedMenu == MenuItem.suites,
-              menu: MenuItem.suites,
+              isSelected: selectedMenu == MenuItem.testSuites,
+              menu: MenuItem.testSuites,
               onSelected:
                   (menu) => _onMenuSelected(context: context, menu: menu),
             ),
@@ -148,8 +148,8 @@ class _LeftMenuState extends State<LeftMenu> {
       case MenuItem.requirements:
         context.requirementList(projectId: projectId);
         break;
-      case MenuItem.suites:
-        context.suiteList(projectId: projectId);
+      case MenuItem.testSuites:
+        context.testSuiteList(projectId: projectId);
         break;
       case MenuItem.sessions:
         context.sessionList(projectId: projectId);
@@ -260,7 +260,7 @@ class NavigationMenuRow extends StatelessWidget {
 enum MenuItem {
   dashboard,
   requirements,
-  suites,
+  testSuites,
   sessions,
   settings,
   components,

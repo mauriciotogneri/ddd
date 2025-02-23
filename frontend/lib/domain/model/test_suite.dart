@@ -7,7 +7,7 @@ import 'package:testflow/presentation/common/chip/custom_chip.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
 
-class Suite implements TableElement {
+class TestSuite implements TableElement {
   final String id;
   final String name;
   final List<RequirementType> types;
@@ -20,7 +20,7 @@ class Suite implements TableElement {
   final DateTime updatedOn;
   final String updatedBy;
 
-  const Suite({
+  const TestSuite({
     required this.id,
     required this.name,
     required this.types,
@@ -76,27 +76,27 @@ class Suite implements TableElement {
   String toString() => name;
 
   static List<TableColumn> get columns => const [
-    TableColumn(id: SuiteColumn.name, name: 'Name'),
+    TableColumn(id: TestSuiteColumn.name, name: 'Name'),
     TableColumn(
-      id: SuiteColumn.components,
+      id: TestSuiteColumn.components,
       name: 'Component',
       width: 200,
       alignment: Alignment.center,
     ),
     TableColumn(
-      id: SuiteColumn.platforms,
+      id: TestSuiteColumn.platforms,
       name: 'Platform',
       width: 200,
       alignment: Alignment.center,
     ),
     TableColumn(
-      id: SuiteColumn.types,
+      id: TestSuiteColumn.types,
       name: 'Type',
       width: 200,
       alignment: Alignment.center,
     ),
     TableColumn(
-      id: SuiteColumn.importances,
+      id: TestSuiteColumn.importances,
       name: 'Importance',
       width: 200,
       alignment: Alignment.center,
@@ -106,15 +106,15 @@ class Suite implements TableElement {
   @override
   Widget cell(TableColumn column) {
     switch (column.id) {
-      case SuiteColumn.name:
+      case TestSuiteColumn.name:
         return BodyMedium(text: name);
-      case SuiteColumn.types:
+      case TestSuiteColumn.types:
         return ChipGroup(items: types, plural: 'types');
-      case SuiteColumn.importances:
+      case TestSuiteColumn.importances:
         return ChipGroup(items: importances, plural: 'importances');
-      case SuiteColumn.components:
+      case TestSuiteColumn.components:
         return ChipGroup(items: components, plural: 'components');
-      case SuiteColumn.platforms:
+      case TestSuiteColumn.platforms:
         return ChipGroup(items: platforms, plural: 'platforms');
       default:
         return const Empty();
@@ -122,4 +122,4 @@ class Suite implements TableElement {
   }
 }
 
-enum SuiteColumn { name, types, importances, components, platforms }
+enum TestSuiteColumn { name, types, importances, components, platforms }

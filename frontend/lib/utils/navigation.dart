@@ -10,9 +10,9 @@ import 'package:testflow/presentation/requirements/requirement_list_page.dart';
 import 'package:testflow/presentation/sessions/session_list_page.dart';
 import 'package:testflow/presentation/settings/settings_page.dart';
 import 'package:testflow/presentation/splash/splash_page.dart';
-import 'package:testflow/presentation/suites/suite_detail_page.dart';
-import 'package:testflow/presentation/suites/suite_list_page.dart';
 import 'package:testflow/presentation/test_cases/test_case_detail_page.dart';
+import 'package:testflow/presentation/test_suites/test_suite_detail_page.dart';
+import 'package:testflow/presentation/test_suites/test_suite_list_page.dart';
 
 class Navigation {
   static final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey();
@@ -65,15 +65,16 @@ class Navigation {
           GoRoute(
             path: '/projects/:projectId/suites',
             builder:
-                (context, state) =>
-                    SuiteListPage.instance(projectId: state.param('projectId')),
+                (context, state) => TestSuiteListPage.instance(
+                  projectId: state.param('projectId'),
+                ),
             routes: [
               GoRoute(
-                path: ':suiteId',
+                path: ':testSuiteId',
                 builder:
-                    (context, state) => SuiteDetailPage.instance(
+                    (context, state) => TestSuiteDetailPage.instance(
                       projectId: state.param('projectId'),
-                      suiteId: state.param('suiteId'),
+                      testSuiteId: state.param('testSuiteId'),
                     ),
               ),
             ],
@@ -116,7 +117,7 @@ class Navigation {
   static String requirementListPath({required String projectId}) =>
       '/projects/$projectId/requirements';
 
-  static String suiteListPath({required String projectId}) =>
+  static String testSuiteListPath({required String projectId}) =>
       '/projects/$projectId/suites';
 
   static String sessionListPath({required String projectId}) =>
@@ -145,8 +146,8 @@ class Navigation {
 
   // ================================ SUITE ================================= \\
 
-  static String suiteDetailPath({
+  static String testSuiteDetailPath({
     required String projectId,
-    required String suiteId,
-  }) => '/projects/$projectId/suites/$suiteId';
+    required String testSuiteId,
+  }) => '/projects/$projectId/suites/$testSuiteId';
 }

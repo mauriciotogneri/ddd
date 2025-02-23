@@ -1,7 +1,7 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
-import 'package:testflow/domain/model/suite.dart';
+import 'package:testflow/domain/model/test_suite.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/form/form_key.dart';
@@ -11,10 +11,10 @@ import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/confirmation_dialog.dart';
 import 'package:testflow/utils/palette.dart';
 
-class SuiteDetailState extends BaseState {
+class TestSuiteDetailState extends BaseState {
   final String projectId;
-  final String suiteId;
-  Suite? _suite;
+  final String testSuiteId;
+  TestSuite? _testSuite;
   final FormKey formKey = FormKey();
   final CustomTextInputController nameController = CustomTextInputController();
   final CustomDropdownMultipleController<RequirementType> typeController =
@@ -26,38 +26,41 @@ class SuiteDetailState extends BaseState {
   final CustomDropdownMultipleController<String> platformsController =
       CustomDropdownMultipleController();
 
-  SuiteDetailState({required this.projectId, required this.suiteId});
+  TestSuiteDetailState({required this.projectId, required this.testSuiteId});
 
-  Suite get suite => _suite!;
+  TestSuite get testSuite => _testSuite!;
 
-  bool get isLoading => _suite == null;
+  bool get isLoading => _testSuite == null;
 
   @override
   void onLoad() {
-    _suite = Data.suiteById(suiteId);
+    _testSuite = Data.testSuiteById(testSuiteId);
 
-    nameController.text = suite.name;
-    typeController.select(suite.types);
-    importanceController.select(suite.importances);
-    componentController.select(suite.components);
-    platformsController.select(suite.platforms);
+    nameController.text = testSuite.name;
+    typeController.select(testSuite.types);
+    importanceController.select(testSuite.importances);
+    componentController.select(testSuite.components);
+    platformsController.select(testSuite.platforms);
     notify();
   }
 
   void onStartSession() {}
 
-  void onDeleteSuite(BuildContext context) => BaseDialog.show(
+  void onDeleteTestSuite(BuildContext context) => BaseDialog.show(
     context: context,
     dialog: ConfirmationDialog(
       message: 'Do you want to delete the suite?',
       acceptButtonText: 'Delete',
       acceptButtonColor: Palette.borderButtonError,
-      onAccept: () => _deleteSuite(context: context, suite: suite),
+      onAccept: () => _deleteTestSuite(context: context, testSuite: testSuite),
     ),
   );
 
-  void _deleteSuite({required BuildContext context, required Suite suite}) {
-    Data.deleteSuite(suite);
+  void _deleteTestSuite({
+    required BuildContext context,
+    required TestSuite testSuite,
+  }) {
+    Data.deleteTestSuite(testSuite);
     Navigator.of(context).pop();
   }
 }

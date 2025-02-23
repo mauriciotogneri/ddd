@@ -1,8 +1,8 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
-import 'package:testflow/domain/model/suite.dart';
-import 'package:testflow/domain/state/suites/suite_list_state.dart';
+import 'package:testflow/domain/model/test_suite.dart';
+import 'package:testflow/domain/state/test_suites/test_suite_list_state.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
@@ -12,17 +12,17 @@ import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 
-class SuiteListPage extends StatelessWidget {
-  final SuiteListState state;
+class TestSuiteListPage extends StatelessWidget {
+  final TestSuiteListState state;
 
-  const SuiteListPage._(this.state);
+  const TestSuiteListPage._(this.state);
 
-  factory SuiteListPage.instance({required String projectId}) =>
-      SuiteListPage._(SuiteListState(projectId: projectId));
+  factory TestSuiteListPage.instance({required String projectId}) =>
+      TestSuiteListPage._(TestSuiteListState(projectId: projectId));
 
   @override
   Widget build(BuildContext context) {
-    return StateProvider<SuiteListState>(
+    return StateProvider<TestSuiteListState>(
       state: state,
       builder:
           (context, state) => Pane.scrollable(
@@ -38,7 +38,7 @@ class SuiteListPage extends StatelessWidget {
 }
 
 class Table extends StatelessWidget {
-  final SuiteListState state;
+  final TestSuiteListState state;
 
   const Table(this.state);
 
@@ -46,14 +46,16 @@ class Table extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(32),
-      child: CustomTable<Suite>(
-        columns: Suite.columns,
-        rows: state.suites,
+      child: CustomTable<TestSuite>(
+        columns: TestSuite.columns,
+        rows: state.testSuites,
         onSelected:
-            (suite) =>
-                state.onSuiteSelected(context: context, suiteId: suite.id),
+            (testSuite) => state.onTestSuiteSelected(
+              context: context,
+              testSuiteId: testSuite.id,
+            ),
         onResetFilters: state.hasFilters ? state.onResetFilters : null,
-        onCreateItem: () => state.onCreateSuite(context),
+        onCreateItem: () => state.onCreateTestSuite(context),
         filters: [
           CustomTextInput(
             width: 300,

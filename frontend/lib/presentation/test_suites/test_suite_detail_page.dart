@@ -1,7 +1,7 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
-import 'package:testflow/domain/state/suites/suite_detail_state.dart';
+import 'package:testflow/domain/state/test_suites/test_suite_detail_state.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/card/metadata_card.dart';
@@ -15,21 +15,21 @@ import 'package:testflow/utils/formatter.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
-class SuiteDetailPage extends StatelessWidget {
-  final SuiteDetailState state;
+class TestSuiteDetailPage extends StatelessWidget {
+  final TestSuiteDetailState state;
 
-  const SuiteDetailPage._(this.state);
+  const TestSuiteDetailPage._(this.state);
 
-  factory SuiteDetailPage.instance({
+  factory TestSuiteDetailPage.instance({
     required String projectId,
-    required String suiteId,
-  }) => SuiteDetailPage._(
-    SuiteDetailState(projectId: projectId, suiteId: suiteId),
+    required String testSuiteId,
+  }) => TestSuiteDetailPage._(
+    TestSuiteDetailState(projectId: projectId, testSuiteId: testSuiteId),
   );
 
   @override
   Widget build(BuildContext context) {
-    return StateProvider<SuiteDetailState>(
+    return StateProvider<TestSuiteDetailState>(
       state: state,
       builder:
           (context, state) => state.isLoading ? const Empty() : Content(state),
@@ -38,7 +38,7 @@ class SuiteDetailPage extends StatelessWidget {
 }
 
 class Content extends StatelessWidget {
-  final SuiteDetailState state;
+  final TestSuiteDetailState state;
 
   const Content(this.state);
 
@@ -49,7 +49,7 @@ class Content extends StatelessWidget {
 }
 
 class Header extends StatelessWidget {
-  final SuiteDetailState state;
+  final TestSuiteDetailState state;
 
   const Header(this.state);
 
@@ -60,9 +60,9 @@ class Header extends StatelessWidget {
         paths: [
           PathItem(
             text: 'Suites',
-            path: Navigation.suiteListPath(projectId: state.projectId),
+            path: Navigation.testSuiteListPath(projectId: state.projectId),
           ),
-          PathItem(text: state.suite.name),
+          PathItem(text: state.testSuite.name),
         ],
       ),
       actions: [
@@ -80,7 +80,7 @@ class Header extends StatelessWidget {
               icon: Icons.delete_outline,
               text: 'Delete',
               color: Palette.semanticError,
-              onPressed: () => state.onDeleteSuite(context),
+              onPressed: () => state.onDeleteTestSuite(context),
             ),
           ],
         ),
@@ -90,7 +90,7 @@ class Header extends StatelessWidget {
 }
 
 class Body extends StatelessWidget {
-  final SuiteDetailState state;
+  final TestSuiteDetailState state;
 
   const Body(this.state);
 
@@ -108,7 +108,7 @@ class Body extends StatelessWidget {
 }
 
 class FormFields extends StatelessWidget {
-  final SuiteDetailState state;
+  final TestSuiteDetailState state;
 
   const FormFields(this.state);
 
@@ -191,7 +191,7 @@ class FormFields extends StatelessWidget {
 }
 
 class Metadata extends StatelessWidget {
-  final SuiteDetailState state;
+  final TestSuiteDetailState state;
 
   const Metadata(this.state);
 
@@ -200,16 +200,16 @@ class Metadata extends StatelessWidget {
     return MetadataCard([
       MetadataItem(
         label: 'Created on',
-        value: Formatter.dateMonthYear(state.suite.createdOn),
-        tooltip: Formatter.fullDateTime(state.suite.createdOn),
+        value: Formatter.dateMonthYear(state.testSuite.createdOn),
+        tooltip: Formatter.fullDateTime(state.testSuite.createdOn),
       ),
-      MetadataItem(label: 'Created by', value: state.suite.createdBy),
+      MetadataItem(label: 'Created by', value: state.testSuite.createdBy),
       MetadataItem(
         label: 'Updated on',
-        value: Formatter.dateMonthYear(state.suite.updatedOn),
-        tooltip: Formatter.fullDateTime(state.suite.updatedOn),
+        value: Formatter.dateMonthYear(state.testSuite.updatedOn),
+        tooltip: Formatter.fullDateTime(state.testSuite.updatedOn),
       ),
-      MetadataItem(label: 'Updated by', value: state.suite.updatedBy),
+      MetadataItem(label: 'Updated by', value: state.testSuite.updatedBy),
       const MetadataItem(label: 'Capturing', value: '30 requirements'),
     ]);
   }
