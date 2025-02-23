@@ -82,7 +82,7 @@ class TestRun implements TableElement {
       width: 200,
       alignment: Alignment.center,
     ),
-    TableColumn(id: TestCaseColumn.timestamp, name: 'Timestamp', width: 300),
+    TableColumn(id: TestCaseColumn.timestamp, name: 'Timestamp', width: 200),
   ];
 
   @override

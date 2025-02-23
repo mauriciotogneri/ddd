@@ -66,7 +66,7 @@ class TestCase implements TableElement {
       width: 200,
       alignment: Alignment.center,
     ),
-    TableColumn(id: TestCaseColumn.lastRun, name: 'Last run', width: 300),
+    TableColumn(id: TestCaseColumn.lastRun, name: 'Last run', width: 200),
   ];
 
   @override

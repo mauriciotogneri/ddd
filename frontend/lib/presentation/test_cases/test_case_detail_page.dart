@@ -168,27 +168,38 @@ class FormFields extends StatelessWidget {
               ],
             ),
             const VBox(16),
-            CustomMultilineInput(
-              minLines: 5,
-              maxLines: 5,
-              name: 'Preconditions',
-              controller: state.preconditionsController,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: CustomMultilineInput(
+                    minLines: 6,
+                    maxLines: 6,
+                    name: 'Preconditions',
+                    controller: state.preconditionsController,
+                  ),
+                ),
+                const HBox(16),
+                Expanded(
+                  child: CustomTextInput(
+                    minLines: 6,
+                    maxLines: 6,
+                    name: 'Steps',
+                    controller: state.stepsController,
+                  ),
+                ),
+                const HBox(16),
+                Expanded(
+                  child: CustomTextInput(
+                    minLines: 6,
+                    maxLines: 6,
+                    name: 'Expected result',
+                    controller: state.expectedController,
+                  ),
+                ),
+              ],
             ),
-            const VBox(16),
-            CustomTextInput(
-              minLines: 5,
-              maxLines: 5,
-              name: 'Steps',
-              controller: state.stepsController,
-            ),
-            const VBox(16),
-            CustomTextInput(
-              minLines: 5,
-              maxLines: 5,
-              name: 'Expected result',
-              controller: state.expectedController,
-            ),
-            const VBox(16),
           ],
         ),
       ),
@@ -237,7 +248,7 @@ class TabSection extends StatelessWidget {
       padding: const EdgeInsets.only(right: 32, bottom: 32, left: 32),
       child: CustomTabs(
         tabs: const [
-          TabItem(title: 'Test Cases', width: 150, icon: Icons.list),
+          TabItem(title: 'Test runs', width: 150, icon: Icons.list),
           TabItem(title: 'Attachments', width: 150, icon: Icons.attachment),
         ],
         children: [Table(state), AttachmentsTable.instance()],

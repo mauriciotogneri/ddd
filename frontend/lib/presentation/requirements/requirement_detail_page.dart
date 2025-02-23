@@ -295,7 +295,7 @@ class Table extends StatelessWidget {
             values: TestCaseExecution.items,
             controller: state.executionFilterController,
             onSelected: (_) => state.notify(),
-            hint: 'Component',
+            hint: 'Execution',
           ),
         ],
       ),
