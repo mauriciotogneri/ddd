@@ -34,11 +34,21 @@ enum TestCaseExecution implements Chipable {
     }
   }
 
+  Color get borderColor {
+    switch (this) {
+      case TestCaseExecution.manual:
+        return Palette.chipRedBorder;
+      case TestCaseExecution.automated:
+        return Palette.chipGreenBorder;
+    }
+  }
+
   @override
   CustomChip get chip => CustomChip(
     text: localized,
     backgroundColor: backgroundColor,
     foregroundColor: foregroundColor,
+    borderColor: borderColor,
   );
 
   static List<DropdownItem<TestCaseExecution>> get items =>

@@ -46,12 +46,21 @@ class Palette {
 
   static const Color chipRedForeground = Color(0xff9c4238);
   static const Color chipRedBackground = Color(0xfffde9e6);
+  static const Color chipRedBorder = Color(0xffffcdc6);
+
   static const Color chipYellowForeground = Color(0xffbb7f16);
   static const Color chipYellowBackground = Color(0xfffff1df);
+  static const Color chipYellowBorder = Color(0xffffdeb3);
+
   static const Color chipGreenForeground = Color(0xff38683a);
   static const Color chipGreenBackground = Color(0xffedf8ec);
+  static const Color chipGreenBorder = Color(0xddcee0cc);
+
   static const Color chipBlueForeground = Color(0xff4e4f7f);
   static const Color chipBlueBackground = Color(0xffeff0f9);
-  static const Color chipGreyForeground = Color(0xff707070);
-  static const Color chipGreyBackground = Color(0xffefefef);
+  static const Color chipBlueBorder = Color(0xddd9dbf0);
+
+  static const Color chipGreyForeground = Color(0xff606060);
+  static const Color chipGreyBackground = Color(0xfff7f7f7);
+  static const Color chipGreyBorder = Color(0xffe0e0e0);
 }

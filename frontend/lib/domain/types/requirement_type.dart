@@ -34,11 +34,21 @@ enum RequirementType implements Chipable {
     }
   }
 
+  Color get borderColor {
+    switch (this) {
+      case RequirementType.functional:
+        return Palette.chipGreenBorder;
+      case RequirementType.non_functional:
+        return Palette.chipBlueBorder;
+    }
+  }
+
   @override
   CustomChip get chip => CustomChip(
     text: localized,
     backgroundColor: backgroundColor,
     foregroundColor: foregroundColor,
+    borderColor: borderColor,
   );
 
   static List<DropdownItem<RequirementType>> get items =>

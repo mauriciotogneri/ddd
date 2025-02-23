@@ -41,11 +41,23 @@ enum RequirementStatus implements Chipable {
     }
   }
 
+  Color get borderColor {
+    switch (this) {
+      case RequirementStatus.draft:
+        return Palette.chipGreyBorder;
+      case RequirementStatus.active:
+        return Palette.chipGreenBorder;
+      case RequirementStatus.inactive:
+        return Palette.chipRedBorder;
+    }
+  }
+
   @override
   CustomChip get chip => CustomChip(
     text: localized,
     backgroundColor: backgroundColor,
     foregroundColor: foregroundColor,
+    borderColor: borderColor,
   );
 
   static List<DropdownItem<RequirementStatus>> get items =>

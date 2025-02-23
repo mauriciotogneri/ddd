@@ -48,11 +48,25 @@ enum RequirementImportance implements Chipable {
     }
   }
 
+  Color get borderColor {
+    switch (this) {
+      case RequirementImportance.low:
+        return Palette.chipBlueBorder;
+      case RequirementImportance.medium:
+        return Palette.chipGreenBorder;
+      case RequirementImportance.high:
+        return Palette.chipYellowBorder;
+      case RequirementImportance.critical:
+        return Palette.chipRedBorder;
+    }
+  }
+
   @override
   CustomChip get chip => CustomChip(
     text: localized,
     backgroundColor: backgroundColor,
     foregroundColor: foregroundColor,
+    borderColor: borderColor,
   );
 
   static List<DropdownItem<RequirementImportance>> get items =>

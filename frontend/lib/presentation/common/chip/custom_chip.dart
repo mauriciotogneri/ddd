@@ -8,12 +8,14 @@ class CustomChip extends StatelessWidget {
   final double? size;
   final Color? foregroundColor;
   final Color? backgroundColor;
+  final Color? borderColor;
 
   const CustomChip({
     required this.text,
     this.size,
     this.foregroundColor,
     this.backgroundColor,
+    this.borderColor,
   });
 
   @override
@@ -23,11 +25,13 @@ class CustomChip extends StatelessWidget {
         foregroundColor ?? Palette.chipGreyForeground;
     final Color chipBackgroundColor =
         backgroundColor ?? Palette.chipGreyBackground;
+    final Color chipBorderColor = borderColor ?? Palette.chipGreyBorder;
 
     return Container(
       decoration: BoxDecoration(
         color: chipBackgroundColor,
         borderRadius: const BorderRadius.all(Radius.circular(20)),
+        border: Border.all(color: chipBorderColor, width: 0.5),
       ),
       child: Padding(
         padding: EdgeInsets.only(

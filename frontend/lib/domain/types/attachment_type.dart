@@ -1,6 +1,5 @@
 import 'package:testflow/presentation/common/chip/custom_chip.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
-import 'package:testflow/utils/palette.dart';
 
 enum AttachmentType implements Chipable {
   text,
@@ -28,11 +27,7 @@ enum AttachmentType implements Chipable {
   }
 
   @override
-  CustomChip get chip => CustomChip(
-    text: localized,
-    backgroundColor: Palette.chipGreyBackground,
-    foregroundColor: Palette.chipGreyForeground,
-  );
+  CustomChip get chip => CustomChip(text: localized);
 
   static List<DropdownItem<AttachmentType>> get items =>
       AttachmentType.values
