@@ -21,7 +21,6 @@ class RequirementDetailState extends BaseState {
   final String projectId;
   final String requirementId;
   Requirement? _requirement;
-  final List<TestCase> _allTestCases = [];
   final FormKey formKey = FormKey();
   final CustomTextInputController idController = CustomTextInputController();
   final CustomDropdownSingleController<RequirementType> typeController =
@@ -49,7 +48,7 @@ class RequirementDetailState extends BaseState {
   });
 
   List<TestCase> get testCases =>
-      _allTestCases
+      Data.testCases(requirement)
           .where(
             (testCase) => testCase.matches(
               queryFilter: queryFilterController.text,
@@ -78,7 +77,6 @@ class RequirementDetailState extends BaseState {
     componentController.select(requirement.component);
     platformsController.select(requirement.platforms);
 
-    _allTestCases.addAll(Data.testCases(requirement));
     notify();
   }
 

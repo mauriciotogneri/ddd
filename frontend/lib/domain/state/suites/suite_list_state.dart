@@ -22,12 +22,11 @@ class SuiteListState extends BaseState {
       CustomDropdownMultipleController();
   final CustomDropdownMultipleController<String> platformFilterController =
       CustomDropdownMultipleController();
-  final List<Suite> _allSuites = Data.suites();
 
   SuiteListState({required this.projectId});
 
   List<Suite> get suites =>
-      _allSuites
+      Data.suites()
           .where(
             (suite) => suite.matches(
               queryFilter: queryFilterController.text,

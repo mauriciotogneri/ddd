@@ -25,12 +25,11 @@ class RequirementListState extends BaseState {
       CustomDropdownMultipleController();
   final CustomDropdownMultipleController<String> platformFilterController =
       CustomDropdownMultipleController();
-  final List<Requirement> _allRequirements = Data.requirements();
 
   RequirementListState({required this.projectId});
 
   List<Requirement> get requirements =>
-      _allRequirements
+      Data.requirements()
           .where(
             (requirement) => requirement.matches(
               queryFilter: queryFilterController.text,

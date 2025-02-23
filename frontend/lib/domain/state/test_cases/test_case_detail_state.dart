@@ -21,7 +21,6 @@ class TestCaseDetailState extends BaseState {
   final String testCaseId;
   Requirement? _requirement;
   TestCase? _testCase;
-  final List<TestRun> _allTestRuns = [];
   final FormKey formKey = FormKey();
   final CustomTextInputController nameController = CustomTextInputController();
   final CustomDropdownSingleController<TestCaseExecution> executionController =
@@ -46,7 +45,7 @@ class TestCaseDetailState extends BaseState {
   });
 
   List<TestRun> get testRuns =>
-      _allTestRuns
+      Data.testRuns(testCase)
           .where(
             (testRun) => testRun.matches(
               queryFilter: queryFilterController.text,
@@ -78,7 +77,6 @@ class TestCaseDetailState extends BaseState {
     stepsController.text = testCase.steps;
     expectedController.text = testCase.expected;
 
-    _allTestRuns.addAll(Data.testRuns(testCase));
     notify();
   }
 

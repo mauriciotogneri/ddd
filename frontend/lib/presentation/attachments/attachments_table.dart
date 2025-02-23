@@ -57,14 +57,13 @@ class AttachmentsTable extends StatelessWidget {
 }
 
 class AttachmentsState extends BaseState {
-  final List<Attachment> _allAttachments = [];
   final CustomTextInputController queryFilterController =
       CustomTextInputController();
   final CustomDropdownMultipleController<AttachmentType> typeFilterController =
       CustomDropdownMultipleController();
 
   List<Attachment> get attachments =>
-      _allAttachments
+      Data.attachments()
           .where(
             (attachment) => attachment.matches(
               queryFilter: queryFilterController.text,
@@ -72,12 +71,6 @@ class AttachmentsState extends BaseState {
             ),
           )
           .toList();
-
-  @override
-  void onLoad() {
-    _allAttachments.addAll(Data.attachments());
-    notify();
-  }
 
   bool get hasFilters =>
       queryFilterController.isNotEmpty || typeFilterController.isNotEmpty;
