@@ -1,25 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/types/test_run_result.dart';
-import 'package:testflow/presentation/common/text/body_medium.dart';
 import 'package:testflow/utils/palette.dart';
 
 class LastResults extends StatelessWidget {
   final List<TestRunResult> results;
 
   const LastResults(this.results);
-
-  @override
-  Widget build(BuildContext context) {
-    return results.isEmpty
-        ? const BodyMedium(text: '-')
-        : ResultsIndicator(results);
-  }
-}
-
-class ResultsIndicator extends StatelessWidget {
-  final List<TestRunResult> results;
-
-  const ResultsIndicator(this.results);
 
   @override
   Widget build(BuildContext context) {

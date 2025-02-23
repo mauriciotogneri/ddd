@@ -72,7 +72,12 @@ class TestCase implements TableElement {
       width: 300,
       alignment: Alignment.center,
     ),
-    TableColumn(id: TestCaseColumn.lastRun, name: 'Last run', width: 200),
+    TableColumn(
+      id: TestCaseColumn.lastRun,
+      name: 'Last run',
+      width: 200,
+      alignment: Alignment.center,
+    ),
     TableColumn(
       id: TestCaseColumn.lastResults,
       name: 'Last results',
@@ -96,7 +101,9 @@ class TestCase implements TableElement {
             )
             : const BodyMedium(text: '-');
       case TestCaseColumn.lastResults:
-        return LastResults(lastResults);
+        return lastResults.isNotEmpty
+            ? LastResults(lastResults)
+            : const BodyMedium(text: '-');
       default:
         return const Empty();
     }
