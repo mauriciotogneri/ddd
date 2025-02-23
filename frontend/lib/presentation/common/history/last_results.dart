@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/types/test_run_status.dart';
+import 'package:testflow/utils/palette.dart';
 
 class LastResults extends StatelessWidget {
   final List<TestRunStatus> results;
@@ -14,21 +15,27 @@ class LastResults extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(100),
       child: SizedBox(
-        width: width,
+        width: width + results.length - 1,
         height: height,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            for (final result in results)
+            for (int i = 0; i < results.length; i++) ...[
+              if (i > 0)
+                const VerticalDivider(
+                  width: 0.5,
+                  color: Palette.backgroundEmpty,
+                ),
               Tooltip(
-                message: result.localized,
+                message: results[i].localized,
                 child: Container(
-                  color: result.foregroundColor,
+                  color: results[i].borderColor,
                   width: width / results.length,
                   height: height,
                 ),
               ),
+            ],
           ],
         ),
       ),

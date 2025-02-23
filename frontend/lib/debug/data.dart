@@ -212,7 +212,7 @@ class Data {
           steps: _random(_texts),
           expected: _random(_texts),
           lastRun: randomDate(),
-          lastResults: _randomList(TestRunStatus.values),
+          lastResults: _randomRepeatedList(TestRunStatus.values, 5),
           tags: [
             for (int i = 0; i < Random().nextInt(3) + 1; i++) 'Tag ${i + 1}',
           ],
@@ -313,6 +313,16 @@ class Data {
     }
 
     return result.toList();
+  }
+
+  static List<T> _randomRepeatedList<T>(List<T> list, int limit) {
+    final List<T> result = [];
+
+    for (int i = 0; i < Random().nextInt(limit) + 1; i++) {
+      result.add(_random(list));
+    }
+
+    return result;
   }
 
   static DateTime randomDate() =>
