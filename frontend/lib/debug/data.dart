@@ -115,6 +115,10 @@ class Data {
     _suites.remove(suite);
   }
 
+  static void deleteAttachment(Attachment attachment) {
+    _attachments.remove(attachment);
+  }
+
   static List<Project> projects() {
     _projects.sort((a, b) => a.name.compareTo(b.name));
 
@@ -258,6 +262,19 @@ class Data {
       ),
   ];
 
+  static final List<Attachment> _attachments = [
+    for (int i = 0; i < 10; i++)
+      Attachment(
+        path: '',
+        name: 'Attachment ${i + 1}',
+        url: 'https://place.dog/500/500',
+        type: _random(AttachmentType.values),
+        size: _randomFileSize(),
+        uploadedOn: randomDate(),
+        uploadedBy: 'John Doe',
+      ),
+  ];
+
   static List<Requirement> requirements() => _requirements;
 
   static List<Suite> suites() => _suites;
@@ -270,25 +287,7 @@ class Data {
   static List<TestRun> testRuns(TestCase testCase) =>
       _testRuns.where((testRun) => testRun.testCaseId == testCase.id).toList();
 
-  static List<Attachment> attachments() {
-    final List<Attachment> attachments = [];
-
-    for (int i = 0; i < 10; i++) {
-      attachments.add(
-        Attachment(
-          path: '',
-          name: 'Attachment ${i + 1}',
-          url: 'https://place.dog/500/500',
-          type: _random(AttachmentType.values),
-          size: _randomFileSize(),
-          uploadedOn: randomDate(),
-          uploadedBy: 'John Doe',
-        ),
-      );
-    }
-
-    return attachments;
-  }
+  static List<Attachment> attachments() => _attachments;
 
   static int _randomFileSize() {
     final int group = Random().nextInt(3);

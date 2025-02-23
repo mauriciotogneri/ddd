@@ -8,7 +8,10 @@ import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/sheet/attachment_sheet.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
+import 'package:testflow/presentation/dialogs/base_dialog.dart';
+import 'package:testflow/presentation/dialogs/confirmation_dialog.dart';
 import 'package:testflow/utils/custom_snackbar.dart';
+import 'package:testflow/utils/palette.dart';
 import 'package:web/web.dart';
 
 class AttachmentsTable extends StatelessWidget {
@@ -108,12 +111,36 @@ class AttachmentsState extends BaseState {
     context: context,
     onOpen: () => _openAttachment(attachment),
     onDownload: () => _downloadAttachment(attachment),
-    onDelete: () => _deleteAttachment(attachment),
+    onDelete:
+        () => _deleteAttachmentConfirmation(
+          context: context,
+          attachment: attachment,
+        ),
   );
 
   void _openAttachment(Attachment attachment) => window.open(attachment.url);
 
   void _downloadAttachment(Attachment attachment) {}
 
-  void _deleteAttachment(Attachment attachment) {}
+  void _deleteAttachmentConfirmation({
+    required BuildContext context,
+    required Attachment attachment,
+  }) => BaseDialog.show(
+    context: context,
+    dialog: ConfirmationDialog(
+      message: 'Do you want to delete the attachment?',
+      acceptButtonText: 'Delete',
+      acceptButtonColor: Palette.borderButtonError,
+      onAccept:
+          () => _deleteAttachment(context: context, attachment: attachment),
+    ),
+  );
+
+  void _deleteAttachment({
+    required BuildContext context,
+    required Attachment attachment,
+  }) {
+    Data.deleteAttachment(attachment);
+    notify();
+  }
 }
