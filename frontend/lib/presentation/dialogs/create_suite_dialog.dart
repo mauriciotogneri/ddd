@@ -2,7 +2,6 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
-import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/button/primary_text_button.dart';
 import 'package:testflow/presentation/common/button/secondary_text_button.dart';
@@ -65,13 +64,6 @@ class FormFields extends StatelessWidget {
             errorMessage: 'Name is required',
           ),
           const VBox(16),
-          CustomDropdownMultiple<RequirementType>(
-            values: RequirementType.items,
-            controller: state.typesController,
-            name: 'Type',
-            errorMessage: 'Type is required',
-          ),
-          const VBox(16),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
@@ -81,12 +73,12 @@ class FormFields extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    CustomDropdownMultiple<RequirementStatus>(
+                    CustomDropdownMultiple<RequirementType>(
                       width: 240,
-                      values: RequirementStatus.items,
-                      controller: state.statusesController,
-                      name: 'Status',
-                      errorMessage: 'Status is required',
+                      values: RequirementType.items,
+                      controller: state.typesController,
+                      name: 'Types',
+                      errorMessage: 'Types is required',
                     ),
                   ],
                 ),
@@ -101,8 +93,8 @@ class FormFields extends StatelessWidget {
                       width: 240,
                       values: RequirementImportance.items,
                       controller: state.importancesController,
-                      name: 'Importance',
-                      errorMessage: 'Importance is required',
+                      name: 'Importances',
+                      errorMessage: 'Importances is required',
                     ),
                   ],
                 ),
@@ -125,8 +117,8 @@ class FormFields extends StatelessWidget {
                         Data.currentProject.components,
                       ),
                       controller: state.componentsController,
-                      name: 'Component',
-                      errorMessage: 'Component is required',
+                      name: 'Components',
+                      errorMessage: 'Components is required',
                     ),
                   ],
                 ),
@@ -164,8 +156,6 @@ class CreateSuiteDialogState extends BaseState {
   final CustomTextInputController nameController = CustomTextInputController();
   final CustomDropdownMultipleController<RequirementType> typesController =
       CustomDropdownMultipleController();
-  final CustomDropdownMultipleController<RequirementStatus> statusesController =
-      CustomDropdownMultipleController();
   final CustomDropdownMultipleController<RequirementImportance>
   importancesController = CustomDropdownMultipleController();
   final CustomDropdownMultipleController<String> componentsController =
@@ -182,7 +172,6 @@ class CreateSuiteDialogState extends BaseState {
       onCreateSuite(
         name: nameController.text,
         types: typesController.selected,
-        statuses: statusesController.selected,
         importances: importancesController.selected,
         components: componentsController.selected,
         platforms: platformsController.selected,
@@ -195,7 +184,6 @@ typedef OnCreateSuite =
     void Function({
       required String name,
       required List<RequirementType> types,
-      required List<RequirementStatus> statuses,
       required List<RequirementImportance> importances,
       required List<String> components,
       required List<String> platforms,

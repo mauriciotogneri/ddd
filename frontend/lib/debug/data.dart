@@ -83,7 +83,6 @@ class Data {
   static void onCreateSuite({
     required String name,
     required List<RequirementType> types,
-    required List<RequirementStatus> statuses,
     required List<RequirementImportance> importances,
     required List<String> components,
     required List<String> platforms,
@@ -92,7 +91,6 @@ class Data {
       id: DateTime.now().toIso8601String(),
       name: name,
       types: types,
-      statuses: statuses,
       importances: importances,
       components: components,
       platforms: platforms,
@@ -235,7 +233,6 @@ class Data {
         id: '${i + 1}',
         name: 'Suite ${i + 1}',
         types: _randomList(RequirementType.values),
-        statuses: _randomList(RequirementStatus.values),
         importances: _randomList(RequirementImportance.values),
         components: _randomList(_components),
         platforms: _randomList(_platforms),

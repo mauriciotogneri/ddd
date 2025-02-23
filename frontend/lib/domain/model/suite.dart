@@ -1,7 +1,6 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
-import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/extensions/string_extension.dart';
 import 'package:testflow/presentation/common/chip/custom_chip.dart';
@@ -12,7 +11,6 @@ class Suite implements TableElement {
   final String id;
   final String name;
   final List<RequirementType> types;
-  final List<RequirementStatus> statuses;
   final List<RequirementImportance> importances;
   final List<String> components;
   final List<String> platforms;
@@ -26,7 +24,6 @@ class Suite implements TableElement {
     required this.id,
     required this.name,
     required this.types,
-    required this.statuses,
     required this.importances,
     required this.components,
     required this.platforms,
@@ -40,14 +37,12 @@ class Suite implements TableElement {
   bool matches({
     required String queryFilter,
     required List<RequirementType> typeFilter,
-    required List<RequirementStatus> statusFilter,
     required List<RequirementImportance> importanceFilter,
     required List<String> componentFilter,
     required List<String> platformFilter,
   }) {
     if (queryFilter.isEmpty &&
         typeFilter.isEmpty &&
-        statusFilter.isEmpty &&
         importanceFilter.isEmpty &&
         componentFilter.isEmpty &&
         platformFilter.isEmpty) {
@@ -61,8 +56,6 @@ class Suite implements TableElement {
           tags.any((e) => e.matches(queryFilter));
       final bool matchesType =
           typeFilter.isEmpty || typeFilter.any(types.contains);
-      final bool matchesStatus =
-          statusFilter.isEmpty || statusFilter.any(statuses.contains);
       final bool matchesImportance =
           importanceFilter.isEmpty ||
           importanceFilter.any(importances.contains);
@@ -73,7 +66,6 @@ class Suite implements TableElement {
 
       return matchesQuery &&
           matchesType &&
-          matchesStatus &&
           matchesImportance &&
           matchesComponent &&
           matchesPlatform;
@@ -104,12 +96,6 @@ class Suite implements TableElement {
       alignment: Alignment.center,
     ),
     TableColumn(
-      id: SuiteColumn.statuses,
-      name: 'Status',
-      width: 200,
-      alignment: Alignment.center,
-    ),
-    TableColumn(
       id: SuiteColumn.importances,
       name: 'Importance',
       width: 200,
@@ -124,8 +110,6 @@ class Suite implements TableElement {
         return BodyMedium(text: name);
       case SuiteColumn.types:
         return ChipGroup(items: types, plural: 'types');
-      case SuiteColumn.statuses:
-        return ChipGroup(items: statuses, plural: 'statuses');
       case SuiteColumn.importances:
         return ChipGroup(items: importances, plural: 'importances');
       case SuiteColumn.components:
@@ -138,4 +122,4 @@ class Suite implements TableElement {
   }
 }
 
-enum SuiteColumn { name, types, statuses, importances, components, platforms }
+enum SuiteColumn { name, types, importances, components, platforms }

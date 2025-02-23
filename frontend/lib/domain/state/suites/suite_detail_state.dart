@@ -2,7 +2,6 @@ import 'package:dafluta/dafluta.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/suite.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
-import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
@@ -15,8 +14,6 @@ class SuiteDetailState extends BaseState {
   final FormKey formKey = FormKey();
   final CustomTextInputController nameController = CustomTextInputController();
   final CustomDropdownMultipleController<RequirementType> typeController =
-      CustomDropdownMultipleController();
-  final CustomDropdownMultipleController<RequirementStatus> statusController =
       CustomDropdownMultipleController();
   final CustomDropdownMultipleController<RequirementImportance>
   importanceController = CustomDropdownMultipleController();
@@ -37,7 +34,6 @@ class SuiteDetailState extends BaseState {
 
     nameController.text = suite.name;
     typeController.select(suite.types);
-    statusController.select(suite.statuses);
     importanceController.select(suite.importances);
     componentController.select(suite.components);
     platformsController.select(suite.platforms);

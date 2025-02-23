@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/suite.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
-import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/extensions/build_context_extension.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
@@ -17,8 +16,6 @@ class SuiteListState extends BaseState {
       CustomTextInputController();
   final CustomDropdownMultipleController<RequirementType> typeFilterController =
       CustomDropdownMultipleController();
-  final CustomDropdownMultipleController<RequirementStatus>
-  statusFilterController = CustomDropdownMultipleController();
   final CustomDropdownMultipleController<RequirementImportance>
   importanceFilterController = CustomDropdownMultipleController();
   final CustomDropdownMultipleController<String> componentFilterController =
@@ -35,7 +32,6 @@ class SuiteListState extends BaseState {
             (suite) => suite.matches(
               queryFilter: queryFilterController.text,
               typeFilter: typeFilterController.selected,
-              statusFilter: statusFilterController.selected,
               importanceFilter: importanceFilterController.selected,
               componentFilter: componentFilterController.selected,
               platformFilter: platformFilterController.selected,
@@ -46,7 +42,6 @@ class SuiteListState extends BaseState {
   bool get hasFilters =>
       queryFilterController.isNotEmpty ||
       typeFilterController.isNotEmpty ||
-      statusFilterController.isNotEmpty ||
       importanceFilterController.isNotEmpty ||
       componentFilterController.isNotEmpty ||
       platformFilterController.isNotEmpty;
@@ -54,7 +49,6 @@ class SuiteListState extends BaseState {
   void onResetFilters() {
     queryFilterController.clear();
     typeFilterController.clear();
-    statusFilterController.clear();
     importanceFilterController.clear();
     componentFilterController.clear();
     platformFilterController.clear();
@@ -74,7 +68,6 @@ class SuiteListState extends BaseState {
   void _createSuite({
     required String name,
     required List<RequirementType> types,
-    required List<RequirementStatus> statuses,
     required List<RequirementImportance> importances,
     required List<String> components,
     required List<String> platforms,
@@ -82,7 +75,6 @@ class SuiteListState extends BaseState {
     Data.onCreateSuite(
       name: name,
       types: types,
-      statuses: statuses,
       importances: importances,
       components: components,
       platforms: platforms,

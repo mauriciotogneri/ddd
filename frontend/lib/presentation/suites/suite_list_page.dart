@@ -4,7 +4,6 @@ import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/suite.dart';
 import 'package:testflow/domain/state/suites/suite_list_state.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
-import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
@@ -87,14 +86,6 @@ class Table extends StatelessWidget {
             controller: state.typeFilterController,
             onSelected: (_) => state.notify(),
             hint: 'Type',
-          ),
-          const HBox(8),
-          CustomDropdownMultiple<RequirementStatus>(
-            width: 180,
-            values: RequirementStatus.items,
-            controller: state.statusFilterController,
-            onSelected: (_) => state.notify(),
-            hint: 'Status',
           ),
           const HBox(8),
           CustomDropdownMultiple<RequirementImportance>(

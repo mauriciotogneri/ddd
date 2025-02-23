@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/state/suites/suite_detail_state.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
-import 'package:testflow/domain/types/requirement_status.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/card/metadata_card.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
@@ -123,27 +122,10 @@ class FormFields extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: CustomTextInput(
-                    name: 'Name',
-                    controller: state.nameController,
-                    errorMessage: 'Name is required',
-                  ),
-                ),
-                const HBox(16),
-                Expanded(
-                  child: CustomDropdownMultiple<RequirementType>(
-                    name: 'Type',
-                    values: RequirementType.items,
-                    controller: state.typeController,
-                    errorMessage: 'Type is required',
-                  ),
-                ),
-              ],
+            CustomTextInput(
+              name: 'Name',
+              controller: state.nameController,
+              errorMessage: 'Name is required',
             ),
             const VBox(16),
             Row(
@@ -151,11 +133,11 @@ class FormFields extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Expanded(
-                  child: CustomDropdownMultiple<RequirementStatus>(
-                    name: 'Status',
-                    values: RequirementStatus.items,
-                    controller: state.statusController,
-                    errorMessage: 'Status is required',
+                  child: CustomDropdownMultiple<RequirementType>(
+                    name: 'Type',
+                    values: RequirementType.items,
+                    controller: state.typeController,
+                    errorMessage: 'Type is required',
                   ),
                 ),
                 const HBox(16),
