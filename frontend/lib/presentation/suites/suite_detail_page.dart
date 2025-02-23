@@ -80,7 +80,7 @@ class Header extends StatelessWidget {
               icon: Icons.delete_outline,
               text: 'Delete',
               color: Palette.semanticError,
-              onPressed: state.onDeleteSuite,
+              onPressed: () => state.onDeleteSuite(context),
             ),
           ],
         ),

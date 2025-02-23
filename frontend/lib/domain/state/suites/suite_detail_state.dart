@@ -1,4 +1,5 @@
 import 'package:dafluta/dafluta.dart';
+import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/suite.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
@@ -6,6 +7,8 @@ import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
+import 'package:testflow/presentation/dialogs/base_dialog.dart';
+import 'package:testflow/presentation/dialogs/confirmation_dialog.dart';
 
 class SuiteDetailState extends BaseState {
   final String projectId;
@@ -42,5 +45,12 @@ class SuiteDetailState extends BaseState {
 
   void onStartSession() {}
 
-  void onDeleteSuite() {}
+  void onDeleteSuite(BuildContext context) => BaseDialog.show(
+    context: context,
+    dialog: ConfirmationDialog(
+      message: 'Do you want to delete the test suite?',
+      onAcceptButton: 'Delete',
+      onAccept: () {},
+    ),
+  );
 }
