@@ -77,6 +77,11 @@ class CustomDropdownSingle<T> extends StatelessWidget {
                                   DropdownMenuEntry(
                                     value: item.value,
                                     label: item.text,
+                                    labelWidget:
+                                        (item.value is Dropdownable)
+                                            ? (item.value as Dropdownable)
+                                                .dropdownItem
+                                            : null,
                                     enabled: item.enabled,
                                     leadingIcon: InputIcon.create(item.icon),
                                     trailingIcon:
@@ -234,4 +239,8 @@ class CustomDropdownSingleController<T> extends CustomInputController<T> {
       select(value);
     }
   }
+}
+
+abstract class Dropdownable {
+  Widget get dropdownItem;
 }
