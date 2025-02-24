@@ -99,7 +99,9 @@ class Navigation {
           ),
           GoRoute(
             path: '/projects/:projectId/settings',
-            builder: (context, state) => SettingsPage.instance(),
+            builder:
+                (context, state) =>
+                    SettingsPage.instance(projectId: state.param('projectId')),
           ),
           GoRoute(
             path: '/projects/:projectId/components',
