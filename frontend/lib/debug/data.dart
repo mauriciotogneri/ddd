@@ -295,23 +295,25 @@ class Data {
   ];
 
   static final List<TestSession> _testSessions = [
-    for (int i = 0; i < 20; i++)
-      TestSession(
-        id: '${i + 1}',
-        name: 'Test session ${i + 1}',
-        startedOn: randomDate(),
-        endedOn: null,
-        timeSpent: 123,
-        status: _random(TestSessionStatus.values),
-        environment: _random(_environments),
-        platform: _random(_platforms),
-        device: _random(_devices),
-        version: _random(_versions),
-        createdOn: randomDate(),
-        createdBy: 'John Doe',
-        updatedOn: randomDate(),
-        updatedBy: 'Jane Doe',
-      ),
+    for (final TestSuite testSuite in _testSuites)
+      for (int i = 0; i < 2; i++)
+        TestSession(
+          id: '${i + 1}',
+          testSuiteId: testSuite.id,
+          name: 'Test session ${i + 1}',
+          startedOn: randomDate(),
+          endedOn: null,
+          timeSpent: 123,
+          status: _random(TestSessionStatus.values),
+          environment: _random(_environments),
+          platform: _random(_platforms),
+          device: _random(_devices),
+          version: _random(_versions),
+          createdOn: randomDate(),
+          createdBy: 'John Doe',
+          updatedOn: randomDate(),
+          updatedBy: 'Jane Doe',
+        ),
   ];
 
   static final List<Attachment> _attachments = [

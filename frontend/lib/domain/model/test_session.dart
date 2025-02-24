@@ -8,6 +8,7 @@ import 'package:testflow/presentation/common/text/body_medium.dart';
 
 class TestSession implements TableElement {
   final String id;
+  final String testSuiteId;
   final String name;
   final DateTime? startedOn;
   final DateTime? endedOn;
@@ -24,6 +25,7 @@ class TestSession implements TableElement {
 
   const TestSession({
     required this.id,
+    required this.testSuiteId,
     required this.name,
     required this.startedOn,
     required this.endedOn,
