@@ -182,14 +182,19 @@ class Data {
     throw Exception('Test suite not found');
   }
 
-  static const List<String> _environments = [
+  // ignore: prefer_final_fields
+  static List<String> _environments = [
     'Development',
     'Integration',
     'Staging',
     'Production',
   ];
 
-  static const List<String> _components = [
+  // ignore: prefer_final_fields
+  static List<String> _platforms = ['Web', 'Android', 'iOS'];
+
+  // ignore: prefer_final_fields
+  static List<String> _components = [
     'Authentication',
     'Payments',
     'Chat',
@@ -199,9 +204,8 @@ class Data {
     'Security',
   ];
 
-  static const List<String> _platforms = ['Web', 'Android', 'iOS'];
-
-  static const List<String> _devices = [
+  // ignore: prefer_final_fields
+  static List<String> _devices = [
     'Google Pixel',
     'Samsung Galaxy',
     'iPhone 12',
@@ -402,7 +406,7 @@ class Data {
       DateTime.now().subtract(Duration(days: Random().nextInt(30)));
 
   static final List<Project> _projects = [
-    const Project(
+    Project(
       id: '1',
       name: 'Project 1',
       description: 'Description 1',
@@ -412,7 +416,7 @@ class Data {
       devices: _devices,
       versions: _versions,
     ),
-    const Project(
+    Project(
       id: '2',
       name: 'Project 2',
       description: 'Description 2',
@@ -422,7 +426,7 @@ class Data {
       devices: _devices,
       versions: _versions,
     ),
-    const Project(
+    Project(
       id: '3',
       name: 'Project 3',
       description: 'Description 3',

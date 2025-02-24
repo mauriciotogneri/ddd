@@ -183,7 +183,7 @@ class CustomListEntry extends StatelessWidget {
     return ListTile(
       title: CustomText(text: value, size: 14, weight: FontWeight.normal),
       trailing: IconButton(
-        icon: const Icon(Icons.delete, size: 18, color: Palette.semanticError),
+        icon: const Icon(Icons.close, size: 18, color: Palette.semanticError),
         onPressed: () => onRemove(value),
       ),
       shape: const RoundedRectangleBorder(
