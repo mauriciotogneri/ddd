@@ -1,9 +1,12 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
+import 'package:testflow/domain/model/test_session.dart';
 import 'package:testflow/domain/state/test_suites/test_suite_detail_state.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
+import 'package:testflow/domain/types/test_session_status.dart';
+import 'package:testflow/presentation/attachments/attachments_table.dart';
 import 'package:testflow/presentation/common/card/metadata_card.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
@@ -11,6 +14,8 @@ import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/menu/context_menu.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
+import 'package:testflow/presentation/common/table/custom_table.dart';
+import 'package:testflow/presentation/tabs/custom_tabs.dart';
 import 'package:testflow/utils/formatter.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
@@ -96,12 +101,25 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(child: FormFields(state)),
-        Metadata(state),
-        const HBox(32),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [FormFields(state)],
+              ),
+            ),
+            Metadata(state),
+            const HBox(32),
+          ],
+        ),
+        TabSection(state),
       ],
     );
   }
@@ -212,5 +230,102 @@ class Metadata extends StatelessWidget {
       MetadataItem(label: 'Updated by', value: state.testSuite.updatedBy),
       const MetadataItem(label: 'Capturing', value: '30 requirements'),
     ]);
+  }
+}
+
+class Table extends StatelessWidget {
+  final TestSuiteDetailState state;
+
+  const Table(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 16),
+      child: CustomTable<TestSession>(
+        columns: TestSession.columns,
+        rows: state.testSessions,
+        onSelected:
+            (testSession) => state.onTestSessionSelected(
+              context: context,
+              testSessionId: testSession.id,
+            ),
+        onResetFilters: state.hasFilters ? state.onResetFilters : null,
+        filters: [
+          CustomTextInput(
+            width: 300,
+            hint: 'Filter…',
+            canClear: true,
+            prefixIcon: Icons.search,
+            controller: state.queryFilterController,
+            onChanged: (_) => state.notify(),
+          ),
+          const HBox(8),
+          CustomDropdownMultiple<TestSessionStatus>(
+            width: 200,
+            values: TestSessionStatus.items,
+            controller: state.statusFilterController,
+            onSelected: (_) => state.notify(),
+            hint: 'Status',
+          ),
+          const HBox(8),
+          CustomDropdownMultiple<String>(
+            width: 180,
+            values: DropdownItem.fromList(Data.currentProject.environments),
+            controller: state.environmentFilterController,
+            onSelected: (_) => state.notify(),
+            hint: 'Environment',
+          ),
+          const HBox(8),
+          CustomDropdownMultiple<String>(
+            width: 180,
+            values: DropdownItem.fromList(Data.currentProject.platforms),
+            controller: state.platformFilterController,
+            onSelected: (_) => state.notify(),
+            hint: 'Platform',
+          ),
+          const HBox(8),
+          CustomDropdownMultiple<String>(
+            width: 180,
+            values: DropdownItem.fromList(Data.currentProject.devices),
+            controller: state.deviceFilterController,
+            onSelected: (_) => state.notify(),
+            hint: 'Device',
+          ),
+          const HBox(8),
+          CustomDropdownMultiple<String>(
+            width: 180,
+            values: DropdownItem.fromList(Data.currentProject.versions),
+            controller: state.versionFilterController,
+            onSelected: (_) => state.notify(),
+            hint: 'Version',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TabSection extends StatelessWidget {
+  final TestSuiteDetailState state;
+
+  const TabSection(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 32, bottom: 32, left: 32),
+      child: CustomTabs(
+        tabs: const [
+          TabItem(title: 'History', width: 150, icon: Icons.history),
+          TabItem(
+            title: 'Attachments',
+            width: 150,
+            icon: Icons.attachment_outlined,
+          ),
+        ],
+        children: [Table(state), AttachmentsTable.instance()],
+      ),
+    );
   }
 }

@@ -296,7 +296,7 @@ class Data {
 
   static final List<TestSession> _testSessions = [
     for (final TestSuite testSuite in _testSuites)
-      for (int i = 0; i < 2; i++)
+      for (int i = 0; i < Random().nextInt(3) + 1; i++)
         TestSession(
           id: '${i + 1}',
           testSuiteId: testSuite.id,
@@ -342,6 +342,11 @@ class Data {
       _testRuns.where((testRun) => testRun.testCaseId == testCase.id).toList();
 
   static List<TestSession> testSessions() => _testSessions;
+
+  static List<TestSession> testSessionsByTestSuite(TestSuite testSuite) =>
+      _testSessions
+          .where((testSession) => testSession.testSuiteId == testSuite.id)
+          .toList();
 
   static List<Attachment> attachments() => _attachments;
 
