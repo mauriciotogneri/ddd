@@ -9,16 +9,18 @@ import 'package:testflow/utils/palette.dart';
 /*
   Use LinearProgressIndicator when loading elements
 */
-class CustomTable<T extends TableElement> extends StatelessWidget {
-  final List<TableColumn> columns;
-  final List<T> rows;
-  final Function(T) onSelected;
+class CustomTable<E extends TableElement<E, C, M>, C, M>
+    extends StatelessWidget {
+  final List<TableColumn<C>> columns;
+  final List<E> rows;
+  final Function(E) onSelected;
   final List<Widget> filters;
   final double? width;
   final VoidCallback? onResetFilters;
   final VoidCallback? onCreateItem;
   final String? createButtonText;
   final IconData? createButtonIcon;
+  final Function(E, M)? onMenuSelected;
 
   const CustomTable({
     required this.columns,
@@ -30,6 +32,7 @@ class CustomTable<T extends TableElement> extends StatelessWidget {
     this.onCreateItem,
     this.createButtonText,
     this.createButtonIcon,
+    this.onMenuSelected,
   });
 
   @override
@@ -57,7 +60,12 @@ class CustomTable<T extends TableElement> extends StatelessWidget {
               ),
               HeaderRow(columns),
               const Divider(height: 1, color: Palette.borderInputEnabled),
-              ItemRows(columns: columns, rows: rows, onSelected: onSelected),
+              ItemRows(
+                columns: columns,
+                rows: rows,
+                onSelected: onSelected,
+                onMenuSelected: onMenuSelected,
+              ),
               const Divider(height: 1, color: Palette.borderInputEnabled),
               FooterRow(rows.length),
             ],
@@ -223,15 +231,17 @@ class HeaderCell extends StatelessWidget {
   }
 }
 
-class ItemRows<T extends TableElement> extends StatelessWidget {
-  final List<TableColumn> columns;
-  final List<T> rows;
-  final Function(T) onSelected;
+class ItemRows<E extends TableElement<E, C, M>, C, M> extends StatelessWidget {
+  final List<TableColumn<C>> columns;
+  final List<E> rows;
+  final Function(E) onSelected;
+  final Function(E, M)? onMenuSelected;
 
   const ItemRows({
     required this.columns,
     required this.rows,
     required this.onSelected,
+    required this.onMenuSelected,
   });
 
   @override
@@ -246,23 +256,27 @@ class ItemRows<T extends TableElement> extends StatelessWidget {
             row: rows[i],
             index: i,
             onSelected: onSelected,
+            onMenuSelected: onMenuSelected,
           ),
       ],
     );
   }
 }
 
-class ItemRow<T extends TableElement> extends StatelessWidget {
-  final List<TableColumn> columns;
-  final T row;
+class ItemRow<E extends TableElement<E, C, M>, C, M>
+    extends StatelessWidget {
+  final List<TableColumn<C>> columns;
+  final E row;
   final int index;
-  final Function(T) onSelected;
+  final Function(E) onSelected;
+  final Function(E, M)? onMenuSelected;
 
   const ItemRow({
     required this.columns,
     required this.row,
     required this.index,
     required this.onSelected,
+    required this.onMenuSelected,
   });
 
   @override
@@ -274,13 +288,17 @@ class ItemRow<T extends TableElement> extends StatelessWidget {
               : Palette.backgroundRowOdd,
       child: InkWell(
         onTap: () => onSelected(row),
+        focusColor: Palette.transparent,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            for (final TableColumn column in columns)
+            for (final TableColumn<C> column in columns)
               TableCell(
-                content: row.cell(column),
+                content: row.cell(
+                  column: column,
+                  onMenuSelected: onMenuSelected,
+                ),
                 width: column.width,
                 alignment: column.alignment,
               ),
@@ -413,8 +431,8 @@ class FooterControls extends StatelessWidget {
   }
 }
 
-class TableColumn<T> {
-  final T id;
+class TableColumn<C> {
+  final C id;
   final String name;
   final double? width;
   final Alignment? alignment;
@@ -427,6 +445,9 @@ class TableColumn<T> {
   });
 }
 
-abstract class TableElement {
-  Widget cell(TableColumn column);
+abstract class TableElement<E, C, M> {
+  Widget cell({
+    required TableColumn<C> column,
+    required Function(E, M)? onMenuSelected,
+  });
 }

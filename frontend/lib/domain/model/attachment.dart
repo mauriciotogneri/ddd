@@ -1,4 +1,3 @@
-import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/types/attachment_type.dart';
 import 'package:testflow/extensions/string_extension.dart';
@@ -7,7 +6,7 @@ import 'package:testflow/presentation/common/text/body_medium.dart';
 import 'package:testflow/utils/formatter.dart';
 import 'package:testflow/utils/palette.dart';
 
-class Attachment implements TableElement {
+class Attachment implements TableElement<Attachment, AttachmentColumn, void> {
   final String path;
   final String name;
   final String url;
@@ -41,7 +40,7 @@ class Attachment implements TableElement {
     }
   }
 
-  static List<TableColumn> get columns => const [
+  static List<TableColumn<AttachmentColumn>> get columns => const [
     TableColumn(id: AttachmentColumn.icon, name: '', width: 30),
     TableColumn(id: AttachmentColumn.name, name: 'Name'),
     TableColumn(
@@ -71,7 +70,10 @@ class Attachment implements TableElement {
   ];
 
   @override
-  Widget cell(TableColumn column) {
+  Widget cell({
+    required TableColumn<AttachmentColumn> column,
+    required Function(Attachment, void)? onMenuSelected,
+  }) {
     switch (column.id) {
       case AttachmentColumn.icon:
         return Icon(type.icon, size: 16, color: Palette.textBody);
@@ -88,8 +90,6 @@ class Attachment implements TableElement {
         );
       case AttachmentColumn.uploadedBy:
         return BodyMedium(text: uploadedBy);
-      default:
-        return const Empty();
     }
   }
 }

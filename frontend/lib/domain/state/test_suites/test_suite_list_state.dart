@@ -80,4 +80,6 @@ class TestSuiteListState extends BaseState {
     );
     notify();
   }
+
+  void onTableMenuSelected(TestSuite testSuite, TestSuiteMenu menu) {}
 }

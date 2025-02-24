@@ -1,13 +1,15 @@
-import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
 import 'package:testflow/extensions/string_extension.dart';
 import 'package:testflow/presentation/common/chip/custom_chip.dart';
+import 'package:testflow/presentation/common/menu/context_menu.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
+import 'package:testflow/utils/palette.dart';
 
-class TestSuite implements TableElement {
+class TestSuite
+    implements TableElement<TestSuite, TestSuiteColumn, TestSuiteMenu> {
   final String id;
   final String name;
   final List<RequirementType> types;
@@ -75,7 +77,7 @@ class TestSuite implements TableElement {
   @override
   String toString() => name;
 
-  static List<TableColumn> get columns => const [
+  static List<TableColumn<TestSuiteColumn>> get columns => const [
     TableColumn(id: TestSuiteColumn.name, name: 'Name'),
     TableColumn(
       id: TestSuiteColumn.components,
@@ -101,10 +103,19 @@ class TestSuite implements TableElement {
       width: 200,
       alignment: Alignment.center,
     ),
+    TableColumn(
+      id: TestSuiteColumn.menu,
+      name: '',
+      width: 100,
+      alignment: Alignment.center,
+    ),
   ];
 
   @override
-  Widget cell(TableColumn column) {
+  Widget cell({
+    required TableColumn<TestSuiteColumn> column,
+    required Function(TestSuite, TestSuiteMenu)? onMenuSelected,
+  }) {
     switch (column.id) {
       case TestSuiteColumn.name:
         return BodyMedium(text: name);
@@ -116,10 +127,24 @@ class TestSuite implements TableElement {
         return ChipGroup(items: components, plural: 'components');
       case TestSuiteColumn.platforms:
         return ChipGroup(items: platforms, plural: 'platforms');
-      default:
-        return const Empty();
+      case TestSuiteColumn.menu:
+        return ContextMenu(
+          offset: const Offset(-85, 0),
+          icon: Icons.more_horiz,
+          children: [
+            ContextMenuItem(
+              icon: Icons.play_arrow,
+              text: 'Start session',
+              color: Palette.textTitle,
+              onPressed:
+                  () => onMenuSelected?.call(this, TestSuiteMenu.startSession),
+            ),
+          ],
+        );
     }
   }
 }
 
-enum TestSuiteColumn { name, types, importances, components, platforms }
+enum TestSuiteColumn { name, types, importances, components, platforms, menu }
+
+enum TestSuiteMenu { startSession }

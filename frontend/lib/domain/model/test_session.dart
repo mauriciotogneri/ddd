@@ -1,4 +1,3 @@
-import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/types/test_session_status.dart';
 import 'package:testflow/extensions/string_extension.dart';
@@ -6,7 +5,8 @@ import 'package:testflow/presentation/common/chip/custom_chip.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
 
-class TestSession implements TableElement {
+class TestSession
+    implements TableElement<TestSession, TestSessionColumn, void> {
   final String id;
   final String testSuiteId;
   final String name;
@@ -81,7 +81,7 @@ class TestSession implements TableElement {
   @override
   String toString() => name;
 
-  static List<TableColumn> get columns => const [
+  static List<TableColumn<TestSessionColumn>> get columns => const [
     TableColumn(id: TestSessionColumn.name, name: 'Name'),
     TableColumn(
       id: TestSessionColumn.status,
@@ -116,7 +116,10 @@ class TestSession implements TableElement {
   ];
 
   @override
-  Widget cell(TableColumn column) {
+  Widget cell({
+    required TableColumn<TestSessionColumn> column,
+    required Function(TestSession, void)? onMenuSelected,
+  }) {
     switch (column.id) {
       case TestSessionColumn.name:
         return BodyMedium(text: name);
@@ -130,8 +133,6 @@ class TestSession implements TableElement {
         return CustomChip(text: device);
       case TestSessionColumn.version:
         return CustomChip(text: version);
-      default:
-        return const Empty();
     }
   }
 }

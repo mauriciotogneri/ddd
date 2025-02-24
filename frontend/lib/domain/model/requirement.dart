@@ -1,4 +1,3 @@
-import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
@@ -9,7 +8,8 @@ import 'package:testflow/presentation/common/chip/custom_chip.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
 
-class Requirement implements TableElement {
+class Requirement
+    implements TableElement<Requirement, RequirementColumn, void> {
   final String id;
   final RequirementType type;
   final RequirementStatus status;
@@ -90,7 +90,7 @@ class Requirement implements TableElement {
   @override
   String toString() => name;
 
-  static List<TableColumn> get columns => const [
+  static List<TableColumn<RequirementColumn>> get columns => const [
     TableColumn(id: RequirementColumn.id, name: 'Code', width: 150),
     TableColumn(id: RequirementColumn.name, name: 'Name'),
     TableColumn(
@@ -132,7 +132,10 @@ class Requirement implements TableElement {
   ];
 
   @override
-  Widget cell(TableColumn column) {
+  Widget cell({
+    required TableColumn<RequirementColumn> column,
+    required Function(Requirement, void)? onMenuSelected,
+  }) {
     switch (column.id) {
       case RequirementColumn.id:
         return BodyMedium(text: code);
@@ -150,8 +153,6 @@ class Requirement implements TableElement {
         return importance.chip;
       case RequirementColumn.numberOfTestCases:
         return BodyMedium(text: numberOfTestCases.toString());
-      default:
-        return const Empty();
     }
   }
 }

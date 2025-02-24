@@ -9,7 +9,7 @@ class TestFlow extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'TestFlow',
+      title: 'TestApp',
       theme: Style.themeData,
       routerConfig: Navigation.router,
     );

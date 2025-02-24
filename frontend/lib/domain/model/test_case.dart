@@ -1,4 +1,3 @@
-import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/types/test_case_execution.dart';
 import 'package:testflow/domain/types/test_run_result.dart';
@@ -8,7 +7,7 @@ import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
 import 'package:testflow/utils/formatter.dart';
 
-class TestCase implements TableElement {
+class TestCase implements TableElement<TestCase, TestCaseColumn, void> {
   final String id;
   final String requirementId;
   final String name;
@@ -64,7 +63,7 @@ class TestCase implements TableElement {
     }
   }
 
-  static List<TableColumn> get columns => const [
+  static List<TableColumn<TestCaseColumn>> get columns => const [
     TableColumn(id: TestCaseColumn.name, name: 'Name'),
     TableColumn(
       id: TestCaseColumn.executionType,
@@ -87,7 +86,10 @@ class TestCase implements TableElement {
   ];
 
   @override
-  Widget cell(TableColumn column) {
+  Widget cell({
+    required TableColumn<TestCaseColumn> column,
+    required Function(TestCase, void)? onMenuSelected,
+  }) {
     switch (column.id) {
       case TestCaseColumn.name:
         return BodyMedium(text: name);
@@ -104,8 +106,6 @@ class TestCase implements TableElement {
         return lastResults.isNotEmpty
             ? LastResults(lastResults)
             : const BodyMedium(text: '-');
-      default:
-        return const Empty();
     }
   }
 }

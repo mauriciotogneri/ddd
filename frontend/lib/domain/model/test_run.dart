@@ -1,4 +1,3 @@
-import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/types/test_run_reproducibility.dart';
 import 'package:testflow/domain/types/test_run_result.dart';
@@ -7,7 +6,7 @@ import 'package:testflow/presentation/common/table/custom_table.dart';
 import 'package:testflow/presentation/common/text/body_medium.dart';
 import 'package:testflow/utils/formatter.dart';
 
-class TestRun implements TableElement {
+class TestRun implements TableElement<TestRun, TestRunColumn, void> {
   final String id;
   final String requirementId;
   final String testCaseId;
@@ -68,22 +67,22 @@ class TestRun implements TableElement {
     }
   }
 
-  static List<TableColumn> get columns => const [
-    TableColumn(id: TestCaseColumn.name, name: 'Name'),
+  static List<TableColumn<TestRunColumn>> get columns => const [
+    TableColumn(id: TestRunColumn.name, name: 'Name'),
     TableColumn(
-      id: TestCaseColumn.result,
+      id: TestRunColumn.result,
       name: 'Result',
       width: 200,
       alignment: Alignment.center,
     ),
     TableColumn(
-      id: TestCaseColumn.reproducibility,
+      id: TestRunColumn.reproducibility,
       name: 'Reproducibility',
       width: 200,
       alignment: Alignment.center,
     ),
     TableColumn(
-      id: TestCaseColumn.timestamp,
+      id: TestRunColumn.timestamp,
       name: 'Timestamp',
       width: 200,
       alignment: Alignment.center,
@@ -91,23 +90,24 @@ class TestRun implements TableElement {
   ];
 
   @override
-  Widget cell(TableColumn column) {
+  Widget cell({
+    required TableColumn<TestRunColumn> column,
+    required Function(TestRun, void)? onMenuSelected,
+  }) {
     switch (column.id) {
-      case TestCaseColumn.name:
+      case TestRunColumn.name:
         return BodyMedium(text: name);
-      case TestCaseColumn.result:
+      case TestRunColumn.result:
         return result.chip;
-      case TestCaseColumn.reproducibility:
+      case TestRunColumn.reproducibility:
         return reproducibility.chip;
-      case TestCaseColumn.timestamp:
+      case TestRunColumn.timestamp:
         return Tooltip(
           message: Formatter.fullDateTime(timestamp),
           child: BodyMedium(text: Formatter.daysAgo(timestamp)),
         );
-      default:
-        return const Empty();
     }
   }
 }
 
-enum TestCaseColumn { name, result, reproducibility, timestamp }
+enum TestRunColumn { name, result, reproducibility, timestamp }

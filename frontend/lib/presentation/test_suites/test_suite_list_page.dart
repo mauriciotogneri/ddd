@@ -46,7 +46,7 @@ class Table extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(32),
-      child: CustomTable<TestSuite>(
+      child: CustomTable<TestSuite, TestSuiteColumn, TestSuiteMenu>(
         columns: TestSuite.columns,
         rows: state.testSuites,
         onSelected:
@@ -56,6 +56,7 @@ class Table extends StatelessWidget {
             ),
         onResetFilters: state.hasFilters ? state.onResetFilters : null,
         onCreateItem: () => state.onCreateTestSuite(context),
+        onMenuSelected: state.onTableMenuSelected,
         filters: [
           CustomTextInput(
             width: 300,

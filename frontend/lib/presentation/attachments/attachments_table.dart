@@ -28,7 +28,7 @@ class AttachmentsTable extends StatelessWidget {
       builder:
           (context, state) => Padding(
             padding: const EdgeInsets.only(top: 16),
-            child: CustomTable<Attachment>(
+            child: CustomTable<Attachment, AttachmentColumn, void>(
               columns: Attachment.columns,
               rows: state.attachments,
               onSelected:

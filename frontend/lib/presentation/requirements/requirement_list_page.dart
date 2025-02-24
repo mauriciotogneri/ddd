@@ -47,7 +47,7 @@ class Table extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(32),
-      child: CustomTable<Requirement>(
+      child: CustomTable<Requirement, RequirementColumn, void>(
         columns: Requirement.columns,
         rows: state.requirements,
         onSelected:

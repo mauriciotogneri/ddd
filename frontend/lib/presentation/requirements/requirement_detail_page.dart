@@ -270,7 +270,7 @@ class Table extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 16),
-      child: CustomTable<TestCase>(
+      child: CustomTable<TestCase, TestCaseColumn, void>(
         columns: TestCase.columns,
         rows: state.testCases,
         onSelected:
