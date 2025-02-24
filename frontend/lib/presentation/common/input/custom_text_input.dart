@@ -27,6 +27,7 @@ class CustomTextInput extends StatelessWidget {
   final double? width;
   final String? errorMessage;
   final Function(String)? onChanged;
+  final Function(String)? onSubmitted;
   final bool Function(String value)? validator;
 
   const CustomTextInput({
@@ -50,6 +51,7 @@ class CustomTextInput extends StatelessWidget {
     this.width,
     this.errorMessage,
     this.onChanged,
+    this.onSubmitted,
     this.validator,
   });
 
@@ -70,6 +72,7 @@ class CustomTextInput extends StatelessWidget {
                           ? CustomInput.HEIGHT
                           : null,
                   child: TextField(
+                    onSubmitted: onSubmitted,
                     autofocus: autofocus,
                     minLines: minLines,
                     maxLines: maxLines,
@@ -192,6 +195,10 @@ class CustomTextInputController extends CustomInputController<String> {
 
   set text(String content) {
     _controller.text = content;
+  }
+
+  void focus() {
+    _focusNode.requestFocus();
   }
 
   void clear() {

@@ -1,9 +1,13 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/domain/state/settings/settings_state.dart';
+import 'package:testflow/presentation/common/card/custom_card.dart';
+import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
+import 'package:testflow/presentation/common/text/custom_text.dart';
 import 'package:testflow/utils/navigation.dart';
+import 'package:testflow/utils/palette.dart';
 
 class SettingsPage extends StatelessWidget {
   final SettingsState state;
@@ -60,6 +64,103 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Empty();
+    return Padding(
+      padding: const EdgeInsets.only(top: 32, left: 32, right: 32),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomList(
+            name: 'Environment',
+            initialValues: const ['Development', 'Staging', 'Production'],
+            onAdd: (value) {},
+            onRemove: (value) {},
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomList extends StatefulWidget {
+  final String name;
+  final List<String> initialValues;
+  final Function(String) onAdd;
+  final Function(String) onRemove;
+
+  const CustomList({
+    required this.name,
+    required this.initialValues,
+    required this.onAdd,
+    required this.onRemove,
+  });
+
+  @override
+  State<CustomList> createState() =>
+      _CustomListState(values: [...initialValues]);
+}
+
+class _CustomListState extends State<CustomList> {
+  final CustomTextInputController controller = CustomTextInputController();
+  final List<String> values;
+
+  _CustomListState({required this.values});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomCard(
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomTextInput(
+            name: widget.name,
+            controller: controller,
+            onSubmitted: _onAdd,
+          ),
+          for (final String value in values)
+            CustomListEntry(value: value, onRemove: _onRemove),
+        ],
+      ),
+    );
+  }
+
+  void _onRemove(String value) {
+    setState(() {
+      widget.onRemove(value);
+      values.remove(value);
+    });
+  }
+
+  void _onAdd(String value) {
+    setState(() {
+      controller.clear();
+      controller.focus();
+
+      if (!values.contains(value)) {
+        widget.onAdd(value);
+        values.add(value);
+        values.sort();
+      }
+    });
+  }
+}
+
+class CustomListEntry extends StatelessWidget {
+  final String value;
+  final Function(String) onRemove;
+
+  const CustomListEntry({required this.value, required this.onRemove});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: CustomText(text: value, size: 14, weight: FontWeight.normal),
+      trailing: IconButton(
+        icon: const Icon(Icons.delete, size: 20, color: Palette.semanticError),
+        onPressed: () => onRemove(value),
+      ),
+    );
   }
 }
