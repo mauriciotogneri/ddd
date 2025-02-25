@@ -1,8 +1,12 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
+import 'package:testflow/domain/model/test_run.dart';
 import 'package:testflow/domain/model/test_session.dart';
+import 'package:testflow/domain/types/test_run_reproducibility.dart';
+import 'package:testflow/domain/types/test_run_result.dart';
 import 'package:testflow/presentation/common/form/form_key.dart';
+import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
@@ -24,10 +28,28 @@ class TestSessionDetailState extends BaseState {
   final CustomTextInputController versionController =
       CustomTextInputController();
 
+  final CustomTextInputController queryFilterController =
+      CustomTextInputController();
+  final CustomDropdownMultipleController<TestRunResult> resultFilterController =
+      CustomDropdownMultipleController();
+  final CustomDropdownMultipleController<TestRunReproducibility>
+  reproducibilityFilterController = CustomDropdownMultipleController();
+
   TestSessionDetailState({
     required this.projectId,
     required this.testSessionId,
   });
+
+  List<TestRun> get testRuns =>
+      Data.testRunsByTestSession(testSession)
+          .where(
+            (testRun) => testRun.matches(
+              queryFilter: queryFilterController.text,
+              resultFilter: resultFilterController.selected,
+              reproducibilityFilter: reproducibilityFilterController.selected,
+            ),
+          )
+          .toList();
 
   TestSession get testSession => _testSession!;
 

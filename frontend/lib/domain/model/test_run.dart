@@ -8,7 +8,7 @@ import 'package:testflow/utils/formatter.dart';
 
 class TestRun implements TableElement<TestRun, TestRunColumn, void> {
   final String id;
-  final String requirementId;
+  final String sessionId;
   final String testCaseId;
   final String name;
   final String preconditions;
@@ -25,7 +25,7 @@ class TestRun implements TableElement<TestRun, TestRunColumn, void> {
 
   const TestRun({
     required this.id,
-    required this.requirementId,
+    required this.sessionId,
     required this.testCaseId,
     required this.name,
     required this.preconditions,

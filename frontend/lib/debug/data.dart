@@ -270,7 +270,7 @@ class Data {
 
   static final List<TestCase> _testCases = [
     for (final Requirement requirement in _requirements)
-      for (int i = 0; i < Random().nextInt(50) + 1; i++)
+      for (int i = 0; i < Random().nextInt(10) + 1; i++)
         TestCase(
           id: '${requirement.id}-${i + 1}',
           requirementId: requirement.id,
@@ -292,13 +292,13 @@ class Data {
   ];
 
   static final List<TestRun> _testRuns = [
-    for (final TestCase testCase in _testCases)
-      for (int i = 0; i < Random().nextInt(10) + 1; i++)
+    for (final TestSession testSession in _testSessions)
+      for (final TestCase testCase in _testCases)
         TestRun(
-          id: '${testCase.requirementId}-${testCase.id}-${i + 1}',
-          requirementId: testCase.requirementId,
+          id: '${testCase.requirementId}-${testCase.id}',
+          sessionId: testSession.id,
           testCaseId: testCase.id,
-          name: 'Test run ${i + 1}',
+          name: 'Test run',
           preconditions: testCase.preconditions,
           steps: testCase.steps,
           expected: testCase.expected,
@@ -377,7 +377,12 @@ class Data {
           .where((testCase) => testCase.requirementId == requirement.id)
           .toList();
 
-  static List<TestRun> testRuns(TestCase testCase) =>
+  static List<TestRun> testRunsByTestSession(TestSession testSession) =>
+      _testRuns
+          .where((testRun) => testRun.sessionId == testSession.id)
+          .toList();
+
+  static List<TestRun> testRunsByTestCase(TestCase testCase) =>
       _testRuns.where((testRun) => testRun.testCaseId == testCase.id).toList();
 
   static List<TestSession> testSessions() => _testSessions;

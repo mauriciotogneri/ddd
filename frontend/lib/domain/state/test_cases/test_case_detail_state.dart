@@ -45,7 +45,7 @@ class TestCaseDetailState extends BaseState {
   });
 
   List<TestRun> get testRuns =>
-      Data.testRuns(testCase)
+      Data.testRunsByTestCase(testCase)
           .where(
             (testRun) => testRun.matches(
               queryFilter: queryFilterController.text,
