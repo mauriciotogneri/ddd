@@ -1,5 +1,6 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
+import 'package:testflow/debug/data.dart';
 import 'package:testflow/presentation/common/button/primary_text_button.dart';
 import 'package:testflow/presentation/common/button/secondary_text_button.dart';
 import 'package:testflow/presentation/common/form/form_key.dart';
@@ -13,15 +14,11 @@ class CreateTestSessionDialog extends StatelessWidget {
   const CreateTestSessionDialog._(this.state);
 
   factory CreateTestSessionDialog.instance({
-    required List<String> environments,
     required List<String> platforms,
-    required List<String> devices,
     required OnCreateTestSession onCreateTestSession,
   }) => CreateTestSessionDialog._(
     CreateTestSessionDialogState(
-      environments: environments,
       platforms: platforms,
-      devices: devices,
       onCreateTestSession: onCreateTestSession,
     ),
   );
@@ -145,9 +142,9 @@ class FormFields extends StatelessWidget {
 }
 
 class CreateTestSessionDialogState extends BaseState {
-  final List<String> environments;
   final List<String> platforms;
-  final List<String> devices;
+  final List<String> environments = [];
+  final List<String> devices = [];
 
   final FormKey formKey = FormKey();
   final OnCreateTestSession onCreateTestSession;
@@ -162,11 +159,24 @@ class CreateTestSessionDialogState extends BaseState {
       CustomTextInputController();
 
   CreateTestSessionDialogState({
-    required this.environments,
     required this.platforms,
-    required this.devices,
     required this.onCreateTestSession,
-  });
+  }) {
+    environments.addAll(Data.currentProject.environments);
+    devices.addAll(Data.currentProject.devices);
+
+    if (environments.length == 1) {
+      environmentController.select(environments.first);
+    }
+
+    if (platforms.length == 1) {
+      platformController.select(platforms.first);
+    }
+
+    if (devices.length == 1) {
+      deviceController.select(devices.first);
+    }
+  }
 
   void onCreate() => onCreateTestSession(
     name: nameController.text,
