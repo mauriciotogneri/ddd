@@ -29,7 +29,12 @@ class Navigation {
       ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
-        builder: (context, state, child) => NavigationMenu(child: child),
+        builder:
+            (context, state, child) => NavigationMenu(
+              fullPath: state.fullPath ?? '',
+              matchedLocation: state.matchedLocation,
+              child: child,
+            ),
         routes: [
           GoRoute(
             path: '/projects/:projectId/dashboard',

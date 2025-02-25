@@ -5,14 +5,19 @@ import 'package:testflow/extensions/build_context_extension.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
 import 'package:testflow/presentation/common/input/custom_input.dart';
 import 'package:testflow/presentation/common/text/custom_text.dart';
-import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 import 'package:testflow/utils/platform.dart';
 
 class NavigationMenu extends StatelessWidget {
+  final String fullPath;
+  final String matchedLocation;
   final Widget child;
 
-  const NavigationMenu({required this.child});
+  const NavigationMenu({
+    required this.fullPath,
+    required this.matchedLocation,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,7 @@ class NavigationMenu extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          const LeftMenu(),
+          LeftMenu(fullPath),
           const VerticalDivider(width: 0.5, color: Palette.borderInputEnabled),
           Expanded(child: child),
         ],
@@ -31,7 +36,9 @@ class NavigationMenu extends StatelessWidget {
 }
 
 class LeftMenu extends StatefulWidget {
-  const LeftMenu();
+  final String fullPath;
+
+  const LeftMenu(this.fullPath);
 
   @override
   State<LeftMenu> createState() => _LeftMenuState();
@@ -43,28 +50,35 @@ class _LeftMenuState extends State<LeftMenu> {
   @override
   void initState() {
     super.initState();
+    _updateSelectedMenu();
+  }
 
-    // TODO(momo): use an event
-    Navigation.test = _updateSelectedMenu;
+  @override
+  void didUpdateWidget(covariant LeftMenu oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _updateSelectedMenu();
+  }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _updateSelectedMenu();
   }
 
   void _updateSelectedMenu() {
-    final String location = Navigation.location(context);
-
-    // TODO(momo): implement proper matching
-    if (location.contains('/dashboard')) {
+    if (widget.fullPath.startsWith('/projects/:projectId/dashboard')) {
       selectedMenu = MenuItem.dashboard;
-    } else if (location.contains('/requirements')) {
+    } else if (widget.fullPath.startsWith(
+      '/projects/:projectId/requirements',
+    )) {
       selectedMenu = MenuItem.requirements;
-    } else if (location.contains('/suites')) {
+    } else if (widget.fullPath.startsWith('/projects/:projectId/suites')) {
       selectedMenu = MenuItem.testSuites;
-    } else if (location.contains('/sessions')) {
+    } else if (widget.fullPath.startsWith('/projects/:projectId/sessions')) {
       selectedMenu = MenuItem.testSessions;
-    } else if (location.contains('/settings')) {
+    } else if (widget.fullPath.startsWith('/projects/:projectId/settings')) {
       selectedMenu = MenuItem.settings;
-    } else if (location.contains('/components')) {
+    } else if (widget.fullPath.startsWith('/projects/:projectId/components')) {
       selectedMenu = MenuItem.components;
     }
 
