@@ -179,16 +179,22 @@ class _CustomListState extends State<CustomList> {
   }
 
   void _onAdd(String value) {
-    setState(() {
-      controller.clear();
-      controller.focus();
+    final String trimmed = value.trim();
 
-      if (!values.contains(value)) {
-        widget.onAdd(value);
-        values.add(value);
-        values.sort();
-      }
-    });
+    if (trimmed.isNotEmpty) {
+      setState(() {
+        controller.clear();
+        controller.focus();
+
+        if (!values.contains(trimmed)) {
+          widget.onAdd(trimmed);
+          values.add(trimmed);
+          values.sort();
+        }
+      });
+    } else {
+      controller.focus();
+    }
   }
 }
 
