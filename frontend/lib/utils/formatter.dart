@@ -30,6 +30,9 @@ class Formatter {
     }
   }
 
+  static String timeElapsed(int value) =>
+      '${(value / 60).floor()} min ${(value % 60).toString().padLeft(2, '0')} sec';
+
   static String fileSize(int size) {
     if (size < 1024) {
       return '$size B';

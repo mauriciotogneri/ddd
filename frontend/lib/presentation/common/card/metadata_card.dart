@@ -23,6 +23,7 @@ class MetadataCard extends StatelessWidget {
               child: MetadataRow(
                 label: items[i].label,
                 value: items[i].value,
+                widget: items[i].widget,
                 tooltip: items[i].tooltip,
               ),
             ),
@@ -34,23 +35,27 @@ class MetadataCard extends StatelessWidget {
 
 class MetadataRow extends StatelessWidget {
   final String label;
-  final String value;
+  final String? value;
+  final Widget? widget;
   final String? tooltip;
 
   const MetadataRow({
     required this.label,
     required this.value,
+    required this.widget,
     required this.tooltip,
   });
 
   @override
   Widget build(BuildContext context) {
-    final Widget valueWidget = CustomText(
-      text: value,
-      size: 14,
-      color: Palette.textBody,
-      weight: FontWeight.normal,
-    );
+    final Widget valueWidget =
+        widget ??
+        CustomText(
+          text: value ?? '',
+          size: 14,
+          color: Palette.textBody,
+          weight: FontWeight.normal,
+        );
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,8 +81,14 @@ class MetadataRow extends StatelessWidget {
 
 class MetadataItem {
   final String label;
-  final String value;
+  final String? value;
+  final Widget? widget;
   final String? tooltip;
 
-  const MetadataItem({required this.label, required this.value, this.tooltip});
+  const MetadataItem({
+    required this.label,
+    this.value,
+    this.widget,
+    this.tooltip,
+  });
 }

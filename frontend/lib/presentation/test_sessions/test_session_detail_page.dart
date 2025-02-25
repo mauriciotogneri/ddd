@@ -191,6 +191,24 @@ class Metadata extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MetadataCard([
+      if (state.testSession.startedOn != null)
+        MetadataItem(
+          label: 'Started on',
+          value: Formatter.dateMonthYear(state.testSession.startedOn!),
+          tooltip: Formatter.fullDateTime(state.testSession.startedOn!),
+        ),
+      if (state.testSession.endedOn != null)
+        MetadataItem(
+          label: 'Ended on',
+          value: Formatter.dateMonthYear(state.testSession.endedOn!),
+          tooltip: Formatter.fullDateTime(state.testSession.endedOn!),
+        ),
+      if (state.testSession.timeSpent > 0)
+        MetadataItem(
+          label: 'Time spent',
+          value: Formatter.timeElapsed(state.testSession.timeSpent),
+        ),
+      MetadataItem(label: 'Status', widget: state.testSession.status.chip),
       MetadataItem(
         label: 'Created on',
         value: Formatter.dateMonthYear(state.testSession.createdOn),
