@@ -12,6 +12,7 @@ import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/confirmation_dialog.dart';
+import 'package:testflow/presentation/dialogs/create_test_session.dart';
 import 'package:testflow/utils/palette.dart';
 
 class TestSuiteDetailState extends BaseState {
@@ -87,7 +88,52 @@ class TestSuiteDetailState extends BaseState {
     notify();
   }
 
-  void onStartSession() {}
+  void onStartSession(BuildContext context) => BaseDialog.show(
+    context: context,
+    dialog: CreateTestSessionDialog.instance(
+      platforms: testSuite.platforms,
+      onCreateTestSession:
+          ({
+            required String name,
+            required String environment,
+            required String platform,
+            required String device,
+            required String version,
+          }) => _createTestSession(
+            context: context,
+            testSuiteId: testSuite.id,
+            name: name,
+            environment: environment,
+            platform: platform,
+            device: device,
+            version: version,
+          ),
+    ),
+  );
+
+  void _createTestSession({
+    required BuildContext context,
+    required String testSuiteId,
+    required String name,
+    required String environment,
+    required String platform,
+    required String device,
+    required String version,
+  }) {
+    final TestSession testSession = Data.createTestSession(
+      testSuiteId: testSuiteId,
+      name: name,
+      environment: environment,
+      platform: platform,
+      device: device,
+      version: version,
+    );
+
+    context.testSessionDetail(
+      projectId: projectId,
+      testSessionId: testSession.id,
+    );
+  }
 
   void onDeleteTestSuite(BuildContext context) => BaseDialog.show(
     context: context,

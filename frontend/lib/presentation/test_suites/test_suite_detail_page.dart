@@ -79,7 +79,7 @@ class Header extends StatelessWidget {
               icon: Icons.play_arrow,
               text: 'Start session',
               color: Palette.textTitle,
-              onPressed: state.onStartSession,
+              onPressed: () => state.onStartSession(context),
             ),
             ContextMenuItem(
               icon: Icons.delete_outline,
