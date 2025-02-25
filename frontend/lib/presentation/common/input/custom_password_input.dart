@@ -14,6 +14,7 @@ class CustomPasswordInput extends CustomTextInput {
     super.hint,
     super.autofillHints,
     super.prefixIcon,
+    super.suffixIcon,
     super.maxLength,
     super.width,
     super.errorMessage,

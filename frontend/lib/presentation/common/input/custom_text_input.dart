@@ -21,6 +21,7 @@ class CustomTextInput extends StatelessWidget {
   final String? hint;
   final Iterable<String>? autofillHints;
   final IconData? prefixIcon;
+  final IconData? suffixIcon;
   final int? maxLength;
   final int? minLines;
   final int? maxLines;
@@ -45,6 +46,7 @@ class CustomTextInput extends StatelessWidget {
     this.hint,
     this.autofillHints,
     this.prefixIcon,
+    this.suffixIcon,
     this.maxLength = 1000,
     this.minLines = 1,
     this.maxLines = 1,
@@ -149,8 +151,15 @@ class CustomTextInput extends StatelessWidget {
     );
   }
 
-  Widget? get _suffixICon =>
-      (canClear && controller._showClear) ? ClearIcon(_onClear) : null;
+  Widget? get _suffixICon {
+    if ((suffixIcon != null) && controller.isNotEmpty) {
+      return InputIcon.create(suffixIcon, enabled: enabled);
+    } else if (canClear && controller._showClear) {
+      return ClearIcon(_onClear);
+    } else {
+      return null;
+    }
+  }
 
   void _onClear() {
     onChanged?.call('');

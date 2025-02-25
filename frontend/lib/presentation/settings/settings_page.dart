@@ -145,6 +145,7 @@ class CustomList extends StatefulWidget {
 class _CustomListState extends State<CustomList> {
   final CustomTextInputController controller = CustomTextInputController();
   final List<String> values;
+  IconData? suffixIcon;
 
   _CustomListState({required this.values}) {
     values.sort();
@@ -161,6 +162,7 @@ class _CustomListState extends State<CustomList> {
           CustomTextInput(
             name: widget.name,
             controller: controller,
+            suffixIcon: Icons.subdirectory_arrow_left,
             onSubmitted: _onAdd,
           ),
           const VBox(16),
