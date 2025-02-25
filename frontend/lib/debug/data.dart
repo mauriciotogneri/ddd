@@ -246,6 +246,36 @@ class Data {
     'Opera',
   ];
 
+  static final List<Project> _projects = [
+    Project(
+      id: '1',
+      name: 'Project 1',
+      description: 'Description 1',
+      components: _components,
+      platforms: _platforms,
+      environments: _environments,
+      devices: _devices,
+    ),
+    Project(
+      id: '2',
+      name: 'Project 2',
+      description: 'Description 2',
+      components: _components,
+      platforms: _platforms,
+      environments: _environments,
+      devices: _devices,
+    ),
+    Project(
+      id: '3',
+      name: 'Project 3',
+      description: 'Description 3',
+      components: _components,
+      platforms: _platforms,
+      environments: _environments,
+      devices: _devices,
+    ),
+  ];
+
   static final List<Requirement> _requirements = [
     Requirement(
       id: '1',
@@ -585,10 +615,10 @@ class Data {
         TestSession(
           id: '${((i + 1) * 10) + (j + 1)}',
           testSuiteId: _testSuites[i].id,
-          name: 'Test session ${((i + 1) * 10) + (j + 1)}',
-          startedOn: randomDate(),
-          endedOn: null,
-          timeSpent: 123,
+          name: '${_testSuites[i].name} ${j + 1}',
+          startedOn: Random().nextInt(10) > 2 ? randomDate() : null,
+          endedOn: Random().nextInt(10) > 2 ? randomDate() : null,
+          timeSpent: Random().nextInt(1000),
           status: _random(TestSessionStatus.values),
           environment: _random(_environments),
           platform: _random(_platforms),
@@ -613,11 +643,12 @@ class Data {
             id: index.toString(),
             sessionId: testSession.id,
             testCaseId: testCase.id,
-            name: 'Test run $index',
+            name:
+                '${requirementById(testCase.requirementId).name} ➟ ${testCase.name}',
             preconditions: testCase.preconditions,
             steps: testCase.steps,
             expected: testCase.expected,
-            actual: _random(_texts),
+            actual: '',
             result: _random(TestRunResult.values),
             reproducibility: _random(TestRunReproducibility.values),
             timestamp: randomDate(),
@@ -712,45 +743,4 @@ class Data {
 
   static DateTime randomDate() =>
       DateTime.now().subtract(Duration(days: Random().nextInt(30)));
-
-  static final List<Project> _projects = [
-    Project(
-      id: '1',
-      name: 'Project 1',
-      description: 'Description 1',
-      components: _components,
-      platforms: _platforms,
-      environments: _environments,
-      devices: _devices,
-    ),
-    Project(
-      id: '2',
-      name: 'Project 2',
-      description: 'Description 2',
-      components: _components,
-      platforms: _platforms,
-      environments: _environments,
-      devices: _devices,
-    ),
-    Project(
-      id: '3',
-      name: 'Project 3',
-      description: 'Description 3',
-      components: _components,
-      platforms: _platforms,
-      environments: _environments,
-      devices: _devices,
-    ),
-  ];
-
-  static final List<String> _texts = [
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
-    'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
-    'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
-    'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?',
-  ];
 }

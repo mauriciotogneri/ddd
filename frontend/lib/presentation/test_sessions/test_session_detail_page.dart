@@ -64,7 +64,7 @@ class Header extends StatelessWidget {
             text: 'Sessions',
             path: Navigation.testSessionListPath(projectId: state.projectId),
           ),
-          PathItem(text: state.testSession.id),
+          PathItem(text: state.testSession.name),
         ],
       ),
       actions: [
