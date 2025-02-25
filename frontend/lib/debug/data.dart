@@ -106,6 +106,36 @@ class Data {
     _testSuites.add(testSuite);
   }
 
+  static TestSession createTestSession({
+    required String testSuiteId,
+    required String name,
+    required String environment,
+    required String platform,
+    required String device,
+    required String version,
+  }) {
+    final TestSession testSession = TestSession(
+      id: DateTime.now().toIso8601String(),
+      testSuiteId: testSuiteId,
+      name: name,
+      startedOn: null,
+      endedOn: null,
+      timeSpent: 0,
+      status: TestSessionStatus.pending,
+      environment: environment,
+      platform: platform,
+      device: device,
+      version: version,
+      createdOn: DateTime.now(),
+      createdBy: 'John Doe',
+      updatedOn: DateTime.now(),
+      updatedBy: 'John Doe',
+    );
+    _testSessions.add(testSession);
+
+    return testSession;
+  }
+
   static void deleteRequirement(Requirement requirement) {
     _requirements.remove(requirement);
   }

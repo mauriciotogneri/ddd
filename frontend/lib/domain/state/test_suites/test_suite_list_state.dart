@@ -1,6 +1,7 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
+import 'package:testflow/domain/model/test_session.dart';
 import 'package:testflow/domain/model/test_suite.dart';
 import 'package:testflow/domain/types/requirement_importance.dart';
 import 'package:testflow/domain/types/requirement_type.dart';
@@ -8,6 +9,7 @@ import 'package:testflow/extensions/build_context_extension.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
+import 'package:testflow/presentation/dialogs/create_test_session.dart';
 import 'package:testflow/presentation/dialogs/create_test_suite_dialog.dart';
 
 class TestSuiteListState extends BaseState {
@@ -85,5 +87,55 @@ class TestSuiteListState extends BaseState {
     required BuildContext context,
     required TestSuite testSuite,
     required TestSuiteMenu menu,
-  }) {}
+  }) {
+    switch (menu) {
+      case TestSuiteMenu.startSession:
+        BaseDialog.show(
+          context: context,
+          dialog: CreateTestSessionDialog.instance(
+            onCreateTestSession:
+                ({
+                  required String name,
+                  required String environment,
+                  required String platform,
+                  required String device,
+                  required String version,
+                }) => _createTestSession(
+                  context: context,
+                  testSuiteId: testSuite.id,
+                  name: name,
+                  environment: environment,
+                  platform: platform,
+                  device: device,
+                  version: version,
+                ),
+          ),
+        );
+        break;
+    }
+  }
+
+  void _createTestSession({
+    required BuildContext context,
+    required String testSuiteId,
+    required String name,
+    required String environment,
+    required String platform,
+    required String device,
+    required String version,
+  }) {
+    final TestSession testSession = Data.createTestSession(
+      testSuiteId: testSuiteId,
+      name: name,
+      environment: environment,
+      platform: platform,
+      device: device,
+      version: version,
+    );
+
+    context.testSessionDetail(
+      projectId: projectId,
+      testSessionId: testSession.id,
+    );
+  }
 }

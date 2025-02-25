@@ -5,7 +5,6 @@ import 'package:testflow/presentation/common/button/secondary_text_button.dart';
 import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_multiline_input.dart';
 import 'package:testflow/presentation/common/input/custom_text_input.dart';
-import 'package:testflow/presentation/common/text/title_small.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 
 class CreateProjectDialog extends StatelessWidget {
@@ -61,18 +60,18 @@ class FormFields extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const TitleSmall(text: 'Name'),
           CustomTextInput(
+            name: 'Name',
             controller: state.nameController,
             errorMessage: 'Name is required',
           ),
-          const TitleSmall(text: 'Description'),
+          const VBox(16),
           CustomMultilineInput(
+            name: 'Description',
             minLines: 5,
             maxLines: 5,
             controller: state.descriptionController,
           ),
-          const VBox(16),
         ],
       ),
     );
