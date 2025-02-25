@@ -2,6 +2,9 @@ import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/model/test_session.dart';
+import 'package:testflow/presentation/common/form/form_key.dart';
+import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
+import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/dialogs/base_dialog.dart';
 import 'package:testflow/presentation/dialogs/confirmation_dialog.dart';
 import 'package:testflow/utils/palette.dart';
@@ -10,6 +13,16 @@ class TestSessionDetailState extends BaseState {
   final String projectId;
   final String testSessionId;
   TestSession? _testSession;
+  final FormKey formKey = FormKey();
+  final CustomTextInputController nameController = CustomTextInputController();
+  final CustomDropdownSingleController<String> environmentController =
+      CustomDropdownSingleController();
+  final CustomDropdownSingleController<String> platformController =
+      CustomDropdownSingleController();
+  final CustomDropdownSingleController<String> deviceController =
+      CustomDropdownSingleController();
+  final CustomTextInputController versionController =
+      CustomTextInputController();
 
   TestSessionDetailState({
     required this.projectId,
@@ -23,6 +36,12 @@ class TestSessionDetailState extends BaseState {
   @override
   void onLoad() {
     _testSession = Data.testSessionById(testSessionId);
+
+    nameController.text = testSession.name;
+    environmentController.select(testSession.environment);
+    platformController.select(testSession.platform);
+    deviceController.select(testSession.device);
+    versionController.text = testSession.version;
     notify();
   }
 

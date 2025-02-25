@@ -1,9 +1,14 @@
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
+import 'package:testflow/debug/data.dart';
 import 'package:testflow/domain/state/test_sessions/test_session_detail_state.dart';
+import 'package:testflow/presentation/common/card/metadata_card.dart';
+import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
+import 'package:testflow/presentation/common/input/custom_text_input.dart';
 import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/menu/context_menu.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
+import 'package:testflow/utils/formatter.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
 
@@ -82,6 +87,122 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Empty();
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [FormFields(state)],
+          ),
+        ),
+        Metadata(state),
+        const HBox(32),
+      ],
+    );
+  }
+}
+
+class FormFields extends StatelessWidget {
+  final TestSessionDetailState state;
+
+  const FormFields(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 32, right: 32, bottom: 32, left: 32),
+      child: Form(
+        key: state.formKey.key,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomTextInput(
+              name: 'Name',
+              controller: state.nameController,
+              errorMessage: 'Name is required',
+            ),
+            const VBox(16),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: CustomDropdownSingle<String>(
+                    name: 'Environment',
+                    values: DropdownItem.fromList(
+                      Data.currentProject.environments,
+                    ),
+                    controller: state.environmentController,
+                    errorMessage: 'Environment is required',
+                  ),
+                ),
+                const HBox(16),
+                Expanded(
+                  child: CustomDropdownSingle<String>(
+                    name: 'Platform',
+                    values: DropdownItem.fromList(
+                      Data.currentProject.platforms,
+                    ),
+                    controller: state.platformController,
+                    errorMessage: 'Platform is required',
+                  ),
+                ),
+              ],
+            ),
+            const VBox(16),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: CustomDropdownSingle<String>(
+                    name: 'Device',
+                    values: DropdownItem.fromList(Data.currentProject.devices),
+                    controller: state.deviceController,
+                    errorMessage: 'Device is required',
+                  ),
+                ),
+                const HBox(16),
+                Expanded(
+                  child: CustomTextInput(
+                    name: 'Version',
+                    controller: state.versionController,
+                    errorMessage: 'Version is required',
+                  ),
+                ),
+              ],
+            ),
+            const VBox(16),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Metadata extends StatelessWidget {
+  final TestSessionDetailState state;
+
+  const Metadata(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return MetadataCard([
+      MetadataItem(
+        label: 'Created on',
+        value: Formatter.dateMonthYear(state.testSession.createdOn),
+        tooltip: Formatter.fullDateTime(state.testSession.createdOn),
+      ),
+      MetadataItem(label: 'Created by', value: state.testSession.createdBy),
+      MetadataItem(
+        label: 'Updated on',
+        value: Formatter.dateMonthYear(state.testSession.updatedOn),
+        tooltip: Formatter.fullDateTime(state.testSession.updatedOn),
+      ),
+      MetadataItem(label: 'Updated by', value: state.testSession.updatedBy),
+    ]);
   }
 }
