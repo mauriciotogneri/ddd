@@ -96,6 +96,17 @@ class Body extends StatelessWidget {
           ),
           const HBox(32),
           CustomList(
+            name: 'Devices',
+            initialValues: Data.currentProject.devices,
+            onAdd:
+                (value) =>
+                    state.onAdd(name: SettingsState.devices, value: value),
+            onRemove:
+                (value) =>
+                    state.onRemove(name: SettingsState.devices, value: value),
+          ),
+          const HBox(32),
+          CustomList(
             name: 'Components',
             initialValues: Data.currentProject.components,
             onAdd:
@@ -106,17 +117,6 @@ class Body extends StatelessWidget {
                   name: SettingsState.components,
                   value: value,
                 ),
-          ),
-          const HBox(32),
-          CustomList(
-            name: 'Devices',
-            initialValues: Data.currentProject.devices,
-            onAdd:
-                (value) =>
-                    state.onAdd(name: SettingsState.devices, value: value),
-            onRemove:
-                (value) =>
-                    state.onRemove(name: SettingsState.devices, value: value),
           ),
         ],
       ),
