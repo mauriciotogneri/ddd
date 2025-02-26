@@ -813,7 +813,7 @@ class Data {
             sessionId: testSession.id,
             testCaseId: testCase.id,
             name:
-                '${requirementById(testCase.requirementId).name} ➟ ${testCase.name}',
+                '${requirementById(testCase.requirementId).name} (${testCase.name})',
             preconditions: testCase.preconditions,
             steps: testCase.steps,
             expected: testCase.expected,

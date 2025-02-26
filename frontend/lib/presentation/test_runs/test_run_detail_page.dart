@@ -166,16 +166,34 @@ class FormFields extends StatelessWidget {
                     minLines: 6,
                     maxLines: 6,
                     name: 'Preconditions',
+                    enabled: false,
                     controller: state.preconditionsController,
                   ),
                 ),
                 const HBox(16),
                 Expanded(
-                  child: CustomTextInput(
+                  child: CustomMultilineInput(
                     minLines: 6,
                     maxLines: 6,
                     name: 'Steps',
+                    enabled: false,
                     controller: state.stepsController,
+                  ),
+                ),
+              ],
+            ),
+            const VBox(16),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: CustomMultilineInput(
+                    minLines: 6,
+                    maxLines: 6,
+                    name: 'Expected result',
+                    enabled: false,
+                    controller: state.expectedController,
                   ),
                 ),
                 const HBox(16),
@@ -183,8 +201,8 @@ class FormFields extends StatelessWidget {
                   child: CustomTextInput(
                     minLines: 6,
                     maxLines: 6,
-                    name: 'Expected result',
-                    controller: state.expectedController,
+                    name: 'Actual result',
+                    controller: state.actualController,
                   ),
                 ),
               ],
