@@ -21,12 +21,12 @@ class TestRunDetailPage extends StatelessWidget {
 
   factory TestRunDetailPage.instance({
     required String projectId,
-    required String sessionId,
+    required String testSessionId,
     required String testRunId,
   }) => TestRunDetailPage._(
     TestRunDetailState(
       projectId: projectId,
-      sessionId: sessionId,
+      sessionId: testSessionId,
       testRunId: testRunId,
     ),
   );

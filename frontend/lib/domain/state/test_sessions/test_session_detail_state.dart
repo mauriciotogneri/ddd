@@ -5,6 +5,7 @@ import 'package:testflow/domain/model/test_run.dart';
 import 'package:testflow/domain/model/test_session.dart';
 import 'package:testflow/domain/types/test_run_reproducibility.dart';
 import 'package:testflow/domain/types/test_run_result.dart';
+import 'package:testflow/extensions/build_context_extension.dart';
 import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
@@ -82,7 +83,11 @@ class TestSessionDetailState extends BaseState {
   void onTestRunSelected({
     required BuildContext context,
     required TestRun testRun,
-  }) {}
+  }) => context.testRunDetail(
+    projectId: projectId,
+    testSessionId: testSessionId,
+    testRunId: testRun.id,
+  );
 
   void onDeleteTestSession(BuildContext context) => BaseDialog.show(
     context: context,

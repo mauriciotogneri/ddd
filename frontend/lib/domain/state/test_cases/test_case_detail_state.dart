@@ -7,6 +7,7 @@ import 'package:testflow/domain/model/test_run.dart';
 import 'package:testflow/domain/types/test_case_execution.dart';
 import 'package:testflow/domain/types/test_run_reproducibility.dart';
 import 'package:testflow/domain/types/test_run_result.dart';
+import 'package:testflow/extensions/build_context_extension.dart';
 import 'package:testflow/presentation/common/form/form_key.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
@@ -90,7 +91,11 @@ class TestCaseDetailState extends BaseState {
   void onTestRunSelected({
     required BuildContext context,
     required TestRun testRun,
-  }) {}
+  }) => context.testRunDetail(
+    projectId: projectId,
+    testSessionId: testRun.sessionId,
+    testRunId: testRun.id,
+  );
 
   void onQuickTest() {}
 
