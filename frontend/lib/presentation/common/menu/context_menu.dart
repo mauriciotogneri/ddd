@@ -34,6 +34,11 @@ class ContextMenu extends StatelessWidget {
             iconSize: 22,
             color: Palette.iconContextual,
             icon: Icon(icon),
+            style: ButtonStyle(
+              shape: WidgetStateProperty.all(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              ),
+            ),
             onPressed: () {
               if (controller.isOpen) {
                 controller.close();
