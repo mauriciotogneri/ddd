@@ -28,24 +28,19 @@ class ContextMenu extends StatelessWidget {
       clipBehavior: Clip.none,
       menuChildren: children,
       builder:
-          (context, controller, child) => Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-            child: IconButton(
-              visualDensity: VisualDensity.compact,
-              padding: const EdgeInsets.all(0),
-              iconSize: 22,
-              color: Palette.iconContextual,
-              icon: Icon(icon),
-              onPressed: () {
-                if (controller.isOpen) {
-                  controller.close();
-                } else {
-                  controller.open();
-                }
-              },
-            ),
+          (context, controller, child) => IconButton(
+            visualDensity: VisualDensity.compact,
+            padding: const EdgeInsets.all(0),
+            iconSize: 22,
+            color: Palette.iconContextual,
+            icon: Icon(icon),
+            onPressed: () {
+              if (controller.isOpen) {
+                controller.close();
+              } else {
+                controller.open();
+              }
+            },
           ),
     );
   }
