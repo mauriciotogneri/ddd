@@ -72,7 +72,7 @@ class Header extends StatelessWidget {
       ),
       actions: [
         ContextMenu(
-          offset: const Offset(-85, 0),
+          offset: const Offset(-95, 0),
           icon: Icons.more_horiz,
           children: [
             ContextMenuItem(

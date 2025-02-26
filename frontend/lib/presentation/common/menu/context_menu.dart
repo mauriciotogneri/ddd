@@ -69,6 +69,7 @@ class ContextMenuItem extends MenuItemButton {
              Icon(icon, size: 18, color: color),
              const HBox(4),
              BodyMedium(text: text, color: color),
+             const HBox(8),
            ],
          ),
        );

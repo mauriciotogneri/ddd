@@ -100,7 +100,7 @@ class Attachment
         return BodyMedium(text: uploadedBy);
       case AttachmentColumn.menu:
         return ContextMenu(
-          offset: const Offset(-85, 0),
+          offset: const Offset(-80, 0),
           icon: Icons.more_vert_sharp,
           children: [
             ContextMenuItem(

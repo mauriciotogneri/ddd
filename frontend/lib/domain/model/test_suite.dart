@@ -129,7 +129,7 @@ class TestSuite
         return ChipGroup(items: platforms, plural: 'platforms');
       case TestSuiteColumn.menu:
         return ContextMenu(
-          offset: const Offset(-85, 0),
+          offset: const Offset(-95, 0),
           icon: Icons.more_vert_sharp,
           children: [
             ContextMenuItem(
