@@ -212,6 +212,16 @@ class Data {
     throw Exception('Test suite not found');
   }
 
+  static TestRun testRunById(String id) {
+    for (final TestRun testRun in _testRuns()) {
+      if (testRun.id == id) {
+        return testRun;
+      }
+    }
+
+    throw Exception('Test run not found');
+  }
+
   // ignore: prefer_final_fields
   static List<String> _environments = [
     'Development',
