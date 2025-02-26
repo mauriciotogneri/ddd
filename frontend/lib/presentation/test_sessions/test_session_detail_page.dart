@@ -5,6 +5,7 @@ import 'package:testflow/domain/model/test_run.dart';
 import 'package:testflow/domain/state/test_sessions/test_session_detail_state.dart';
 import 'package:testflow/domain/types/test_run_reproducibility.dart';
 import 'package:testflow/domain/types/test_run_result.dart';
+import 'package:testflow/presentation/attachments/attachments_table.dart';
 import 'package:testflow/presentation/common/card/metadata_card.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_multiple.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
@@ -13,6 +14,7 @@ import 'package:testflow/presentation/common/layout/pane.dart';
 import 'package:testflow/presentation/common/menu/context_menu.dart';
 import 'package:testflow/presentation/common/navigation/navigation_path.dart';
 import 'package:testflow/presentation/common/table/custom_table.dart';
+import 'package:testflow/presentation/tabs/custom_tabs.dart';
 import 'package:testflow/utils/formatter.dart';
 import 'package:testflow/utils/navigation.dart';
 import 'package:testflow/utils/palette.dart';
@@ -105,7 +107,7 @@ class Body extends StatelessWidget {
             const HBox(32),
           ],
         ),
-        Table(state),
+        TabSection(state),
       ],
     );
   }
@@ -232,6 +234,30 @@ class Metadata extends StatelessWidget {
   }
 }
 
+class TabSection extends StatelessWidget {
+  final TestSessionDetailState state;
+
+  const TabSection(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 32, bottom: 32, left: 32),
+      child: CustomTabs(
+        tabs: const [
+          TabItem(title: 'Test runs', width: 150, icon: Icons.list),
+          TabItem(
+            title: 'Attachments',
+            width: 150,
+            icon: Icons.attachment_outlined,
+          ),
+        ],
+        children: [Table(state), AttachmentsTable.instance()],
+      ),
+    );
+  }
+}
+
 class Table extends StatelessWidget {
   final TestSessionDetailState state;
 
@@ -240,7 +266,7 @@ class Table extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 32, right: 32, bottom: 32, left: 32),
+      padding: const EdgeInsets.only(top: 16),
       child: CustomTable<TestRun, TestRunColumn, void>(
         columns: TestRun.columns,
         rows: state.testRuns,

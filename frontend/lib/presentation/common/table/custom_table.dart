@@ -430,7 +430,7 @@ class FooterTotal extends StatelessWidget {
               size: 14,
               weight: FontWeight.normal,
             ),
-            const HBox(4),
+            const HBox(8),
             CustomText(
               text: '$total',
               color: Palette.textTitle,
