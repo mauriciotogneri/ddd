@@ -5,6 +5,7 @@ import 'package:testflow/presentation/common/button/secondary_icon_button.dart';
 import 'package:testflow/presentation/common/button/secondary_text_button.dart';
 import 'package:testflow/presentation/common/card/custom_card.dart';
 import 'package:testflow/presentation/common/input/custom_dropdown_single.dart';
+import 'package:testflow/presentation/common/menu/context_menu.dart';
 import 'package:testflow/presentation/common/text/custom_text.dart';
 import 'package:testflow/utils/palette.dart';
 
@@ -52,6 +53,7 @@ class CustomTable<E extends TableElement<E, C, M>, C, M>
             mainAxisSize: MainAxisSize.min,
             children: [
               FilterRow(
+                columns: columns,
                 filters: filters,
                 onResetFilters: onResetFilters,
                 onCreateItem: onCreateItem,
@@ -76,7 +78,8 @@ class CustomTable<E extends TableElement<E, C, M>, C, M>
   }
 }
 
-class FilterRow extends StatelessWidget {
+class FilterRow<C> extends StatelessWidget {
+  final List<TableColumn<C>> columns;
   final List<Widget> filters;
   final VoidCallback? onResetFilters;
   final VoidCallback? onCreateItem;
@@ -84,6 +87,7 @@ class FilterRow extends StatelessWidget {
   final IconData? createButtonIcon;
 
   const FilterRow({
+    required this.columns,
     required this.filters,
     required this.onResetFilters,
     required this.onCreateItem,
@@ -109,9 +113,9 @@ class FilterRow extends StatelessWidget {
           ],
           const Spacer(),
           const HBox(8),
-          TableSelectColumns(() {}),
+          TableSelectColumns(columns: columns, onPressed: () {}),
           const HBox(8),
-          TableSortColumns(() {}),
+          TableSortColumns(columns: columns, onPressed: () {}),
           const HBox(8),
           TableExportButton(() {}),
           if (onCreateItem != null)
@@ -144,30 +148,59 @@ class ResetFiltersButton extends StatelessWidget {
   }
 }
 
-class TableSelectColumns extends StatelessWidget {
+class TableSelectColumns<C> extends StatelessWidget {
+  final List<TableColumn<C>> columns;
   final VoidCallback? onPressed;
 
-  const TableSelectColumns(this.onPressed);
+  const TableSelectColumns({required this.columns, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Tooltip(
       message: 'Columns',
-      child: SecondaryIconButton(icon: Icons.tune, onPressed: onPressed),
+      child: ContextMenu(
+        type: ContextButton.secondary,
+        icon: Icons.tune,
+        children: [
+          for (final TableColumn<C> column in columns)
+            if (column.name.isNotEmpty)
+              ContextMenuItem(
+                icon: Icons.check,
+                iconSize: 14,
+                text: column.name,
+                color: Palette.textTitle,
+                onPressed: () {},
+              ),
+        ],
+      ),
     );
   }
 }
 
-class TableSortColumns extends StatelessWidget {
+class TableSortColumns<C> extends StatelessWidget {
+  final List<TableColumn<C>> columns;
   final VoidCallback? onPressed;
 
-  const TableSortColumns(this.onPressed);
+  const TableSortColumns({required this.columns, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Tooltip(
       message: 'Sort',
-      child: SecondaryIconButton(icon: Icons.swap_vert, onPressed: onPressed),
+      child: ContextMenu(
+        type: ContextButton.secondary,
+        icon: Icons.swap_vert,
+        offset: const Offset(0, 0),
+        children: [
+          for (final TableColumn<C> column in columns)
+            if (column.name.isNotEmpty)
+              ContextMenuItem(
+                text: column.name,
+                color: Palette.textTitle,
+                onPressed: () {},
+              ),
+        ],
+      ),
     );
   }
 }
