@@ -23,10 +23,7 @@ class LastResults extends StatelessWidget {
           children: [
             for (int i = 0; i < results.length; i++) ...[
               if (i > 0)
-                const VerticalDivider(
-                  width: 0.5,
-                  color: Palette.backgroundEmpty,
-                ),
+                const VerticalDivider(width: 1, color: Palette.backgroundEmpty),
               Tooltip(
                 message: results[i].localized,
                 child: Container(
