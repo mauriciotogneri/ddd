@@ -1,15 +1,20 @@
 {
   "name": "functions",
   "private": true,
+  "version": "0.0.0",
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
     "lint:fix": "eslint --ext .js,.ts . --fix",
     "build": "tsc",
+    "build:incremental": "tsc --incremental",
     "build:watch": "tsc --watch",
-    "serve": "npm run build && firebase emulators:start",
+    "build:watch:incremental": "tsc --watch --incremental",
+    "serve": "firebase emulators:start --only auth,functions,tasks,firestore,pubsub,storage --project=local --import ../sim --export-on-exit=../sim",
+    "serve:inspect": "firebase emulators:start --inspect-functions --only auth,functions,tasks,firestore,pubsub,storage --project=local --import ../sim --export-on-exit=../sim",
+    "serve:test": "firebase emulators:start --only auth,functions,firestore,pubsub,storage --project=local",
     "shell": "npm run build && firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
+    "start": "npm run build && npm run serve",
+    "deploy": "firebase deploy",
     "logs": "firebase functions:log"
   },
   "engines": {
