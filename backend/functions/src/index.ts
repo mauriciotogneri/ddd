@@ -1,10 +1,11 @@
+import {setGlobalOptions} from "firebase-functions/v2";
 import {onRequest} from "firebase-functions/v2/https";
 
-/*setGlobalOptions({
+setGlobalOptions({
   memory: "1GiB",
   timeoutSeconds: 530,
-})*/
+})
 
 export const healthcheck = onRequest((request, response) => {
-  response.send("Hello from Firebase!");
+  response.send("Super healthy!");
 });
