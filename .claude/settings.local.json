@@ -1,0 +1,70 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git mv:*)",
+      "Skill(frontend-design)",
+      "Bash(grep:*)",
+      "Bash(for:*)",
+      "Bash(do echo \"Checking $f...\")",
+      "Bash(node --check:*)",
+      "Bash(echo:*)",
+      "Bash(done)",
+      "Bash(do echo \"=== $class ===\")",
+      "Bash(wc:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(chmod:*)",
+      "Bash(./scripts/generate-version.sh:*)",
+      "Bash(./scripts/version.sh:*)",
+      "Bash(find:*)",
+      "Bash(do echo \"=== $f ===\")",
+      "Bash(python3 -m json.tool:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(timeout 5 npx vite:*)",
+      "Bash(npx vite build:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npx eslint:*)",
+      "WebSearch",
+      "Bash(ls:*)",
+      "Bash(npm run generate-assets:*)",
+      "Bash(npm outdated:*)",
+      "Bash(npx vite:*)"
+    ]
+  },
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/notify.sh 'Claude: Permission request'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/notify.sh 'Claude: Ready'"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "./scripts/statusline.sh",
+    "padding": 0
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Working"
+    ]
+  }
+}
