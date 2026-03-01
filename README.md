@@ -6,8 +6,8 @@
 
 * Before  
   * Code used to be the king  
-  * Specs was something buried deep in a wiki that nobody reads nor updates  
-  * Specs was often used in retrospective  
+  * Specs were something buried deep in a wiki that nobody reads nor updates
+  * Specs were often used in retrospective  
 * Now  
   * Maintaining software means evolving specifications  
   * Specs, not the code, becomes the primary artifact  
@@ -71,7 +71,7 @@ Verifies that the software functions as expected based on requirements. These de
 
 ### **Goals**
 
-* Ensure clarity: Developers, testers, designers and managers knows what to build  
+* Ensure clarity: Developers, testers, designers and managers know what to build  
 * Reduce misunderstandings: Prevents assumptions and misalignments  
 * Improve quality: Helps ensure the software meets user needs and business goals  
 * Facilitate testing: Testers use requirements to verify that the system works correctly
