@@ -15,7 +15,8 @@ It's a systematic activity performed to verify that a software meets its require
 * **Smoke Testing:** Quick checks to see if the basic functionality works.
 * **Sanity Testing:** Quick checks to verify if a small change works without breaking anything.
 * **Regression Testing:** Ensures changes don't break existing functionality.
-* **Ad-hoc Testing:** Unstructured testing without test cases.* **Exploratory Testing:** Unscripted testing to find unexpected issues.
+* **Ad-hoc Testing:** Unstructured testing without test cases.
+* **Exploratory Testing:** Unscripted testing to find unexpected issues.
 * **Performance Testing:** Evaluates speed, scalability, and stability under load.
 * **Security Testing:** Identifies vulnerabilities and threats. 
 * **Usability Testing:** Ensures the software is user-friendly.
@@ -27,19 +28,39 @@ It's a systematic activity performed to verify that a software meets its require
 
 Verifies that the software functions as expected based on requirements. These define what the software **should do** (i.e. the specific behaviors, functions, and features it must provide).
 
-* Business Requirements* User Requirements* Regulatory & Compliance Requirements* Constraints & External Interface Requirements
+* Business Requirements
+* User Requirements
+* Regulatory & Compliance Requirements
+* Constraints & External Interface Requirements
 
 ## Goals
 
-* Ensure clarity: Developers, testers, designers and managers know what to build* Reduce misunderstandings: Prevents assumptions and misalignments* Improve quality: Helps ensure the software meets user needs and business goals* Facilitate testing: Testers use requirements to verify that the system works correctly
+* Ensure clarity: Developers, testers, designers and managers know what to build
+* Reduce misunderstandings: Prevents assumptions and misalignments
+* Improve quality: Helps ensure the software meets user needs and business goals
+* Facilitate testing: Testers use requirements to verify that the system works correctly
 
 ## Characteristics
 
-* Unambiguous: No room for interpretation* Complete: Covers all necessary details* Consistent: No contradictions with other requirements* Verifiable: Testers can confirm if it's met
+* Unambiguous: No room for interpretation
+* Complete: Covers all necessary details
+* Consistent: No contradictions with other requirements
+* Verifiable: Testers can confirm if it's met
 
 ## Non functional requirements
 
-* Load* Performance* Data volume* Stress* Security* Stability* Reliability* Robustness* Compatibility* Portability* Usability* Maintainability
+* Load
+* Performance
+* Data volume
+* Stress
+* Security
+* Stability
+* Reliability
+* Robustness
+* Compatibility
+* Portability
+* Usability
+* Maintainability
 
 ## Requirement-based testing
 
@@ -51,7 +72,7 @@ It's a software development and testing approach that focuses on defining the sy
 
 ## User Stories
 
-A short, informal description of a feature from the user's perspective. Focuses on what the user needs, not the details of how the system works. Written in a simple template:*"As a \[user\], I want \[goal\] so that \[benefit\]."*
+A short, informal description of a feature from the user's perspective. Focuses on what the user needs, not the details of how the system works. Written in a simple template: *"As a \[user\], I want \[goal\] so that \[benefit\]."*
 
 ### Example
 
@@ -65,7 +86,19 @@ A structured, detailed description of an interaction between a user and the syst
 
 ### Example
 
-* Use Case: Reset Password* Actor: Customer* Precondition: The user has an account in the system* Main Flow:  * The user clicks "Forgot Password" on the login page  * The system asks for the user's email  * The user enters their email  * The system sends a reset link to the email  * The user clicks the link and sets a new password  * The system updates the password and confirms success* Alternative Flows:  * If the email is not registered, the system shows an error message  * If the reset link expires, the user must request a new one
+* Use Case: Reset Password
+* Actor: Customer
+* Precondition: The user has an account in the system
+* Main Flow:
+  * The user clicks "Forgot Password" on the login page
+  * The system asks for the user's email
+  * The user enters their email
+  * The system sends a reset link to the email
+  * The user clicks the link and sets a new password
+  * The system updates the password and confirms success
+* Alternative Flows:
+  * If the email is not registered, the system shows an error message
+  * If the reset link expires, the user must request a new one
 
 ## Specifications
 
@@ -77,8 +110,19 @@ Instead of saying "Users must be able to reset their passwords," a specification
 
 ## Requirements gathering
 
-* Use clear and concise language* Make requirements testable* Use the **Shall** or **Must** format for mandatory requirements
+* Use clear and concise language
+* Make requirements testable
+* Use the **Shall** or **Must** format for mandatory requirements
 
 ## Acceptance criteria
 
-* Focus on what needs to be done, not how it should be implemented* Ensure test cases cover positive, negative, boundary, and edge cases  * Multiple locales  * Online/offline/bad network  * Multiple user roles  * Portrait/landscape  * Light/dark mode  * Multiple screen resolutions  * Responsive behaviors  * Large datasets
+* Focus on what needs to be done, not how it should be implemented
+* Ensure test cases cover positive, negative, boundary, and edge cases
+  * Multiple locales
+  * Online/offline/bad network
+  * Multiple user roles
+  * Portrait/landscape
+  * Light/dark mode
+  * Multiple screen resolutions
+  * Responsive behaviors
+  * Large datasets
