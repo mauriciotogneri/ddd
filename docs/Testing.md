@@ -99,30 +99,3 @@ A structured, detailed description of an interaction between a user and the syst
 * Alternative Flows:
   * If the email is not registered, the system shows an error message
   * If the reset link expires, the user must request a new one
-
-## Specifications
-
-Formalize the requirements into detailed descriptions that guide development. They often include precise definitions of system behavior, data structures, algorithms, UI designs, and interaction flows. Can be high-level (system specifications) or low-level (technical specifications). Often include diagrams, flowcharts, and pseudo-code.
-
-### Example
-
-Instead of saying "Users must be able to reset their passwords," a specification might define the exact API endpoint, the request/response format, and security considerations.
-
-## Requirements gathering
-
-* Use clear and concise language
-* Make requirements testable
-* Use the **Shall** or **Must** format for mandatory requirements
-
-## Acceptance criteria
-
-* Focus on what needs to be done, not how it should be implemented
-* Ensure test cases cover positive, negative, boundary, and edge cases
-  * Multiple locales
-  * Online/offline/bad network
-  * Multiple user roles
-  * Portrait/landscape
-  * Light/dark mode
-  * Multiple screen resolutions
-  * Responsive behaviors
-  * Large datasets
