@@ -12,17 +12,17 @@ It's a systematic activity performed to verify that a software meets its require
 
 ### Types of testing
 
-* **Smoke Testing:** Quick checks to see if the basic functionality works.
-* **Sanity Testing:** Quick checks to verify if a small change works without breaking anything.
-* **Regression Testing:** Ensures changes don't break existing functionality.
-* **Ad-hoc Testing:** Unstructured testing without test cases.
-* **Exploratory Testing:** Unscripted testing to find unexpected issues.
-* **Performance Testing:** Evaluates speed, scalability, and stability under load.
-* **Security Testing:** Identifies vulnerabilities and threats. 
-* **Usability Testing:** Ensures the software is user-friendly.
-* **Compatibility Testing:** Verifies functionality across different environments.
-* **User Acceptance Testing:** The final validation by end users before release.
-* **Accessibility Testing:** Ensures the software is usable by people with disabilities.
+* Smoke testing: Quick checks to see if the basic functionality works.
+* Sanity testing: Quick checks to verify if a small change works without breaking anything.
+* Regression testing: Ensures changes don't break existing functionality.
+* Ad-hoc testing: Unstructured testing without test cases.
+* Exploratory testing: Unscripted testing to find unexpected issues.
+* Performance testing: Evaluates speed, scalability, and stability under load.
+* Security testing: Identifies vulnerabilities and threats.
+* Usability testing: Ensures the software is user-friendly.
+* Compatibility testing: Verifies functionality across different environments.
+* User acceptance testing: The final validation by end users before release.
+* Accessibility testing: Ensures the software is usable by people with disabilities.
 
 ## Functional requirements
 
@@ -49,18 +49,18 @@ Verifies that the software functions as expected based on requirements. These de
 
 ### Non functional requirements
 
-* Load
-* Performance
-* Data volume
-* Stress
-* Security
-* Stability
-* Reliability
-* Robustness
-* Compatibility
-* Portability
-* Usability
-* Maintainability
+* Load: Behavior under expected concurrent users or transactions.
+* Performance: Response time, throughput, and resource usage.
+* Data volume: Handling large amounts of data.
+* Stress: Behavior beyond normal capacity limits.
+* Security: Protection against unauthorized access and threats.
+* Stability: Consistent behavior over extended operation.
+* Reliability: Correct functioning over time and conditions.
+* Robustness: Handling invalid inputs and unexpected conditions.
+* Compatibility: Working across different systems and environments.
+* Portability: Ease of transferring between platforms.
+* Usability: Ease of use and user experience.
+* Maintainability: Ease of modifying and updating the system.
 
 ## Requirement-based testing
 
