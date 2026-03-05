@@ -33,21 +33,21 @@ Verifies that the software functions as expected based on requirements. These de
 * Regulatory & Compliance Requirements
 * Constraints & External Interface Requirements
 
-## Goals
+### Goals
 
-* Ensure clarity: Developers, testers, designers and managers know what to build
-* Reduce misunderstandings: Prevents assumptions and misalignments
-* Improve quality: Helps ensure the software meets user needs and business goals
-* Facilitate testing: Testers use requirements to verify that the system works correctly
+* Ensure clarity: Developers, testers, designers and managers know what to build.
+* Reduce misunderstandings: Prevents assumptions and misalignments.
+* Improve quality: Helps ensure the software meets user needs and business goals.
+* Facilitate testing: Testers use requirements to verify that the system works correctly.
 
-## Characteristics
+### Characteristics
 
-* Unambiguous: No room for interpretation
-* Complete: Covers all necessary details
-* Consistent: No contradictions with other requirements
-* Verifiable: Testers can confirm if it's met
+* Unambiguous: No room for interpretation.
+* Complete: Covers all necessary details.
+* Consistent: No contradictions with other requirements.
+* Verifiable: Testers can confirm if it's met.
 
-## Non functional requirements
+### Non functional requirements
 
 * Load
 * Performance
