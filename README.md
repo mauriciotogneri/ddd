@@ -20,3 +20,19 @@ It's a tool that uses **Specs Driven Development**.
 * Full traceability
 * No lock-In
 * Technology agnostic
+
+## Hierarchy
+
+### The "Top-Down" (Business-Led)
+* **Goal** (e.g., Increase user retention)
+* **Epic** (e.g., Build an automated loyalty program)
+* **Feature** (e.g., Reward point tracking system)
+* **Requirement** (e.g., User receives 10 points per purchase)
+* **Task** (e.g., API endpoint logic + Database schema)
+
+### The "Domain-Driven" (Service-Led)
+* **Domain** (e.g., Payments)
+* **Bounded Context** (e.g., Invoicing)
+* **Service/Module** (e.g., PDF Generator)
+* **API/Interface Contract** (e.g., POST /v1/generate-invoice)
+* **Implementation Spec** (e.g., logic for template rendering)
