@@ -9,9 +9,6 @@ It's a tool that uses **Documentation Driven Development**.
 * **Improve quality:** Helps ensuring the software meets user needs and business goals.
 * **Facilitate testing:** Testers use requirements to verify that the system works correctly.
 
-* **Continuous Refinement:** Consistency validation happens continuously, not as a one-time check. AI analyzes documentation for ambiguity, contradictions, and gaps as an ongoing process.
-* **Bidirectional Feedback:** Production reality informs documentation evolution. Metrics, incidents, and operational learnings become inputs for documentation refinement.
-
 ## Characteristics
 * Layered hierarchy
 * Full traceability
