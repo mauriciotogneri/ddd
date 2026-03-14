@@ -4,16 +4,15 @@
 
 * Before
   * Code used to be the king
-  * Specs were something buried deep in a wiki that nobody reads nor updates
-  * Specs were often used in retrospective
+  * Documentation was something buried deep in a wiki that nobody reads nor updates
+  * Documentation was often used in retrospective
 * Now
   * Maintaining software means evolving specifications
-  * Specs, not the code, becomes the primary artifact
-  * Specs don't serve code, code serves specifications
-  * Specs are the source that generates implementation
+  * Documentation, not the code, becomes the primary artifact
+  * Documentation is the source that generates implementation
   * Code becomes its expression in a particular language and framework
   * The lingua franca of development moves to a higher level
-  * Code reviews have evolved into spec reviews
+  * Code review have evolved into documentation review
   * Developers focus less on writing repetitive code and more on understanding edge cases, defining interactions, and validating system behavior 
 
 ## Core principles
