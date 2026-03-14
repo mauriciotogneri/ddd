@@ -18,9 +18,9 @@ It's a tool that uses **Documentation Driven Development**.
 * Git-Native workflow
 * Full traceability
 * Technology agnostic
-* No lock-in
 * No database
 * No server
+* No lock-in
 
 ## Hierarchy
 
