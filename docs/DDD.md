@@ -17,7 +17,10 @@
   * Code becomes its expression in a particular language and framework
   * The lingua franca of development moves to a higher level
   * Code reviews have evolved into documentation reviews
-  * Developers focus less on writing repetitive code and more on understanding edge cases, defining interactions, and validating system behavior 
+  * Developers focus less on writing repetitive code and more on understanding edge cases, defining interactions, and validating system behavior
+  * Intent is preserved alongside implementation
+  * Documentation becomes versionable and diffable
+  * Cross-team alignment happens through shared documents, not meetings
 
 ## Core principles
 
