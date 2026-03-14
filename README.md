@@ -18,8 +18,12 @@ It's a tool that uses **Specs Driven Development**.
 ## Characteristics
 * Layered hierarchy
 * Full traceability
-* No lock-In
+* No lock-in
 * Technology agnostic
+* Git-Native Workflow
+* AI-Powered Agents
+* No database
+* No server
 
 ## Hierarchy
 
