@@ -3,9 +3,13 @@
 ## Motivation
 
 * Before
+  * Knowledge lived in people's heads
   * Code used to be the king
+  * Documentation was written after the fact, if at all
   * Documentation was something buried deep in a wiki that nobody reads nor updates
   * Documentation was often used in retrospective
+  * Onboarding was expensive and slow
+  * Code reviews focused more on style and patterns, not on intent and behavior
 * Now
   * Maintaining software means evolving documentation
   * Documentation, not the code, becomes the primary artifact
