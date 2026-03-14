@@ -1,8 +1,4 @@
-# Spec Driven Development
-
-## What is a spec?
-
-A spec is a structured, behavior-oriented artifact written in natural language that expresses software functionality. Each variant of spec-driven development defines their approach to a spec's structure, level of detail, and how these artifacts are organized within a project.
+# Documentation Driven Development
 
 ## Motivation
 
@@ -26,3 +22,4 @@ A spec is a structured, behavior-oriented artifact written in natural language t
 * **Continuous Refinement:** Consistency validation happens continuously, not as a one-time check. AI analyzes documentation for ambiguity, contradictions, and gaps as an ongoing process.
 * **Research-Driven Context:** Research agents gather critical context throughout the documentation process, investigating technical options, performance implications, and organizational constraints.
 * **Bidirectional Feedback:** Production reality informs documentation evolution. Metrics, incidents, and operational learnings become inputs for documentation refinement.
+* **The Documentation Doctrine** If it's not documented, it doesn't exist. If it's documented incorrectly, it's broken.
