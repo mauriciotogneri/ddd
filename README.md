@@ -13,6 +13,7 @@ It's a tool that uses **Documentation Driven Development**.
 * **Align teams:** Cross-team coordination happens through shared documents, not meetings.
 * **Elevate code reviews:** Reviews shift from style and patterns to intent and behavior.
 * **Dual-Audience:** Structured enough for machines to process, human-friendly enough for developers to actually maintain.
+* **Human-AI Collaboration:** Optimal task distribution between humans and agents.
 
 ## Characteristics
 * Layered hierarchy
