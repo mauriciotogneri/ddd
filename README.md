@@ -20,8 +20,8 @@ It's a tool that uses **Specs Driven Development**.
 * Full traceability
 * No lock-in
 * Technology agnostic
-* Git-Native Workflow
-* AI-Powered Agents
+* Git-Native workflow
+* AI-Powered agents
 * No database
 * No server
 
