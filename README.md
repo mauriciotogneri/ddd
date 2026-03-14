@@ -1,6 +1,6 @@
 # Spectrum
 
-It's a tool that uses **Documentation Driven Development**.
+It uses **Documentation Driven Development**, a structured but flexible process that transforms chaotic software development into a systematic, repeatable methodology that consistently delivers results aligned with your vision.
 
 ## Goals
 * **Centralize project knowledge:** Captures requirements, designs, specifications, and other artifacts that drive development — all in one place.
