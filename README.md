@@ -8,14 +8,17 @@ It's a tool that uses **Documentation Driven Development**.
 * **Reduce misunderstandings:** Prevents assumptions and misalignments.
 * **Improve quality:** Helps ensuring the software meets user needs and business goals.
 * **Facilitate testing:** Testers use requirements to verify that the system works correctly.
+* **Accelerate onboarding:** New team members ramp up through documentation rather than tribal knowledge.
+* **Preserve intent:** Captures the why behind decisions, not just the what — intent lives alongside implementation.
+* **Align teams:** Cross-team coordination happens through shared documents, not meetings.
+* **Elevate code reviews:** Reviews shift from style and patterns to intent and behavior.
 
 ## Characteristics
 * Layered hierarchy
-* Full traceability
-* No lock-in
-* Technology agnostic
 * Git-Native workflow
-* AI-Powered agents
+* Full traceability
+* Technology agnostic
+* No lock-in
 * No database
 * No server
 
