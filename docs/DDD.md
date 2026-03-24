@@ -2,9 +2,7 @@
 
 DDD is a development framework where every code change (e.g. new feature, bug fix, infrastructure task) begins with a curated set of documents that form a comprehensive paper trail — governing the full lifecycle of a change, from idea to shipped code.
 
-## Motivation
-
-### Before
+## Problem
 
 - Knowledge lived in people's heads and left when they did
 - Code was king; documentation was an afterthought buried in a wiki nobody read
@@ -12,11 +10,6 @@ DDD is a development framework where every code change (e.g. new feature, bug fi
 - Code reviews focused on style and patterns rather than intent and behavior
 - Technical debt accumulated silently — nobody documented the trade-offs that created it
 - Design decisions were debated in Slack threads and lost forever
-
-### Now
-
-- Developers focus less on writing repetitive code and more on understanding edge cases, defining interactions, and validating system behavior
-- Documentation becomes versionable and diffable
 
 ## Principles
 
