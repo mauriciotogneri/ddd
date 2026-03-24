@@ -18,22 +18,24 @@ The core thesis is simple: **the quality of AI-generated code is directly propor
 - Code used to be king
 - Documentation was written after the fact, if at all
 - Documentation was something buried deep in a wiki that nobody reads nor updates
-- Documentation was often written retrospectively
 - Onboarding was expensive and slow
 - Code reviews focused more on style and patterns rather than on intent and behavior
+- Requirements were ambiguous and interpreted differently by different developers
+- Context was permanently lost when team members left
+- Technical debt accumulated silently — nobody documented the trade-offs that created it
 
 ### Now
 
-- Maintaining software means evolving documentation
 - Documentation, not the code, becomes the primary artifact
 - Documentation is the source that generates implementation
 - Code becomes its expression in a particular language and framework
 - The lingua franca of development moves to a higher level
-- Code reviews have evolved into documentation reviews
+- Code reviews evolves into documentation reviews
 - Developers focus less on writing repetitive code and more on understanding edge cases, defining interactions, and validating system behavior
 - Intent is preserved alongside implementation
 - Documentation becomes versionable and diffable
-- Cross-team alignment happens through shared documents, not meetings
+- New team members onboard by reading the document trail, not shadowing someone for weeks
+- Changing direction means editing documents, not rewriting code
 
 ## Benefits
 
@@ -48,6 +50,16 @@ The core thesis is simple: **the quality of AI-generated code is directly propor
 **Auditability.** Every decision, requirement, trade-off, and scope boundary is captured in documents. When someone asks "why was it built this way?" months later, the answer is in the document trail, not in someone's memory.
 
 **Living memory.** The document set for each change serves as a permanent record. When the team revisits a feature, the full reasoning — not just the code — is preserved.
+
+**Reduced bus factor.** Knowledge is externalized into documents, not trapped in individuals. A team member leaving doesn't create a knowledge vacuum.
+
+**Onboarding acceleration.** New developers (human or AI) get up to speed by reading the document set rather than reverse-engineering code.
+
+**Language/framework independence.** The primary artifact is the document, not the code. Migrating to a new stack means re-generating code from existing docs, not a full rewrite.
+
+**Reproducibility.** Given the same document set, any competent AI agent should produce substantially similar output — eliminating the "it depends who prompted it" problem.
+
+**Regression prevention.** Validation scenarios written upfront become a living test specification, not an afterthought.
 
 ## Principles
 
@@ -64,3 +76,9 @@ The core thesis is simple: **the quality of AI-generated code is directly propor
 **Standards-enforced quality.** Document quality is checked mechanically, not left to human judgment alone. Every document type has a standards definition that specifies both common checks (shared across all documents) and file-specific checks (unique to that document type), ensuring a consistent quality bar.
 
 **Separation of concerns.** Rules about documents (standards) are separate from rules about the application (technical reference). The framework itself can evolve independently from the application it governs.
+
+**Single source of truth.** For any given concern, exactly one document is authoritative. No duplication, no drift between competing sources.
+
+**Progressive detail.** Documents move from high-level (requirements) to low-level (implementation plans). Each layer adds precision without contradicting the layer above.
+
+**Fail fast on paper.** If a design can't survive document review, it won't survive production. Kill bad ideas before they become bad code.
