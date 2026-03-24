@@ -4,12 +4,6 @@ DDD is a development framework where every code change (e.g. new feature, bug fi
 
 These documents include requirements, implementation plans, validation scenarios, API contracts, etc. Together they form a comprehensive paper trail that governs the full lifecycle of a change, from idea to shipped code.
 
-## Core Thesis
-
-AI coding agents produce inconsistent results when given ad-hoc instructions. The same prompt phrased differently can yield fundamentally different implementations. DDD solves this by replacing ad-hoc prompting with a structured document pipeline.
-
-The core thesis is simple: **the quality of AI-generated code is directly proportional to the quality of the documents it ingests**. By investing in well-structured, reviewed, and standards-compliant documents, the team controls the output rather than hoping for good results from vague prompts.
-
 ## Motivation
 
 ### Before
@@ -39,6 +33,8 @@ The core thesis is simple: **the quality of AI-generated code is directly propor
 - Changing direction means editing documents, not rewriting code
 
 ## Principles
+
+**Structured context produces better output.** AI coding agents produce inconsistent results when given ad-hoc instructions — the same prompt phrased differently can yield fundamentally different implementations. The quality of AI-generated code is directly proportional to the quality of the documents it ingests. When the AI agent receives detailed requirements, a phased implementation plan, and validation scenarios — all reviewed against project standards — it generates code that reflects the team's intent rather than its own assumptions.
 
 **Documents before code.** No code is written until the document set is reviewed and approved. Documents force the team to articulate what they want, why they want it, and how they will validate it — surfacing ambiguities during document review, not code review. Because the primary artifact is the document, not the code, migrating to a new stack means re-generating code from existing docs rather than a full rewrite.
 
