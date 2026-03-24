@@ -1,6 +1,6 @@
 # Documentation Driven Development (DDD)
 
-DDD is a development framework where every code change begins with documentation — not code. A curated set of documents governs the full lifecycle of a change, from idea to shipped code.
+DDD is a structured but flexible development framework where every code change begins with documentation — not code. A curated set of documents governs the full lifecycle of a change, from idea to shipped code, transforming chaotic software development into a systematic, repeatable methodology that consistently delivers results aligned with your vision.
 
 ## Problem
 
