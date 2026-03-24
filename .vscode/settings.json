@@ -6,7 +6,7 @@
   "editor.tabSize": 2,
   "editor.fontSize": 16,
   "editor.detectIndentation": false,
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.fontFamily": "'Source Code Pro'",
-  "eslint.run": "onSave"
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
