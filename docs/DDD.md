@@ -4,12 +4,12 @@ DDD is a development framework where every code change (e.g. new feature, bug fi
 
 ## Problem
 
-- Knowledge lived in people's heads and left when they did
-- Code was king; documentation was an afterthought buried in a wiki nobody read
-- Requirements were ambiguous and interpreted differently by different developers
-- Code reviews focused on style and patterns rather than intent and behavior
-- Technical debt accumulated silently — nobody documented the trade-offs that created it
-- Design decisions were debated in Slack threads and lost forever
+**Tribal knowledge.** Knowledge lived in people's heads and left when they did.
+**Code was king.** Documentation was written retrospectively (if at all), buried in a wiki nobody read nor updated.
+**Ambiguous requirements.** Requirements were interpreted differently by different developers.
+**Superficial code reviews.** Reviews focused on style and patterns rather than intent and behavior.
+**Silent technical debt.** Debt accumulated silently — nobody documented the trade-offs that created it.
+**Lost decisions.** Design decisions were debated in Slack threads and lost forever.
 
 ## Principles
 
