@@ -33,7 +33,7 @@ DDD is a structured but flexible development framework where every code change b
 
 ### Quality & Process
 
-**Standards-enforced quality.** Document quality is checked mechanically, not left to human judgment alone. Every document type has a standards definition that specifies both common checks (shared across all documents) and file-specific checks (unique to that document type). AI-powered review skills systematically check every document and produce structured reports with numbered findings, severities, and recommendations — eliminating the "we should have caught that" problem. Because quality is enforced at the document level before code exists, the methodology helps ensure the software meets user needs and business goals, not just technical standards.
+**Standards-enforced quality.** Document quality is checked mechanically, not left to human judgment alone. AI systematically checks every document — eliminating the "we should have caught that" problem. Because quality is enforced at the document level before code exists, the methodology helps ensure the software meets user needs and business goals, not just technical standards.
 
 **Iterate cheaply.** The document pipeline is ordered so that the most expensive mistakes are caught at the cheapest phase. Problems caught in documents take minutes to fix; problems caught in code take hours to debug and refactor. If a design can't survive document review, it won't survive production — kill bad ideas before they become bad code. When a problem is found, the team revises the document and re-reviews — never jumping to code to "just fix it there."
 
