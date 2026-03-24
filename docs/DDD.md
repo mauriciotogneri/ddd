@@ -21,7 +21,7 @@ DDD is a structured but flexible development framework where every code change b
 
 **Documents before code.** No code is written until the document set is reviewed and approved. Documents force the team to articulate what they want, why they want it, and how they will validate it — surfacing ambiguities during document review, not code review. This ensures that developers, testers, designers, and managers share the same understanding of what to build, preventing assumptions and misalignments before they reach code.
 
-**Single source of truth.** For any given concern, exactly one document is authoritative. No duplication, no drift between competing sources. Knowledge is externalized into documents, not trapped in individuals — a team member leaving doesn't create a knowledge vacuum, and new developers (human or AI) get up to speed by reading the document set rather than reverse-engineering code.
+**Single source of truth.** For any given concern, exactly one document is authoritative. Knowledge is externalized into documents, not trapped in individuals — a team member leaving doesn't create a knowledge vacuum, and new developers get up to speed by reading the document set rather than reverse-engineering code.
 
 ### Authoring
 
