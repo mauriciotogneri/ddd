@@ -31,3 +31,15 @@ The core thesis is simple: **the quality of AI-generated code is directly propor
   - Intent is preserved alongside implementation
   - Documentation becomes versionable and diffable
   - Cross-team alignment happens through shared documents, not meetings
+
+## Benefits
+
+**Structured context produces better output.** When the AI agent receives detailed requirements, a phased implementation plan, and validation scenarios — all reviewed against project standards — it generates code that reflects the team's intent rather than its own assumptions.
+
+**Shared understanding before code.** Documents force the team to articulate what they want, why they want it, and how they will validate it — before any code is written. Ambiguities surface during document review, not during code review.
+
+**Cheap iteration.** Catching problems in documents takes minutes to fix. Catching them in code takes hours to debug and refactor. DDD shifts iteration to the cheapest possible phase.
+
+**Auditability.** Every decision, requirement, trade-off, and scope boundary is captured in documents. When someone asks "why was it built this way?" months later, the answer is in the document trail, not in someone's memory.
+
+**Living memory.** The document set for each change serves as a permanent record. When the team revisits a feature, the full reasoning — not just the code — is preserved.
