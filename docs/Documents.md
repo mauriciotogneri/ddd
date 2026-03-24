@@ -66,3 +66,29 @@ DDD organizes documents into directories that reflect the lifecycle of a change.
 | `standards/` | Review checklists for each document type. These govern how documents are written and reviewed.                                                         |
 | `technical/` | Application-level rules. These govern how the application is built.                                                                                    |
 | `reference/` | Project context: product vision, glossary, setup guide, deployment instructions. Useful for onboarding and for the AI agent to understand the project. |
+
+## Organizing the Product Directory
+
+The `product/` directory accumulates every completed change over time. As the number of changes grows, the team should organize them into a hierarchy that reflects how the team thinks about the product. DDD does not prescribe a single hierarchy — the right structure depends on the team's domain and workflow. Two common approaches:
+
+### Top-Down (Business-Led)
+
+Organizes changes by business goals and works downward into implementation detail.
+
+- **Goal** (e.g., increase user retention)
+  - **Epic** (e.g., build an automated loyalty program)
+    - **Feature** (e.g., reward point tracking system)
+      - **Requirement** (e.g., user receives 10 points per purchase)
+        - **Task** (e.g., API endpoint logic + database schema)
+
+### Domain-Driven (Service-Led)
+
+Organizes changes by technical domain boundaries and works downward into service contracts.
+
+- **Domain** (e.g., payments)
+  - **Bounded Context** (e.g., invoicing)
+    - **Service/Module** (e.g., PDF Generator)
+      - **API/Interface Contract** (e.g., `POST /v1/generate-invoice`)
+        - **Implementation Specs** (e.g., logic for template rendering)
+
+The team picks whichever hierarchy best matches how they navigate and reason about the product. The key requirement is consistency — once a hierarchy is chosen, all completed changes should be filed within it.
