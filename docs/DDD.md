@@ -2,11 +2,16 @@
 
 DDD is a structured but flexible development framework where every code change begins with documentation — not code. A curated set of documents governs the full lifecycle of a change, from idea to shipped code, transforming chaotic software development into a systematic, repeatable methodology that consistently delivers results aligned with your vision.
 
-## Problem
+## Motivation
+
+### The knowledge problem
 
 **Trapped knowledge.** Knowledge lives in people's heads and leaves when they do.
 **Fragmented documentation.** Documentation is written after the fact (if at all), often buried where nobody reads nor updates it, or scattered across wikis, issue trackers, and chat messages — where design decisions are debated and forgotten.
 **Ambiguous requirements.** Requirements are interpreted differently by different developers.
+
+### The consequences
+
 **Silent technical debt.** Debt accumulates silently — nobody documents the trade-offs or constraints that justify it.
 **Missing validation contract.** Test cases are written after implementation, shaped by what the code does rather than what it should do — so tests pass even when behavior is wrong.
 **Onboarding by archaeology.** New developers have to reverse-engineer intent from code.
