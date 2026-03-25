@@ -26,11 +26,9 @@ DDD is a structured but flexible development framework where every code change b
 
 **Single source of truth.** For any given concern, exactly one document is authoritative. Knowledge is externalized into documents, not trapped in individuals — a team member leaving doesn't create a knowledge vacuum, and new developers get up to speed by reading the document set rather than reverse-engineering code.
 
-### Authoring
+### Quality & Process
 
 **Precise over vague.** Every requirement must be unambiguous, complete, consistent, and verifiable. The "two-developer test" is the bar: a requirement or plan step should be specific enough that two developers following it independently would produce the same result. This extends to AI agents — given the same document set, any competent agent should produce substantially similar output.
-
-### Quality & Process
 
 **Standards-enforced quality.** Document quality is checked mechanically, not left to human judgment alone. AI systematically checks every document — eliminating the "we should have caught that" problem. Because quality is enforced at the document level before code exists, the methodology helps ensure the software meets user needs and business goals, not just technical standards.
 
