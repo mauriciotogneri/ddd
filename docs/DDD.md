@@ -5,11 +5,10 @@ DDD is a structured but flexible development framework where every code change b
 ## Problem
 
 **Trapped knowledge.** Knowledge lives in people's heads and leaves when they do.
-**Neglected documentation.** Documentation is written retrospectively (if at all), buried in a wiki nobody reads nor updates.
 **Ambiguous requirements.** Requirements are interpreted differently by different developers.
+**Fragmented documentation.** Documentation is written after the fact (if at all), often buried where nobody reads nor updates it, or scattered across wikis, issue trackers, and chat messages — where design decisions are debated and forgotten.
 **Superficial code reviews.** Reviews focus on style and patterns rather than intent and behavior.
 **Silent technical debt.** Debt accumulates silently — nobody documents the trade-offs or constraints that justify it.
-**Lost decisions.** Design decisions are debated in Slack threads and forgotten.
 **Onboarding by archaeology.** New developers have to reverse-engineer intent from code.
 **Missing validation contract.** Test cases are written after implementation, shaped by what the code does rather than what it should do — so tests pass even when behavior is wrong.
 
