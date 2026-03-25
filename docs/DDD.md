@@ -36,8 +36,6 @@ DDD is a structured but flexible development framework where every code change b
 
 **Iterate cheaply.** The document pipeline is ordered so that the most expensive mistakes are caught at the cheapest phase. Problems caught in documents take minutes to fix; problems caught in code take hours to debug and refactor. If a design can't survive document review, it won't survive production — kill bad ideas before they become bad code.
 
-**End-to-end traceability.** Every requirement traces forward to plan steps, validation scenarios, and acceptance criteria. Every implementation detail traces back to a requirement. Every decision and trade-off is captured in the document trail — intent lives alongside implementation, capturing the why behind decisions, not just the what. Validation scenarios written upfront become a living test specification, not an afterthought.
-
 ### Collaboration
 
 **Humans curate, AI execute.** AI generates and reviews documents, but the team makes all approval decisions. AI handles volume and consistency; the team handles intent and judgment. This shifts the developer's focus from writing repetitive code to understanding edge cases, defining interactions, and validating system behavior.
