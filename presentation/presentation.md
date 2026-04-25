@@ -61,7 +61,11 @@ paginate: true
 
 ### Documentation, not the code, becomes the primary artifact
 
-Documentation is the source that generates implementation. Code is an expression of that documentation in a particular language and framework — not the other way around. Documents are dual-audience: structured enough for machines to process, human-friendly enough for developers to actually maintain. This moves the lingua franca of development to a higher level, making the work accessible to anyone, not just those fluent in the codebase.
+* Documentation is the source that generates implementation
+
+* Code is an expression of that documentation in a particular language and framework
+
+* This moves the lingua franca of development to a higher level
 
 ---
 
