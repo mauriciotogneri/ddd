@@ -95,7 +95,9 @@ paginate: true
 
 ### Precise over vague
 
-Every requirement must be unambiguous, complete, consistent, and verifiable. The "two-developer test" is the bar: a requirement or plan step should be specific enough that two developers working independently would each agree the other's implementation is correct. The goal isn't identical code — it's that the specification constrains the solution space so any valid implementation satisfies the requirements. This extends to AI agents — given the same document set, any competent agent should produce a valid implementation that satisfies all requirements.
+* Every requirement must be unambiguous, complete, consistent, and verifiable
+
+* The "two-developer test" is the bar <!-- a requirement should be specific enough so that two developers working independently would each agree the other's implementation is correct. The goal isn't identical code — it's that the specification constrains the solution space so any valid implementation satisfies the requirements. This extends to AI agents — given the same document set, any competent agent should produce a valid implementation that satisfies all requirements.--> 
 
 ---
 
