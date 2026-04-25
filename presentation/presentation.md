@@ -78,6 +78,7 @@ paginate: true
 * Documents force the team to articulate what they want, why they want it, and how they will validate it <!-- surfacing ambiguities during document review, not code review -->
 
 * This ensures that the team <!-- developers, testers, designers, and managers--> shares the same understanding of what to build <!--preventing assumptions and misalignments before they reach code.-->
+<!-- A perfect implementation of the wrong specification is worthless -->
 
 ---
 
