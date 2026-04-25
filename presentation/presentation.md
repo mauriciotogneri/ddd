@@ -49,3 +49,15 @@ class: invert
 * Debt accumulates `silently` and nobody documents the trade-offs or constraints that justify it
 
 * Test cases are written `after` implementation, shaped by what the code does rather than what it should do
+
+---
+
+### Characteristics
+
+* Layered hierarchy
+* Git-Native workflow
+* Full traceability
+* Technology agnostic
+* No database
+* No server
+* No lock-in
