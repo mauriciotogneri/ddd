@@ -133,7 +133,9 @@ paginate: true
 
 ### Standards-enforced quality
 
-Document quality is checked mechanically, not left to human judgment alone. AI systematically checks every document — eliminating the "we should have caught that" problem. Because quality is enforced at the document level before code exists, the methodology helps ensure the software meets user needs and business goals, not just technical standards.
+* Document quality is checked mechanically
+
+<!-- AI systematically checks every document - Because quality is enforced at the document level before code exists, the methodology helps ensure the software meets user needs and business goals, not just technical standards. -->
 
 ### Iterate cheaply
 
