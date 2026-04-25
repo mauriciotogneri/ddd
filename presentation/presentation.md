@@ -45,7 +45,7 @@ class: invert
 * Knowledge `lives` in people's heads and `leaves` when they do
 
 * Documentation is written `after` the fact
-<!-- 2. If at all, and often buried where nobody reads nor updates it, or scattered across wikis, issue trackers, and chat messages
+<!-- 2) If at all, and often buried where nobody reads nor updates it, or scattered across wikis, issue trackers, and chat messages
 -->
 
 * Requirements are interpreted `differently` by different developers
@@ -55,12 +55,12 @@ class: invert
 ### The consequences
 
 * New developers have to `reverse-engineer` intent from code
-<!-- 1. Onboarding by archeology -->
+<!-- 1) Onboarding by archeology -->
 
 * Debt accumulates `silently` and nobody documents the trade-offs or constraints that justify it
 
 * Test cases are written `after` implementation, shaped by what the code does rather than what it should do
-<!-- 3. Tests pass even when behavior is wrong -->
+<!-- 3) Tests pass even when behavior is wrong -->
 
 ---
 
@@ -91,10 +91,10 @@ class: invert
 * Documentation is the source that generates implementation
 
 * Code is an expression of that documentation in a particular language and framework
-<!-- 2. Not the other way around -->
+<!-- 2) Not the other way around -->
 
 * This moves the lingua franca of development to a higher level
-<!-- 3.
+<!-- 3)
 * Making the work accessible to anyone, not just those fluent in the codebase
 * Document creation and review skills becomes a core competency
 * DDD is like performing a code review before the code is written
@@ -107,10 +107,13 @@ class: invert
 * No code is written until the document set is reviewed and approved
 
 * Documents force the team to articulate what they want, why they want it, and how they will validate it
-<!-- 2. Surfacing ambiguities during document review, not code review -->
+<!-- 2) Surfacing ambiguities during document review, not code review -->
 
 * This ensures that the team shares the same understanding of what to build 
-<!-- 3. Team: developers, testers, designers, and managers. Preventing assumptions and misalignments before they reach code. A perfect implementation of the wrong specification is worthless -->
+<!-- 3)
+* Team: developers, testers, designers, and managers
+* Preventing assumptions and misalignments before they reach code
+* A perfect implementation of the wrong specification is worthless -->
 
 ---
 
@@ -119,7 +122,10 @@ class: invert
 * For any given concern, exactly one document is authoritative
 
 * Knowledge is externalized into documents, not trapped in individuals
-<!-- 2. A team member leaving doesn't create a knowledge vacuum. The documentation has a compound effect that lasts over the lifetime of the project -->
+<!-- 2)
+* A team member leaving doesn't create a knowledge vacuum
+* The documentation has a compound effect that lasts over the lifetime of the project
+-->
 
 ---
 
@@ -134,9 +140,11 @@ class: invert
 * Every requirement must be unambiguous, complete, consistent, and verifiable
 
 * The "two-developer test" is the bar
-<!--
-2
-A requirement should be specific enough so that two developers working independently would each agree the other's implementation is correct. The goal isn't identical code — it's that the specification constrains the solution space so any valid implementation satisfies the requirements. This extends to AI agents — given the same document set, any competent agent should produce a valid implementation that satisfies all requirements --> 
+<!-- 2)
+* A requirement should be specific enough so that two developers working independently would each agree the other's implementation is correct
+* The goal isn't identical code — it's that the specification constrains the solution space so any valid implementation satisfies the requirements
+* This extends to AI agents — given the same document set, any competent agent should produce a valid implementation that satisfies all requirements
+--> 
 
 ---
 
@@ -177,8 +185,7 @@ LLMs are machines to satisfy constraints/conditions, so the more you provide, th
 ### Standards-enforced quality
 
 * Document quality is checked mechanically
-
-<!-- AI systematically checks every document - Because quality is enforced at the document level before code exists, the methodology helps ensure the software meets user needs and business goals, not just technical standards -->
+<!-- 1) AI systematically checks every document - Because quality is enforced at the document level before code exists, the methodology helps ensure the software meets user needs and business goals, not just technical standards -->
 
 ---
 
@@ -188,7 +195,8 @@ LLMs are machines to satisfy constraints/conditions, so the more you provide, th
 
 * Problems caught in documents take minutes to fix; problems caught in code take hours to debug and refactor
 
-* If a design can't survive document review, it won't survive production <!-- kill bad ideas before they become bad code -->
+* If a design can't survive document review, it won't survive production
+<!-- 3) Kill bad ideas before they become bad code -->
 
 ---
 
