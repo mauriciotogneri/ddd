@@ -53,6 +53,22 @@ paginate: true
 
 ---
 
+# Practical example
+
+---
+
+### Characteristics
+
+* Layered hierarchy
+* Git-Native workflow
+* Full traceability
+* Technology agnostic
+* No database
+* No server
+* No lock-in
+
+---
+
 # Principles
 
 ### 1. Foundation
@@ -179,18 +195,6 @@ paginate: true
 * AI produces inconsistent results when given ad-hoc instructions <!-- the same task described differently can yield fundamentally different implementations -->
 
 * The quality of output is directly proportional to the quality of the documents that inform it <!-- When an AI receives detailed requirements, a phased implementation plan, and validation scenarios it produces work that reflects the team's intent rather than its own assumptions -->
-
----
-
-### Characteristics
-
-* Layered hierarchy
-* Git-Native workflow
-* Full traceability
-* Technology agnostic
-* No database
-* No server
-* No lock-in
 
 ---
 
