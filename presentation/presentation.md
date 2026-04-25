@@ -12,7 +12,7 @@ class: invert
 
 * Structured but flexible development framework
 
-* Every code change begins with documentation — not code
+* Every code change begins with documentation, not code
 
 * A curated set of documents governs the full lifecycle
 
