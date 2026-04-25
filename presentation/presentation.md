@@ -10,6 +10,10 @@ class: invert
 
 ---
 
+# What is DDD?
+
+---
+
 * `Structured` but `flexible` development framework
 
 * Every code change begins with `documentation`, not code
@@ -22,30 +26,26 @@ class: invert
 
 ---
 
-# Slide 1
-
-This is the first slide.
-
-* You can add bullet points
-* And even code snippets
-* And images!
+# Motivation
 
 ---
 
-# Slide 2
+### The knowledge problem
 
-This is the second slide.
+* Knowledge `lives` in people's heads and `leaves` when they do
 
-```python
-def greet(name):
-    return f"Hello, {name}!"
-```
+* Documentation is written `after` the fact
+
+* Often buried where nobody reads nor updates it, or scattered across wikis, issue trackers, and chat messages
+
+* Requirements are interpreted `differently` by different developers
 
 ---
 
-# Slide 3
+### The consequences
 
-This is the third slide.
+* New developers have to `reverse-engineer` intent from code
 
-- You can also include links.
-- For example, [Marp](https://marp.app/) is a great tool for creating presentations with Markdown.
+* Debt accumulates `silently` and nobody documents the trade-offs or constraints that justify it
+
+* Test cases are written `after` implementation, shaped by what the code does rather than what it should do

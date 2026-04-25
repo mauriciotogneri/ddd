@@ -12,9 +12,9 @@ DDD is a structured but flexible development framework where every code change b
 
 ### The consequences
 
+**Onboarding by archaeology.** New developers have to reverse-engineer intent from code.
 **Silent technical debt.** Debt accumulates silently — nobody documents the trade-offs or constraints that justify it.
 **Missing validation contract.** Test cases are written after implementation, shaped by what the code does rather than what it should do — so tests pass even when behavior is wrong.
-**Onboarding by archaeology.** New developers have to reverse-engineer intent from code.
 
 ## Principles
 
