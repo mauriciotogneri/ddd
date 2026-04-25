@@ -157,13 +157,19 @@ paginate: true
 
 ### Humans curate, AI execute
 
-AI generates and reviews documents, but the team makes all approval decisions. AI handles volume and consistency; the team handles intent and judgment. This shifts the developer's focus from writing repetitive code to understanding edge cases, defining interactions, and validating system behavior.
+* AI generates and reviews documents, but the team makes all approval decisions
+
+* AI handles volume and consistency; the team handles intent and judgment
+
+* This shifts the developer's focus from writing repetitive code to understanding edge cases, defining interactions, and validating system behavior
 
 ---
 
 ### Structured context produces better output
 
-AI produces inconsistent results when given ad-hoc instructions — the same task described differently can yield fundamentally different implementations. The quality of output is directly proportional to the quality of the documents that inform it. When an AI receives detailed requirements, a phased implementation plan, and validation scenarios — all reviewed against project standards — it produces work that reflects the team's intent rather than its own assumptions.
+* AI produces inconsistent results when given ad-hoc instructions <!-- the same task described differently can yield fundamentally different implementations -->
+
+* The quality of output is directly proportional to the quality of the documents that inform it <!-- When an AI receives detailed requirements, a phased implementation plan, and validation scenarios it produces work that reflects the team's intent rather than its own assumptions -->
 
 ---
 
