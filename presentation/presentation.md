@@ -232,10 +232,10 @@ class: invert
 ### Process Overhead
 
 * Works well for mid-large features but the process doesn't justify small fixes
-<!-- 1) One line bug, quick UI tweak, etc gets the same ceremony as a new feature -->
+<!-- 1) One line bug, quick UI tweak, etc, gets the same ceremony as a new feature -->
 
 * This will slow teams down and incentivize workarounds
-<!-- 2) Batching unrelated changes, skipping the process for quick fixes etc -->
+<!-- 2) Batching unrelated changes, skipping the process for quick fixes, etc -->
 
 * `Solution`: small changes could get a fast track or a lightweight process
 
@@ -245,7 +245,7 @@ class: invert
 
 * The framework has no place for exploratory work or prototyping
 
-* The framework assumes you already understand the problem well enough to specify it, which is often the hard part
+* The framework assumes you already understand the problem well enough to specify it
 
 * `Solution`: Allow for spikes, which are a time-boxed investigation where the deliverable is knowledge, not code
 <!-- 3)
@@ -281,8 +281,7 @@ class: invert
 
 ### AI Dependency
 
-* AI dependency is a single point of fragility
-<!-- 1) The framework leans heavily on AI for generation, review, and implementation -->
+* The framework leans heavily on AI for generation, review, and implementation
 
 * If AI is unavailable, a developer can read the requirements and plan and implement manually
 <!-- 2)
@@ -298,4 +297,4 @@ class: invert
 
 * OpenSpec
 * Kiro
-* Spec Ki
+* Spec Kit
