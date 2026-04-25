@@ -67,6 +67,7 @@ paginate: true
 
 * This moves the lingua franca of development to a higher level <!-- Making the work accessible to anyone, not just those fluent in the codebase -->
 <!-- Document creation and review skills becomes a core competency -->
+<!-- DDD is like performing a code review before the code is written -->
 
 ---
 
@@ -106,6 +107,8 @@ paginate: true
 ### No prompt
 
 ![](img/chart1.png)
+
+<!-- LLMs are machines to satisfy constraints/conditions. So the more you provide, the more you narrow and restrain the space of what the LLM can generate, bringing it closer to what you actually want -->
 
 ---
 
