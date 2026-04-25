@@ -101,6 +101,36 @@ paginate: true
 
 ---
 
+### No prompt
+
+![](img/chart1.png)
+
+---
+
+### Make me an app
+
+![](img/chart2.png)
+
+---
+
+### Make me finance app
+
+![](img/chart3.png)
+
+---
+
+### More elaborated prompt
+
+![](img/chart4.png)
+
+---
+
+### Using DDD
+
+![](img/chart5.png)
+
+---
+
 ### Standards-enforced quality
 
 Document quality is checked mechanically, not left to human judgment alone. AI systematically checks every document — eliminating the "we should have caught that" problem. Because quality is enforced at the document level before code exists, the methodology helps ensure the software meets user needs and business goals, not just technical standards.
