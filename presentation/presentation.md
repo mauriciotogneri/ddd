@@ -65,7 +65,8 @@ paginate: true
 
 * Code is an expression of that documentation in a particular language and framework <!-- not the other way around -->
 
-* This moves the lingua franca of development to a higher level <!-- making the work accessible to anyone, not just those fluent in the codebase -->
+* This moves the lingua franca of development to a higher level <!-- Making the work accessible to anyone, not just those fluent in the codebase -->
+<!-- Document creation and review skills becomes a core competency -->
 
 ---
 
@@ -84,6 +85,7 @@ paginate: true
 * For any given concern, exactly one document is authoritative
 
 * Knowledge is externalized into documents, not trapped in individuals <!-- a team member leaving doesn't create a knowledge vacuum -->
+<!-- The documentation has a compound effect that lasts over the lifetime of the project -->
 
 ---
 
