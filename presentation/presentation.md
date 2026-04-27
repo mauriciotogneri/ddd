@@ -92,12 +92,12 @@ class: invert
 
 ### Documentation, not the code, becomes the primary artifact
 
-* Documentation is the source that generates implementation
+* Documentation is the `source` that generates implementation
 
-* Code is an expression of that documentation in a particular language and framework
+* Code is an `expression` of that documentation in a particular language and framework
 <!-- 2) Not the other way around -->
 
-* This moves the lingua franca of development to a higher level
+* This moves the lingua franca of development to a `higher` level
 <!-- 3)
 * Making the work accessible to anyone, not just those fluent in the codebase
 * Document creation and review skills becomes a core competency
@@ -108,12 +108,12 @@ class: invert
 
 ### Documents before code
 
-* No code is written until the document set is reviewed and approved
+* No code is written until the document set is `reviewed` and `approved`
 
-* Documents force the team to articulate what they want, why they want it, and how they will validate it
+* Documents force the team to articulate `what` they want, `why` they want it, and `how` they will validate it
 <!-- 2) Surfacing ambiguities during document review, not code review -->
 
-* This ensures that the team shares the same understanding of what to build 
+* This ensures that the team `shares` the same understanding of what to build
 <!-- 3)
 * Team: developers, testers, designers, managers, etc
 * This prevents assumptions and misalignments before they reach code
@@ -123,9 +123,9 @@ class: invert
 
 ### Single source of truth
 
-* For any given concern, exactly one document is authoritative
+* For any given concern, exactly one document is `authoritative`
 
-* Knowledge is externalized into documents, not trapped in individuals
+* Knowledge is externalized into `documents`, not trapped in individuals
 <!-- 2)
 * A team member leaving doesn't create a knowledge vacuum
 * The documentation has a compound effect that lasts over the lifetime of the project
@@ -141,7 +141,7 @@ class: invert
 
 ### Precise over vague
 
-* Every requirement must be unambiguous, complete, consistent, and verifiable
+* Every requirement must be `unambiguous`, `complete`, `consistent`, and `verifiable`
 
 * The "two-developer test" is the bar
 <!-- 2)
@@ -185,7 +185,7 @@ class: invert
 
 ### Standards-enforced quality
 
-* Document quality is checked mechanically
+* Document `quality` is checked mechanically
 <!-- 1)
 * AI systematically checks every document
 * Because quality is enforced at the document level before code exists, the methodology helps ensure the software meets user needs and business goals, not just technical standards
@@ -195,11 +195,11 @@ class: invert
 
 ### Iterate cheaply
 
-* The document pipeline is ordered so that the most expensive mistakes are caught at the cheapest phase
+* The document pipeline is ordered so that the most `expensive` mistakes are caught at the `cheapest` phase
 
-* Problems caught in documents take minutes to fix; problems caught in code take hours to debug and refactor
+* Problems caught in documents take `minutes` to fix; problems caught in code take `hours` to debug and refactor
 
-* If a design can't survive document review, it won't survive production
+* If a design can't survive document `review`, it won't survive `production`
 <!-- 3) Kill bad ideas before they become bad code -->
 
 ---
@@ -212,19 +212,19 @@ class: invert
 
 ### Humans curate, AI executes
 
-* AI generates and reviews documents, but the team makes all approval decisions
+* AI `generates` and `reviews` documents, but the team makes all `approval` decisions
 
-* AI handles volume and consistency; the team handles intent and judgment
+* AI handles `volume` and `consistency`; the team handles `intent` and `judgment`
 
-* This shifts the developer's focus from writing repetitive code to understanding edge cases, defining interactions, and validating system behavior
+* This shifts the developer's focus from `writing` repetitive code to `understanding` edge cases, `defining` interactions, and `validating` system behavior
 
 ---
 
 ### Structured context produces better output
 
-* AI produces inconsistent results when given ad-hoc instructions <!-- 1) The same task described differently can yield fundamentally different implementations -->
+* AI produces `inconsistent` results when given ad-hoc instructions <!-- 1) The same task described differently can yield fundamentally different implementations -->
 
-* The quality of output is directly proportional to the quality of the documents that inform it
+* The quality of `output` is directly proportional to the quality of the documents that inform it
 <!-- 2) When an AI receives detailed requirements, a phased implementation plan, and validation scenarios it produces work that reflects the team's intent rather than its own assumptions -->
 
 ---
@@ -235,10 +235,10 @@ class: invert
 
 ### Process Overhead
 
-* Works well for mid-large features but the process doesn't justify small fixes
+* Works well for `mid-large` features but the process doesn't justify `small` fixes
 <!-- 1) One line bug, quick UI tweak, etc, gets the same ceremony as a new feature -->
 
-* This will slow teams down and incentivize workarounds
+* This will `slow` teams down and incentivize workarounds
 <!-- 2) Batching unrelated changes, skipping the process for quick fixes, etc -->
 
 * `Solution`: small changes could get a fast track or a lightweight process
@@ -247,9 +247,9 @@ class: invert
 
 ### No Room for Exploration
 
-* The framework has no place for exploratory work or prototyping
+* The framework has no place for `exploratory` work or `prototyping`
 
-* The framework assumes you already understand the problem well enough to specify it
+* The framework `assumes` you already understand the problem well enough to specify it
 
 * `Solution`: Allow for spikes, which are a time-boxed investigation where the deliverable is knowledge, not code
 <!-- 3)
@@ -263,7 +263,7 @@ class: invert
 
 ### Plans Meet Reality
 
-* Plan determinism doesn't survive contact with reality
+* Plan determinism doesn't survive contact with `reality`
 <!-- 1) Sometimes you discover something is missing or a bug after the implementation is done -->
 
 * `Solution`: Allow for small adhoc prompting to update the code and the corresponding documentation
@@ -272,12 +272,12 @@ class: invert
 
 ### Documentation Bloat
 
-* As the project grows, the document set will grow with it
+* As the project `grows`, the document set will grow with it
 
-* Navigation and cross-referencing become harder
+* Navigation and `cross-referencing` become harder
 <!-- 2) Searching for "Where did we decide X?" across dozens of feature folders is cumbersome -->
 
-* The agent's ability to ingest all documents will diminish as the project's documentation grows
+* The agent's ability to ingest all documents will diminish as the project's documentation `grows`
 
 * `Solution`: Add a search-friendly format or cross-referencing tool
 
@@ -285,9 +285,9 @@ class: invert
 
 ### AI Dependency
 
-* The framework leans heavily on AI for generation, review, and implementation
+* The framework leans heavily on AI for `generation`, `review`, and `implementation`
 
-* If AI is unavailable, a developer can read the requirements and plan and implement manually
+* If AI is unavailable, a developer can read the requirements and plan and implement `manually`
 <!-- 2)
 * That's the whole point of making documents precise enough for the two-developer test
 * The framework's value is in the documents, not in the AI that generates them
