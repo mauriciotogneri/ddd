@@ -4,12 +4,6 @@ theme: uncover
 class: invert
 ---
 
-# DDD
-
-### Documentation Driven Development
-
----
-
 ### Before we start
 
 * Thanks for coming
@@ -17,6 +11,16 @@ class: invert
 * I don't want to sell this to anyone
 
 * The goal is to get your thoughts and have a discussion around it
+
+---
+
+# DDD
+
+---
+
+# DDD
+
+### Documentation Driven Development
 
 ---
 
@@ -28,7 +32,7 @@ class: invert
 
 * Every code change begins with `documentation`, not code
 
-* A curated set of `documents` governs the full lifecycle
+* Based on a curated set of `documents` that governs the full lifecycle
 
 * Transforms chaotic software development into a `systematic`, `repeatable` methodology
 
